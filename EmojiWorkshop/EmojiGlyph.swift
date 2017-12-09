@@ -12,11 +12,24 @@ struct EmojiGlyph {
     var glyph: String
     var description: String
     
-    init(textLine: String) {
-        // Example text line from emoji-text.txt
+    
+    /// Init an EmojiGlyph from a line of text in emoji-text.text from the W3C.
+    /// Ignore the comment lines in the file (where index of "#" == 0).
+    /// Grab the emoji character and the string description.
+    init?(textLine: String) {
+        
+        // Example text lines from emoji-text.txt
+        // # Emoji Keyboard/Display Test Data for UTR #51
         // 1F476                                      ; fully-qualified     # 👶 baby
         
-        glyph = "👶"
-        description = "baby"
+        if let poundIndex = textLine.index(of: "#") {
+            if poundIndex != "#".index(of: "#") {
+                glyph = String(textLine[textLine.index(poundIndex, offsetBy: 2)])
+                description = String(textLine[textLine.index(poundIndex, offsetBy: 4)...])
+                return
+            }
+        }
+        // return an empty glyph
+        return nil
     }
 }
