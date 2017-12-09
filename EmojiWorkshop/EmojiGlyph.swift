@@ -9,27 +9,39 @@
 import Foundation
 
 struct EmojiGlyph {
+    
+    // Internal constants
+    let nonFullyQualifed = "non-fully-qualified"
+    let poundChar:Character = "#"
+    let poundStr:String = "#"
+    let glyphOffset = 2
+    let descriptionOffset = 4
+    
+    // properties
     var glyph: String
     var description: String
-    
+    var priority: Int
     
     /// Init an EmojiGlyph from a line of text in emoji-text.text from the W3C.
     /// Ignore the comment lines in the file (where index of "#" == 0).
+    /// Ignore emoji that are non-fully-qualified
     /// Grab the emoji character and the string description.
-    init?(textLine: String) {
+    init?(textLine: String, priority: Int) {
         
-        // Example text lines from emoji-text.txt
-        // # Emoji Keyboard/Display Test Data for UTR #51
-        // 1F476                                      ; fully-qualified     # 👶 baby
+        if textLine.contains(nonFullyQualifed) {
+            return nil
+        }
         
-        if let poundIndex = textLine.index(of: "#") {
-            if poundIndex != "#".index(of: "#") {
-                glyph = String(textLine[textLine.index(poundIndex, offsetBy: 2)])
-                description = String(textLine[textLine.index(poundIndex, offsetBy: 4)...])
+        if let poundIndex = textLine.index(of: poundChar) {
+            
+            if poundIndex != poundStr.index(of: poundChar) {
+                glyph = String(textLine[textLine.index(poundIndex, offsetBy: glyphOffset)])
+                description = String(textLine[textLine.index(poundIndex, offsetBy: descriptionOffset)...])
+                self.priority = priority
                 return
             }
         }
-        // return an empty glyph
+        
         return nil
     }
 }
