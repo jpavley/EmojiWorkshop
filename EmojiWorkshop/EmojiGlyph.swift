@@ -22,12 +22,14 @@ struct EmojiGlyph {
     var glyph: String
     var description: String
     var priority: Int
+    var group: String
+    var subgroup: String
     
     /// Init an EmojiGlyph from a line of text in emoji-text.text from the W3C.
     /// Ignore the comment lines in the file (where index of "#" == 0).
     /// Ignore emoji that are non-fully-qualified
     /// Grab the emoji character and the string description.
-    init?(textLine: String, priority: Int) {
+    init?(textLine: String, priority: Int, group: String, subgroup: String) {
         
         if textLine.contains(nonFullyQualifed) {
             return nil
@@ -39,6 +41,8 @@ struct EmojiGlyph {
                 glyph = String(textLine[textLine.index(poundIndex, offsetBy: glyphOffset)])
                 description = String(textLine[textLine.index(poundIndex, offsetBy: descriptionOffset)...])
                 self.priority = priority
+                self.group = group
+                self.subgroup = subgroup
                 return
             }
         }
