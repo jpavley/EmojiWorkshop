@@ -8,7 +8,26 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var emojiGlyphs = [EmojiGlyph]()
+    
+    @IBOutlet weak var emojiGlyphTable: UITableView!
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return emojiGlyphs.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
+        
+        let currentEmojiGlyph = emojiGlyphs[indexPath.row]
+    
+        cell.emojiLabel.text = currentEmojiGlyph.glyph
+        cell.descriptionLabel.text = currentEmojiGlyph.description
+    
+        return cell
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +51,8 @@ class ViewController: UIViewController {
 
                     
                     if let emojiGlyph = EmojiGlyph(textLine: String(line), priority: i, group: group, subgroup: subgroup) {
-                        print(emojiGlyph)
+                        // print(emojiGlyph)
+                        emojiGlyphs.append(emojiGlyph)
                     }
                 }
             } catch {
