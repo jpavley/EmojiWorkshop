@@ -8,14 +8,15 @@
 
 import Foundation
 
+// Internal constants
+fileprivate let nonFullyQualifed = "non-fully-qualified"
+fileprivate let poundChar:Character = "#"
+fileprivate let poundStr:String = "#"
+fileprivate let glyphOffset = 2
+fileprivate let descriptionOffset = 4
+
 struct EmojiGlyph {
     
-    // Internal constants
-    let nonFullyQualifed = "non-fully-qualified"
-    let poundChar:Character = "#"
-    let poundStr:String = "#"
-    let glyphOffset = 2
-    let descriptionOffset = 4
     
     // properties
     var glyph: String
