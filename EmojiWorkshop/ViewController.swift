@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        if let txtPath = Bundle.main.path(forResource: "emoji-test", ofType: "txt") {
+        if let txtPath = Bundle.main.path(forResource: "emoji-test-4.0", ofType: "txt") {
             do {
                 let emojiTestText = try String(contentsOfFile: txtPath, encoding: .utf8)
                 let emojiTestLines = emojiTestText.split(separator: "\n")
