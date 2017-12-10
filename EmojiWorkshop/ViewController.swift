@@ -25,6 +25,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
         cell.emojiLabel.text = currentEmojiGlyph.glyph
         cell.descriptionLabel.text = currentEmojiGlyph.description
+        cell.groupLabel.text = currentEmojiGlyph.group
+        cell.subgroupLabel.text = currentEmojiGlyph.subgroup
     
         return cell
     }

@@ -38,19 +38,47 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desciption" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bv-JZ-b7N">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="J9H-2a-HFD">
                                                     <rect key="frame" x="104" y="4" width="267" height="91.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bv-JZ-b7N">
+                                                            <rect key="frame" x="0.0" y="0.0" width="267" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="t6a-2c-KAp"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLH-35-tts">
+                                                            <rect key="frame" x="0.0" y="54" width="267" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Subgroup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5V-RZ-oWf">
+                                                            <rect key="frame" x="0.0" y="75" width="267" height="16.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="CLH-35-tts" secondAttribute="trailing" id="8dn-fV-WRe"/>
+                                                        <constraint firstItem="0bv-JZ-b7N" firstAttribute="leading" secondItem="J9H-2a-HFD" secondAttribute="leading" id="Gx4-s9-kzA"/>
+                                                        <constraint firstAttribute="trailing" secondItem="V5V-RZ-oWf" secondAttribute="trailing" id="T7a-qu-Ypz"/>
+                                                        <constraint firstItem="CLH-35-tts" firstAttribute="leading" secondItem="J9H-2a-HFD" secondAttribute="leading" id="TTl-p1-8R9"/>
+                                                        <constraint firstItem="V5V-RZ-oWf" firstAttribute="leading" secondItem="J9H-2a-HFD" secondAttribute="leading" id="nxI-r4-mej"/>
+                                                        <constraint firstAttribute="trailing" secondItem="0bv-JZ-b7N" secondAttribute="trailing" id="tvM-A7-Xfu"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="pag-ZC-x00" firstAttribute="top" secondItem="BDW-34-Ui7" secondAttribute="top" id="7LC-rq-W7V"/>
-                                                <constraint firstItem="0bv-JZ-b7N" firstAttribute="leading" secondItem="pag-ZC-x00" secondAttribute="trailing" constant="4" id="LtO-wQ-UWU"/>
-                                                <constraint firstAttribute="trailing" secondItem="0bv-JZ-b7N" secondAttribute="trailing" constant="4" id="P5t-aS-ZfE"/>
-                                                <constraint firstAttribute="bottom" secondItem="0bv-JZ-b7N" secondAttribute="bottom" constant="4" id="f38-9e-6eW"/>
-                                                <constraint firstItem="0bv-JZ-b7N" firstAttribute="top" secondItem="BDW-34-Ui7" secondAttribute="top" constant="4" id="qyy-5h-93q"/>
+                                                <constraint firstItem="J9H-2a-HFD" firstAttribute="leading" secondItem="pag-ZC-x00" secondAttribute="trailing" constant="4" id="LCe-O8-KuZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="J9H-2a-HFD" secondAttribute="trailing" constant="4" id="OqS-kv-jLV"/>
+                                                <constraint firstItem="J9H-2a-HFD" firstAttribute="top" secondItem="BDW-34-Ui7" secondAttribute="top" constant="4" id="RKC-Lp-KP1"/>
+                                                <constraint firstAttribute="bottom" secondItem="J9H-2a-HFD" secondAttribute="bottom" constant="4" id="aaP-kU-JW1"/>
                                                 <constraint firstItem="pag-ZC-x00" firstAttribute="leading" secondItem="BDW-34-Ui7" secondAttribute="leading" id="tdv-8p-Lkl"/>
                                                 <constraint firstAttribute="bottom" secondItem="pag-ZC-x00" secondAttribute="bottom" id="weN-73-8fL"/>
                                             </constraints>
@@ -58,6 +86,8 @@
                                         <connections>
                                             <outlet property="descriptionLabel" destination="0bv-JZ-b7N" id="A1S-2c-L3q"/>
                                             <outlet property="emojiLabel" destination="pag-ZC-x00" id="CrH-Cd-FKV"/>
+                                            <outlet property="groupLabel" destination="CLH-35-tts" id="c1c-Wc-D6v"/>
+                                            <outlet property="subgroupLabel" destination="V5V-RZ-oWf" id="MW9-UL-Tp0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
