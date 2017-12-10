@@ -15,6 +15,8 @@
 		5A4EAD481FDC75B400A02F7F /* emoji-test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD471FDC75B400A02F7F /* emoji-test.txt */; };
 		5A4EAD4A1FDC760600A02F7F /* EmojiGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4EAD491FDC760600A02F7F /* EmojiGlyph.swift */; };
 		5A4EAD4C1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4EAD4B1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift */; };
+		5A4EAD4E1FDD9CCA00A02F7F /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD4D1FDD9CCA00A02F7F /* readme.md */; };
+		5A4EAD501FDD9CD600A02F7F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD4F1FDD9CD600A02F7F /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		5A4EAD471FDC75B400A02F7F /* emoji-test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "emoji-test.txt"; sourceTree = "<group>"; };
 		5A4EAD491FDC760600A02F7F /* EmojiGlyph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiGlyph.swift; sourceTree = "<group>"; };
 		5A4EAD4B1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGlyphTableViewCell.swift; sourceTree = "<group>"; };
+		5A4EAD4D1FDD9CCA00A02F7F /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
+		5A4EAD4F1FDD9CD600A02F7F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +48,8 @@
 		5A4EAD291FDC758B00A02F7F = {
 			isa = PBXGroup;
 			children = (
+				5A4EAD4F1FDD9CD600A02F7F /* LICENSE */,
+				5A4EAD4D1FDD9CCA00A02F7F /* readme.md */,
 				5A4EAD341FDC758B00A02F7F /* EmojiWorkshop */,
 				5A4EAD331FDC758B00A02F7F /* Products */,
 			);
@@ -132,9 +138,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A4EAD501FDD9CD600A02F7F /* LICENSE in Resources */,
 				5A4EAD401FDC758B00A02F7F /* LaunchScreen.storyboard in Resources */,
 				5A4EAD481FDC75B400A02F7F /* emoji-test.txt in Resources */,
 				5A4EAD3D1FDC758B00A02F7F /* Assets.xcassets in Resources */,
+				5A4EAD4E1FDD9CCA00A02F7F /* readme.md in Resources */,
 				5A4EAD3B1FDC758B00A02F7F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,7 +231,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -274,7 +282,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
