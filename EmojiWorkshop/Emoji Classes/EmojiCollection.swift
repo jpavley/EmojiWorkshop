@@ -11,10 +11,40 @@ import Foundation
 class EmojiCollection {
     
     var emojiGlyphs: [EmojiGlyph]
+    var glyphsIDsInSections: [[Int]]
     var sections: [String]
+    
+    fileprivate func createGlyphsInSections() {
+        
+        // TODO: Use map() to map section to list of associated emoji
+        
+        var glyphIDs: [Int]
+        var cleanedUpSections = [String]()
+        var glyphSectionName = ""
+        
+        for section in sections {
+            
+            glyphIDs = [Int]()
+            
+            for glyph in emojiGlyphs {
+                glyphSectionName = "\(glyph.group): \(glyph.subgroup)"
+                if section == glyphSectionName {
+                    glyphIDs.append(glyph.priority)
+                }
+            }
+            
+            if glyphIDs.count > 0 {
+                glyphsIDsInSections.append(glyphIDs)
+                cleanedUpSections.append(section)
+            }
+        }
+        
+        sections = cleanedUpSections
+    }
     
     init(sourceFileName: String) {
         emojiGlyphs = [EmojiGlyph]()
+        glyphsIDsInSections = [[Int]]()
         sections = [String]()
         
         if let txtPath = Bundle.main.path(forResource: sourceFileName, ofType: "txt") {
@@ -51,7 +81,13 @@ class EmojiCollection {
                 print("emoji-test.txt file not found")
             }
         }
-        print(sections.count)
+        
+        createGlyphsInSections()
+        
+        for i in 0..<sections.count {
+            print("\(sections[i]) \(glyphsIDsInSections[i])")
+        }
+        
     }
     
 }

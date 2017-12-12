@@ -52,6 +52,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if let emojiCollection = emojiCollection {
+            return emojiCollection.sections.count
+        }
+        return 0
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return ""
+    }
+    
+
+    
 
 }
 
