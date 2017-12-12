@@ -51,7 +51,7 @@ class EmojiCollection {
                 print("emoji-test.txt file not found")
             }
         }
-        print(sections)
+        print(sections.count)
     }
     
 }
