@@ -35,6 +35,11 @@ class EmojiCollection {
                         subgroup = String(line[line.index(line.startIndex, offsetBy: "# subgroup: ".count)...])
                     }
                     
+                    let sectionName = "\(group): \(subgroup)"
+                    
+                    if !sections.contains(sectionName) {
+                        sections.append(sectionName)
+                    }
                     
                     if let emojiGlyph = EmojiGlyph(textLine: String(line), priority: i, group: group, subgroup: subgroup) {
                         // print(emojiGlyph)
@@ -46,6 +51,7 @@ class EmojiCollection {
                 print("emoji-test.txt file not found")
             }
         }
+        print(sections)
     }
     
 }
