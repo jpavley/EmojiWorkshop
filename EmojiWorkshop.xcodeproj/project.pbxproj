@@ -49,6 +49,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		482C062F1FE036B200508A28 /* Data Files */ = {
+			isa = PBXGroup;
+			children = (
+				5A4EAD471FDC75B400A02F7F /* emoji-test-5.0.txt */,
+				5A4EAD511FDD9DA500A02F7F /* emoji-test-4.0.txt */,
+			);
+			path = "Data Files";
+			sourceTree = "<group>";
+		};
+		482C06301FE036C200508A28 /* Emoji Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5A4EAD491FDC760600A02F7F /* EmojiGlyph.swift */,
+				482C062D1FE0112B00508A28 /* EmojiCollection.swift */,
+			);
+			path = "Emoji Classes";
+			sourceTree = "<group>";
+		};
 		5A4EAD291FDC758B00A02F7F = {
 			isa = PBXGroup;
 			children = (
@@ -70,10 +88,8 @@
 		5A4EAD341FDC758B00A02F7F /* EmojiWorkshop */ = {
 			isa = PBXGroup;
 			children = (
-				5A4EAD471FDC75B400A02F7F /* emoji-test-5.0.txt */,
-				5A4EAD511FDD9DA500A02F7F /* emoji-test-4.0.txt */,
-				5A4EAD491FDC760600A02F7F /* EmojiGlyph.swift */,
-				482C062D1FE0112B00508A28 /* EmojiCollection.swift */,
+				482C062F1FE036B200508A28 /* Data Files */,
+				482C06301FE036C200508A28 /* Emoji Classes */,
 				5A4EAD351FDC758B00A02F7F /* AppDelegate.swift */,
 				5A4EAD371FDC758B00A02F7F /* ViewController.swift */,
 				5A4EAD391FDC758B00A02F7F /* Main.storyboard */,
