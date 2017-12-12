@@ -14,6 +14,8 @@ class EmojiCollection {
     var glyphsIDsInSections: [[Int]]
     var sections: [String]
     
+    /// Organizes emoji glyph IDs into sections based on group and subgroup.
+    /// Throws away any sections without associated emoji.
     fileprivate func createGlyphsInSections() {
         
         // TODO: Use map() to map section to list of associated emoji
@@ -42,7 +44,10 @@ class EmojiCollection {
         sections = cleanedUpSections
     }
     
+    /// Initializes EmojiCollection from a source file. The file has to be a W3C
+    /// emoji test file stored locally. 
     init(sourceFileName: String) {
+        
         emojiGlyphs = [EmojiGlyph]()
         glyphsIDsInSections = [[Int]]()
         sections = [String]()
