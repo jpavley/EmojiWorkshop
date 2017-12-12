@@ -31,13 +31,14 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-        
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
         
         if let emojiCollection = emojiCollection {
-            let currentEmojiGlyph = emojiCollection.emojiGlyphs[(indexPath.section * indexPath.row) + indexPath.row]
+            
+            let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
             
             cell.emojiLabel.text = currentEmojiGlyph.glyph
             cell.descriptionLabel.text = currentEmojiGlyph.description

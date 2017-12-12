@@ -84,9 +84,9 @@ class EmojiCollection {
         
         createGlyphsInSections()
         
-        for i in 0..<sections.count {
-            print("\(sections[i]) \(glyphsIDsInSections[i])")
-        }
+//        for i in 0..<sections.count {
+//            print("\(sections[i]) \(glyphsIDsInSections[i])")
+//        }
         
     }
     
