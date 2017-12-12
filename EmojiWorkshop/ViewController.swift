@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let emojiCollection = emojiCollection {
             return emojiCollection.emojiGlyphs.count
         }
+        
         return 0
     }
     
@@ -32,8 +33,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.priorityLabel.text = "Priority \(currentEmojiGlyph.priority)"
         }
         
-    
-    
         return cell
     }
     
