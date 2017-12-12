@@ -10,11 +10,9 @@ import UIKit
 
 class EmojiGlyphTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var groupLabel: UILabel!
-    @IBOutlet weak var subgroupLabel: UILabel!
-    
     @IBOutlet weak var emojiLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var priorityLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

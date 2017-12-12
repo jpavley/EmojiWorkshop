@@ -8,61 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController {
     
-    var emojiGlyphs = [EmojiGlyph]()
+    var emojiCollection: EmojiCollection?
     
     @IBOutlet weak var emojiGlyphTable: UITableView!
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return emojiGlyphs.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
-        
-        let currentEmojiGlyph = emojiGlyphs[indexPath.row]
-    
-        cell.emojiLabel.text = currentEmojiGlyph.glyph
-        cell.descriptionLabel.text = currentEmojiGlyph.description
-        cell.groupLabel.text = currentEmojiGlyph.group
-        cell.subgroupLabel.text = currentEmojiGlyph.subgroup
-    
-        return cell
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-                
-        if let txtPath = Bundle.main.path(forResource: "emoji-test-5.0", ofType: "txt") {
-            do {
-                let emojiTestText = try String(contentsOfFile: txtPath, encoding: .utf8)
-                let emojiTestLines = emojiTestText.split(separator: "\n")
-                var group = ""
-                var subgroup = ""
-                for (i, line) in emojiTestLines.enumerated() {
-                    
-                    if line.contains("# group: ") {
-                        group = String(line[line.index(line.startIndex, offsetBy: "# group: ".count)...])
-                    }
-                    
-                    if line.contains("# subgroup: ") {
-                        subgroup = String(line[line.index(line.startIndex, offsetBy: "# subgroup: ".count)...])
-                    }
-
-                    
-                    if let emojiGlyph = EmojiGlyph(textLine: String(line), priority: i, group: group, subgroup: subgroup) {
-                        // print(emojiGlyph)
-                        emojiGlyphs.append(emojiGlyph)
-                    }
-                }
-            } catch {
-                
-                print("emoji-test.txt file not found")
-            }
-        }
         
+        emojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,6 +28,60 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
+        
+        if let emojiCollection = emojiCollection {
+            
+            let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
+            
+            cell.emojiLabel.text = currentEmojiGlyph.glyph
+            cell.descriptionLabel.text = currentEmojiGlyph.description
+            cell.priorityLabel.text = "Priority \(currentEmojiGlyph.priority)"
+
+        }
+        
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        if let emojiCollection = emojiCollection {
+            return emojiCollection.sections.count
+        }
+        
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if let emojiCollection = emojiCollection {
+            return emojiCollection.glyphsIDsInSections[section].count
+        }
+
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if let emojiCollection = emojiCollection {
+            return emojiCollection.sections[section]
+        }
+
+        return ""
+    }
+    
+
+    
 
 }
 
