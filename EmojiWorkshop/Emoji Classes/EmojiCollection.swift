@@ -11,6 +11,7 @@ import Foundation
 class EmojiCollection {
     
     var emojiGlyphs: [EmojiGlyph]
+    var filteredEmojiGlyphs: [EmojiGlyph]
     var glyphsIDsInSections: [[Int]]
     var sections: [String]
     
@@ -49,6 +50,7 @@ class EmojiCollection {
     init(sourceFileName: String) {
         
         emojiGlyphs = [EmojiGlyph]()
+        filteredEmojiGlyphs = [EmojiGlyph]()
         glyphsIDsInSections = [[Int]]()
         sections = [String]()
         
