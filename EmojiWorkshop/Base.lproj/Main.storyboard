@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ybs-SK-Ics">
-                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmojiGlyphCell" rowHeight="100" id="Wzj-pm-XtZ" customClass="EmojiGlyphTableViewCell" customModule="EmojiWorkshop" customModuleProvider="target">
@@ -79,47 +79,21 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="btI-tw-KAU"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="lSf-Sf-pU3">
-                                <rect key="frame" x="0.0" y="20" width="375" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="rYW-O3-wEK"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="iS1-Kw-D3z"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ybs-SK-Ics" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="7xu-de-Ny2"/>
-                            <constraint firstItem="ybs-SK-Ics" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LYG-Qk-N9y"/>
-                            <constraint firstItem="lSf-Sf-pU3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Me6-gK-9pH"/>
-                            <constraint firstItem="ybs-SK-Ics" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QJ1-NR-BW0"/>
-                            <constraint firstItem="lSf-Sf-pU3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="d44-Vp-PzP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ybs-SK-Ics" secondAttribute="bottom" id="hFm-cU-0t5"/>
-                            <constraint firstItem="ybs-SK-Ics" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nIW-vH-KLD"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ybs-SK-Ics" secondAttribute="trailing" id="q8Q-Fd-thC"/>
-                            <constraint firstItem="ybs-SK-Ics" firstAttribute="top" secondItem="lSf-Sf-pU3" secondAttribute="bottom" id="rop-ZF-7eS"/>
-                            <constraint firstItem="lSf-Sf-pU3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="udW-I1-7ZI"/>
+                            <constraint firstItem="ybs-SK-Ics" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2nN-jn-DWf"/>
+                            <constraint firstItem="ybs-SK-Ics" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="LpV-9e-tr2"/>
+                            <constraint firstItem="ybs-SK-Ics" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="T0F-21-B4k"/>
+                            <constraint firstItem="ybs-SK-Ics" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="t3M-Hf-FJN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="emojiGlyphTable" destination="ybs-SK-Ics" id="CaT-Oi-ifc"/>
-                        <outlet property="searchDisplayController" destination="z7m-yn-qda" id="Anr-Kn-IVf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="z7m-yn-qda">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="Z1I-w6-pIm"/>
-                        <outlet property="searchBar" destination="lSf-Sf-pU3" id="osa-6n-PCa"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="VBH-pI-1qa"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="e4j-sr-yzK"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="Ne7-eZ-UOI"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="140" y="132.68365817091455"/>
         </scene>
