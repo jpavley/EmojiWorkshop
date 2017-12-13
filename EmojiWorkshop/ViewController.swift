@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var emojiCollection: EmojiCollection?
+    let searchController = UISearchController(searchResultsController: nil)
     
     @IBOutlet weak var emojiGlyphTable: UITableView!
     
@@ -20,6 +21,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         emojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        
+        // Search Controller setup
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Emoji"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
 
     }
 
@@ -28,6 +37,14 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        // TODO
+    }
+    
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -79,9 +96,5 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
         return ""
     }
-    
-
-    
-
 }
 
