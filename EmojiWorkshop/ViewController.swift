@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         searchController.searchBar.placeholder = "Search Emoji"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        navigationItem.hidesSearchBarWhenScrolling = false
 
     }
 
