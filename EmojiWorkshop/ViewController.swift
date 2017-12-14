@@ -8,13 +8,20 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     var emojiCollection: EmojiCollection?
     let searchController = UISearchController(searchResultsController: nil)
     
     @IBOutlet weak var emojiGlyphTable: UITableView!
+    @IBOutlet weak var clipboardItem: UIBarButtonItem!
     
+    
+    @IBAction func copyButtonTouched(_ sender: Any) {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = clipboardItem.title!
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +38,6 @@ class ViewController: UIViewController {
         definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = false
         emojiGlyphTable.rowHeight = 66
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,6 +66,20 @@ extension ViewController: UISearchResultsUpdating {
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let emojiCollection = emojiCollection {
+            
+            if userIsFiltering() {
+                let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
+                clipboardItem.title = "\(filteredEmojiGlyph.glyph)"
+            } else {
+                let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
+                clipboardItem.title = "\(currentEmojiGlyph.glyph)"
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
