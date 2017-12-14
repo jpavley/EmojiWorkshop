@@ -41,11 +41,21 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        // TODO
+    
+    fileprivate func userIsFiltering() -> Bool {
+        let searchBarIsEmpty = searchController.searchBar.text?.isEmpty ?? true
+        let currentlyFiltering = !searchBarIsEmpty &&  searchController.isActive
+        return currentlyFiltering
     }
     
-    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        if let emojiCollection = emojiCollection {
+            
+            emojiCollection.filteredEmojiGlyphs = emojiCollection.emojiGlyphs.filter { $0.description.lowercased().contains(searchController.searchBar.text!.lowercased())}
+        }
+        emojiGlyphTable.reloadData()
+    }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -56,12 +66,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
-            let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
-            
-            cell.emojiLabel.text = currentEmojiGlyph.glyph
-            cell.descriptionLabel.text = currentEmojiGlyph.description
-            cell.priorityLabel.text = "Priority \(currentEmojiGlyph.priority)"
-
+            if userIsFiltering() {
+                let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
+                
+                cell.emojiLabel.text = filteredEmojiGlyph.glyph
+                cell.descriptionLabel.text = filteredEmojiGlyph.description
+                cell.priorityLabel.text = "Priority \(filteredEmojiGlyph.priority)"
+            } else {
+                
+                let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
+                
+                cell.emojiLabel.text = currentEmojiGlyph.glyph
+                cell.descriptionLabel.text = currentEmojiGlyph.description
+                cell.priorityLabel.text = "Priority \(currentEmojiGlyph.priority)"
+            }
         }
         
         return cell
@@ -70,7 +88,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         
         if let emojiCollection = emojiCollection {
-            return emojiCollection.sections.count
+            
+            if userIsFiltering() {
+                return 1
+            } else {
+                return emojiCollection.sections.count
+            }
         }
         
         return 0
@@ -83,7 +106,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let emojiCollection = emojiCollection {
-            return emojiCollection.glyphsIDsInSections[section].count
+            
+            if userIsFiltering() {
+                return emojiCollection.filteredEmojiGlyphs.count
+            } else {
+                return emojiCollection.glyphsIDsInSections[section].count
+            }
         }
 
         return 0
@@ -92,7 +120,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if let emojiCollection = emojiCollection {
-            return emojiCollection.sections[section]
+            
+            if userIsFiltering() {
+                return "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
+            } else {
+                return "\(emojiCollection.sections[section]) \(emojiCollection.glyphsIDsInSections[section].count)"
+            }
         }
 
         return ""
