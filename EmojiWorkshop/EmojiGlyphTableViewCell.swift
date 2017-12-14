@@ -14,6 +14,11 @@ class EmojiGlyphTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
     
+    @IBAction func emojiButtonTouched(_ sender: UIButton) {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = sender.title(for: .normal)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

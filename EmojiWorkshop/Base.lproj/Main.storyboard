@@ -53,6 +53,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                     <state key="normal" title="😀"/>
+                                                    <connections>
+                                                        <action selector="emojiButtonTouched:" destination="Wzj-pm-XtZ" eventType="touchUpInside" id="yAz-b7-PGu"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
