@@ -30,6 +30,7 @@ class ViewController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = false
+        emojiGlyphTable.rowHeight = 66
 
     }
 
@@ -69,14 +70,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             if userIsFiltering() {
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
                 
-                cell.emojiLabel.text = filteredEmojiGlyph.glyph
+                cell.emojiButton.setTitle(filteredEmojiGlyph.glyph, for: .normal)
                 cell.descriptionLabel.text = filteredEmojiGlyph.description
                 cell.priorityLabel.text = "Priority \(filteredEmojiGlyph.priority)"
             } else {
                 
                 let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
                 
-                cell.emojiLabel.text = currentEmojiGlyph.glyph
+                cell.emojiButton.setTitle(currentEmojiGlyph.glyph, for: .normal)
                 cell.descriptionLabel.text = currentEmojiGlyph.description
                 cell.priorityLabel.text = "Priority \(currentEmojiGlyph.priority)"
             }
@@ -100,7 +101,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 45
+        return 35
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
