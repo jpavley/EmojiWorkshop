@@ -126,11 +126,11 @@
 				482C06301FE036C200508A28 /* Emoji Classes */,
 				5A4EAD351FDC758B00A02F7F /* AppDelegate.swift */,
 				5A4EAD371FDC758B00A02F7F /* ViewController.swift */,
+				5A4EAD4B1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift */,
 				5A4EAD391FDC758B00A02F7F /* Main.storyboard */,
 				5A4EAD3C1FDC758B00A02F7F /* Assets.xcassets */,
 				5A4EAD3E1FDC758B00A02F7F /* LaunchScreen.storyboard */,
 				5A4EAD411FDC758B00A02F7F /* Info.plist */,
-				5A4EAD4B1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift */,
 			);
 			path = EmojiWorkshop;
 			sourceTree = "<group>";

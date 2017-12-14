@@ -79,7 +79,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 cell.emojiButton.setTitle(currentEmojiGlyph.glyph, for: .normal)
                 cell.descriptionLabel.text = currentEmojiGlyph.description
-                cell.priorityLabel.text = "Priority \(currentEmojiGlyph.priority)"
+                cell.priorityLabel.text = "# \(currentEmojiGlyph.priority)"
             }
         }
         

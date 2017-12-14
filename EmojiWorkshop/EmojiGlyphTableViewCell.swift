@@ -17,6 +17,7 @@ class EmojiGlyphTableViewCell: UITableViewCell {
     @IBAction func emojiButtonTouched(_ sender: UIButton) {
         let pasteboard = UIPasteboard.general
         pasteboard.string = sender.title(for: .normal)
+        print(pasteboard.string!)
     }
     
     override func awakeFromNib() {
