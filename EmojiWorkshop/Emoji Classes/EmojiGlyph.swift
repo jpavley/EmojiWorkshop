@@ -35,6 +35,11 @@ struct EmojiGlyph {
             return nil
         }
         
+        let pounds = textLine.filter { $0 == "#" }
+        if pounds.count > 1 {
+            return nil
+        }
+        
         if let poundIndex = textLine.index(of: poundChar) {
             
             if poundIndex != poundStr.index(of: poundChar) {
