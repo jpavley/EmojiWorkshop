@@ -71,12 +71,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
+            if clipboardItem.title! == "Empty" {
+                clipboardItem.title = ""
+            }
+            
             if userIsFiltering() {
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
-                clipboardItem.title = "\(filteredEmojiGlyph.glyph)"
+                clipboardItem.title = clipboardItem.title! + "\(filteredEmojiGlyph.glyph)"
             } else {
                 let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
-                clipboardItem.title = "\(currentEmojiGlyph.glyph)"
+                clipboardItem.title = clipboardItem.title! + "\(currentEmojiGlyph.glyph)"
             }
         }
     }
