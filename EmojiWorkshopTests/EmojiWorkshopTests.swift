@@ -25,6 +25,12 @@ class EmojiWorkshopTests: XCTestCase {
         XCTAssertNil(testEmojiGlyph)
     }
     
+    func testCreateEmojiGlyphNFQInput() {
+        let testTextLine = "2620                                       ; non-fully-qualified # ☠ skull and crossbones"
+        let testEmojiGlyph = EmojiGlyph(textLine: testTextLine, priority: 0, group: "", subgroup: "")
+        XCTAssertNil(testEmojiGlyph)
+    }
+    
     func testCreateEmojiGlyphGoodInput() {
         let testTextLine = "1F476 1F3FB                                ; fully-qualified     # 👶🏻 baby: light skin tone"
         let testEmojiGlyph = EmojiGlyph(textLine: testTextLine, priority: 0, group: "g", subgroup: "s")
