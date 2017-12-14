@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Emoji Search-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EmojiWorkshop" customModuleProvider="target" sceneMemberID="viewController">
@@ -89,7 +89,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8Ev-98-hHM"/>
+                    <navigationItem key="navigationItem" title="Emoji Search" id="8Ev-98-hHM"/>
                     <connections>
                         <outlet property="emojiGlyphTable" destination="ybs-SK-Ics" id="CaT-Oi-ifc"/>
                     </connections>
@@ -108,6 +108,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OFz-c7-Q8t">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gv7-ZP-xRq"/>
                     </connections>
