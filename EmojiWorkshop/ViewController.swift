@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     var emojiCollection: EmojiCollection?
     let searchController = UISearchController(searchResultsController: nil)
+    var localPasteboard = ""
     
     @IBOutlet weak var emojiGlyphTable: UITableView!
     @IBOutlet weak var clipboardItem: UIBarButtonItem!
@@ -41,6 +42,7 @@ class ViewController: UIViewController {
         
         // toolbar setup
         clipboardItem.title = ""
+        localPasteboard = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,35 +78,44 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                         
             if userIsFiltering() {
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
-                clipboardItem.title = clipboardItem.title! + "\(filteredEmojiGlyph.glyph)"
+                updateToolbar(with: filteredEmojiGlyph)
             } else {
                 let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
-                clipboardItem.title = clipboardItem.title! + "\(currentEmojiGlyph.glyph)"
+                updateToolbar(with: currentEmojiGlyph)
             }
         }
     }
     
+    fileprivate func updateToolbar(with emojiGlyph: EmojiGlyph) {
+        localPasteboard += "\(emojiGlyph.glyph)"
+        clipboardItem.title = localPasteboard
+
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
+        var cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
         
         if let emojiCollection = emojiCollection {
             
             if userIsFiltering() {
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
-                
-                cell.emojiButton.setTitle(filteredEmojiGlyph.glyph, for: .normal)
-                cell.descriptionLabel.text = filteredEmojiGlyph.description
-                cell.priorityLabel.text = "Priority \(filteredEmojiGlyph.priority)"
+                cell = updateCell(with: filteredEmojiGlyph)
             } else {
-                
                 let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
-                
-                cell.emojiButton.setTitle(currentEmojiGlyph.glyph, for: .normal)
-                cell.descriptionLabel.text = currentEmojiGlyph.description
-                cell.priorityLabel.text = "# \(currentEmojiGlyph.priority)"
+                cell = updateCell(with: currentEmojiGlyph)
             }
         }
+        
+        return cell
+    }
+    
+    fileprivate func updateCell(with emojiGlyph: EmojiGlyph) ->  EmojiGlyphTableViewCell {
+        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
+        
+        cell.emojiButton.setTitle(emojiGlyph.glyph, for: .normal)
+        cell.descriptionLabel.text = emojiGlyph.description
+        cell.priorityLabel.text = "# \(emojiGlyph.priority)"
         
         return cell
     }
