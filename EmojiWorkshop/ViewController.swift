@@ -24,6 +24,16 @@ class ViewController: UIViewController {
         pasteboard.string = clipboardItem.title!
     }
     
+    @IBAction func clearButtonTouched(_ sender: UIBarButtonItem) {
+        if localPasteboard.count < 1 {
+            return
+        }
+        
+        let indexEndOfText = localPasteboard.index(localPasteboard.endIndex, offsetBy: -1)
+        localPasteboard = String(localPasteboard[..<indexEndOfText])
+        clipboardItem.title = localPasteboard
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

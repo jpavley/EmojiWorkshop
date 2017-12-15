@@ -87,15 +87,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem systemItem="action" id="Ngn-QM-m92"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="5vE-Xk-XoV"/>
-                        <barButtonItem tag="1" title="😢😭😿" width="65" id="PoS-5M-w1a" userLabel="Clipboard:">
+                        <barButtonItem systemItem="action" id="Ngn-QM-m92">
                             <connections>
-                                <action selector="copyButtonTouched:" destination="BYZ-38-t0r" id="6xS-jP-bgi"/>
+                                <action selector="copyButtonTouched:" destination="BYZ-38-t0r" id="uaJ-aX-XE3"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="5vE-Xk-XoV"/>
+                        <barButtonItem tag="1" title="😢😭😿" width="65" id="PoS-5M-w1a" userLabel="Clipboard:"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="iJO-b8-XUe"/>
-                        <barButtonItem systemItem="stop" id="0lU-vM-NEY"/>
+                        <barButtonItem systemItem="stop" id="0lU-vM-NEY">
+                            <connections>
+                                <action selector="clearButtonTouched:" destination="BYZ-38-t0r" id="F5i-Bc-FYz"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Emoji Workshop" id="8Ev-98-hHM"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
