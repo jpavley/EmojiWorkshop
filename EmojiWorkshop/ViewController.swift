@@ -38,6 +38,9 @@ class ViewController: UIViewController {
         definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = false
         emojiGlyphTable.rowHeight = 66
+        
+        // toolbar setup
+        clipboardItem.title = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,11 +73,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let emojiCollection = emojiCollection {
-            
-            if clipboardItem.title! == "Empty" {
-                clipboardItem.title = ""
-            }
-            
+                        
             if userIsFiltering() {
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
                 clipboardItem.title = clipboardItem.title! + "\(filteredEmojiGlyph.glyph)"

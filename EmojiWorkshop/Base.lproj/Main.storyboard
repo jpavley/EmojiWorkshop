@@ -87,11 +87,15 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem tag="1" title="Empty" width="65" id="PoS-5M-w1a" userLabel="Clipboard:">
+                        <barButtonItem systemItem="action" id="Ngn-QM-m92"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="5vE-Xk-XoV"/>
+                        <barButtonItem tag="1" title="😢😭😿" width="65" id="PoS-5M-w1a" userLabel="Clipboard:">
                             <connections>
                                 <action selector="copyButtonTouched:" destination="BYZ-38-t0r" id="6xS-jP-bgi"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="iJO-b8-XUe"/>
+                        <barButtonItem systemItem="stop" id="0lU-vM-NEY"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Emoji Workshop" id="8Ev-98-hHM"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
