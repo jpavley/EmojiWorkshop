@@ -20,18 +20,32 @@ class ViewController: UIViewController {
     
     
     @IBAction func copyButtonTouched(_ sender: Any) {
+        if nothingToPaste() {
+            return
+        }
+
         let pasteboard = UIPasteboard.general
-        pasteboard.string = clipboardItem.title!
+        pasteboard.string = localPasteboard
+        
+        let alert = UIAlertController(title: "Copied", message: "\(localPasteboard)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dimiss", style: .default, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func clearButtonTouched(_ sender: UIBarButtonItem) {
-        if localPasteboard.count < 1 {
+        if nothingToPaste() {
             return
         }
         
         let indexEndOfText = localPasteboard.index(localPasteboard.endIndex, offsetBy: -1)
         localPasteboard = String(localPasteboard[..<indexEndOfText])
         clipboardItem.title = localPasteboard
+    }
+    
+    fileprivate func nothingToPaste() -> Bool {
+        return localPasteboard.count < 1
     }
     
     override func viewDidLoad() {
@@ -51,6 +65,7 @@ class ViewController: UIViewController {
         emojiGlyphTable.rowHeight = 66
         
         // toolbar setup
+        
         clipboardItem.title = ""
         localPasteboard = ""
     }
