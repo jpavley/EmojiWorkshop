@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,55 +19,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ybs-SK-Ics">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmojiGlyphCell" rowHeight="100" id="Wzj-pm-XtZ" customClass="EmojiGlyphTableViewCell" customModule="EmojiWorkshop" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmojiGlyphCell" rowHeight="66" id="Wzj-pm-XtZ" customClass="EmojiGlyphTableViewCell" customModule="EmojiWorkshop" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wzj-pm-XtZ" id="BDW-34-Ui7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😀" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pag-ZC-x00">
-                                                    <rect key="frame" x="5" y="5" width="86" height="90"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="86" id="Y3y-VI-PqD"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="80"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KD2-1O-cIf">
-                                                    <rect key="frame" x="99" y="26.5" width="261" height="46.5"/>
+                                                    <rect key="frame" x="76" y="9.5" width="299" height="46.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aj-wZ-sd1">
-                                                            <rect key="frame" x="0.0" y="0.0" width="261" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="299" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSb-GE-Bmi">
-                                                            <rect key="frame" x="0.0" y="28.5" width="261" height="18"/>
+                                                            <rect key="frame" x="0.0" y="28.5" width="299" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gev-ef-U83">
+                                                    <rect key="frame" x="8" y="-3.5" width="60" height="72"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="27t-CH-WSP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                                    <state key="normal" title="😀"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="KD2-1O-cIf" firstAttribute="centerY" secondItem="BDW-34-Ui7" secondAttribute="centerY" id="0ud-DZ-Cu4"/>
-                                                <constraint firstItem="pag-ZC-x00" firstAttribute="top" secondItem="BDW-34-Ui7" secondAttribute="top" constant="5" id="2LG-gL-QVj"/>
-                                                <constraint firstItem="pag-ZC-x00" firstAttribute="leading" secondItem="BDW-34-Ui7" secondAttribute="leading" constant="5" id="5la-q6-qhm"/>
-                                                <constraint firstItem="pag-ZC-x00" firstAttribute="centerY" secondItem="BDW-34-Ui7" secondAttribute="centerY" id="GoP-k1-5y8"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="KD2-1O-cIf" secondAttribute="trailing" id="QkZ-Gb-zBL"/>
-                                                <constraint firstItem="KD2-1O-cIf" firstAttribute="leading" secondItem="pag-ZC-x00" secondAttribute="trailing" constant="8" id="YOx-Lu-0Ro"/>
+                                                <constraint firstItem="Gev-ef-U83" firstAttribute="centerY" secondItem="BDW-34-Ui7" secondAttribute="centerY" id="A0g-Gv-fNb"/>
+                                                <constraint firstItem="KD2-1O-cIf" firstAttribute="leading" secondItem="Gev-ef-U83" secondAttribute="trailing" constant="8" id="AIu-7H-ezU"/>
+                                                <constraint firstItem="KD2-1O-cIf" firstAttribute="centerY" secondItem="BDW-34-Ui7" secondAttribute="centerY" id="Flb-o7-ln5"/>
+                                                <constraint firstAttribute="trailing" secondItem="KD2-1O-cIf" secondAttribute="trailing" id="IR3-qp-hEL"/>
+                                                <constraint firstItem="Gev-ef-U83" firstAttribute="leading" secondItem="BDW-34-Ui7" secondAttribute="leading" constant="8" id="VW2-ia-neE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="6aj-wZ-sd1" id="bJl-aF-7Rn"/>
-                                            <outlet property="emojiLabel" destination="pag-ZC-x00" id="CrH-Cd-FKV"/>
+                                            <outlet property="emojiButton" destination="Gev-ef-U83" id="0nO-ts-ybs"/>
                                             <outlet property="priorityLabel" destination="sSb-GE-Bmi" id="TIR-Hb-tN2"/>
                                         </connections>
                                     </tableViewCell>
@@ -89,8 +86,25 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem systemItem="action" id="Ngn-QM-m92">
+                            <connections>
+                                <action selector="copyButtonTouched:" destination="BYZ-38-t0r" id="uaJ-aX-XE3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="5vE-Xk-XoV"/>
+                        <barButtonItem tag="1" title="😢😭😿" width="65" id="PoS-5M-w1a" userLabel="Clipboard:"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="iJO-b8-XUe"/>
+                        <barButtonItem systemItem="stop" id="0lU-vM-NEY">
+                            <connections>
+                                <action selector="clearButtonTouched:" destination="BYZ-38-t0r" id="F5i-Bc-FYz"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Emoji Workshop" id="8Ev-98-hHM"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="clipboardItem" destination="PoS-5M-w1a" id="DS3-Qk-WKM"/>
                         <outlet property="emojiGlyphTable" destination="ybs-SK-Ics" id="CaT-Oi-ifc"/>
                     </connections>
                 </viewController>
@@ -101,7 +115,7 @@
         <!--Navigation Controller-->
         <scene sceneID="jkf-Ex-Vt8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qUl-u2-ZfK" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="qUl-u2-ZfK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IXL-Kh-cKa">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -109,6 +123,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OFz-c7-Q8t">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>

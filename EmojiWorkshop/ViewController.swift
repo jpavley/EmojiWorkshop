@@ -8,13 +8,45 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     var emojiCollection: EmojiCollection?
     let searchController = UISearchController(searchResultsController: nil)
+    var localPasteboard = ""
     
     @IBOutlet weak var emojiGlyphTable: UITableView!
+    @IBOutlet weak var clipboardItem: UIBarButtonItem!
     
+    
+    @IBAction func copyButtonTouched(_ sender: Any) {
+        if nothingToPaste() {
+            return
+        }
+
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = localPasteboard
+        
+        let alert = UIAlertController(title: "Copied", message: "\(localPasteboard)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dimiss", style: .default, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func clearButtonTouched(_ sender: UIBarButtonItem) {
+        if nothingToPaste() {
+            return
+        }
+        
+        let indexEndOfText = localPasteboard.index(localPasteboard.endIndex, offsetBy: -1)
+        localPasteboard = String(localPasteboard[..<indexEndOfText])
+        clipboardItem.title = localPasteboard
+    }
+    
+    fileprivate func nothingToPaste() -> Bool {
+        return localPasteboard.count < 1
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +62,12 @@ class ViewController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = false
-
+        emojiGlyphTable.rowHeight = 66
+        
+        // toolbar setup
+        
+        clipboardItem.title = ""
+        localPasteboard = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,27 +97,50 @@ extension ViewController: UISearchResultsUpdating {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let emojiCollection = emojiCollection {
+                        
+            if userIsFiltering() {
+                let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
+                updateToolbar(with: filteredEmojiGlyph)
+            } else {
+                let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
+                updateToolbar(with: currentEmojiGlyph)
+            }
+        }
+    }
+    
+    fileprivate func updateToolbar(with emojiGlyph: EmojiGlyph) {
+        localPasteboard += "\(emojiGlyph.glyph)"
+        clipboardItem.title = localPasteboard
+
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
+        var cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
         
         if let emojiCollection = emojiCollection {
             
             if userIsFiltering() {
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
-                
-                cell.emojiLabel.text = filteredEmojiGlyph.glyph
-                cell.descriptionLabel.text = filteredEmojiGlyph.description
-                cell.priorityLabel.text = "Priority \(filteredEmojiGlyph.priority)"
+                cell = updateCell(with: filteredEmojiGlyph)
             } else {
-                
                 let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
-                
-                cell.emojiLabel.text = currentEmojiGlyph.glyph
-                cell.descriptionLabel.text = currentEmojiGlyph.description
-                cell.priorityLabel.text = "Priority \(currentEmojiGlyph.priority)"
+                cell = updateCell(with: currentEmojiGlyph)
             }
         }
+        
+        return cell
+    }
+    
+    fileprivate func updateCell(with emojiGlyph: EmojiGlyph) ->  EmojiGlyphTableViewCell {
+        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
+        
+        cell.emojiButton.setTitle(emojiGlyph.glyph, for: .normal)
+        cell.descriptionLabel.text = emojiGlyph.description
+        cell.priorityLabel.text = "# \(emojiGlyph.priority)"
         
         return cell
     }
@@ -100,7 +160,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 45
+        return 35
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
