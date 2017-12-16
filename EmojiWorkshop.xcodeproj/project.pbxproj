@@ -21,6 +21,9 @@
 		5A4EAD4E1FDD9CCA00A02F7F /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD4D1FDD9CCA00A02F7F /* readme.md */; };
 		5A4EAD501FDD9CD600A02F7F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD4F1FDD9CD600A02F7F /* LICENSE */; };
 		5A4EAD521FDD9DA500A02F7F /* emoji-test-4.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD511FDD9DA500A02F7F /* emoji-test-4.0.txt */; };
+		5AD391271FE57902001DBB26 /* EmojiSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391261FE57902001DBB26 /* EmojiSearch.swift */; };
+		5AD391281FE5790F001DBB26 /* EmojiSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391261FE57902001DBB26 /* EmojiSearch.swift */; };
+		5AD3912A1FE57933001DBB26 /* EmojiSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */; };
 		5ADCAFD91FE2D95F00A93FA3 /* EmojiCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482C062D1FE0112B00508A28 /* EmojiCollection.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +55,8 @@
 		5A4EAD4D1FDD9CCA00A02F7F /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		5A4EAD4F1FDD9CD600A02F7F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5A4EAD511FDD9DA500A02F7F /* emoji-test-4.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "emoji-test-4.0.txt"; sourceTree = "<group>"; };
+		5AD391261FE57902001DBB26 /* EmojiSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSearch.swift; sourceTree = "<group>"; };
+		5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSearchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,7 @@
 		480E890F1FE2157A00E34BAE /* EmojiWorkshopTests */ = {
 			isa = PBXGroup;
 			children = (
+				5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */,
 				480E89101FE2157A00E34BAE /* EmojiWorkshopTests.swift */,
 				480E89121FE2157A00E34BAE /* Info.plist */,
 			);
@@ -95,6 +101,7 @@
 			children = (
 				5A4EAD491FDC760600A02F7F /* EmojiGlyph.swift */,
 				482C062D1FE0112B00508A28 /* EmojiCollection.swift */,
+				5AD391261FE57902001DBB26 /* EmojiSearch.swift */,
 			);
 			path = "Emoji Classes";
 			sourceTree = "<group>";
@@ -244,6 +251,8 @@
 			files = (
 				480E89111FE2157A00E34BAE /* EmojiWorkshopTests.swift in Sources */,
 				5ADCAFD91FE2D95F00A93FA3 /* EmojiCollection.swift in Sources */,
+				5AD3912A1FE57933001DBB26 /* EmojiSearchTests.swift in Sources */,
+				5AD391281FE5790F001DBB26 /* EmojiSearch.swift in Sources */,
 				48034AC51FE21742001D431C /* EmojiGlyph.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +265,7 @@
 				482C062E1FE0112B00508A28 /* EmojiCollection.swift in Sources */,
 				5A4EAD4A1FDC760600A02F7F /* EmojiGlyph.swift in Sources */,
 				5A4EAD361FDC758B00A02F7F /* AppDelegate.swift in Sources */,
+				5AD391271FE57902001DBB26 /* EmojiSearch.swift in Sources */,
 				5A4EAD4C1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
