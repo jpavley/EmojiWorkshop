@@ -25,5 +25,45 @@ class EmojiSearchTests: XCTestCase {
         XCTAssertNotNil(testEmojiSearch)
     }
     
+    func testFilterEmojiNoFilter() {
+        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiSearch = EmojiSearch()
+        
+        if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .noFilter, searchString: "") {
+        
+            XCTAssertTrue(testEmojiCollection.emojiGlyphs.count == testSearchResults.count)
+            XCTAssertTrue(testEmojiCollection.emojiGlyphs.first!.priority == testSearchResults.first!.priority)
+            XCTAssertTrue(testEmojiCollection.emojiGlyphs.last!.priority == testSearchResults.last!.priority)
+        }
+    }
+    
+    func testFilterEmojiByDescriptionSingleTerm() {
+        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiSearch = EmojiSearch()
+        
+        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Cat")
+        
+        XCTAssertNotNil(testSearchResults)
+        XCTAssertEqual(testSearchResults!.count, 11)
+        XCTAssertTrue(testSearchResults!.first!.priority == 127)
+        XCTAssertTrue(testSearchResults!.last!.priority == 2122)
+        
+    }
+    
+    func testFilterEmojiByDescriptionMultipleTerms() {
+        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiSearch = EmojiSearch()
+        
+        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Book house")
+        
+        XCTAssertNotNil(testSearchResults)
+        XCTAssertEqual(testSearchResults!.count, 8)
+        XCTAssertTrue(testSearchResults!.first!.priority == 2392)
+        XCTAssertTrue(testSearchResults!.last!.priority == 2786)
+        
+    }
+
+
+    
     
 }

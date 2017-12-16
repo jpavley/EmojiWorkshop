@@ -8,7 +8,6 @@ EmojiWorkshop is a demo add that parses emoji-test.txt and displays the results 
 
 ### Search Improvements
 
-- Search on whole words. Right now "cat" returns both cats and "application". That may or may not be what the user wants
 - Search on emoji ID numbers: Use # as a signal and return specific and ranges of emoji based on ID. For example: "#132" returns 😽. "#131-135" returns 😼😽🙀😿😾. "#<135" returns all emoji before 135 and "#>135" returns all emoji after 135. "#135 2121 3185" returns 😿🐱🈸.
 - Search on emoji groups and subgroups: Use @ as a signal and return all emoji in a category whose group or subgroup contains the search terms. For emaple: "@ monkey" returns emoji in any group or subgroup that contains the word monkey (monkey-face). "@monkey fantasy" would return both monkey-face emoji and person-fantasy emoji.
 - Search with CoreML. Feed the emoji images into Apple's machine learning engine and use it to generate new text metadata. Emoji descriptions are often metaphorical and not descriptive. Person Frowning is a yellow woman with blond hair and a purple shirt. Seaching "woman" or "yellow" will not find her.
@@ -23,6 +22,11 @@ EmojiWorkshop is a demo add that parses emoji-test.txt and displays the results 
 - Add AR where the emojis are projected onto a users face and can be screen shotted.
 - Add favoriting of emoji
 - Add
+
+## Done
+### Search Improvements
+
+- Search on whole words. Right now "cat" returns both cats and "application". That may or may not be what the user wants
 
 
 

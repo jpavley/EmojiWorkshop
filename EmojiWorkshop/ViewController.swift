@@ -89,7 +89,8 @@ extension ViewController: UISearchResultsUpdating {
         
         if let emojiCollection = emojiCollection {
             
-            emojiCollection.filteredEmojiGlyphs = emojiCollection.emojiGlyphs.filter { $0.description.lowercased().contains(searchController.searchBar.text!.lowercased())}
+            let emojiSearch = EmojiSearch()
+            emojiCollection.filteredEmojiGlyphs = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs, filter: .byDescription, searchString: searchController.searchBar.text!)!
         }
         emojiGlyphTable.reloadData()
     }
