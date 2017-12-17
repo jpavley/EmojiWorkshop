@@ -38,10 +38,16 @@ class EmojiSearch {
         
         let searchTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != ""})
         
+        // TODO: Remove ":" and "-" from search terms
+        
         let initialResultGlyphs = emojiGlyphs.filter({ (glyph) -> Bool in
             
             let wordList = glyph.description.lowercased().components(separatedBy: " ")
             let wordListSet:Set<String> = Set(wordList)
+            
+            // TODO: Return AND results not EITHER/OR!
+            //       Example: "cat eyes" returns any description with both cat and eyes in it
+            //       currently "cat eyes" returns all descriptions that have either cat or eyes in it
             
             let searchTermsSet:Set<String> = Set(searchTerms)
             let intersectionSet = wordListSet.intersection(searchTermsSet)
