@@ -83,5 +83,17 @@ class EmojiSearchTests: XCTestCase {
         XCTAssertNotNil(testSearchResults)
         XCTAssertNotEqual(testSearchResults!.count, 0)
     }
+    
+    func testFilterEmojiByDescriptionRemoveColons() {
+        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiSearch = EmojiSearch()
+        
+        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "baby")
+        
+        XCTAssertNotNil(testSearchResults)
+        XCTAssertEqual(testSearchResults!.count, 16)
+        XCTAssertTrue(testSearchResults![1].priority == 142)
+    }
+
 
 }

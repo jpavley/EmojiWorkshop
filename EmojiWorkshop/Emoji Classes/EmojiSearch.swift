@@ -38,12 +38,13 @@ class EmojiSearch {
         
         let searchTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != ""})
         
-        // TODO: Remove ":" and "-" from search terms
-        
         var initialResultGlyphs = emojiGlyphs.filter({ (glyph) -> Bool in
             
+            
             let wordList = glyph.description.lowercased().components(separatedBy: " ")
-            let wordListSet:Set<String> = Set(wordList)
+            // TODO: Remove ":" from emoji glyph descriptions so that "baby" and "baby:" are the same
+            let cleanWordList = wordList.map({$0.contains(":") ? String($0.dropLast()) : $0})
+            let wordListSet:Set<String> = Set(cleanWordList)
             
             // TODO: Return AND results not EITHER/OR!
             //       Example: "cat eyes" returns any description with both cat and eyes in it
