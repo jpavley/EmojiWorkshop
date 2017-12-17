@@ -32,7 +32,7 @@ class EmojiSearch {
     
     fileprivate func searchByDescription(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
         
-        if searchString.count == 0 {
+        if searchString.isEmpty {
             return nil
         }
         
@@ -40,24 +40,23 @@ class EmojiSearch {
         
         var initialResultGlyphs = emojiGlyphs.filter({ (glyph) -> Bool in
             
-            
             let wordList = glyph.description.lowercased().components(separatedBy: " ")
             // Remove ":" from emoji glyph descriptions so that "baby" and "baby:" are the same
             let cleanWordList = wordList.map({$0.contains(":") ? String($0.dropLast()) : $0})
-            let wordListSet:Set<String> = Set(cleanWordList)
+            let wordListSet: Set = Set(cleanWordList)
             
             // TODO: Return AND results not EITHER/OR!
             //       Example: "cat eyes" returns any description with both cat and eyes in it
             //       currently "cat eyes" returns all descriptions that have either cat or eyes in it
             
-            let searchTermsSet:Set<String> = Set(searchTerms)
+            let searchTermsSet = Set(searchTerms)
             let intersectionSet = wordListSet.intersection(searchTermsSet)
-            return intersectionSet.count > 0
+            return !intersectionSet.isEmpty
         })
         
         if searchString.contains("!") {
             
-            if initialResultGlyphs.count == 0 {
+            if initialResultGlyphs.isEmpty {
                 // Find all emoji that don't match the search terms
                 initialResultGlyphs = emojiGlyphs
             }
@@ -68,11 +67,11 @@ class EmojiSearch {
             let finalResultGlyphs = initialResultGlyphs.filter({ (glyph) -> Bool in
                 
                 let wordList = glyph.description.lowercased().components(separatedBy: " ")
-                let wordListSet:Set<String> = Set(wordList)
+                let wordListSet = Set(wordList)
                 
-                let searchTermsSet:Set<String> = Set(cleanExcludedTerms)
+                let searchTermsSet = Set(cleanExcludedTerms)
                 let intersectionSet = wordListSet.intersection(searchTermsSet)
-                return intersectionSet.count == 0
+                return intersectionSet.isEmpty
             })
             
             return finalResultGlyphs
