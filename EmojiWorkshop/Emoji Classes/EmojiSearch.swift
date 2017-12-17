@@ -40,7 +40,7 @@ class EmojiSearch {
         
         // TODO: Remove ":" and "-" from search terms
         
-        let initialResultGlyphs = emojiGlyphs.filter({ (glyph) -> Bool in
+        var initialResultGlyphs = emojiGlyphs.filter({ (glyph) -> Bool in
             
             let wordList = glyph.description.lowercased().components(separatedBy: " ")
             let wordListSet:Set<String> = Set(wordList)
@@ -55,6 +55,12 @@ class EmojiSearch {
         })
         
         if searchString.contains("!") {
+            
+            if initialResultGlyphs.count == 0 {
+                // Find all emoji that don't match the search terms
+                initialResultGlyphs = emojiGlyphs
+            }
+            
             let excludedTerms = searchTerms.filter({ $0[$0.startIndex] == "!"})
             let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
             
