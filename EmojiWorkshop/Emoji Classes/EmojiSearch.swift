@@ -42,7 +42,7 @@ class EmojiSearch {
             
             
             let wordList = glyph.description.lowercased().components(separatedBy: " ")
-            // TODO: Remove ":" from emoji glyph descriptions so that "baby" and "baby:" are the same
+            // Remove ":" from emoji glyph descriptions so that "baby" and "baby:" are the same
             let cleanWordList = wordList.map({$0.contains(":") ? String($0.dropLast()) : $0})
             let wordListSet:Set<String> = Set(cleanWordList)
             
