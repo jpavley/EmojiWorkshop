@@ -59,7 +59,7 @@ class EmojiSearch {
                 initialResultGlyphs = emojiGlyphs
             }
             
-            let excludedTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0[$0.startIndex] == "!" })
+            let excludedTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" ? $0[$0.startIndex] == "!" : false })
             
             if excludedTerms.count == 1 && excludedTerms.first == "!" {
                 // Dont search on an empty exclusion
