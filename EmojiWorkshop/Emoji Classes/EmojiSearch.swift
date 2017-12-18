@@ -16,7 +16,7 @@ class EmojiSearch {
     
     let prioritySignal = "$"
     let groupAndSubgroupSignal = "@"
-    let characterSignal = "."
+    let andSignal = "&"
     let notSignal = "!"
     
     func search(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
@@ -32,24 +32,25 @@ class EmojiSearch {
     
     fileprivate func searchByDescription(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
         
-        if searchString.isEmpty {
+        if searchString.isEmpty || !searchString.contains(" ") {
             return nil
         }
         
-        let searchTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != ""})
+        let searchTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" && $0[$0.startIndex] != "!" })
         
-        var initialResultGlyphs = emojiGlyphs.filter({ (glyph) -> Bool in
-            
-            let wordListSet = cleanWordList(glyph: glyph)
-            
-            // TODO: Return AND results not EITHER/OR!
-            //       Example: "cat eyes" returns any description with both cat and eyes in it
-            //       currently "cat eyes" returns all descriptions that have either cat or eyes in it
-            
-            let searchTermsSet = Set(searchTerms)
-            let intersectionSet = wordListSet.intersection(searchTermsSet)
-            return !intersectionSet.isEmpty
-        })
+        var iterativeResults = emojiGlyphs
+        for term in searchTerms {
+            // print("== \(term) of \(searchTerms)")
+            iterativeResults = iterativeResults.filter({ (glyph) -> Bool in
+                
+                let wordListSet = cleanWordList(glyph: glyph)
+                let searchTermsSet: Set<String> = Set([term])
+                let intersectionSet = wordListSet.intersection(searchTermsSet)
+                return !intersectionSet.isEmpty
+            })
+        }
+        
+        var initialResultGlyphs = iterativeResults
         
         if searchString.contains("!") {
             
@@ -58,13 +59,17 @@ class EmojiSearch {
                 initialResultGlyphs = emojiGlyphs
             }
             
-            let excludedTerms = searchTerms.filter({ $0[$0.startIndex] == "!"})
-            let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
+            let excludedTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0[$0.startIndex] == "!" })
             
+            if excludedTerms.count == 1 && excludedTerms.first == "!" {
+                // Dont search on an empty exclusion
+                return initialResultGlyphs
+            }
+            
+            let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
             let finalResultGlyphs = initialResultGlyphs.filter({ (glyph) -> Bool in
                 
                 let wordListSet = cleanWordList(glyph: glyph)
-                
                 let searchTermsSet = Set(cleanExcludedTerms)
                 let intersectionSet = wordListSet.intersection(searchTermsSet)
                 return intersectionSet.isEmpty

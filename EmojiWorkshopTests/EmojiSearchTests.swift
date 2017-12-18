@@ -56,9 +56,19 @@ class EmojiSearchTests: XCTestCase {
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Book house")
         
         XCTAssertNotNil(testSearchResults)
-        XCTAssertEqual(testSearchResults!.count, 8)
-        XCTAssertTrue(testSearchResults!.first!.priority == 2392)
-        XCTAssertTrue(testSearchResults!.last!.priority == 2786)
+        XCTAssertEqual(testSearchResults!.count, 0)
+    }
+    
+    func testFilterEmojiByDescriptionWithEmptyExclusion() {
+        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiSearch = EmojiSearch()
+        
+        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Cat !")
+        
+        XCTAssertNotNil(testSearchResults)
+        XCTAssertEqual(testSearchResults!.count, 11)
+        XCTAssertTrue(testSearchResults!.first!.priority == 127)
+        XCTAssertTrue(testSearchResults!.last!.priority == 2122)
     }
     
     func testFilterEmojiByDescriptionWithExclusion() {
