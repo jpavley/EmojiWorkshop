@@ -67,7 +67,8 @@ class EmojiSearch {
             let finalResultGlyphs = initialResultGlyphs.filter({ (glyph) -> Bool in
                 
                 let wordList = glyph.description.lowercased().components(separatedBy: " ")
-                let wordListSet = Set(wordList)
+                let cleanWordList = wordList.map({$0.contains(":") ? String($0.dropLast()) : $0})
+                let wordListSet = Set(cleanWordList)
                 
                 let searchTermsSet = Set(cleanExcludedTerms)
                 let intersectionSet = wordListSet.intersection(searchTermsSet)
