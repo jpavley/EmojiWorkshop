@@ -94,6 +94,20 @@ class EmojiSearchTests: XCTestCase {
         XCTAssertEqual(testSearchResults!.count, 16)
         XCTAssertTrue(testSearchResults![1].priority == 142)
     }
+    
+    func testFilterEmojiByDescriptionWithMultipleExclusion() {
+        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiSearch = EmojiSearch()
+        
+        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Cat !kissing !joy !crying !grinning")
+        
+        XCTAssertNotNil(testSearchResults)
+        XCTAssertEqual(testSearchResults!.count, 6)
+        XCTAssertTrue(testSearchResults!.first!.priority == 130)
+        XCTAssertTrue(testSearchResults!.last!.priority == 2122)
+        XCTAssertTrue(testSearchResults![3].priority == 135)
+    }
+
 
 
 }
