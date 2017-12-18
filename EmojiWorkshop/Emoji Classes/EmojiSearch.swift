@@ -40,10 +40,7 @@ class EmojiSearch {
         
         var initialResultGlyphs = emojiGlyphs.filter({ (glyph) -> Bool in
             
-            let wordList = glyph.description.lowercased().components(separatedBy: " ")
-            // Remove ":" from emoji glyph descriptions so that "baby" and "baby:" are the same
-            let cleanWordList = wordList.map({$0.contains(":") ? String($0.dropLast()) : $0})
-            let wordListSet: Set = Set(cleanWordList)
+            let wordListSet = cleanWordList(glyph: glyph)
             
             // TODO: Return AND results not EITHER/OR!
             //       Example: "cat eyes" returns any description with both cat and eyes in it
@@ -66,9 +63,7 @@ class EmojiSearch {
             
             let finalResultGlyphs = initialResultGlyphs.filter({ (glyph) -> Bool in
                 
-                let wordList = glyph.description.lowercased().components(separatedBy: " ")
-                let cleanWordList = wordList.map({$0.contains(":") ? String($0.dropLast()) : $0})
-                let wordListSet = Set(cleanWordList)
+                let wordListSet = cleanWordList(glyph: glyph)
                 
                 let searchTermsSet = Set(cleanExcludedTerms)
                 let intersectionSet = wordListSet.intersection(searchTermsSet)
@@ -79,5 +74,12 @@ class EmojiSearch {
         }
         
         return initialResultGlyphs
+    }
+    
+    fileprivate func cleanWordList(glyph: EmojiGlyph) -> Set<String> {
+        let wordList = glyph.description.lowercased().components(separatedBy: " ")
+        let cleanWordList = wordList.map({$0.contains(":") ? String($0.dropLast()) : $0})
+        let wordListSet = Set(cleanWordList)
+        return wordListSet
     }
 }
