@@ -8,6 +8,9 @@
 
 import UIKit
 
+enum UserMode {
+    case browsing, searching, discovering
+}
 
 class ViewController: UIViewController {
     
@@ -17,6 +20,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var emojiGlyphTable: UITableView!
     @IBOutlet weak var clipboardItem: UIBarButtonItem!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var headerView: UIView!
     
     
     @IBAction func copyButtonTouched(_ sender: Any) {
@@ -48,6 +53,29 @@ class ViewController: UIViewController {
         return localPasteboard.count < 1
     }
     
+    fileprivate func updateHeader(mode: UserMode) {
+        
+        switch mode {
+        case .browsing:
+            var emojiCount = 0
+            var sectionCount = 0
+            
+            if let emojiCollection = emojiCollection {
+                emojiCount = emojiCollection.emojiGlyphs.count
+                sectionCount = emojiCollection.sections.count
+            }
+            
+            headerLabel.text = "Browsing \(emojiCount) emoji in \(sectionCount) sections"
+            
+        case .searching:
+            
+            headerLabel.text = "Searching..."
+            
+        case .discovering:
+            ()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -57,6 +85,7 @@ class ViewController: UIViewController {
         // Search Controller setup
         
         searchController.searchResultsUpdater = self
+        searchController.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Emoji"
         navigationItem.searchController = searchController
@@ -68,6 +97,10 @@ class ViewController: UIViewController {
         
         clipboardItem.title = ""
         localPasteboard = ""
+        
+        // header setup
+        updateHeader(mode: .browsing)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,7 +119,8 @@ extension ViewController: UISearchResultsUpdating {
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        
+        // print("== updateSearchResults()")
+
         if let emojiCollection = emojiCollection {
             
             let emojiSearch = EmojiSearch()
@@ -95,6 +129,20 @@ extension ViewController: UISearchResultsUpdating {
             }
         }
         emojiGlyphTable.reloadData()
+    }
+    
+}
+
+extension ViewController: UISearchControllerDelegate {
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        // print("== didDismissSearchController()")
+        updateHeader(mode: .browsing)
+    }
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        // print("== didPresentSearchController()")
+        updateHeader(mode: .searching)
     }
 }
 
