@@ -8,9 +8,10 @@ EmojiWorkshop is a demo add that parses emoji-test.txt and displays the results 
 
 ### Search Improvements
 
-- Search on whole words. Right now "cat" returns both cats and "application". That may or may not be what the user wants
-- Search on emoji ID numbers: Use # as a signal and return specific and ranges of emoji based on ID. For example: "#132" returns 😽. "#131-135" returns 😼😽🙀😿😾. "#<135" returns all emoji before 135 and "#>135" returns all emoji after 135. "#135 2121 3185" returns 😿🐱🈸.
+- Search on emoji ID numbers: Use $ as a signal and return specific and ranges of emoji based on ID. For example: "$132" returns 😽. "#131-135" returns 😼😽🙀😿😾. "$-135" returns all emoji before 135 and "$135=" returns all emoji after 135. "$135 2121 3185" returns 😿🐱🈸.
 - Search on emoji groups and subgroups: Use @ as a signal and return all emoji in a category whose group or subgroup contains the search terms. For emaple: "@ monkey" returns emoji in any group or subgroup that contains the word monkey (monkey-face). "@monkey fantasy" would return both monkey-face emoji and person-fantasy emoji.
+- Seach with substrings: Use . as signal and return all emoji whose desciptions contain the contigious string of characters in the seachbar. For example: ".cat" returns "cat" and "application"
+- Seach with stemming: "eye" should return "eye" and "eyes"
 - Search with CoreML. Feed the emoji images into Apple's machine learning engine and use it to generate new text metadata. Emoji descriptions are often metaphorical and not descriptive. Person Frowning is a yellow woman with blond hair and a purple shirt. Seaching "woman" or "yellow" will not find her.
 
 ### UX Improvements
@@ -24,6 +25,11 @@ EmojiWorkshop is a demo add that parses emoji-test.txt and displays the results 
 - Add favoriting of emoji
 - Add
 
+## Done
+### Search Improvements
+
+- Search on whole words. So "cat" only returns  cats and not "application" as well.
+- Exclude emoji with descriptions containing exclude search terms: "!blue" means no emoji described as blue.
 
 
 ## Backstory
@@ -45,6 +51,9 @@ The motivation for this app is to discover and explore all the emoji and meta da
 - Xcode 9.2
 - iOS 11.2
 - Swift 4.0.03
+
+## Design Notes
+- The iOS keyboard is amazing but imited in space. I want to keep it super easy for users to type and search for emoji and use characters to signal search modes. The initial keyboard that pops up with the searchbar contains the alphabetical keys a through z. To signal a search mode the user has to tap into the numeric keyoboard.  In addition to the numbers 1 thorugh 0 the numeric keyboard contains the symbols -/:;()$&@".,?!'. I'm going to restrict the seach mode signal characters to these symbols so the user doesn't have to tap yet again to symbol keyboard.
 
 ## License
 
