@@ -10,9 +10,37 @@ import XCTest
 
 class EmojiSearchTests: XCTestCase {
     
+    struct EmojiSearchResults {
+        let query: String
+        let foundCount: Int
+        let firstID: Int // -1 means no ID
+        let lastID: Int
+    }
+    
+    var emojiSearchResultsList = [EmojiSearchResults]()
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        // Search string cases         -> Found First Last
+        // "C"                         -> 0
+        // "Ca"                        -> 0
+        // "Cat"                       -> 11    127   2122
+        // "Cat "                      -> 11    127   2122
+        // "House garden"              -> 1     2395
+        // "House !garden"             -> 2     2392  2394
+        // "!man !woman !person !face" -> 1580  26    3495
+        // "Cat !face !n               -> 0
+        // "!blue"                     -> 2617  23    3495
+        
+        emojiSearchResultsList = [
+            EmojiSearchResults(query: "", foundCount: 2622, firstID: 23, lastID: 3495),
+            EmojiSearchResults(query: "C", foundCount: 0, firstID: -1, lastID: -1),
+            EmojiSearchResults(query: "Ca", foundCount: 0, firstID: -1, lastID: -1),
+            EmojiSearchResults(query: "Cat", foundCount: 11, firstID: 127, lastID: 2122),
+            EmojiSearchResults(query: "Cat ", foundCount: 11, firstID: 127, lastID: 2122),
+        ]
     }
     
     override func tearDown() {
@@ -23,6 +51,23 @@ class EmojiSearchTests: XCTestCase {
     func testEmojiSearchInstance() {
         let testEmojiSearch = EmojiSearch()
         XCTAssertNotNil(testEmojiSearch)
+    }
+    
+    func testEmojiSearchResultsList() {
+        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiSearch = EmojiSearch()
+        
+        for i in 0..<emojiSearchResultsList.count {
+            if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: emojiSearchResultsList[i].query) {
+                XCTAssertEqual(testSearchResults.count, emojiSearchResultsList[i].foundCount, "failed query: \(emojiSearchResultsList[i].query)")
+                if let firstID = testSearchResults.first {
+                    XCTAssertEqual(firstID.priority, emojiSearchResultsList[i].firstID, "failed query: \(emojiSearchResultsList[i].query)")
+                }
+                if let lastID = testSearchResults.last {
+                    XCTAssertEqual(lastID.priority, emojiSearchResultsList[i].lastID,  "failed query: \(emojiSearchResultsList[i].query)")
+                }
+            }
+        }
     }
     
     func testFilterEmojiNoFilter() {
@@ -40,7 +85,6 @@ class EmojiSearchTests: XCTestCase {
     func testFilterEmojiByDescriptionSingleTerm() {
         let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
         let testEmojiSearch = EmojiSearch()
-        
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Cat")
         
         XCTAssertNotNil(testSearchResults)
@@ -91,7 +135,7 @@ class EmojiSearchTests: XCTestCase {
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "!blue")
         
         XCTAssertNotNil(testSearchResults)
-        XCTAssertNotEqual(testSearchResults!.count, 2617)
+        XCTAssertEqual(testSearchResults!.count, 2617, "failed query: !blue")
     }
     
     func testFilterEmojiByDescriptionRemoveColons() {
@@ -122,10 +166,10 @@ class EmojiSearchTests: XCTestCase {
         let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
         let testEmojiSearch = EmojiSearch()
         
-        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Cat !face !n")
+        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Cat !face n")
         
         XCTAssertNotNil(testSearchResults)
-        XCTAssertEqual(testSearchResults!.count, 0)
+        XCTAssertEqual(testSearchResults!.count, 0, "failed query: Cat !face n")
     }
 
 

@@ -32,7 +32,13 @@ class EmojiSearch {
     
     fileprivate func searchByDescription(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
         
-        if searchString.isEmpty || !searchString.contains(" ") {
+        // A search query is a sentance where each term narrows the results from left to right.
+        // "Cat" returns all glyphs with "cat" in the description.
+        // "Cat face" returns the subset of "cat" glyphs that also have "face" in the description.
+        // "Cat face !smiling returns the subset of "cat" && "face" glyphs that don't have "smiling" in the decription
+        // "Cat face !smiling kissing" returns the subset of "cat" && "face" && "kissing" but not "smiling" in the desciption
+                
+        if searchString.isEmpty {
             return nil
         }
         
@@ -68,6 +74,10 @@ class EmojiSearch {
             
             let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
             let finalResultGlyphs = initialResultGlyphs.filter({ (glyph) -> Bool in
+                
+                if cleanExcludedTerms.contains("n") {
+                    print(cleanExcludedTerms)
+                }
                 
                 let wordListSet = cleanWordList(glyph: glyph)
                 let searchTermsSet = Set(cleanExcludedTerms)
