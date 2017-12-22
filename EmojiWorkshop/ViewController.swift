@@ -143,11 +143,15 @@ extension ViewController: UISearchControllerDelegate {
     func didDismissSearchController(_ searchController: UISearchController) {
         // print("== didDismissSearchController()")
         updateHeader(mode: .browsing)
+        emojiGlyphTable.reloadData()
+
     }
     
     func didPresentSearchController(_ searchController: UISearchController) {
         // print("== didPresentSearchController()")
         updateHeader(mode: .searching)
+        emojiGlyphTable.reloadData()
+
     }
 }
 
