@@ -74,11 +74,7 @@ class EmojiSearch {
             
             let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
             let finalResultGlyphs = initialResultGlyphs.filter({ (glyph) -> Bool in
-                
-                if cleanExcludedTerms.contains("n") {
-                    print(cleanExcludedTerms)
-                }
-                
+                                
                 let wordListSet = cleanWordList(glyph: glyph)
                 let searchTermsSet = Set(cleanExcludedTerms)
                 let intersectionSet = wordListSet.intersection(searchTermsSet)
