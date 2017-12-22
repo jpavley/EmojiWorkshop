@@ -174,7 +174,9 @@ class EmojiSearchTests: XCTestCase {
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Cat !face n")
         
         XCTAssertNotNil(testSearchResults)
-        XCTAssertEqual(testSearchResults!.count, 0, "failed query: Cat !face n")
+        XCTAssertEqual(testSearchResults!.count, 2505, "failed query: Cat !face n")
+        XCTAssertEqual(testSearchResults!.count, 2505, "failed query: Cat n !face")
+        XCTAssertEqual(testSearchResults!.count, 2505, "failed query: !face")
     }
 
 
