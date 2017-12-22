@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  EmojiViewController.swift
 //  EmojiWorkshop
 //
 //  Created by John Pavley on 12/9/17.
@@ -12,7 +12,7 @@ enum UserMode {
     case browsing, searching, discovering
 }
 
-class ViewController: UIViewController {
+class EmojiViewController: UIViewController {
     
     var emojiCollection: EmojiCollection?
     let searchController = UISearchController(searchResultsController: nil)
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UISearchResultsUpdating {
+extension EmojiViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         // print("== updateSearchResults()")
@@ -119,7 +119,7 @@ extension ViewController: UISearchResultsUpdating {
     
 }
 
-extension ViewController: UISearchBarDelegate {
+extension EmojiViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("The search text is: \(searchBar.text!)")
@@ -131,19 +131,20 @@ extension ViewController: UISearchBarDelegate {
                 emojiCollection.filteredEmojiGlyphs = foundEmoji
             }
         }
+        emojiGlyphTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
         emojiGlyphTable.reloadData()
-
     }
     
 }
 
 
-extension ViewController: UISearchControllerDelegate {
+extension EmojiViewController: UISearchControllerDelegate {
     
     func didDismissSearchController(_ searchController: UISearchController) {
         // print("== didDismissSearchController()")
         updateHeader(mode: .browsing)
         emojiGlyphTable.reloadData()
+        // emojiGlyphTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
 
     }
     
@@ -151,11 +152,12 @@ extension ViewController: UISearchControllerDelegate {
         // print("== didPresentSearchController()")
         updateHeader(mode: .searching)
         emojiGlyphTable.reloadData()
+        // emojiGlyphTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
 
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     
     fileprivate func userIsFiltering() -> Bool {
         let searchBarIsEmpty = searchController.searchBar.text?.isEmpty ?? true
