@@ -40,6 +40,11 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "Ca", foundCount: 0, firstID: -1, lastID: -1),
             EmojiSearchResults(query: "Cat", foundCount: 11, firstID: 127, lastID: 2122),
             EmojiSearchResults(query: "Cat ", foundCount: 11, firstID: 127, lastID: 2122),
+            EmojiSearchResults(query: "Cat face", foundCount: 10, firstID: 127, lastID: 2121),
+            EmojiSearchResults(query: "Cat face !smiling", foundCount: 8, firstID: 127, lastID: 2121),
+            EmojiSearchResults(query: "Cat face !smiling !pouting", foundCount: 7, firstID: 127, lastID: 2121),
+            EmojiSearchResults(query: "Cat face !smiling !pouting !grinning", foundCount: 6, firstID: 129, lastID: 2121),
+            EmojiSearchResults(query: "Cat face !smiling !pouting !grinning joy", foundCount: 1, firstID: 129, lastID: 129)
         ]
     }
     
