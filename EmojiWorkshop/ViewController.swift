@@ -92,6 +92,7 @@ class ViewController: UIViewController {
         definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = false
         emojiGlyphTable.rowHeight = 66
+        searchController.searchBar.delegate = self
         
         // toolbar setup
         
@@ -112,26 +113,30 @@ class ViewController: UIViewController {
 
 extension ViewController: UISearchResultsUpdating {
     
-    fileprivate func userIsFiltering() -> Bool {
-        let searchBarIsEmpty = searchController.searchBar.text?.isEmpty ?? true
-        let currentlyFiltering = !searchBarIsEmpty &&  searchController.isActive
-        return currentlyFiltering
-    }
-    
     func updateSearchResults(for searchController: UISearchController) {
         // print("== updateSearchResults()")
+    }
+    
+}
 
+extension ViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("The search text is: \(searchBar.text!)")
+        
         if let emojiCollection = emojiCollection {
             
             let emojiSearch = EmojiSearch()
-            if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs, filter: .byDescription, searchString: searchController.searchBar.text!) {
+            if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs, filter: .byDescription, searchString: searchBar.text!) {
                 emojiCollection.filteredEmojiGlyphs = foundEmoji
             }
         }
         emojiGlyphTable.reloadData()
+
     }
     
 }
+
 
 extension ViewController: UISearchControllerDelegate {
     
@@ -147,6 +152,12 @@ extension ViewController: UISearchControllerDelegate {
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    fileprivate func userIsFiltering() -> Bool {
+        let searchBarIsEmpty = searchController.searchBar.text?.isEmpty ?? true
+        let currentlyFiltering = !searchBarIsEmpty &&  searchController.isActive
+        return currentlyFiltering
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
