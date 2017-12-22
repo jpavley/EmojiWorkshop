@@ -10,7 +10,7 @@ import UIKit
 
 class EmojiGlyphTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var emojiButton: UIButton!
+    @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
         
