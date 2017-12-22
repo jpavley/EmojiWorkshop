@@ -131,7 +131,7 @@ extension EmojiViewController: UISearchBarDelegate {
                 emojiCollection.filteredEmojiGlyphs = foundEmoji
             }
         }
-        emojiGlyphTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
+        //emojiGlyphTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
         emojiGlyphTable.reloadData()
     }
     
@@ -206,7 +206,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     fileprivate func updateCell(with emojiGlyph: EmojiGlyph) ->  EmojiGlyphTableViewCell {
         let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
         
-        cell.emojiButton.setTitle(emojiGlyph.glyph, for: .normal)
+        cell.emojiLabel.text = emojiGlyph.glyph
         cell.descriptionLabel.text = emojiGlyph.description
         cell.priorityLabel.text = "# \(emojiGlyph.priority)"
         
