@@ -160,6 +160,7 @@ extension EmojiViewController: UISearchControllerDelegate {
 extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     
     fileprivate func userIsFiltering() -> Bool {
+        
         let searchBarIsEmpty = searchController.searchBar.text?.isEmpty ?? true
         let currentlyFiltering = !searchBarIsEmpty &&  searchController.isActive
         return currentlyFiltering
@@ -191,7 +192,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
-            if userIsFiltering() {
+            if emojiCollection.filteredEmojiGlyphs.count > 0 && userIsFiltering() {
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
                 cell = updateCell(with: filteredEmojiGlyph)
             } else {
