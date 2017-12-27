@@ -16,6 +16,7 @@ class EmojiViewController: UIViewController {
     
     struct Identifiers {
         static let emojiGlyphCell = "EmojiGlyphCell"
+        static let emojiTest5 = "emoji-test-5.0"
     }
     
     var emojiCollection: EmojiCollection?
@@ -84,7 +85,7 @@ class EmojiViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        emojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        emojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         
         // Search Controller setup
         
