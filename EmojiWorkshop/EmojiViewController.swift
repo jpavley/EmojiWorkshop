@@ -25,9 +25,6 @@ class EmojiViewController: UIViewController {
     
     @IBOutlet weak var emojiGlyphTable: UITableView!
     @IBOutlet weak var clipboardItem: UIBarButtonItem!
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var headerView: UIView!
-    
     
     @IBAction func copyButtonTouched(_ sender: Any) {
         if nothingToPaste() {
@@ -70,14 +67,14 @@ class EmojiViewController: UIViewController {
                 sectionCount = emojiCollection.sections.count
             }
             
-            headerLabel.text = "Browsing \(emojiCount) emoji in \(sectionCount) sections"
+            print("Browsing \(emojiCount) emoji in \(sectionCount) sections")
             
         case .searching:
             
-            headerLabel.text = "Searching..."
+            print("Searching...")
             
         case .discovering:
-            ()
+            print("Discovering...")
         }
     }
     
