@@ -10,6 +10,10 @@ import XCTest
 
 class EmojiSearchTests: XCTestCase {
     
+    struct Identifiers {
+        static let emojiTest5 = "emoji-test-5.0"
+    }
+    
     struct EmojiSearchResults {
         let query: String
         let foundCount: Int
@@ -59,7 +63,7 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testEmojiSearchResultsList() {
-        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         let testEmojiSearch = EmojiSearch()
         
         for i in 0..<emojiSearchResultsList.count {
@@ -76,7 +80,7 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testFilterEmojiNoFilter() {
-        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         let testEmojiSearch = EmojiSearch()
         
         if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .noFilter, searchString: "") {
@@ -88,7 +92,7 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testFilterEmojiByDescriptionSingleTerm() {
-        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         let testEmojiSearch = EmojiSearch()
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Cat")
         
@@ -99,7 +103,7 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testFilterEmojiByDescriptionMultipleTerms() {
-        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         let testEmojiSearch = EmojiSearch()
         
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Book house")
@@ -109,7 +113,7 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testFilterEmojiByDescriptionWithEmptyExclusion() {
-        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         let testEmojiSearch = EmojiSearch()
         
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Cat !")
@@ -121,7 +125,7 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testFilterEmojiByDescriptionWithExclusion() {
-        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         let testEmojiSearch = EmojiSearch()
         
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Book !blue")
@@ -134,7 +138,7 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testFilterEmojiByDescriptionOnlyExclusion() {
-        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         let testEmojiSearch = EmojiSearch()
         
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "!blue")
@@ -144,7 +148,7 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testFilterEmojiByDescriptionRemoveColons() {
-        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         let testEmojiSearch = EmojiSearch()
         
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "baby")
@@ -155,7 +159,7 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testFilterEmojiByDescriptionWithMultipleExclusion() {
-        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         let testEmojiSearch = EmojiSearch()
         
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Cat !kissing !joy !crying !grinning")
@@ -168,7 +172,7 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testFilterEmojiByDescriptionWithSingleCharacterAtEnd() {
-        let testEmojiCollection = EmojiCollection(sourceFileName: "emoji-test-5.0")
+        let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         let testEmojiSearch = EmojiSearch()
         
         let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: "Cat !face n")
