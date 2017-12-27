@@ -21,56 +21,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ybs-SK-Ics">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmojiGlyphCell" rowHeight="66" id="Wzj-pm-XtZ" customClass="EmojiGlyphTableViewCell" customModule="EmojiWorkshop" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="66"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wzj-pm-XtZ" id="BDW-34-Ui7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KD2-1O-cIf">
-                                                    <rect key="frame" x="79" y="9.5" width="296" height="46.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aj-wZ-sd1">
-                                                            <rect key="frame" x="0.0" y="0.0" width="296" height="20.5"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSb-GE-Bmi">
-                                                            <rect key="frame" x="0.0" y="28.5" width="296" height="18"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😎" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plU-4u-4Oh">
-                                                    <rect key="frame" x="15" y="1.5" width="56" height="62.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="56" id="yWy-6d-8W0"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="52"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="KD2-1O-cIf" firstAttribute="centerY" secondItem="BDW-34-Ui7" secondAttribute="centerY" id="Flb-o7-ln5"/>
-                                                <constraint firstAttribute="trailing" secondItem="KD2-1O-cIf" secondAttribute="trailing" id="IR3-qp-hEL"/>
-                                                <constraint firstItem="KD2-1O-cIf" firstAttribute="leading" secondItem="plU-4u-4Oh" secondAttribute="trailing" constant="8" id="Rac-uC-tK3"/>
-                                                <constraint firstItem="plU-4u-4Oh" firstAttribute="leading" secondItem="BDW-34-Ui7" secondAttribute="leading" constant="15" id="Wy6-Q3-TuV"/>
-                                                <constraint firstItem="plU-4u-4Oh" firstAttribute="centerY" secondItem="BDW-34-Ui7" secondAttribute="centerY" id="gvu-Al-VKR"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="descriptionLabel" destination="6aj-wZ-sd1" id="bJl-aF-7Rn"/>
-                                            <outlet property="emojiLabel" destination="plU-4u-4Oh" id="Y9m-YR-ZDq"/>
-                                            <outlet property="priorityLabel" destination="sSb-GE-Bmi" id="TIR-Hb-tN2"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="X4C-z7-Aji"/>

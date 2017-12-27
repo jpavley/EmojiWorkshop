@@ -26,6 +26,7 @@
 		5AD3912A1FE57933001DBB26 /* EmojiSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */; };
 		5ADCAFD91FE2D95F00A93FA3 /* EmojiCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482C062D1FE0112B00508A28 /* EmojiCollection.swift */; };
 		5AF853391FF415E90018A598 /* SmallEmojiTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF853381FF415E90018A598 /* SmallEmojiTableCell.xib */; };
+		5AF8533B1FF41A730018A598 /* SmallEmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8533A1FF41A730018A598 /* SmallEmojiTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		5AD391261FE57902001DBB26 /* EmojiSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSearch.swift; sourceTree = "<group>"; };
 		5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSearchTests.swift; sourceTree = "<group>"; };
 		5AF853381FF415E90018A598 /* SmallEmojiTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallEmojiTableCell.xib; sourceTree = "<group>"; };
+		5AF8533A1FF41A730018A598 /* SmallEmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallEmojiTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			children = (
 				5A4EAD4B1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift */,
 				5A4EAD371FDC758B00A02F7F /* EmojiViewController.swift */,
+				5AF8533A1FF41A730018A598 /* SmallEmojiTableViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			files = (
 				5A4EAD381FDC758B00A02F7F /* EmojiViewController.swift in Sources */,
 				482C062E1FE0112B00508A28 /* EmojiCollection.swift in Sources */,
+				5AF8533B1FF41A730018A598 /* SmallEmojiTableViewCell.swift in Sources */,
 				5A4EAD4A1FDC760600A02F7F /* EmojiGlyph.swift in Sources */,
 				5A4EAD361FDC758B00A02F7F /* AppDelegate.swift in Sources */,
 				5AD391271FE57902001DBB26 /* EmojiSearch.swift in Sources */,

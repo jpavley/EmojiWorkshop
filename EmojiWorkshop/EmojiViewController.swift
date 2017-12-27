@@ -16,6 +16,7 @@ class EmojiViewController: UIViewController {
     
     struct Identifiers {
         static let emojiGlyphCell = "EmojiGlyphCell"
+        static let smallEmojiCell = "SmallEmojiTableCell"
         static let emojiTest5 = "emoji-test-5.0"
     }
     
@@ -84,6 +85,11 @@ class EmojiViewController: UIViewController {
         
         emojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         
+        // Cell Nib setup
+        let cellNib = UINib(nibName: Identifiers.smallEmojiCell, bundle: nil)
+        emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
+        emojiGlyphTable.rowHeight = 66
+
         // Search Controller setup
         
         searchController.searchResultsUpdater = self
@@ -93,7 +99,6 @@ class EmojiViewController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = false
-        emojiGlyphTable.rowHeight = 66
         searchController.searchBar.delegate = self
         
         // toolbar setup
@@ -190,24 +195,26 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.emojiGlyphCell) as! EmojiGlyphTableViewCell
+        var cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.smallEmojiCell, for: indexPath) as! SmallEmojiTableViewCell
         
         if let emojiCollection = emojiCollection {
             
             if emojiCollection.filteredEmojiGlyphs.count > 0 && userIsFiltering() {
+                
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
-                cell = updateCell(with: filteredEmojiGlyph)
+                cell = updateSmallCell(with: filteredEmojiGlyph)
             } else {
+                
                 let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
-                cell = updateCell(with: currentEmojiGlyph)
+                cell = updateSmallCell(with: currentEmojiGlyph)
             }
         }
         
         return cell
     }
-    
-    fileprivate func updateCell(with emojiGlyph: EmojiGlyph) ->  EmojiGlyphTableViewCell {
-        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.emojiGlyphCell) as! EmojiGlyphTableViewCell
+        
+    fileprivate func updateSmallCell(with emojiGlyph: EmojiGlyph) ->  SmallEmojiTableViewCell {
+        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.smallEmojiCell) as! SmallEmojiTableViewCell
         
         cell.emojiLabel.text = emojiGlyph.glyph
         cell.descriptionLabel.text = emojiGlyph.description
@@ -215,6 +222,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
         

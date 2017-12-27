@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dpd-P7-G3M">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SmallEmojiTableCell" id="dpd-P7-G3M" customClass="SmallEmojiTableViewCell" customModule="EmojiWorkshop" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dpd-P7-G3M" id="LQE-FE-0RJ">
@@ -61,6 +61,12 @@
                     <constraint firstAttribute="trailing" secondItem="Yl6-hS-IE7" secondAttribute="trailing" constant="8" id="xsi-Ap-hXJ"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="descriptionLabel" destination="5Yl-hy-IZ8" id="1nz-YM-248"/>
+                <outlet property="emojiLabel" destination="b8R-sF-WE5" id="Igw-N9-Ox4"/>
+                <outlet property="favoriteButton" destination="Yl6-hS-IE7" id="5Zu-YK-UN3"/>
+                <outlet property="priorityLabel" destination="zLl-bJ-6a9" id="4aw-U3-ARZ"/>
+            </connections>
             <point key="canvasLocation" x="116.5" y="8"/>
         </tableViewCell>
     </objects>
