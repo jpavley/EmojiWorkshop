@@ -185,6 +185,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
                 updateToolbar(with: currentEmojiGlyph)
             }
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     fileprivate func updateToolbar(with emojiGlyph: EmojiGlyph) {
