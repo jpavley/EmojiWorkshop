@@ -14,6 +14,10 @@ enum UserMode {
 
 class EmojiViewController: UIViewController {
     
+    struct Identifiers {
+        static let emojiGlyphCell = "EmojiGlyphCell"
+    }
+    
     var emojiCollection: EmojiCollection?
     let searchController = UISearchController(searchResultsController: nil)
     var localPasteboard = ""
@@ -188,7 +192,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
+        var cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.emojiGlyphCell) as! EmojiGlyphTableViewCell
         
         if let emojiCollection = emojiCollection {
             
@@ -205,7 +209,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     fileprivate func updateCell(with emojiGlyph: EmojiGlyph) ->  EmojiGlyphTableViewCell {
-        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: "EmojiGlyphCell") as! EmojiGlyphTableViewCell
+        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.emojiGlyphCell) as! EmojiGlyphTableViewCell
         
         cell.emojiLabel.text = emojiGlyph.glyph
         cell.descriptionLabel.text = emojiGlyph.description
