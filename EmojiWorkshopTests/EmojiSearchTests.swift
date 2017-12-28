@@ -79,11 +79,17 @@ class EmojiSearchTests: XCTestCase {
         let testEmojiSearch = EmojiSearch()
         
         for i in 0..<emojiSearchResultsList.count {
-            if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byDescription, searchString: emojiSearchResultsList[i].query) {
+            
+            if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs,
+                                                              filter: .byDescription,
+                                                              searchString: emojiSearchResultsList[i].query) {
+                
                 XCTAssertEqual(testSearchResults.count, emojiSearchResultsList[i].foundCount, "failed query: \(emojiSearchResultsList[i].query)")
+                
                 if let firstID = testSearchResults.first {
                     XCTAssertEqual(firstID.priority, emojiSearchResultsList[i].firstID, "failed query: \(emojiSearchResultsList[i].query)")
                 }
+                
                 if let lastID = testSearchResults.last {
                     XCTAssertEqual(lastID.priority, emojiSearchResultsList[i].lastID,  "failed query: \(emojiSearchResultsList[i].query)")
                 }
@@ -104,6 +110,50 @@ class EmojiSearchTests: XCTestCase {
             XCTAssertTrue(testEmojiCollection.emojiGlyphs.first!.priority == testSearchResults.first!.priority)
             XCTAssertTrue(testEmojiCollection.emojiGlyphs.last!.priority == testSearchResults.last!.priority)
         }
+    }
+    
+    func testFilterEmojiByPriority() {
+        guard let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5) else {
+            return
+        }
+        
+        let testEmojiSearch = EmojiSearch()
+        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byPriority, searchString: "")
+        
+        XCTAssertNil(testSearchResults)
+    }
+    
+    func testFilterEmojiByGroupAndSubgroup() {
+        guard let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5) else {
+            return
+        }
+        
+        let testEmojiSearch = EmojiSearch()
+        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byGroupAndSubgroup, searchString: "")
+        
+        XCTAssertNil(testSearchResults)
+    }
+    
+    func testFilterEmojiByImage() {
+        guard let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5) else {
+            return
+        }
+        
+        let testEmojiSearch = EmojiSearch()
+        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byImage, searchString: "")
+        
+        XCTAssertNil(testSearchResults)
+    }
+    
+    func testFilterEmojiByCharacter() {
+        guard let testEmojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5) else {
+            return
+        }
+        
+        let testEmojiSearch = EmojiSearch()
+        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection.emojiGlyphs, filter: .byCharacter, searchString: "")
+        
+        XCTAssertNil(testSearchResults)
     }
     
     func testFilterEmojiByDescriptionSingleTerm() {
