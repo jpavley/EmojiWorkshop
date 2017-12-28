@@ -47,7 +47,7 @@ class EmojiCollection {
     
     /// Initializes EmojiCollection from a source file. The file has to be a W3C
     /// emoji test file stored locally. 
-    init(sourceFileName: String) {
+    init?(sourceFileName: String) {
         
         emojiGlyphs = [EmojiGlyph]()
         filteredEmojiGlyphs = [EmojiGlyph]()
@@ -86,6 +86,7 @@ class EmojiCollection {
             } catch {
                 
                 print("emoji-test.txt file not found")
+                return nil
             }
         }
         
