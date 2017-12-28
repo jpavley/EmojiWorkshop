@@ -8,7 +8,7 @@
 
 import XCTest
 
-class EmojiWorkshopTests: XCTestCase {
+class EmojiGlyphsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

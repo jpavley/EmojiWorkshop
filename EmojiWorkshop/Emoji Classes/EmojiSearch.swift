@@ -25,7 +25,13 @@ class EmojiSearch {
             return emojiGlyphs
         case .byDescription:
             return searchByDescription(emojiGlyphs: emojiGlyphs, filter: filter, searchString: searchString)
-        default:
+        case .byPriority:
+            return nil
+        case .byGroupAndSubgroup:
+            return nil
+        case .byImage:
+            return nil
+        case .byCharacter:
             return nil
         }
     }

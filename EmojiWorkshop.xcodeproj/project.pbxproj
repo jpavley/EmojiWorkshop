@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		48034AC51FE21742001D431C /* EmojiGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4EAD491FDC760600A02F7F /* EmojiGlyph.swift */; };
-		480E89111FE2157A00E34BAE /* EmojiWorkshopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480E89101FE2157A00E34BAE /* EmojiWorkshopTests.swift */; };
+		480E89111FE2157A00E34BAE /* EmojiGlyphsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480E89101FE2157A00E34BAE /* EmojiGlyphsTests.swift */; };
 		482C062E1FE0112B00508A28 /* EmojiCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482C062D1FE0112B00508A28 /* EmojiCollection.swift */; };
 		5A4EAD361FDC758B00A02F7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4EAD351FDC758B00A02F7F /* AppDelegate.swift */; };
 		5A4EAD381FDC758B00A02F7F /* EmojiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4EAD371FDC758B00A02F7F /* EmojiViewController.swift */; };
@@ -41,7 +41,7 @@
 
 /* Begin PBXFileReference section */
 		480E890E1FE2157A00E34BAE /* EmojiWorkshopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiWorkshopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		480E89101FE2157A00E34BAE /* EmojiWorkshopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiWorkshopTests.swift; sourceTree = "<group>"; };
+		480E89101FE2157A00E34BAE /* EmojiGlyphsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGlyphsTests.swift; sourceTree = "<group>"; };
 		480E89121FE2157A00E34BAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		482C062D1FE0112B00508A28 /* EmojiCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollection.swift; sourceTree = "<group>"; };
 		5A4EAD321FDC758B00A02F7F /* EmojiWorkshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiWorkshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */,
-				480E89101FE2157A00E34BAE /* EmojiWorkshopTests.swift */,
+				480E89101FE2157A00E34BAE /* EmojiGlyphsTests.swift */,
 				480E89121FE2157A00E34BAE /* Info.plist */,
 			);
 			path = EmojiWorkshopTests;
@@ -272,7 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				480E89111FE2157A00E34BAE /* EmojiWorkshopTests.swift in Sources */,
+				480E89111FE2157A00E34BAE /* EmojiGlyphsTests.swift in Sources */,
 				5ADCAFD91FE2D95F00A93FA3 /* EmojiCollection.swift in Sources */,
 				5AD3912A1FE57933001DBB26 /* EmojiSearchTests.swift in Sources */,
 				5AD391281FE5790F001DBB26 /* EmojiSearch.swift in Sources */,
