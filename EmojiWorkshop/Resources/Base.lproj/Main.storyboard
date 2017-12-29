@@ -31,34 +31,37 @@
                                     <outlet property="delegate" destination="pBK-51-tgh" id="i19-5Z-Dkt"/>
                                 </connections>
                             </searchBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mtc-RM-Nfd" userLabel="String Bar">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <color key="backgroundColor" red="0.45085787770000002" green="0.98829740290000001" blue="0.83763033149999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="WCv-sU-1uC"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5tU-hG-qXa">
-                                <rect key="frame" x="0.0" y="120" width="320" height="406"/>
+                                <rect key="frame" x="0.0" y="120" width="320" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="pBK-51-tgh" id="G3i-4t-QGa"/>
                                     <outlet property="delegate" destination="pBK-51-tgh" id="BfJ-9m-6jg"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q1L-I9-cPH">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="action" id="rPq-qL-jkQ"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dHG-eX-agp"/>
+                                    <barButtonItem title="😢😭😿" id="VGA-bk-r3d"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="GqV-u8-BXh"/>
+                                    <barButtonItem systemItem="stop" id="NEg-Px-bnR"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nQy-Hw-LAh" firstAttribute="leading" secondItem="cQT-kD-Sha" secondAttribute="leading" id="4T3-jF-4zg"/>
                             <constraint firstItem="5tU-hG-qXa" firstAttribute="trailing" secondItem="cQT-kD-Sha" secondAttribute="trailing" id="4xw-6O-MBV"/>
                             <constraint firstItem="nQy-Hw-LAh" firstAttribute="top" secondItem="cQT-kD-Sha" secondAttribute="top" id="6f5-eg-5em"/>
-                            <constraint firstItem="mtc-RM-Nfd" firstAttribute="leading" secondItem="cQT-kD-Sha" secondAttribute="leading" id="ChD-K1-EhH"/>
-                            <constraint firstItem="mtc-RM-Nfd" firstAttribute="bottom" secondItem="cQT-kD-Sha" secondAttribute="bottom" id="GU2-Uz-GMQ"/>
                             <constraint firstItem="5tU-hG-qXa" firstAttribute="leading" secondItem="cQT-kD-Sha" secondAttribute="leading" id="MEa-fu-9dI"/>
-                            <constraint firstItem="mtc-RM-Nfd" firstAttribute="trailing" secondItem="cQT-kD-Sha" secondAttribute="trailing" id="QsH-W4-Aj3"/>
-                            <constraint firstItem="cQT-kD-Sha" firstAttribute="bottom" secondItem="5tU-hG-qXa" secondAttribute="bottom" constant="42" id="Rfd-kY-pie"/>
+                            <constraint firstItem="q1L-I9-cPH" firstAttribute="trailing" secondItem="cQT-kD-Sha" secondAttribute="trailing" id="MaX-tY-Wmn"/>
+                            <constraint firstItem="cQT-kD-Sha" firstAttribute="bottom" secondItem="5tU-hG-qXa" secondAttribute="bottom" id="Rfd-kY-pie"/>
                             <constraint firstItem="nQy-Hw-LAh" firstAttribute="trailing" secondItem="cQT-kD-Sha" secondAttribute="trailing" id="XvP-YK-K7o"/>
+                            <constraint firstItem="q1L-I9-cPH" firstAttribute="bottom" secondItem="cQT-kD-Sha" secondAttribute="bottom" id="YIM-Ph-kgI"/>
                             <constraint firstItem="5tU-hG-qXa" firstAttribute="top" secondItem="nQy-Hw-LAh" secondAttribute="bottom" id="wNx-uw-eTM"/>
+                            <constraint firstItem="q1L-I9-cPH" firstAttribute="leading" secondItem="cQT-kD-Sha" secondAttribute="leading" id="xgd-YI-qhy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cQT-kD-Sha"/>
                     </view>
