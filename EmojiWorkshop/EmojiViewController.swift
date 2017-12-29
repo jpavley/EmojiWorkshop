@@ -8,8 +8,11 @@
 
 import UIKit
 
-enum UserMode {
-    case browsing, searching
+enum UserMode: Int {
+    case browsing = 0
+    case textSearching = 1
+    case categorySearching = 2
+    case numberSearching = 3
 }
 
 class EmojiViewController: UIViewController {
@@ -70,12 +73,6 @@ class EmojiViewController: UIViewController {
         emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
         emojiGlyphTable.rowHeight = 66
         
-        // searchbar setup
-        // emojiSearchBar.showsCancelButton = true
-        // emojiSearchBar.showsScopeBar = true
-        // emojiSearchBar.showsBookmarkButton = true
-        // emojiSearchBar.showsSearchResultsButton = true
-        
         // toolbar setup
         
 //        clipboardItem.title = ""
@@ -99,6 +96,10 @@ extension EmojiViewController: UISearchResultsUpdating {
 
 extension EmojiViewController: UISearchBarDelegate {
     
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        print("selectedScopeButtonIndexDidChange \(selectedScope)")
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("The search text is: \(searchBar.text!)")
         
@@ -107,7 +108,7 @@ extension EmojiViewController: UISearchBarDelegate {
             userMode = .browsing
         } else {
             
-            userMode = .searching
+            userMode = .textSearching
             if let emojiCollection = emojiCollection {
                 
                 let emojiSearch = EmojiSearch()
@@ -132,7 +133,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
                         
-            if userMode == .searching {
+            if userMode == .textSearching {
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
                 updateToolbar(with: filteredEmojiGlyph)
             } else {
@@ -155,7 +156,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
-            if emojiCollection.filteredEmojiGlyphs.count > 0 && userMode == .searching {
+            if emojiCollection.filteredEmojiGlyphs.count > 0 && userMode == .textSearching {
                 
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
                 cell = updateSmallCell(with: filteredEmojiGlyph)
@@ -184,7 +185,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
-            if userMode == .searching {
+            if userMode == .textSearching {
                 return 1
             } else {
                 return emojiCollection.sections.count
@@ -202,7 +203,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
-            if userMode == .searching {
+            if userMode == .textSearching {
                 return emojiCollection.filteredEmojiGlyphs.count
             } else {
                 return emojiCollection.glyphsIDsInSections[section].count
@@ -216,7 +217,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
-            if userMode == .searching {
+            if userMode == .textSearching {
                 return "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
             } else {
                 return "\(emojiCollection.sections[section]) \(emojiCollection.glyphsIDsInSections[section].count)"
