@@ -25,6 +25,8 @@ class EmojiViewController: UIViewController {
     var localPasteboard = ""
     
     @IBOutlet weak var emojiGlyphTable: UITableView!
+    @IBOutlet weak var emojiSearchBar: UISearchBar!
+    
     @IBOutlet weak var clipboardItem: UIBarButtonItem!
     
     @IBAction func copyButtonTouched(_ sender: Any) {
@@ -92,18 +94,18 @@ class EmojiViewController: UIViewController {
 
         // Search Controller setup
         
-        searchController.searchResultsUpdater = self
-        searchController.delegate = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Emoji"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.searchBar.delegate = self
+//        searchController.searchResultsUpdater = self
+//        searchController.delegate = self
+//        searchController.obscuresBackgroundDuringPresentation = false
+//        searchController.searchBar.placeholder = "Search Emoji"
+//        navigationItem.searchController = searchController
+//        definesPresentationContext = true
+//        navigationItem.hidesSearchBarWhenScrolling = false
+//        searchController.searchBar.delegate = self
         
         // toolbar setup
         
-        clipboardItem.title = ""
+//        clipboardItem.title = ""
         localPasteboard = ""
         
         // header setup
@@ -190,7 +192,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     
     fileprivate func updateToolbar(with emojiGlyph: EmojiGlyph) {
         localPasteboard += "\(emojiGlyph.glyph)"
-        clipboardItem.title = localPasteboard
+        //clipboardItem.title = localPasteboard
 
     }
     
