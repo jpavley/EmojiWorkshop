@@ -71,10 +71,10 @@ class EmojiViewController: UIViewController {
         emojiGlyphTable.rowHeight = 66
         
         // searchbar setup
-        emojiSearchBar.showsCancelButton = true
-        emojiSearchBar.showsScopeBar = true
-        emojiSearchBar.showsBookmarkButton = true
-        emojiSearchBar.showsSearchResultsButton = true
+        // emojiSearchBar.showsCancelButton = true
+        // emojiSearchBar.showsScopeBar = true
+        // emojiSearchBar.showsBookmarkButton = true
+        // emojiSearchBar.showsSearchResultsButton = true
         
         // toolbar setup
         
