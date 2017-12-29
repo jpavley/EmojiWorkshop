@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK:- Enumerations
+
 enum UserMode: Int {
     case browsing = 0
     case textSearching = 1
@@ -15,7 +17,11 @@ enum UserMode: Int {
     case numberSearching = 3
 }
 
+// MARK:- UIViewController
+
 class EmojiViewController: UIViewController {
+    
+    // MARK: Static Constants
     
     struct Identifiers {
         static let emojiGlyphCell = "EmojiGlyphCell"
@@ -23,14 +29,19 @@ class EmojiViewController: UIViewController {
         static let emojiTest5 = "emoji-test-5.0"
     }
     
+    // MARK:- Properties
+    
     var emojiCollection: EmojiCollection?
     var localPasteboard = ""
     var userMode = UserMode.browsing
     
+    // MARK:- Outlets
+    
     @IBOutlet weak var emojiGlyphTable: UITableView!
     @IBOutlet weak var emojiSearchBar: UISearchBar!
+        @IBOutlet weak var clipboardItem: UIBarButtonItem!
     
-    @IBOutlet weak var clipboardItem: UIBarButtonItem!
+    // MARK:- Actions
     
     @IBAction func copyButtonTouched(_ sender: Any) {
         if nothingToPaste() {
@@ -61,17 +72,23 @@ class EmojiViewController: UIViewController {
         return localPasteboard.count < 1
     }
     
+    // MARK:- Overrides
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         emojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         
-        // Cell Nib setup
+        // cell nib setup
         
         let cellNib = UINib(nibName: Identifiers.smallEmojiCell, bundle: nil)
         emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
         emojiGlyphTable.rowHeight = 66
+        
+        // searchbar setup
+        userMode = .browsing
+        emojiSearchBar.selectedScopeButtonIndex = userMode.rawValue
         
         // toolbar setup
         
@@ -86,6 +103,8 @@ class EmojiViewController: UIViewController {
 
 }
 
+// MARK:- UISearchResultsUpdating extension
+
 extension EmojiViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -94,10 +113,22 @@ extension EmojiViewController: UISearchResultsUpdating {
     
 }
 
+// MARK:- UISearchBarDelegate extension
+
 extension EmojiViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         print("selectedScopeButtonIndexDidChange \(selectedScope)")
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        userMode = .textSearching
+        searchBar.selectedScopeButtonIndex = userMode.rawValue
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        userMode = .browsing
+        searchBar.selectedScopeButtonIndex = userMode.rawValue
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -106,9 +137,9 @@ extension EmojiViewController: UISearchBarDelegate {
         if searchBar.text!.isEmpty {
             
             userMode = .browsing
+            searchBar.selectedScopeButtonIndex = userMode.rawValue
         } else {
             
-            userMode = .textSearching
             if let emojiCollection = emojiCollection {
                 
                 let emojiSearch = EmojiSearch()
@@ -124,8 +155,10 @@ extension EmojiViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         emojiGlyphTable.reloadData()
     }
-    
 }
+
+// MARK:- UITableViewDelegate, UITableViewDataSource extention
+
 
 extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     
