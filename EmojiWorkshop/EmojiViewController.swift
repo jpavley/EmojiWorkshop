@@ -99,6 +99,9 @@ class EmojiViewController: UIViewController {
         
         clipboardItem.title = ""
         localPasteboard = ""
+        
+        // diagnostics
+        // printCVS(emojiGlyphs: emojiCollection!.emojiGlyphs)
     }
 
     override func didReceiveMemoryWarning() {

@@ -92,11 +92,4 @@ class EmojiSearch {
         
         return initialResultGlyphs
     }
-    
-    fileprivate func cleanWordList(glyph: EmojiGlyph) -> Set<String> {
-        let wordList = glyph.description.lowercased().components(separatedBy: " ")
-        let cleanWordList = wordList.map({$0.contains(":") ? String($0.dropLast()) : $0})
-        let wordListSet = Set(cleanWordList)
-        return wordListSet
-    }
 }
