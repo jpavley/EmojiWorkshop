@@ -128,15 +128,20 @@ extension EmojiViewController: UISearchBarDelegate {
         switch selectedScope {
         case UserMode.browsing.rawValue:
             userMode = .browsing
+            searchBar.resignFirstResponder()
+
             
         case UserMode.textSearching.rawValue:
             userMode = .textSearching
+            searchBar.becomeFirstResponder()
             
         case UserMode.categorySearching.rawValue:
             userMode = .categorySearching
-            
+            searchBar.becomeFirstResponder()
+
         case UserMode.numberSearching.rawValue:
             userMode = .numberSearching
+            searchBar.becomeFirstResponder()
 
         default:
             ()
