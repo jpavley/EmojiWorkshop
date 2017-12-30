@@ -44,11 +44,19 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <color key="backgroundColor" red="1" green="0.81524676080000003" blue="0.1831828952" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
-                                    <barButtonItem systemItem="action" id="rPq-qL-jkQ"/>
+                                    <barButtonItem systemItem="action" id="rPq-qL-jkQ">
+                                        <connections>
+                                            <action selector="copyButtonTouched:" destination="pBK-51-tgh" id="Pk6-vg-8rC"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="dHG-eX-agp"/>
                                     <barButtonItem title="😢😭😿" id="VGA-bk-r3d"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="GqV-u8-BXh"/>
-                                    <barButtonItem systemItem="stop" id="NEg-Px-bnR"/>
+                                    <barButtonItem systemItem="stop" id="NEg-Px-bnR">
+                                        <connections>
+                                            <action selector="clearButtonTouched:" destination="pBK-51-tgh" id="kKF-NK-ePS"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -68,6 +76,7 @@
                         <viewLayoutGuide key="safeArea" id="cQT-kD-Sha"/>
                     </view>
                     <connections>
+                        <outlet property="clipboardItem" destination="VGA-bk-r3d" id="b9H-FN-Sde"/>
                         <outlet property="emojiGlyphTable" destination="5tU-hG-qXa" id="Oap-eI-G0Y"/>
                         <outlet property="emojiSearchBar" destination="nQy-Hw-LAh" id="NdP-Un-vzW"/>
                     </connections>

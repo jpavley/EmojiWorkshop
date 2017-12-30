@@ -44,7 +44,7 @@ class EmojiViewController: UIViewController {
     
     @IBOutlet weak var emojiGlyphTable: UITableView!
     @IBOutlet weak var emojiSearchBar: UISearchBar!
-        @IBOutlet weak var clipboardItem: UIBarButtonItem!
+    @IBOutlet weak var clipboardItem: UIBarButtonItem!
     
     // MARK:- Actions
     
@@ -97,7 +97,7 @@ class EmojiViewController: UIViewController {
         
         // toolbar setup
         
-//        clipboardItem.title = ""
+        clipboardItem.title = ""
         localPasteboard = ""
     }
 
@@ -197,7 +197,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     
     fileprivate func updateToolbar(with emojiGlyph: EmojiGlyph) {
         localPasteboard += "\(emojiGlyph.glyph)"
-        //clipboardItem.title = localPasteboard
+        clipboardItem.title = localPasteboard
 
     }
     
