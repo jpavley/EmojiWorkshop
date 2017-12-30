@@ -119,15 +119,28 @@ extension EmojiViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         print("selectedScopeButtonIndexDidChange \(selectedScope)")
+        
+        switch selectedScope {
+        case UserMode.browsing.rawValue:
+            userMode = .browsing
+            
+        case UserMode.textSearching.rawValue:
+            userMode = .textSearching
+            
+        case UserMode.categorySearching.rawValue:
+            userMode = .categorySearching
+            
+        case UserMode.numberSearching.rawValue:
+            userMode = .numberSearching
+
+        default:
+            ()
+        }
+        emojiGlyphTable.reloadData()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         userMode = .textSearching
-        searchBar.selectedScopeButtonIndex = userMode.rawValue
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        userMode = .browsing
         searchBar.selectedScopeButtonIndex = userMode.rawValue
     }
     
