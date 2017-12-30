@@ -56,6 +56,7 @@ class EmojiSearch {
             iterativeResults = iterativeResults.filter({ (glyph) -> Bool in
                 
                 let wordListSet = cleanWordList(glyph: glyph)
+                //let wordListSet: Set<String> = Set(glyph.tags)
                 let searchTermsSet: Set<String> = Set([term])
                 let intersectionSet = wordListSet.intersection(searchTermsSet)
                 return !intersectionSet.isEmpty
@@ -82,6 +83,7 @@ class EmojiSearch {
             let finalResultGlyphs = initialResultGlyphs.filter({ (glyph) -> Bool in
                                 
                 let wordListSet = cleanWordList(glyph: glyph)
+                //let wordListSet: Set<String> = Set(glyph.tags)
                 let searchTermsSet = Set(cleanExcludedTerms)
                 let intersectionSet = wordListSet.intersection(searchTermsSet)
                 return intersectionSet.isEmpty

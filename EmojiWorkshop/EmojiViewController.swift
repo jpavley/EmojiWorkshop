@@ -101,7 +101,7 @@ class EmojiViewController: UIViewController {
         localPasteboard = ""
         
         // diagnostics
-        printCVS(emojiGlyphs: emojiCollection!.emojiGlyphs)
+        // printCVS(emojiGlyphs: emojiCollection!.emojiGlyphs)
     }
 
     override func didReceiveMemoryWarning() {
