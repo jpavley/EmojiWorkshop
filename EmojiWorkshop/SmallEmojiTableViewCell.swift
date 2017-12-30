@@ -13,7 +13,7 @@ class SmallEmojiTableViewCell: UITableViewCell {
     @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
-    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var tagLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

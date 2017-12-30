@@ -12,14 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SmallEmojiTableCell" id="dpd-P7-G3M" customClass="SmallEmojiTableViewCell" customModule="EmojiWorkshop" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dpd-P7-G3M" id="LQE-FE-0RJ">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🧐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8R-sF-WE5">
-                        <rect key="frame" x="14" y="1.5" width="56" height="62.5"/>
+                        <rect key="frame" x="14" y="8.5" width="56" height="62.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="56" id="2pU-gQ-OgT"/>
                         </constraints>
@@ -27,34 +27,43 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yl-hy-IZ8">
-                        <rect key="frame" x="78" y="8" width="289" height="21"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLl-bJ-6a9">
-                        <rect key="frame" x="78" y="39.5" width="297" height="18"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="B2F-r4-j0q">
+                        <rect key="frame" x="78" y="8" width="289" height="62.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yl-hy-IZ8">
+                                <rect key="frame" x="0.0" y="0.0" width="289" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLl-bJ-6a9">
+                                <rect key="frame" x="0.0" y="24.5" width="289" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3T-ME-EcR">
+                                <rect key="frame" x="0.0" y="46.5" width="289" height="16"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="zLl-bJ-6a9" firstAttribute="leading" secondItem="b8R-sF-WE5" secondAttribute="trailing" constant="8" id="44d-J0-j0M"/>
-                    <constraint firstAttribute="trailing" secondItem="zLl-bJ-6a9" secondAttribute="trailing" id="8tX-pl-7El"/>
-                    <constraint firstItem="5Yl-hy-IZ8" firstAttribute="leading" secondItem="b8R-sF-WE5" secondAttribute="trailing" constant="8" id="Gss-kP-G9m"/>
+                    <constraint firstItem="B2F-r4-j0q" firstAttribute="leading" secondItem="b8R-sF-WE5" secondAttribute="trailing" constant="8" id="COU-Nh-0Je"/>
+                    <constraint firstItem="B2F-r4-j0q" firstAttribute="top" secondItem="LQE-FE-0RJ" secondAttribute="top" constant="8" id="YMu-qr-BZd"/>
                     <constraint firstItem="b8R-sF-WE5" firstAttribute="leading" secondItem="LQE-FE-0RJ" secondAttribute="leading" constant="14" id="fNM-B0-DVZ"/>
-                    <constraint firstAttribute="bottom" secondItem="zLl-bJ-6a9" secondAttribute="bottom" constant="8" id="gPs-YN-t2F"/>
                     <constraint firstItem="b8R-sF-WE5" firstAttribute="centerY" secondItem="LQE-FE-0RJ" secondAttribute="centerY" id="lw3-QI-iao"/>
-                    <constraint firstAttribute="trailing" secondItem="5Yl-hy-IZ8" secondAttribute="trailing" constant="8" id="sPH-9r-wbi"/>
-                    <constraint firstItem="5Yl-hy-IZ8" firstAttribute="top" secondItem="LQE-FE-0RJ" secondAttribute="top" constant="8" id="wm6-72-HXD"/>
+                    <constraint firstAttribute="trailing" secondItem="B2F-r4-j0q" secondAttribute="trailing" constant="8" id="v2J-tY-jMs"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionLabel" destination="5Yl-hy-IZ8" id="1nz-YM-248"/>
                 <outlet property="emojiLabel" destination="b8R-sF-WE5" id="Igw-N9-Ox4"/>
                 <outlet property="priorityLabel" destination="zLl-bJ-6a9" id="4aw-U3-ARZ"/>
+                <outlet property="tagLabel" destination="F3T-ME-EcR" id="8od-mj-eQZ"/>
             </connections>
             <point key="canvasLocation" x="116.5" y="8"/>
         </tableViewCell>

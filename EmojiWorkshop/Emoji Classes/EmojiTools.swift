@@ -57,7 +57,7 @@ func createMetadata(glyph: EmojiGlyph) -> [String] {
     let results1 = descriptionWords + groupWords + subgroupWords
     let results2 = Set(results1) // de-dupe
     let results3 = Array(results2)
+    let results4 = results3.sorted()
     
-    return results3
+    return results4
 }
-
