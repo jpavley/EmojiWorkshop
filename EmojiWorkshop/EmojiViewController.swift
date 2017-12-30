@@ -85,6 +85,10 @@ class EmojiViewController: UIViewController {
         
         emojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         
+        // tableview setup
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+        emojiGlyphTable.contentInset = insets
+        
         // cell nib setup
         
         let cellNib = UINib(nibName: Identifiers.smallEmojiCell, bundle: nil)
