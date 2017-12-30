@@ -34,37 +34,26 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLl-bJ-6a9">
-                        <rect key="frame" x="78" y="39.5" width="239" height="18"/>
+                        <rect key="frame" x="78" y="39.5" width="297" height="18"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yl6-hS-IE7">
-                        <rect key="frame" x="325" y="35.5" width="42" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="42" id="wK7-jv-Bjk"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                        <state key="normal" title="☆"/>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="zLl-bJ-6a9" firstAttribute="leading" secondItem="b8R-sF-WE5" secondAttribute="trailing" constant="8" id="44d-J0-j0M"/>
+                    <constraint firstAttribute="trailing" secondItem="zLl-bJ-6a9" secondAttribute="trailing" id="8tX-pl-7El"/>
                     <constraint firstItem="5Yl-hy-IZ8" firstAttribute="leading" secondItem="b8R-sF-WE5" secondAttribute="trailing" constant="8" id="Gss-kP-G9m"/>
-                    <constraint firstItem="Yl6-hS-IE7" firstAttribute="leading" secondItem="zLl-bJ-6a9" secondAttribute="trailing" constant="8" id="O1s-Wc-cbq"/>
-                    <constraint firstAttribute="bottom" secondItem="Yl6-hS-IE7" secondAttribute="bottom" id="YgU-xk-64E"/>
                     <constraint firstItem="b8R-sF-WE5" firstAttribute="leading" secondItem="LQE-FE-0RJ" secondAttribute="leading" constant="14" id="fNM-B0-DVZ"/>
                     <constraint firstAttribute="bottom" secondItem="zLl-bJ-6a9" secondAttribute="bottom" constant="8" id="gPs-YN-t2F"/>
                     <constraint firstItem="b8R-sF-WE5" firstAttribute="centerY" secondItem="LQE-FE-0RJ" secondAttribute="centerY" id="lw3-QI-iao"/>
                     <constraint firstAttribute="trailing" secondItem="5Yl-hy-IZ8" secondAttribute="trailing" constant="8" id="sPH-9r-wbi"/>
                     <constraint firstItem="5Yl-hy-IZ8" firstAttribute="top" secondItem="LQE-FE-0RJ" secondAttribute="top" constant="8" id="wm6-72-HXD"/>
-                    <constraint firstAttribute="trailing" secondItem="Yl6-hS-IE7" secondAttribute="trailing" constant="8" id="xsi-Ap-hXJ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionLabel" destination="5Yl-hy-IZ8" id="1nz-YM-248"/>
                 <outlet property="emojiLabel" destination="b8R-sF-WE5" id="Igw-N9-Ox4"/>
-                <outlet property="favoriteButton" destination="Yl6-hS-IE7" id="5Zu-YK-UN3"/>
                 <outlet property="priorityLabel" destination="zLl-bJ-6a9" id="4aw-U3-ARZ"/>
             </connections>
             <point key="canvasLocation" x="116.5" y="8"/>
