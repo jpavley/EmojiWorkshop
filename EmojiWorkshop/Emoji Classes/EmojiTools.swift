@@ -9,15 +9,18 @@
 import Foundation
 
 func printCVS(emojiGlyphs: [EmojiGlyph]) {
-    print("priority, glyph, group, subgroup, description, tags")
+    print("priority, glyph, group, subgroup, tags")
     for emoji in emojiGlyphs {
-        print("\(emoji.priority),\(emoji.glyph),\(emoji.group),\(emoji.subgroup),\(emoji.description)", terminator: "")
-        if emoji.tags.count != 0 {
+        
+        let tags = createMetadata(glyph: emoji)
+        
+        print("\(emoji.priority),\(emoji.glyph),\(emoji.group),\(emoji.subgroup)", terminator: "")
+        if tags.count != 0 {
             print(",", terminator: "")
-            for tag in emoji.tags {
+            for tag in tags {
                 print("\(tag)", terminator: "")
-                if tag != emoji.tags.last! {
-                    print(",", terminator: "")
+                if tag != tags.last! {
+                    print(" ", terminator: "")
                 }
             }
         }
@@ -27,10 +30,34 @@ func printCVS(emojiGlyphs: [EmojiGlyph]) {
 
 func cleanWordList(glyph: EmojiGlyph) -> Set<String> {
     
-    let wordList = glyph.description.lowercased().components(separatedBy: " ")
+    let wordList = glyph.description.lowercased().components(separatedBy: CharacterSet(charactersIn: " -"))
     let cleanWordList = wordList.map({$0.contains(":") ? String($0.dropLast()) : $0})
     let wordListSet = Set(cleanWordList) // conversion to set removes any dupes
     
     return wordListSet
+}
+
+func createMetadata(glyph: EmojiGlyph) -> [String] {
+    
+    var descriptionWords = glyph.description.lowercased().components(separatedBy: CharacterSet(charactersIn: " -"))
+    descriptionWords = descriptionWords.map({$0.contains(":") ? String($0.dropLast()) : $0})
+    descriptionWords = descriptionWords.map({$0.contains(",") ? String($0.dropLast()) : $0})
+    descriptionWords = descriptionWords.filter({$0 != "&"})
+
+    var groupWords = glyph.group.lowercased().components(separatedBy: CharacterSet(charactersIn: " -"))
+    groupWords = groupWords.map({$0.contains(":") ? String($0.dropLast()) : $0})
+    groupWords = groupWords.map({$0.contains(",") ? String($0.dropLast()) : $0})
+    groupWords = groupWords.filter({$0 != "&"})
+
+    var subgroupWords = glyph.subgroup.lowercased().components(separatedBy: CharacterSet(charactersIn: " -"))
+    subgroupWords = subgroupWords.map({$0.contains(":") ? String($0.dropLast()) : $0})
+    subgroupWords = subgroupWords.map({$0.contains(",") ? String($0.dropLast()) : $0})
+    subgroupWords = subgroupWords.filter({$0 != "&"})
+
+    let results1 = descriptionWords + groupWords + subgroupWords
+    let results2 = Set(results1) // de-dupe
+    let results3 = Array(results2)
+    
+    return results3
 }
 
