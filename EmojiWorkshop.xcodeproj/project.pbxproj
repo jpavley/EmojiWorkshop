@@ -17,7 +17,6 @@
 		5A4EAD401FDC758B00A02F7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD3E1FDC758B00A02F7F /* LaunchScreen.storyboard */; };
 		5A4EAD481FDC75B400A02F7F /* emoji-test-5.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD471FDC75B400A02F7F /* emoji-test-5.0.txt */; };
 		5A4EAD4A1FDC760600A02F7F /* EmojiGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4EAD491FDC760600A02F7F /* EmojiGlyph.swift */; };
-		5A4EAD4C1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4EAD4B1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift */; };
 		5A4EAD4E1FDD9CCA00A02F7F /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD4D1FDD9CCA00A02F7F /* readme.md */; };
 		5A4EAD501FDD9CD600A02F7F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD4F1FDD9CD600A02F7F /* LICENSE */; };
 		5A4EAD521FDD9DA500A02F7F /* emoji-test-4.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD511FDD9DA500A02F7F /* emoji-test-4.0.txt */; };
@@ -53,7 +52,6 @@
 		5A4EAD411FDC758B00A02F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A4EAD471FDC75B400A02F7F /* emoji-test-5.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "emoji-test-5.0.txt"; sourceTree = "<group>"; };
 		5A4EAD491FDC760600A02F7F /* EmojiGlyph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiGlyph.swift; sourceTree = "<group>"; };
-		5A4EAD4B1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGlyphTableViewCell.swift; sourceTree = "<group>"; };
 		5A4EAD4D1FDD9CCA00A02F7F /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		5A4EAD4F1FDD9CD600A02F7F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5A4EAD511FDD9DA500A02F7F /* emoji-test-4.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "emoji-test-4.0.txt"; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 		5AF853361FF3FB250018A598 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5A4EAD4B1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift */,
 				5A4EAD371FDC758B00A02F7F /* EmojiViewController.swift */,
 				5AF8533A1FF41A730018A598 /* SmallEmojiTableViewCell.swift */,
 			);
@@ -290,7 +287,6 @@
 				5A4EAD4A1FDC760600A02F7F /* EmojiGlyph.swift in Sources */,
 				5A4EAD361FDC758B00A02F7F /* AppDelegate.swift in Sources */,
 				5AD391271FE57902001DBB26 /* EmojiSearch.swift in Sources */,
-				5A4EAD4C1FDC8F8B00A02F7F /* EmojiGlyphTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
