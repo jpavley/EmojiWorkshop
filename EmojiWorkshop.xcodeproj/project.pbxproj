@@ -29,6 +29,7 @@
 		5AF8533F1FF824380018A598 /* EmojiTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8533E1FF824380018A598 /* EmojiTools.swift */; };
 		5AF853401FF8257B0018A598 /* EmojiTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8533E1FF824380018A598 /* EmojiTools.swift */; };
 		5AF853421FF82AA00018A598 /* EmojiToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF853411FF82AA00018A598 /* EmojiToolsTests.swift */; };
+		5AF853441FF9984B0018A598 /* EmojiBrowseBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF853431FF9984B0018A598 /* EmojiBrowseBar.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		5AF8533A1FF41A730018A598 /* SmallEmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallEmojiTableViewCell.swift; sourceTree = "<group>"; };
 		5AF8533E1FF824380018A598 /* EmojiTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTools.swift; sourceTree = "<group>"; };
 		5AF853411FF82AA00018A598 /* EmojiToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiToolsTests.swift; sourceTree = "<group>"; };
+		5AF853431FF9984B0018A598 /* EmojiBrowseBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiBrowseBar.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				5A4EAD3C1FDC758B00A02F7F /* Assets.xcassets */,
 				5A4EAD3E1FDC758B00A02F7F /* LaunchScreen.storyboard */,
 				5AF853381FF415E90018A598 /* SmallEmojiTableCell.xib */,
+				5AF853431FF9984B0018A598 /* EmojiBrowseBar.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				5A4EAD3D1FDC758B00A02F7F /* Assets.xcassets in Resources */,
 				5A4EAD4E1FDD9CCA00A02F7F /* readme.md in Resources */,
 				5AF853391FF415E90018A598 /* SmallEmojiTableCell.xib in Resources */,
+				5AF853441FF9984B0018A598 /* EmojiBrowseBar.xib in Resources */,
 				5A4EAD3B1FDC758B00A02F7F /* Main.storyboard in Resources */,
 				5A4EAD521FDD9DA500A02F7F /* emoji-test-4.0.txt in Resources */,
 			);
