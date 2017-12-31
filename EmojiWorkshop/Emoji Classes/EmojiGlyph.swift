@@ -17,13 +17,13 @@ fileprivate let descriptionOffset = 4
 
 struct EmojiGlyph {
     
+    
     // properties
     var glyph: String
     var description: String
     var priority: Int
     var group: String
     var subgroup: String
-    var tags: [String]
     
     /// Init an EmojiGlyph from a line of text in emoji-text.text from the W3C.
     /// Ignore the comment lines in the file (where index of "#" == 0).
@@ -48,7 +48,6 @@ struct EmojiGlyph {
                 self.priority = priority
                 self.group = group
                 self.subgroup = subgroup
-                self.tags = [String]()
                 return
             }
         }
