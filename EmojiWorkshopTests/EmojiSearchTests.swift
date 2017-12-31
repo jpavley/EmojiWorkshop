@@ -46,10 +46,10 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "Cat face !smiling !pouting !grinning joy", foundCount: 1, firstID: 129, lastID: 129),
             EmojiSearchResults(query: "Book house", foundCount: 0, firstID: -1, lastID: -1),
             EmojiSearchResults(query: "Cat !", foundCount: 11, firstID: 127, lastID: 2122), // "Cat !" == "Cat"
-            EmojiSearchResults(query: "Book !Orange", foundCount: 4, firstID: 2782, lastID: 2785),
+            EmojiSearchResults(query: "Book !Orange", foundCount: 16, firstID: 2781, lastID: 2798),
             EmojiSearchResults(query: "!blue", foundCount: 2617, firstID: 23, lastID: 3495),
             EmojiSearchResults(query: "Baby", foundCount: 16, firstID: 141, lastID: 2935), // "Baby" == "Baby:"
-            EmojiSearchResults(query: "Cat !face n", foundCount: 2505, firstID: 26, lastID: 3495) // "Cat !face n" == "Cat n !face" == "!face"
+            EmojiSearchResults(query: "Cat !face n", foundCount: 2491, firstID: 141, lastID: 3495) // "Cat !face n" == "Cat n !face" == "!face"
         ]
     }
     
