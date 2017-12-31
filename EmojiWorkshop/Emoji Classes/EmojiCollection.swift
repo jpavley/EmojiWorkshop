@@ -78,8 +78,9 @@ class EmojiCollection {
                         sections.append(sectionName)
                     }
                     
-                    if let emojiGlyph = EmojiGlyph(textLine: String(line), priority: i, group: group, subgroup: subgroup) {
+                    if var emojiGlyph = EmojiGlyph(textLine: String(line), priority: i, group: group, subgroup: subgroup) {
                         // print(emojiGlyph)
+                        emojiGlyph.tags = createMetadata(glyph: emojiGlyph)
                         emojiGlyphs.append(emojiGlyph)
                     }
                 }
@@ -97,5 +98,4 @@ class EmojiCollection {
 //        }
         
     }
-    
 }
