@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qUl-u2-ZfK">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pBK-51-tgh">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -10,80 +10,80 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--😂 Emoji ⚙️Workshop-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Emoji View Controller-->
+        <scene sceneID="c9A-R4-tfy">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="EmojiViewController" customModule="EmojiWorkshop" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="pBK-51-tgh" customClass="EmojiViewController" customModule="EmojiWorkshop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dQ5-xV-YNT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ybs-SK-Ics">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <sections/>
+                            <searchBar contentMode="redraw" placeholder="Emoji Search" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQy-Hw-LAh">
+                                <rect key="frame" x="0.0" y="20" width="320" height="100"/>
+                                <color key="barTintColor" red="1" green="0.81524676084518433" blue="0.18318289518356323" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Browse</string>
+                                    <string>Description</string>
+                                    <string>Category</string>
+                                    <string>Number</string>
+                                </scopeButtonTitles>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="X4C-z7-Aji"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="btI-tw-KAU"/>
+                                    <outlet property="delegate" destination="pBK-51-tgh" id="i19-5Z-Dkt"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5tU-hG-qXa">
+                                <rect key="frame" x="0.0" y="120" width="320" height="448"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="pBK-51-tgh" id="G3i-4t-QGa"/>
+                                    <outlet property="delegate" destination="pBK-51-tgh" id="BfJ-9m-6jg"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q1L-I9-cPH">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.81524676080000003" blue="0.1831828952" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <barButtonItem systemItem="action" id="rPq-qL-jkQ">
+                                        <connections>
+                                            <action selector="copyButtonTouched:" destination="pBK-51-tgh" id="Pk6-vg-8rC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dHG-eX-agp"/>
+                                    <barButtonItem title="😢😭😿" id="VGA-bk-r3d"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="GqV-u8-BXh"/>
+                                    <barButtonItem systemItem="stop" id="NEg-Px-bnR">
+                                        <connections>
+                                            <action selector="clearButtonTouched:" destination="pBK-51-tgh" id="kKF-NK-ePS"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ybs-SK-Ics" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2nN-jn-DWf"/>
-                            <constraint firstItem="ybs-SK-Ics" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="LpV-9e-tr2"/>
-                            <constraint firstItem="ybs-SK-Ics" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="T0F-21-B4k"/>
-                            <constraint firstItem="ybs-SK-Ics" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="t3M-Hf-FJN"/>
+                            <constraint firstItem="nQy-Hw-LAh" firstAttribute="leading" secondItem="cQT-kD-Sha" secondAttribute="leading" id="4T3-jF-4zg"/>
+                            <constraint firstItem="5tU-hG-qXa" firstAttribute="trailing" secondItem="cQT-kD-Sha" secondAttribute="trailing" id="4xw-6O-MBV"/>
+                            <constraint firstItem="nQy-Hw-LAh" firstAttribute="top" secondItem="cQT-kD-Sha" secondAttribute="top" id="6f5-eg-5em"/>
+                            <constraint firstItem="5tU-hG-qXa" firstAttribute="leading" secondItem="cQT-kD-Sha" secondAttribute="leading" id="MEa-fu-9dI"/>
+                            <constraint firstItem="q1L-I9-cPH" firstAttribute="trailing" secondItem="cQT-kD-Sha" secondAttribute="trailing" id="MaX-tY-Wmn"/>
+                            <constraint firstItem="cQT-kD-Sha" firstAttribute="bottom" secondItem="5tU-hG-qXa" secondAttribute="bottom" id="Rfd-kY-pie"/>
+                            <constraint firstItem="nQy-Hw-LAh" firstAttribute="trailing" secondItem="cQT-kD-Sha" secondAttribute="trailing" id="XvP-YK-K7o"/>
+                            <constraint firstItem="q1L-I9-cPH" firstAttribute="bottom" secondItem="cQT-kD-Sha" secondAttribute="bottom" id="YIM-Ph-kgI"/>
+                            <constraint firstItem="5tU-hG-qXa" firstAttribute="top" secondItem="nQy-Hw-LAh" secondAttribute="bottom" id="wNx-uw-eTM"/>
+                            <constraint firstItem="q1L-I9-cPH" firstAttribute="leading" secondItem="cQT-kD-Sha" secondAttribute="leading" id="xgd-YI-qhy"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="cQT-kD-Sha"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem systemItem="action" id="Ngn-QM-m92">
-                            <connections>
-                                <action selector="copyButtonTouched:" destination="BYZ-38-t0r" id="uaJ-aX-XE3"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="5vE-Xk-XoV"/>
-                        <barButtonItem tag="1" title="😢😭😿" width="65" id="PoS-5M-w1a" userLabel="Clipboard:"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="iJO-b8-XUe"/>
-                        <barButtonItem systemItem="stop" id="0lU-vM-NEY">
-                            <connections>
-                                <action selector="clearButtonTouched:" destination="BYZ-38-t0r" id="F5i-Bc-FYz"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="😂 Emoji ⚙️Workshop" id="8Ev-98-hHM"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="clipboardItem" destination="PoS-5M-w1a" id="DS3-Qk-WKM"/>
-                        <outlet property="emojiGlyphTable" destination="ybs-SK-Ics" id="CaT-Oi-ifc"/>
+                        <outlet property="clipboardItem" destination="VGA-bk-r3d" id="b9H-FN-Sde"/>
+                        <outlet property="emojiGlyphTable" destination="5tU-hG-qXa" id="Oap-eI-G0Y"/>
+                        <outlet property="emojiSearchBar" destination="nQy-Hw-LAh" id="NdP-Un-vzW"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fOX-uy-ltv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="479.19999999999999" y="132.68365817091455"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="jkf-Ex-Vt8">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="qUl-u2-ZfK" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IXL-Kh-cKa">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OFz-c7-Q8t">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gv7-ZP-xRq"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qpC-F8-MuU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-226" y="133"/>
+            <point key="canvasLocation" x="360" y="120.4225352112676"/>
         </scene>
     </scenes>
 </document>

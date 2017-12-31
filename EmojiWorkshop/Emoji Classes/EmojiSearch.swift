@@ -55,7 +55,8 @@ class EmojiSearch {
             // print("== \(term) of \(searchTerms)")
             iterativeResults = iterativeResults.filter({ (glyph) -> Bool in
                 
-                let wordListSet = cleanWordList(glyph: glyph)
+                //let wordListSet = cleanWordList(glyph: glyph)
+                let wordListSet: Set<String> = Set(glyph.tags)
                 let searchTermsSet: Set<String> = Set([term])
                 let intersectionSet = wordListSet.intersection(searchTermsSet)
                 return !intersectionSet.isEmpty
@@ -81,7 +82,8 @@ class EmojiSearch {
             let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
             let finalResultGlyphs = initialResultGlyphs.filter({ (glyph) -> Bool in
                                 
-                let wordListSet = cleanWordList(glyph: glyph)
+                //let wordListSet = cleanWordList(glyph: glyph)
+                let wordListSet: Set<String> = Set(glyph.tags)
                 let searchTermsSet = Set(cleanExcludedTerms)
                 let intersectionSet = wordListSet.intersection(searchTermsSet)
                 return intersectionSet.isEmpty
@@ -91,12 +93,5 @@ class EmojiSearch {
         }
         
         return initialResultGlyphs
-    }
-    
-    fileprivate func cleanWordList(glyph: EmojiGlyph) -> Set<String> {
-        let wordList = glyph.description.lowercased().components(separatedBy: " ")
-        let cleanWordList = wordList.map({$0.contains(":") ? String($0.dropLast()) : $0})
-        let wordListSet = Set(cleanWordList)
-        return wordListSet
     }
 }

@@ -8,11 +8,25 @@
 
 import UIKit
 
-enum UserMode {
-    case browsing, searching, discovering
+// MARK:- Enumerations
+
+enum UserMode: Int {
+    case browsing = 0
+    case textSearching = 1
+    case categorySearching = 2
+    case numberSearching = 3
 }
 
+// MARK:- Shared color scheme
+
+let emojiYellowRGBValues: [CGFloat] = [255/255, 208/255, 47/255]
+let emojiYellowUIColor = UIColor(red: emojiYellowRGBValues[0], green: emojiYellowRGBValues[0], blue: emojiYellowRGBValues[0], alpha: 1.0)
+
+// MARK:- UIViewController
+
 class EmojiViewController: UIViewController {
+    
+    // MARK: Static Constants
     
     struct Identifiers {
         static let emojiGlyphCell = "EmojiGlyphCell"
@@ -20,12 +34,19 @@ class EmojiViewController: UIViewController {
         static let emojiTest5 = "emoji-test-5.0"
     }
     
+    // MARK:- Properties
+    
     var emojiCollection: EmojiCollection?
-    let searchController = UISearchController(searchResultsController: nil)
     var localPasteboard = ""
+    var userMode = UserMode.browsing
+    
+    // MARK:- Outlets
     
     @IBOutlet weak var emojiGlyphTable: UITableView!
+    @IBOutlet weak var emojiSearchBar: UISearchBar!
     @IBOutlet weak var clipboardItem: UIBarButtonItem!
+    
+    // MARK:- Actions
     
     @IBAction func copyButtonTouched(_ sender: Any) {
         if nothingToPaste() {
@@ -56,28 +77,7 @@ class EmojiViewController: UIViewController {
         return localPasteboard.count < 1
     }
     
-    fileprivate func updateHeader(mode: UserMode) {
-        
-        switch mode {
-        case .browsing:
-            var emojiCount = 0
-            var sectionCount = 0
-            
-            if let emojiCollection = emojiCollection {
-                emojiCount = emojiCollection.emojiGlyphs.count
-                sectionCount = emojiCollection.sections.count
-            }
-            
-            print("Browsing \(emojiCount) emoji in \(sectionCount) sections")
-            
-        case .searching:
-            
-            print("Searching...")
-            
-        case .discovering:
-            print("Discovering...")
-        }
-    }
+    // MARK:- Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,30 +85,27 @@ class EmojiViewController: UIViewController {
         
         emojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
         
-        // Cell Nib setup
+        // tableview setup
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+        emojiGlyphTable.contentInset = insets
+        
+        // cell nib setup
+        
         let cellNib = UINib(nibName: Identifiers.smallEmojiCell, bundle: nil)
         emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
-        emojiGlyphTable.rowHeight = 66
-
-        // Search Controller setup
+        emojiGlyphTable.rowHeight = 80
         
-        searchController.searchResultsUpdater = self
-        searchController.delegate = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Emoji"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.searchBar.delegate = self
+        // searchbar setup
+        userMode = .browsing
+        emojiSearchBar.selectedScopeButtonIndex = userMode.rawValue
         
         // toolbar setup
         
         clipboardItem.title = ""
         localPasteboard = ""
         
-        // header setup
-        updateHeader(mode: .browsing)
-        
+        // diagnostics
+        // printCVS(emojiGlyphs: emojiCollection!.emojiGlyphs)
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,6 +115,8 @@ class EmojiViewController: UIViewController {
 
 }
 
+// MARK:- UISearchResultsUpdating extension
+
 extension EmojiViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -126,58 +125,78 @@ extension EmojiViewController: UISearchResultsUpdating {
     
 }
 
+// MARK:- UISearchBarDelegate extension
+
 extension EmojiViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        print("selectedScopeButtonIndexDidChange \(selectedScope)")
+        
+        switch selectedScope {
+        case UserMode.browsing.rawValue:
+            userMode = .browsing
+            searchBar.resignFirstResponder()
+
+            
+        case UserMode.textSearching.rawValue:
+            userMode = .textSearching
+            searchBar.becomeFirstResponder()
+            
+        case UserMode.categorySearching.rawValue:
+            userMode = .categorySearching
+            searchBar.becomeFirstResponder()
+
+        case UserMode.numberSearching.rawValue:
+            userMode = .numberSearching
+            searchBar.becomeFirstResponder()
+
+        default:
+            ()
+        }
+        emojiGlyphTable.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        userMode = .textSearching
+        searchBar.selectedScopeButtonIndex = userMode.rawValue
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("The search text is: \(searchBar.text!)")
         
-        if let emojiCollection = emojiCollection {
+        if searchBar.text!.isEmpty {
             
-            let emojiSearch = EmojiSearch()
-            if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs, filter: .byDescription, searchString: searchBar.text!) {
-                emojiCollection.filteredEmojiGlyphs = foundEmoji
+            userMode = .browsing
+            searchBar.selectedScopeButtonIndex = userMode.rawValue
+        } else {
+            
+            if let emojiCollection = emojiCollection {
+                
+                let emojiSearch = EmojiSearch()
+                if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs,
+                                                       filter: .byDescription,
+                                                       searchString: searchBar.text!) {
+                    
+                    emojiCollection.filteredEmojiGlyphs = foundEmoji
+                }
             }
         }
-        //emojiGlyphTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
+        
+        searchBar.resignFirstResponder()
         emojiGlyphTable.reloadData()
     }
-    
 }
 
+// MARK:- UITableViewDelegate, UITableViewDataSource extention
 
-extension EmojiViewController: UISearchControllerDelegate {
-    
-    func didDismissSearchController(_ searchController: UISearchController) {
-        // print("== didDismissSearchController()")
-        updateHeader(mode: .browsing)
-        emojiGlyphTable.reloadData()
-        // emojiGlyphTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
-
-    }
-    
-    func didPresentSearchController(_ searchController: UISearchController) {
-        // print("== didPresentSearchController()")
-        updateHeader(mode: .searching)
-        emojiGlyphTable.reloadData()
-        // emojiGlyphTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
-
-    }
-}
 
 extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    fileprivate func userIsFiltering() -> Bool {
-        
-        let searchBarIsEmpty = searchController.searchBar.text?.isEmpty ?? true
-        let currentlyFiltering = !searchBarIsEmpty &&  searchController.isActive
-        return currentlyFiltering
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let emojiCollection = emojiCollection {
                         
-            if userIsFiltering() {
+            if userMode == .textSearching {
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
                 updateToolbar(with: filteredEmojiGlyph)
             } else {
@@ -200,7 +219,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
-            if emojiCollection.filteredEmojiGlyphs.count > 0 && userIsFiltering() {
+            if emojiCollection.filteredEmojiGlyphs.count > 0 && userMode == .textSearching {
                 
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
                 cell = updateSmallCell(with: filteredEmojiGlyph)
@@ -220,6 +239,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         cell.emojiLabel.text = emojiGlyph.glyph
         cell.descriptionLabel.text = emojiGlyph.description
         cell.priorityLabel.text = "# \(emojiGlyph.priority)"
+        cell.tagLabel.text = emojiGlyph.tags.joined(separator: " ")
         
         return cell
     }
@@ -229,7 +249,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
-            if userIsFiltering() {
+            if userMode == .textSearching {
                 return 1
             } else {
                 return emojiCollection.sections.count
@@ -247,7 +267,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
-            if userIsFiltering() {
+            if userMode == .textSearching {
                 return emojiCollection.filteredEmojiGlyphs.count
             } else {
                 return emojiCollection.glyphsIDsInSections[section].count
@@ -261,7 +281,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
-            if userIsFiltering() {
+            if userMode == .textSearching {
                 return "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
             } else {
                 return "\(emojiCollection.sections[section]) \(emojiCollection.glyphsIDsInSections[section].count)"
