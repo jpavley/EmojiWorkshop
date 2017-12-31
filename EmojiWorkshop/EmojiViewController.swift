@@ -73,8 +73,32 @@ class EmojiViewController: UIViewController {
         clipboardItem.title = localPasteboard
     }
     
+    // MARK:- Utility functions
+    
     fileprivate func nothingToPaste() -> Bool {
         return localPasteboard.count < 1
+    }
+    
+    fileprivate func updateUserMode(newMode: UserMode) {
+        
+        userMode = newMode
+        emojiSearchBar.selectedScopeButtonIndex = userMode.rawValue
+
+        switch userMode {
+            
+        case .browsing:
+            emojiGlyphTable.allowsSelection = true
+            emojiSearchBar.resignFirstResponder()
+
+            
+        case .textSearching:
+            emojiGlyphTable.allowsSelection = true
+            emojiSearchBar.becomeFirstResponder()
+
+        default:
+            // all other modes are going away
+            print("bad user mode!")
+        }
     }
     
     // MARK:- Overrides
@@ -96,8 +120,7 @@ class EmojiViewController: UIViewController {
         emojiGlyphTable.rowHeight = 80
         
         // searchbar setup
-        userMode = .browsing
-        emojiSearchBar.selectedScopeButtonIndex = userMode.rawValue
+        updateUserMode(newMode: .browsing)
         
         // toolbar setup
         
@@ -132,23 +155,14 @@ extension EmojiViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         print("selectedScopeButtonIndexDidChange \(selectedScope)")
         
+        
         switch selectedScope {
+            
         case UserMode.browsing.rawValue:
-            userMode = .browsing
-            searchBar.resignFirstResponder()
+            updateUserMode(newMode: .browsing)
 
-            
         case UserMode.textSearching.rawValue:
-            userMode = .textSearching
-            searchBar.becomeFirstResponder()
-            
-        case UserMode.categorySearching.rawValue:
-            userMode = .categorySearching
-            searchBar.becomeFirstResponder()
-
-        case UserMode.numberSearching.rawValue:
-            userMode = .numberSearching
-            searchBar.becomeFirstResponder()
+            updateUserMode(newMode: .textSearching)
 
         default:
             ()
@@ -157,8 +171,8 @@ extension EmojiViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        userMode = .textSearching
-        searchBar.selectedScopeButtonIndex = userMode.rawValue
+        updateUserMode(newMode: .textSearching)
+        emojiGlyphTable.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -166,8 +180,8 @@ extension EmojiViewController: UISearchBarDelegate {
         
         if searchBar.text!.isEmpty {
             
-            userMode = .browsing
-            searchBar.selectedScopeButtonIndex = userMode.rawValue
+            updateUserMode(newMode: .browsing)
+            
         } else {
             
             if let emojiCollection = emojiCollection {
