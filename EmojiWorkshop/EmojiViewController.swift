@@ -189,6 +189,12 @@ extension EmojiViewController: UISearchBarDelegate {
 
 extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        emojiSearchBar.resignFirstResponder()
+        let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+        cancelButton.isEnabled = true
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let emojiCollection = emojiCollection {
