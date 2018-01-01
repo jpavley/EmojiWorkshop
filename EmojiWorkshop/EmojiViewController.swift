@@ -164,7 +164,7 @@ extension EmojiViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("The search text is: \(searchBar.text!)")
+        // print("The search text is: \(searchBar.text!)")
         
         searchBarText = searchBar.text!
         
@@ -207,7 +207,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if userMode == .textSearching {
             
-            print("== scrollViewWillBeginDragging()")
+            // print("== scrollViewWillBeginDragging()")
             hideKeyboard()
             enableCancelButton()
         }
