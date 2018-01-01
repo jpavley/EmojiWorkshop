@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="R1J-wo-D5z" customClass="EmojiBrowseBarView" customModule="EmojiWorkshop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvK-BF-7jw">
+                    <rect key="frame" x="8" y="8" width="44" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="3HW-Qu-sJc"/>
+                        <constraint firstAttribute="height" constant="40" id="zXF-Vm-mCD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="🗄"/>
+                    <connections>
+                        <action selector="filterButtonTouched:" destination="R1J-wo-D5z" eventType="touchUpInside" id="29k-Gs-0BF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nM-tg-aUX">
+                    <rect key="frame" x="268" y="8" width="44" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="28S-tJ-DJN"/>
+                        <constraint firstAttribute="height" constant="40" id="noC-fv-g4L"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="🔍"/>
+                    <connections>
+                        <action selector="searchButtonTouched:" destination="R1J-wo-D5z" eventType="touchUpInside" id="b3c-9H-E6r"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Browsing 2622 Emoji" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNT-Lq-Yaz">
+                    <rect key="frame" x="60" y="18" width="200" height="21"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.81568627450980391" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="gvK-BF-7jw" firstAttribute="leading" secondItem="rxd-vY-cso" secondAttribute="leading" constant="8" id="Fg0-Xj-TCp"/>
+                <constraint firstItem="sNT-Lq-Yaz" firstAttribute="leading" secondItem="gvK-BF-7jw" secondAttribute="trailing" constant="8" id="HyR-QO-42o"/>
+                <constraint firstItem="sNT-Lq-Yaz" firstAttribute="leading" secondItem="gvK-BF-7jw" secondAttribute="trailing" constant="8" id="MCF-GR-7Pa"/>
+                <constraint firstItem="6nM-tg-aUX" firstAttribute="leading" secondItem="sNT-Lq-Yaz" secondAttribute="trailing" constant="8" id="VHr-wr-HZX"/>
+                <constraint firstItem="6nM-tg-aUX" firstAttribute="centerY" secondItem="R1J-wo-D5z" secondAttribute="centerY" id="aTn-rO-EE7"/>
+                <constraint firstItem="rxd-vY-cso" firstAttribute="trailing" secondItem="6nM-tg-aUX" secondAttribute="trailing" constant="8" id="azH-r6-5Nv"/>
+                <constraint firstItem="6nM-tg-aUX" firstAttribute="leading" secondItem="sNT-Lq-Yaz" secondAttribute="trailing" constant="8" id="esX-T1-ixP"/>
+                <constraint firstItem="sNT-Lq-Yaz" firstAttribute="centerY" secondItem="R1J-wo-D5z" secondAttribute="centerY" id="f8a-YU-Q2G"/>
+                <constraint firstItem="gvK-BF-7jw" firstAttribute="centerY" secondItem="R1J-wo-D5z" secondAttribute="centerY" id="kBU-uj-pcX"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="rxd-vY-cso"/>
+            <connections>
+                <outlet property="statusLabel" destination="sNT-Lq-Yaz" id="qFK-VC-8c5"/>
+            </connections>
+            <point key="canvasLocation" x="-137" y="50"/>
+        </view>
+    </objects>
+</document>

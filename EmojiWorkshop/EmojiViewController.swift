@@ -13,8 +13,6 @@ import UIKit
 enum UserMode: Int {
     case browsing = 0
     case textSearching = 1
-    case categorySearching = 2
-    case numberSearching = 3
 }
 
 // MARK:- Shared color scheme
@@ -94,10 +92,7 @@ class EmojiViewController: UIViewController {
         case .textSearching:
             emojiGlyphTable.allowsSelection = true
             emojiSearchBar.becomeFirstResponder()
-
-        default:
-            // all other modes are going away
-            print("bad user mode!")
+            
         }
     }
     
@@ -152,23 +147,12 @@ extension EmojiViewController: UISearchResultsUpdating {
 
 extension EmojiViewController: UISearchBarDelegate {
     
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        print("selectedScopeButtonIndexDidChange \(selectedScope)")
-        
-        
-        switch selectedScope {
-            
-        case UserMode.browsing.rawValue:
-            updateUserMode(newMode: .browsing)
-
-        case UserMode.textSearching.rawValue:
-            updateUserMode(newMode: .textSearching)
-
-        default:
-            ()
-        }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        updateUserMode(newMode: .browsing)
+        searchBar.text = ""
         emojiGlyphTable.reloadData()
     }
+    
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         updateUserMode(newMode: .textSearching)
@@ -196,7 +180,6 @@ extension EmojiViewController: UISearchBarDelegate {
             }
         }
         
-        searchBar.resignFirstResponder()
         emojiGlyphTable.reloadData()
     }
 }
@@ -205,6 +188,12 @@ extension EmojiViewController: UISearchBarDelegate {
 
 
 extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        emojiSearchBar.resignFirstResponder()
+        let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+        cancelButton.isEnabled = true
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
