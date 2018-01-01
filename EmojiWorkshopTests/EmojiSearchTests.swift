@@ -51,8 +51,9 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "Baby", foundCount: 16, firstID: 141, lastID: 2935), // "Baby" == "Baby:"
             EmojiSearchResults(query: "Cat !face n", foundCount: 2491, firstID: 141, lastID: 3495), // "Cat !face n" == "Cat n !face" == "!face"
             EmojiSearchResults(query: "Blood", foundCount: 4, firstID: 3150, lastID: 3165), // "Blood" == "(Blood"
-            EmojiSearchResults(query: "Type", foundCount: 4, firstID: 3150, lastID: 3165), // "Type" == "Type)
-
+            EmojiSearchResults(query: "Type", foundCount: 4, firstID: 3150, lastID: 3165),  // "Type" == "Type)
+            EmojiSearchResults(query: "United Nations", foundCount: 0, firstID: -1, lastID: -1), // filter out the unsuported UN Flag
+            EmojiSearchResults(query: "United", foundCount: 3, firstID: 3236, lastID: 3474)      // filter out the unsuported UN Flag
         ]
     }
     
