@@ -49,7 +49,10 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "Book !Orange", foundCount: 16, firstID: 2781, lastID: 2798),
             EmojiSearchResults(query: "!blue", foundCount: 2617, firstID: 23, lastID: 3495),
             EmojiSearchResults(query: "Baby", foundCount: 16, firstID: 141, lastID: 2935), // "Baby" == "Baby:"
-            EmojiSearchResults(query: "Cat !face n", foundCount: 2491, firstID: 141, lastID: 3495) // "Cat !face n" == "Cat n !face" == "!face"
+            EmojiSearchResults(query: "Cat !face n", foundCount: 2491, firstID: 141, lastID: 3495), // "Cat !face n" == "Cat n !face" == "!face"
+            EmojiSearchResults(query: "Blood", foundCount: 4, firstID: 3150, lastID: 3165), // "Blood" == "(Blood"
+            EmojiSearchResults(query: "Type", foundCount: 4, firstID: 3150, lastID: 3165), // "Type" == "Type)
+
         ]
     }
     
