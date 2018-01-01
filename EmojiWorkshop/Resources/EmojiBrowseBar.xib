@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="R1J-wo-D5z">
+        <view contentMode="scaleToFill" id="R1J-wo-D5z" customClass="EmojiBrowseBarView" customModule="EmojiWorkshop" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -24,6 +24,9 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="🗄"/>
+                    <connections>
+                        <action selector="filterButtonTouched:" destination="R1J-wo-D5z" eventType="touchUpInside" id="29k-Gs-0BF"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nM-tg-aUX">
                     <rect key="frame" x="268" y="8" width="44" height="40"/>
@@ -33,6 +36,9 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="🔍"/>
+                    <connections>
+                        <action selector="searchButtonTouched:" destination="R1J-wo-D5z" eventType="touchUpInside" id="b3c-9H-E6r"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Browsing 2622 Emoji" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNT-Lq-Yaz">
                     <rect key="frame" x="60" y="18" width="200" height="21"/>
@@ -55,6 +61,9 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="rxd-vY-cso"/>
+            <connections>
+                <outlet property="statusLabel" destination="sNT-Lq-Yaz" id="qFK-VC-8c5"/>
+            </connections>
             <point key="canvasLocation" x="-137" y="50"/>
         </view>
     </objects>
