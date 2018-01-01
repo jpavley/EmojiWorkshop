@@ -37,6 +37,7 @@ class EmojiViewController: UIViewController {
     var emojiCollection: EmojiCollection?
     var localPasteboard = ""
     var userMode = UserMode.browsing
+    var searchBarText = ""
     
     // MARK:- Outlets
     
@@ -116,6 +117,7 @@ class EmojiViewController: UIViewController {
         
         // searchbar setup
         updateUserMode(newMode: .browsing)
+        searchBarText = ""
         
         // toolbar setup
         
@@ -149,6 +151,7 @@ extension EmojiViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         updateUserMode(newMode: .browsing)
+        searchBarText = searchBar.text!
         searchBar.text = ""
         emojiGlyphTable.reloadData()
     }
@@ -156,16 +159,18 @@ extension EmojiViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         updateUserMode(newMode: .textSearching)
+        searchBar.text = searchBarText
         emojiGlyphTable.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("The search text is: \(searchBar.text!)")
         
+        searchBarText = searchBar.text!
+        
         if searchBar.text!.isEmpty {
             
             updateUserMode(newMode: .browsing)
-            
         } else {
             
             if let emojiCollection = emojiCollection {
@@ -189,10 +194,23 @@ extension EmojiViewController: UISearchBarDelegate {
 
 extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    fileprivate func hideKeyboard() {
         emojiSearchBar.resignFirstResponder()
+    }
+    
+    fileprivate func enableCancelButton() {
         let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
         cancelButton.isEnabled = true
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        if userMode == .textSearching {
+            
+            print("== scrollViewWillBeginDragging()")
+            hideKeyboard()
+            enableCancelButton()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -200,14 +218,19 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         if let emojiCollection = emojiCollection {
                         
             if userMode == .textSearching {
+                
                 let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
                 updateToolbar(with: filteredEmojiGlyph)
             } else {
+                
                 let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
                 updateToolbar(with: currentEmojiGlyph)
             }
         }
+        
         tableView.deselectRow(at: indexPath, animated: true)
+        hideKeyboard()
+        enableCancelButton()
     }
     
     fileprivate func updateToolbar(with emojiGlyph: EmojiGlyph) {
