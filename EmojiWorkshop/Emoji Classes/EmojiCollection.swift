@@ -8,12 +8,18 @@
 
 import Foundation
 
+
+
 class EmojiCollection {
     
     var emojiGlyphs: [EmojiGlyph]
     var filteredEmojiGlyphs: [EmojiGlyph]
     var glyphsIDsInSections: [[Int]]
     var sections: [String]
+    
+    struct UnsupportedEmojiIDs {
+        static let unitedNationsFlag = 3473
+    }
     
     /// Organizes emoji glyph IDs into sections based on group and subgroup.
     /// Throws away any sections without associated emoji.
@@ -63,6 +69,11 @@ class EmojiCollection {
                 var group = ""
                 var subgroup = ""
                 for (i, line) in emojiTestLines.enumerated() {
+                    
+                    if i == UnsupportedEmojiIDs.unitedNationsFlag {
+                        // iOS 11.2 does not support the UN Flag Emoji
+                        continue
+                    }
                     
                     if line.contains("# group: ") {
                         group = String(line[line.index(line.startIndex, offsetBy: "# group: ".count)...])
