@@ -51,15 +51,9 @@ class EmojiViewController: UIViewController {
         if nothingToPaste() {
             return
         }
-
-        let pasteboard = UIPasteboard.general
-        pasteboard.string = localPasteboard
         
-        let alert = UIAlertController(title: "Copied", message: "\(localPasteboard)", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dimiss", style: .default, handler: { _ in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
+        let activityViewController = UIActivityViewController(activityItems: [localPasteboard], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: {})
     }
     
     @IBAction func clearButtonTouched(_ sender: UIBarButtonItem) {
