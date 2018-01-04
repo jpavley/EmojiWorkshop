@@ -13,9 +13,4 @@ fingers:finger
 horns:horn
 children:child
 tech:Technologist
-tram:train
-metro:train
-rail:train
-monorail:train
-railway:train
 trollybus:bus
