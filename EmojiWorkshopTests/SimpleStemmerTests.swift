@@ -52,6 +52,15 @@ class SimpleStemmerTests: XCTestCase {
         }
     }
     
+    func testStemmerSuccessChaseChange() {
+        let terms = ["Tram", "metro", "Rail", "monorail", "RAILWAY"]
+        let simpleStemmer = SimpleStemmer(stemMap: stemMap)
+        
+        for term in terms {
+            XCTAssertTrue(simpleStemmer.getStem(for: term) == "train")
+        }
+    }
+    
     func testStemmerFail() {
         let terms = ["xxx", "yyy", "zzz"]
         let simpleStemmer = SimpleStemmer(stemMap: stemMap)
@@ -59,6 +68,21 @@ class SimpleStemmerTests: XCTestCase {
         for term in terms {
             XCTAssertNil(simpleStemmer.getStem(for: term))
         }
+    }
+    
+    func testStemmerFromFile() {
+        let simpleStemmer = SimpleStemmer(sourceFileName: "EmojiStems")
+        XCTAssertNotNil(simpleStemmer)
+    }
+    
+    func testStemmerFromFileSuccess() {
+        let simpleStemmer = SimpleStemmer(sourceFileName: "EmojiStems")
+        XCTAssertTrue(simpleStemmer?.getStem(for: "eyes") == "eye")
+    }
+    
+    func testStemmerFromFileSuccessCaseChange() {
+        let simpleStemmer = SimpleStemmer(sourceFileName: "EmojiStems")
+        XCTAssertTrue(simpleStemmer?.getStem(for: "Eyes") == "eye")
     }
 
     
