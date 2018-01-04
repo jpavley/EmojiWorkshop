@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		48034AC51FE21742001D431C /* EmojiGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4EAD491FDC760600A02F7F /* EmojiGlyph.swift */; };
+		4808EC4B1FFDD59500E16EF0 /* SimpleStemmerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4808EC4A1FFDD59500E16EF0 /* SimpleStemmerTests.swift */; };
+		4808EC4D1FFDD65D00E16EF0 /* SimpleStemmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4808EC4C1FFDD65D00E16EF0 /* SimpleStemmer.swift */; };
+		4808EC4E1FFDD65D00E16EF0 /* SimpleStemmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4808EC4C1FFDD65D00E16EF0 /* SimpleStemmer.swift */; };
 		480E89111FE2157A00E34BAE /* EmojiGlyphsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480E89101FE2157A00E34BAE /* EmojiGlyphsTests.swift */; };
 		482C062E1FE0112B00508A28 /* EmojiCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482C062D1FE0112B00508A28 /* EmojiCollection.swift */; };
 		5A3021F51FF99C07007C48FE /* EmojiBrowseBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3021F41FF99C07007C48FE /* EmojiBrowseBarView.swift */; };
@@ -44,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4808EC4A1FFDD59500E16EF0 /* SimpleStemmerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStemmerTests.swift; sourceTree = "<group>"; };
+		4808EC4C1FFDD65D00E16EF0 /* SimpleStemmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStemmer.swift; sourceTree = "<group>"; };
 		480E890E1FE2157A00E34BAE /* EmojiWorkshopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiWorkshopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		480E89101FE2157A00E34BAE /* EmojiGlyphsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGlyphsTests.swift; sourceTree = "<group>"; };
 		480E89121FE2157A00E34BAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +96,7 @@
 		480E890F1FE2157A00E34BAE /* EmojiWorkshopTests */ = {
 			isa = PBXGroup;
 			children = (
+				4808EC4A1FFDD59500E16EF0 /* SimpleStemmerTests.swift */,
 				5AF853411FF82AA00018A598 /* EmojiToolsTests.swift */,
 				5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */,
 				480E89101FE2157A00E34BAE /* EmojiGlyphsTests.swift */,
@@ -115,6 +121,7 @@
 				482C062D1FE0112B00508A28 /* EmojiCollection.swift */,
 				5AD391261FE57902001DBB26 /* EmojiSearch.swift */,
 				5AF8533E1FF824380018A598 /* EmojiTools.swift */,
+				4808EC4C1FFDD65D00E16EF0 /* SimpleStemmer.swift */,
 			);
 			path = "Emoji Classes";
 			sourceTree = "<group>";
@@ -288,8 +295,10 @@
 				5AD3912A1FE57933001DBB26 /* EmojiSearchTests.swift in Sources */,
 				5AD391281FE5790F001DBB26 /* EmojiSearch.swift in Sources */,
 				5AF853401FF8257B0018A598 /* EmojiTools.swift in Sources */,
+				4808EC4B1FFDD59500E16EF0 /* SimpleStemmerTests.swift in Sources */,
 				48034AC51FE21742001D431C /* EmojiGlyph.swift in Sources */,
 				5AF853421FF82AA00018A598 /* EmojiToolsTests.swift in Sources */,
+				4808EC4E1FFDD65D00E16EF0 /* SimpleStemmer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +314,7 @@
 				5A4EAD4A1FDC760600A02F7F /* EmojiGlyph.swift in Sources */,
 				5A4EAD361FDC758B00A02F7F /* AppDelegate.swift in Sources */,
 				5AD391271FE57902001DBB26 /* EmojiSearch.swift in Sources */,
+				4808EC4D1FFDD65D00E16EF0 /* SimpleStemmer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
