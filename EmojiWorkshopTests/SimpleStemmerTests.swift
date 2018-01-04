@@ -43,4 +43,23 @@ class SimpleStemmerTests: XCTestCase {
         XCTAssertNotNil(simpleStemmer)
     }
     
+    func testStemmerSuccess() {
+        let terms = ["tram", "metro", "rail", "monorail", "railway"]
+        let simpleStemmer = SimpleStemmer(stemMap: stemMap)
+        
+        for term in terms {
+            XCTAssertTrue(simpleStemmer.getStem(for: term) == "train")
+        }
+    }
+    
+    func testStemmerFail() {
+        let terms = ["xxx", "yyy", "zzz"]
+        let simpleStemmer = SimpleStemmer(stemMap: stemMap)
+        
+        for term in terms {
+            XCTAssertNil(simpleStemmer.getStem(for: term))
+        }
+    }
+
+    
 }

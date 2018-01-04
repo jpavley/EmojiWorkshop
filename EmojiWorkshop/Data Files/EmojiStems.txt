@@ -1,0 +1,21 @@
+# EmojiStems.txt
+# Date: 2018-01-03
+# © 2017 Epic Loot
+#
+# Emoji Stemming Data
+# Version: 1.0
+
+eyes:eye
+men:man
+women:woman
+hands:hands
+fingers:finger
+horns:horn
+children:child
+tech:Technologist
+tram:train
+metro:train
+rail:train
+monorail:train
+railway:train
+trollybus:bus
