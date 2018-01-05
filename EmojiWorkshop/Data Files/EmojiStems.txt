@@ -1,0 +1,23 @@
+# EmojiStems.txt
+# Date: 2018-01-03
+# © 2017 Epic Loot
+#
+# Emoji Stemming Data
+# Version: 1.0
+
+boys:boy
+men:man
+women:woman
+girls:girl
+children:child
+
+eyes:eye
+hands:hand
+feet:foot
+fingers:finger
+toes:toe
+
+horns:horn
+books:book
+
+tech:technologist

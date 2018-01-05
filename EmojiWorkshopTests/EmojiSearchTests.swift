@@ -53,7 +53,12 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "Blood", foundCount: 4, firstID: 3150, lastID: 3165), // "Blood" == "(Blood"
             EmojiSearchResults(query: "Type", foundCount: 4, firstID: 3150, lastID: 3165),  // "Type" == "Type)
             EmojiSearchResults(query: "United Nations", foundCount: 0, firstID: -1, lastID: -1), // filter out the unsuported UN Flag
-            EmojiSearchResults(query: "United", foundCount: 3, firstID: 3236, lastID: 3474)      // filter out the unsuported UN Flag
+            EmojiSearchResults(query: "United", foundCount: 3, firstID: 3236, lastID: 3474),      // filter out the unsuported UN Flag
+            EmojiSearchResults(query: "eye", foundCount: 13, firstID: 24, lastID: 2028), // stemming "eyes" == "eye"
+            EmojiSearchResults(query: "eyes", foundCount: 13, firstID: 24, lastID: 2028),
+            EmojiSearchResults(query: "man", foundCount: 386, firstID: 171, lastID: 3343), // stemming "men" == "man"
+            EmojiSearchResults(query: "men", foundCount: 386, firstID: 171, lastID: 3343),
+            EmojiSearchResults(query: "man bunny", foundCount: 1, firstID: 1253, lastID: 1253), // stemming "man bunny" == "men bunny"
         ]
     }
     

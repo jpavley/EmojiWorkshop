@@ -48,14 +48,12 @@ class EmojiSearch {
             return nil
         }
         
-        let searchTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" && $0[$0.startIndex] != "!" })
+        let searchTerms = searchTermsWithoutExclusedTermsFrom(searchString)
         
         var iterativeResults = emojiGlyphs
         for term in searchTerms {
             // print("== \(term) of \(searchTerms)")
             iterativeResults = iterativeResults.filter({ (glyph) -> Bool in
-                
-                //let wordListSet = cleanWordList(glyph: glyph)
                 let wordListSet: Set<String> = Set(glyph.tags)
                 let searchTermsSet: Set<String> = Set([term])
                 let intersectionSet = wordListSet.intersection(searchTermsSet)
@@ -72,19 +70,16 @@ class EmojiSearch {
                 initialResultGlyphs = emojiGlyphs
             }
             
-            let excludedTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" ? $0[$0.startIndex] == "!" : false })
+            let excludedTerms = excludedTermsFrom(searchString)
             
-            if excludedTerms.count == 1 && excludedTerms.first == "!" {
+            if excludedTerms.count == 1 && excludedTerms.first == "" {
                 // Dont search on an empty exclusion
                 return initialResultGlyphs
             }
             
-            let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
             let finalResultGlyphs = initialResultGlyphs.filter({ (glyph) -> Bool in
-                                
-                //let wordListSet = cleanWordList(glyph: glyph)
                 let wordListSet: Set<String> = Set(glyph.tags)
-                let searchTermsSet = Set(cleanExcludedTerms)
+                let searchTermsSet = Set(excludedTerms)
                 let intersectionSet = wordListSet.intersection(searchTermsSet)
                 return intersectionSet.isEmpty
             })
@@ -93,5 +88,18 @@ class EmojiSearch {
         }
         
         return initialResultGlyphs
+    }
+    
+    func searchTermsWithoutExclusedTermsFrom(_ searchString: String) -> [String] {
+        let searchTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" && $0[$0.startIndex] != "!" })
+        let finalTerms = stemmedTermsFrom(searchTerms)
+        return finalTerms
+    }
+    
+    func excludedTermsFrom(_ searchString: String) -> [String] {
+        let excludedTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" ? $0[$0.startIndex] == "!" : false })
+        let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
+        let finalExcludedTerms = stemmedTermsFrom(cleanExcludedTerms)
+        return finalExcludedTerms
     }
 }
