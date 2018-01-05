@@ -57,9 +57,27 @@ func createMetadata(glyph: EmojiGlyph) -> [String] {
     subgroupWords = subgroupWords.filter({$0 != "&"})
 
     let results1 = descriptionWords + groupWords + subgroupWords
-    let results2 = Set(results1) // de-dupe
+    
+    let results1a = stemmedTermsFrom(results1)
+    
+    let results2 = Set(results1a) // de-dupe
     let results3 = Array(results2)
     let results4 = results3.sorted()
     
     return results4
 }
+
+func stemmedTermsFrom(_ terms: [String]) -> [String] {
+    var stemedTerms = [String]()
+    let simpleStemmer = SimpleStemmer()
+    for term in terms {
+        
+        if term == "tech" {
+            print(term)
+        }
+        
+        stemedTerms.append(simpleStemmer?.getStem(for: term) ?? term)
+    }
+    return stemedTerms
+}
+

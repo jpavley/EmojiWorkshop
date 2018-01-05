@@ -16,7 +16,7 @@ class SimpleStemmer {
         self.stemMap = stemMap
     }
     
-    init?(sourceFileName: String) {
+    init?(sourceFileName: String = "EmojiStems") {
         
         if let txtPath = Bundle.main.path(forResource: sourceFileName, ofType: "txt") {
             do {

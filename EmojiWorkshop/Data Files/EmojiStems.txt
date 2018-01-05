@@ -18,7 +18,6 @@ fingers:finger
 toes:toe
 
 horns:horn
+books:book
 
-tech:Technologist
-trollybus:bus
-
+tech:technologist
