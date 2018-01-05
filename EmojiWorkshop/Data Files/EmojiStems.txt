@@ -5,12 +5,20 @@
 # Emoji Stemming Data
 # Version: 1.0
 
-eyes:eye
+boys:boy
 men:man
 women:woman
-hands:hands
-fingers:finger
-horns:horn
+girls:girl
 children:child
+
+eyes:eye
+hands:hand
+feet:foot
+fingers:finger
+toes:toe
+
+horns:horn
+
 tech:Technologist
 trollybus:bus
+
