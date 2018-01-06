@@ -129,16 +129,6 @@ class EmojiViewController: UIViewController {
 
 }
 
-// MARK:- UISearchResultsUpdating extension
-
-extension EmojiViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        // print("== updateSearchResults()")
-    }
-    
-}
-
 // MARK:- UISearchBarDelegate extension
 
 extension EmojiViewController: UISearchBarDelegate {
