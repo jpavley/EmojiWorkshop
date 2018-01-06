@@ -106,7 +106,8 @@ class EmojiSearchTests: XCTestCase {
         
         if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noFilter, searchString: "") {
             
-            XCTAssertTrue(testEmojiCollection!.emojiGlyphs.count == testSearchResults.count)
+            XCTAssertTrue(testEmojiCollection!.emojiGlyphs.count == testSearchResults.count) // 2621 emoji as of Emoji Test File 5.0
+            XCTAssertTrue(testEmojiCollection!.glyphsIDsInSections.count == 76) // 76 sections as of Emoji Test File 5.0
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.first!.index == testSearchResults.first!.index)
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.last!.index == testSearchResults.last!.index)
         }
