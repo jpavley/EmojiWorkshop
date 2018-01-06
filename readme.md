@@ -6,7 +6,7 @@ EmojiWorkshop is a demo app that parses emoji-test.txt and displays the results 
 
 ## TODOs
 
-Moves to GitHub Issues: https://github.com/jpavley/EmojiWorkshop/issues
+Moved to GitHub Issues: https://github.com/jpavley/EmojiWorkshop/issues
 
 ## Backstory
 
