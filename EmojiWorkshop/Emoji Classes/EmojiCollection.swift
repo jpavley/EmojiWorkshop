@@ -90,7 +90,6 @@ class EmojiCollection {
                         // print(emojiGlyph)
                         emojiIndex += 1
                         emojiGlyph.index = emojiIndex
-
                         emojiGlyph.tags = createMetadata(glyph: emojiGlyph)
                         emojiGlyphs.append(emojiGlyph)
                         
@@ -105,7 +104,7 @@ class EmojiCollection {
         
         createGlyphsInSections()
         
-        print("emojiGlyphs.count \(emojiGlyphs.count)")
+//        print("emojiGlyphs.count \(emojiGlyphs.count)")
         
 //        for i in 0..<sections.count {
 //            print("\(sections[i]) \(glyphsIDsInSections[i])")
