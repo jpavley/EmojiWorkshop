@@ -68,7 +68,9 @@ class EmojiCollection {
                 
                 var group = ""
                 var subgroup = ""
-                for (i, line) in emojiTestLines.enumerated() {
+                var emojiIndex = 0
+                
+                for line in emojiTestLines {
                     
                     if line.contains(UnsupportedEmoji.unitedNationsFlag) {
                         // iOS 11.2 does not support the UN Flag Emoji
@@ -89,10 +91,14 @@ class EmojiCollection {
                         sections.append(sectionName)
                     }
                     
-                    if var emojiGlyph = EmojiGlyph(textLine: String(line), index: i, group: group, subgroup: subgroup) {
+                    if var emojiGlyph = EmojiGlyph(textLine: String(line), index: 0, group: group, subgroup: subgroup) {
                         // print(emojiGlyph)
+                        emojiIndex += 1
+                        emojiGlyph.index = emojiIndex
+
                         emojiGlyph.tags = createMetadata(glyph: emojiGlyph)
                         emojiGlyphs.append(emojiGlyph)
+                        
                     }
                 }
             } catch {
