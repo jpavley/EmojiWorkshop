@@ -17,8 +17,8 @@ class EmojiCollection {
     var glyphsIDsInSections: [[Int]]
     var sections: [String]
     
-    struct UnsupportedEmojiIDs {
-        static let unitedNationsFlag = 3473
+    struct UnsupportedEmoji {
+        static let unitedNationsFlag = " 🇺🇳"
     }
     
     /// Organizes emoji glyph IDs into sections based on group and subgroup.
@@ -70,7 +70,7 @@ class EmojiCollection {
                 var subgroup = ""
                 for (i, line) in emojiTestLines.enumerated() {
                     
-                    if i == UnsupportedEmojiIDs.unitedNationsFlag {
+                    if line.contains(UnsupportedEmoji.unitedNationsFlag) {
                         // iOS 11.2 does not support the UN Flag Emoji
                         continue
                     }
