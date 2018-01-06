@@ -37,31 +37,33 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "", foundCount: 2622, firstID: 23, lastID: 3495),
             EmojiSearchResults(query: "C", foundCount: 0, firstID: -1, lastID: -1),
             EmojiSearchResults(query: "Ca", foundCount: 0, firstID: -1, lastID: -1),
-            EmojiSearchResults(query: "Cat", foundCount: 11, firstID: 127, lastID: 2122),
-            EmojiSearchResults(query: "Cat ", foundCount: 11, firstID: 127, lastID: 2122),
-            EmojiSearchResults(query: "Cat face", foundCount: 10, firstID: 127, lastID: 2121),
-            EmojiSearchResults(query: "Cat face !smiling", foundCount: 8, firstID: 127, lastID: 2121),
-            EmojiSearchResults(query: "Cat face !smiling !pouting", foundCount: 7, firstID: 127, lastID: 2121),
-            EmojiSearchResults(query: "Cat face !smiling !pouting !grinning", foundCount: 6, firstID: 129, lastID: 2121),
-            EmojiSearchResults(query: "Cat face !smiling !pouting !grinning joy", foundCount: 1, firstID: 129, lastID: 129),
+            EmojiSearchResults(query: "Cat", foundCount: 11, firstID: 96, lastID: 1517),
+            EmojiSearchResults(query: "Cat ", foundCount: 11, firstID: 96, lastID: 1517),
+            EmojiSearchResults(query: "Cat face", foundCount: 10, firstID: 96, lastID: 1516),
+            EmojiSearchResults(query: "Cat face !smiling", foundCount: 8, firstID: 96, lastID: 1516),
+            EmojiSearchResults(query: "Cat face !smiling !pouting", foundCount: 7, firstID: 96, lastID: 1516),
+            EmojiSearchResults(query: "Cat face !smiling !pouting !grinning", foundCount: 6, firstID: 98, lastID: 1516),
+            EmojiSearchResults(query: "Cat face !smiling !pouting !grinning joy", foundCount: 1, firstID: 98, lastID: 98),
             EmojiSearchResults(query: "Book house", foundCount: 0, firstID: -1, lastID: -1),
-            EmojiSearchResults(query: "Cat !", foundCount: 11, firstID: 127, lastID: 2122), // "Cat !" == "Cat"
-            EmojiSearchResults(query: "Book !Orange", foundCount: 16, firstID: 2781, lastID: 2798),
-            EmojiSearchResults(query: "!blue", foundCount: 2616, firstID: 23, lastID: 3495),
-            EmojiSearchResults(query: "Baby", foundCount: 16, firstID: 141, lastID: 2935), // "Baby" == "Baby:"
-            EmojiSearchResults(query: "Cat !face n", foundCount: 2490, firstID: 141, lastID: 3495), // "Cat !face n" == "Cat n !face" == "!face"
-            EmojiSearchResults(query: "Blood", foundCount: 4, firstID: 3150, lastID: 3165), // "Blood" == "(Blood"
-            EmojiSearchResults(query: "Type", foundCount: 4, firstID: 3150, lastID: 3165),  // "Type" == "Type)
+            EmojiSearchResults(query: "Cat !", foundCount: 11, firstID: 96, lastID: 1517), // "Cat !" == "Cat"
+            EmojiSearchResults(query: "Book !Orange", foundCount: 16, firstID: 2050, lastID: 2066),
+            EmojiSearchResults(query: "!blue", foundCount: 2616, firstID: 1, lastID: 2621),
+            EmojiSearchResults(query: "Baby", foundCount: 16, firstID: 108, lastID: 2159), // "Baby" == "Baby:"
+            EmojiSearchResults(query: "Cat !face n", foundCount: 2490, firstID: 108, lastID: 2621), // "Cat !face n" == "Cat n !face" == "!face"
+            EmojiSearchResults(query: "Blood", foundCount: 4, firstID: 2300, lastID: 2311), // "Blood" == "(Blood"
+            EmojiSearchResults(query: "Type", foundCount: 4, firstID: 2300, lastID: 2311),  // "Type" == "Type)
             EmojiSearchResults(query: "United Nations", foundCount: 0, firstID: -1, lastID: -1), // filter out the unsuported UN Flag
-            EmojiSearchResults(query: "United", foundCount: 3, firstID: 3236, lastID: 3474),      // filter out the unsuported UN Flag
-            EmojiSearchResults(query: "eye", foundCount: 13, firstID: 24, lastID: 2028), // stemming "eyes" == "eye"
-            EmojiSearchResults(query: "eyes", foundCount: 13, firstID: 24, lastID: 2028),
-            EmojiSearchResults(query: "man", foundCount: 386, firstID: 171, lastID: 3343), // stemming "men" == "man"
-            EmojiSearchResults(query: "men", foundCount: 386, firstID: 171, lastID: 3343),
-            EmojiSearchResults(query: "man bunny", foundCount: 1, firstID: 1253, lastID: 1253), // stemming "man bunny" == "men bunny"
-            EmojiSearchResults(query: "mount", foundCount: 23, firstID: 1611, lastID: 2507),
-            EmojiSearchResults(query: "star", foundCount: 9, firstID: 44, lastID: 3097),
-            EmojiSearchResults(query: "application", foundCount: 1, firstID: 3185, lastID: 3185)
+            EmojiSearchResults(query: "United", foundCount: 3, firstID: 2364, lastID: 2601),      // filter out the unsuported UN Flag
+            EmojiSearchResults(query: "eye", foundCount: 13, firstID: 2, lastID: 1440), // stemming "eyes" == "eye"
+            EmojiSearchResults(query: "eyes", foundCount: 13, firstID: 2, lastID: 1440),
+            EmojiSearchResults(query: "man", foundCount: 386, firstID: 138, lastID: 2471), // stemming "men" == "man"
+            EmojiSearchResults(query: "men", foundCount: 386, firstID: 138, lastID: 2471),
+            EmojiSearchResults(query: "man bunny", foundCount: 1, firstID: 883, lastID: 883), // stemming "man bunny" == "men bunny"
+            EmojiSearchResults(query: "mount", foundCount: 23, firstID: 1100, lastID: 1842), // stemming "mount" == "mountain"
+            EmojiSearchResults(query: "mountain", foundCount: 23, firstID: 1100, lastID: 1842),
+            EmojiSearchResults(query: "star", foundCount: 9, firstID: 21, lastID: 2270), // stemming "star" == "stars"
+            EmojiSearchResults(query: "stars", foundCount: 9, firstID: 21, lastID: 2270),
+            EmojiSearchResults(query: "application", foundCount: 1, firstID: 2327, lastID: 2327)
         ]
     }
     
@@ -103,7 +105,7 @@ class EmojiSearchTests: XCTestCase {
         let testEmojiSearch = EmojiSearch()
         
         if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noFilter, searchString: "") {
-        
+            
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.count == testSearchResults.count)
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.first!.index == testSearchResults.first!.index)
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.last!.index == testSearchResults.last!.index)
