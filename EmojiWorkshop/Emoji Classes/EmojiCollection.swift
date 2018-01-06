@@ -8,39 +8,34 @@
 
 import Foundation
 
-
+typealias GlyphIDList = [Int]
 
 class EmojiCollection {
     
     var emojiGlyphs: [EmojiGlyph]
     var filteredEmojiGlyphs: [EmojiGlyph]
-    var glyphsIDsInSections: [[Int]]
-    var sections: [String]
+    var glyphsIDsInSections: [GlyphIDList]
+    var sectionNames: [String]
     
     struct UnsupportedEmoji {
         static let unitedNationsFlag = " 🇺🇳"
     }
     
+    fileprivate func isEmojiInSection(glyph: EmojiGlyph, section: String) -> Bool {
+        let glyphSectionName = "\(glyph.group): \(glyph.subgroup)"
+        return section == glyphSectionName
+    }
+    
     /// Organizes emoji glyph IDs into sections based on group and subgroup.
     /// Throws away any sections without associated emoji.
     fileprivate func createGlyphsInSections() {
-        
-        // TODO: Use map() to map section to list of associated emoji
-        
-        var glyphIDs: [Int]
+                
+        var glyphIDs: GlyphIDList
         var cleanedUpSections = [String]()
-        var glyphSectionName = ""
         
-        for section in sections {
+        for section in sectionNames {
             
-            glyphIDs = [Int]()
-            
-            for glyph in emojiGlyphs {
-                glyphSectionName = "\(glyph.group): \(glyph.subgroup)"
-                if section == glyphSectionName {
-                    glyphIDs.append(glyph.index)
-                }
-            }
+            glyphIDs = emojiGlyphs.filter { isEmojiInSection(glyph: $0, section: section) }.map { $0.index }
             
             if glyphIDs.count > 0 {
                 glyphsIDsInSections.append(glyphIDs)
@@ -48,7 +43,7 @@ class EmojiCollection {
             }
         }
         
-        sections = cleanedUpSections
+        sectionNames = cleanedUpSections
     }
     
     /// Initializes EmojiCollection from a source file. The file has to be a W3C
@@ -58,7 +53,7 @@ class EmojiCollection {
         emojiGlyphs = [EmojiGlyph]()
         filteredEmojiGlyphs = [EmojiGlyph]()
         glyphsIDsInSections = [[Int]]()
-        sections = [String]()
+        sectionNames = [String]()
         
         if let txtPath = Bundle.main.path(forResource: sourceFileName, ofType: "txt") {
             do {
@@ -87,15 +82,14 @@ class EmojiCollection {
                     
                     let sectionName = "\(group): \(subgroup)"
                     
-                    if !sections.contains(sectionName) {
-                        sections.append(sectionName)
+                    if !sectionNames.contains(sectionName) {
+                        sectionNames.append(sectionName)
                     }
                     
                     if var emojiGlyph = EmojiGlyph(textLine: String(line), index: 0, group: group, subgroup: subgroup) {
                         // print(emojiGlyph)
                         emojiIndex += 1
                         emojiGlyph.index = emojiIndex
-
                         emojiGlyph.tags = createMetadata(glyph: emojiGlyph)
                         emojiGlyphs.append(emojiGlyph)
                         
@@ -109,6 +103,8 @@ class EmojiCollection {
         }
         
         createGlyphsInSections()
+        
+//        print("emojiGlyphs.count \(emojiGlyphs.count)")
         
 //        for i in 0..<sections.count {
 //            print("\(sections[i]) \(glyphsIDsInSections[i])")

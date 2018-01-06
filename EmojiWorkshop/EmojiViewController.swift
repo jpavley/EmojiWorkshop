@@ -141,7 +141,7 @@ extension EmojiViewController: UISearchBarDelegate {
             
             let emojiSearch = EmojiSearch()
             if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs,
-                                                   filter: .byDescription,
+                                                   filter: .byTags,
                                                    searchString: searchBar.text!) {
                 
                 emojiCollection.filteredEmojiGlyphs = foundEmoji
@@ -188,7 +188,7 @@ extension EmojiViewController: UISearchBarDelegate {
                 
                 let emojiSearch = EmojiSearch()
                 if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs,
-                                                       filter: .byDescription,
+                                                       filter: .byTags,
                                                        searchString: searchBar.text!) {
                     
                     emojiCollection.filteredEmojiGlyphs = foundEmoji
@@ -289,7 +289,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             if userMode == .textSearching {
                 return 1
             } else {
-                return emojiCollection.sections.count
+                return emojiCollection.sectionNames.count
             }
         }
         
@@ -321,7 +321,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             if userMode == .textSearching {
                 return "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
             } else {
-                return "\(emojiCollection.sections[section]) \(emojiCollection.glyphsIDsInSections[section].count)"
+                return "\(emojiCollection.sectionNames[section]) \(emojiCollection.glyphsIDsInSections[section].count)"
             }
         }
 

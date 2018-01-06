@@ -9,7 +9,7 @@
 import Foundation
 
 enum EmojiFilter {
-    case noFilter, byDescription, byIndex, byGroupAndSubgroup, byImage, byCharacter
+    case noFilter, byTags
 }
 
 class EmojiSearch {
@@ -23,20 +23,12 @@ class EmojiSearch {
         switch filter {
         case .noFilter:
             return emojiGlyphs
-        case .byDescription:
-            return searchByDescription(emojiGlyphs: emojiGlyphs, filter: filter, searchString: searchString)
-        case .byIndex:
-            return nil
-        case .byGroupAndSubgroup:
-            return nil
-        case .byImage:
-            return nil
-        case .byCharacter:
-            return nil
+        case .byTags:
+            return searchByTags(emojiGlyphs: emojiGlyphs, filter: filter, searchString: searchString)
         }
     }
     
-    fileprivate func searchByDescription(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
+    fileprivate func searchByTags(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
         
         // A search query is a sentance where each term narrows the results from left to right.
         // "Cat" returns all glyphs with "cat" in the description.
@@ -90,13 +82,13 @@ class EmojiSearch {
         return initialResultGlyphs
     }
     
-    func searchTermsWithoutExclusedTermsFrom(_ searchString: String) -> [String] {
+    fileprivate func searchTermsWithoutExclusedTermsFrom(_ searchString: String) -> [String] {
         let searchTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" && $0[$0.startIndex] != "!" })
         let finalTerms = stemmedTermsFrom(searchTerms)
         return finalTerms
     }
     
-    func excludedTermsFrom(_ searchString: String) -> [String] {
+    fileprivate func excludedTermsFrom(_ searchString: String) -> [String] {
         let excludedTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" ? $0[$0.startIndex] == "!" : false })
         let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
         let finalExcludedTerms = stemmedTermsFrom(cleanExcludedTerms)
