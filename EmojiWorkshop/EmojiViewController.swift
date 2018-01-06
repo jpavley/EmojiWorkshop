@@ -129,19 +129,27 @@ class EmojiViewController: UIViewController {
 
 }
 
-// MARK:- UISearchResultsUpdating extension
-
-extension EmojiViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        // print("== updateSearchResults()")
-    }
-    
-}
-
 // MARK:- UISearchBarDelegate extension
 
 extension EmojiViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        searchBarText = searchBar.text!
+        
+        if let emojiCollection = emojiCollection {
+            
+            let emojiSearch = EmojiSearch()
+            if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs,
+                                                   filter: .byDescription,
+                                                   searchString: searchBar.text!) {
+                
+                emojiCollection.filteredEmojiGlyphs = foundEmoji
+            }
+        }
+        
+        emojiGlyphTable.reloadData()
+    }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         updateUserMode(newMode: .browsing)
@@ -150,10 +158,18 @@ extension EmojiViewController: UISearchBarDelegate {
         emojiGlyphTable.reloadData()
     }
     
-    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         updateUserMode(newMode: .textSearching)
         searchBar.text = searchBarText
+        
+        // print("The search text is: \(searchBar.text!)")
+        
+        if searchBar.text!.isEmpty {
+            if let emojiCollection = emojiCollection {
+                emojiCollection.filteredEmojiGlyphs = [EmojiGlyph]()
+            }
+        }
+        
         emojiGlyphTable.reloadData()
     }
     
@@ -165,6 +181,7 @@ extension EmojiViewController: UISearchBarDelegate {
         if searchBar.text!.isEmpty {
             
             updateUserMode(newMode: .browsing)
+            
         } else {
             
             if let emojiCollection = emojiCollection {
