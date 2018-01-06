@@ -141,7 +141,7 @@ extension EmojiViewController: UISearchBarDelegate {
             
             let emojiSearch = EmojiSearch()
             if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs,
-                                                   filter: .byDescription,
+                                                   filter: .byTags,
                                                    searchString: searchBar.text!) {
                 
                 emojiCollection.filteredEmojiGlyphs = foundEmoji
@@ -188,7 +188,7 @@ extension EmojiViewController: UISearchBarDelegate {
                 
                 let emojiSearch = EmojiSearch()
                 if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs,
-                                                       filter: .byDescription,
+                                                       filter: .byTags,
                                                        searchString: searchBar.text!) {
                     
                     emojiCollection.filteredEmojiGlyphs = foundEmoji

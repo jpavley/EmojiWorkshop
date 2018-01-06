@@ -77,14 +77,14 @@ class EmojiSearchTests: XCTestCase {
         XCTAssertNotNil(testEmojiSearch)
     }
     
-    func testEmojiSearchResultsListByDescription() {
+    func testEmojiSearchResultsListByTags() {
         
         let testEmojiSearch = EmojiSearch()
         
         for i in 0..<emojiSearchResultsList.count {
             
             if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs,
-                                                              filter: .byDescription,
+                                                              filter: .byTags,
                                                               searchString: emojiSearchResultsList[i].query) {
                 
                 XCTAssertEqual(testSearchResults.count, emojiSearchResultsList[i].foundCount, "failed query: \(emojiSearchResultsList[i].query)")
@@ -111,37 +111,5 @@ class EmojiSearchTests: XCTestCase {
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.first!.index == testSearchResults.first!.index)
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.last!.index == testSearchResults.last!.index)
         }
-    }
-    
-    func testFilterEmojiByIndex() {
-        
-        let testEmojiSearch = EmojiSearch()
-        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .byIndex, searchString: "")
-        
-        XCTAssertNil(testSearchResults)
-    }
-    
-    func testFilterEmojiByGroupAndSubgroup() {
-        
-        let testEmojiSearch = EmojiSearch()
-        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .byGroupAndSubgroup, searchString: "")
-        
-        XCTAssertNil(testSearchResults)
-    }
-    
-    func testFilterEmojiByImage() {
-        
-        let testEmojiSearch = EmojiSearch()
-        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .byImage, searchString: "")
-        
-        XCTAssertNil(testSearchResults)
-    }
-    
-    func testFilterEmojiByCharacter() {
-        
-        let testEmojiSearch = EmojiSearch()
-        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .byCharacter, searchString: "")
-        
-        XCTAssertNil(testSearchResults)
     }
 }
