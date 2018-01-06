@@ -2,7 +2,7 @@
 
 ## In a Nutshell
 
-EmojiWorkshop is a demo add that parses emoji-test.txt and displays the results in a UITableView with custom UITableViewCell controls.
+EmojiWorkshop is a demo app that parses emoji-test.txt and displays the results in a UITableView with custom UITableViewCell controls.
 
 ## TODOs
 
