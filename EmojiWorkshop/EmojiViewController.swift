@@ -234,7 +234,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
                 updateToolbar(with: filteredEmojiGlyph)
             } else {
                 
-                let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
+                let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
                 updateToolbar(with: currentEmojiGlyph)
             }
         }
@@ -262,7 +262,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
                 cell = updateSmallCell(with: filteredEmojiGlyph)
             } else {
                 
-                let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.priority == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
+                let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
                 cell = updateSmallCell(with: currentEmojiGlyph)
             }
         }
@@ -275,7 +275,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.emojiLabel.text = emojiGlyph.glyph
         cell.descriptionLabel.text = emojiGlyph.description
-        cell.priorityLabel.text = "# \(emojiGlyph.priority)"
+        cell.priorityLabel.text = "# \(emojiGlyph.index)"
         cell.tagLabel.text = emojiGlyph.tags.joined(separator: " ")
         
         return cell

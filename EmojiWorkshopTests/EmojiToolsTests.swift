@@ -35,7 +35,7 @@ class EmojiToolsTests: XCTestCase {
                          "1F6BC                                      ; fully-qualified     # 🚼 baby symbol"]
         
         for line in testTextLines {
-            testEmojiGlyphs.append(EmojiGlyph(textLine: line, priority: 0, group: "a", subgroup: "b")!)
+            testEmojiGlyphs.append(EmojiGlyph(textLine: line, index: 0, group: "a", subgroup: "b")!)
         }
 
     }

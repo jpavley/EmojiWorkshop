@@ -88,11 +88,11 @@ class EmojiSearchTests: XCTestCase {
                 XCTAssertEqual(testSearchResults.count, emojiSearchResultsList[i].foundCount, "failed query: \(emojiSearchResultsList[i].query)")
                 
                 if let firstID = testSearchResults.first {
-                    XCTAssertEqual(firstID.priority, emojiSearchResultsList[i].firstID, "failed query: \(emojiSearchResultsList[i].query)")
+                    XCTAssertEqual(firstID.index, emojiSearchResultsList[i].firstID, "failed query: \(emojiSearchResultsList[i].query)")
                 }
                 
                 if let lastID = testSearchResults.last {
-                    XCTAssertEqual(lastID.priority, emojiSearchResultsList[i].lastID,  "failed query: \(emojiSearchResultsList[i].query)")
+                    XCTAssertEqual(lastID.index, emojiSearchResultsList[i].lastID,  "failed query: \(emojiSearchResultsList[i].query)")
                 }
             }
         }
@@ -105,15 +105,15 @@ class EmojiSearchTests: XCTestCase {
         if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noFilter, searchString: "") {
         
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.count == testSearchResults.count)
-            XCTAssertTrue(testEmojiCollection!.emojiGlyphs.first!.priority == testSearchResults.first!.priority)
-            XCTAssertTrue(testEmojiCollection!.emojiGlyphs.last!.priority == testSearchResults.last!.priority)
+            XCTAssertTrue(testEmojiCollection!.emojiGlyphs.first!.index == testSearchResults.first!.index)
+            XCTAssertTrue(testEmojiCollection!.emojiGlyphs.last!.index == testSearchResults.last!.index)
         }
     }
     
-    func testFilterEmojiByPriority() {
+    func testFilterEmojiByIndex() {
         
         let testEmojiSearch = EmojiSearch()
-        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .byPriority, searchString: "")
+        let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .byIndex, searchString: "")
         
         XCTAssertNil(testSearchResults)
     }

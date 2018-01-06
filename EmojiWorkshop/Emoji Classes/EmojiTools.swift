@@ -14,7 +14,7 @@ func printCVS(emojiGlyphs: [EmojiGlyph]) {
         
         let tags = createMetadata(glyph: emoji)
         
-        print("\(emoji.priority),\(emoji.glyph),\(emoji.group),\(emoji.subgroup)", terminator: "")
+        print("\(emoji.index),\(emoji.glyph),\(emoji.group),\(emoji.subgroup)", terminator: "")
         if tags.count != 0 {
             print(",", terminator: "")
             for tag in tags {

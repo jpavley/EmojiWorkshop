@@ -9,7 +9,7 @@
 import Foundation
 
 enum EmojiFilter {
-    case noFilter, byDescription, byPriority, byGroupAndSubgroup, byImage, byCharacter
+    case noFilter, byDescription, byIndex, byGroupAndSubgroup, byImage, byCharacter
 }
 
 class EmojiSearch {
@@ -25,7 +25,7 @@ class EmojiSearch {
             return emojiGlyphs
         case .byDescription:
             return searchByDescription(emojiGlyphs: emojiGlyphs, filter: filter, searchString: searchString)
-        case .byPriority:
+        case .byIndex:
             return nil
         case .byGroupAndSubgroup:
             return nil

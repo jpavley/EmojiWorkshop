@@ -38,7 +38,7 @@ class EmojiCollection {
             for glyph in emojiGlyphs {
                 glyphSectionName = "\(glyph.group): \(glyph.subgroup)"
                 if section == glyphSectionName {
-                    glyphIDs.append(glyph.priority)
+                    glyphIDs.append(glyph.index)
                 }
             }
             
@@ -89,7 +89,7 @@ class EmojiCollection {
                         sections.append(sectionName)
                     }
                     
-                    if var emojiGlyph = EmojiGlyph(textLine: String(line), priority: i, group: group, subgroup: subgroup) {
+                    if var emojiGlyph = EmojiGlyph(textLine: String(line), index: i, group: group, subgroup: subgroup) {
                         // print(emojiGlyph)
                         emojiGlyph.tags = createMetadata(glyph: emojiGlyph)
                         emojiGlyphs.append(emojiGlyph)
