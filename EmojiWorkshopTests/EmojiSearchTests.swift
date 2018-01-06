@@ -60,7 +60,8 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "men", foundCount: 386, firstID: 171, lastID: 3343),
             EmojiSearchResults(query: "man bunny", foundCount: 1, firstID: 1253, lastID: 1253), // stemming "man bunny" == "men bunny"
             EmojiSearchResults(query: "mount", foundCount: 23, firstID: 1611, lastID: 2507),
-            EmojiSearchResults(query: "star", foundCount: 9, firstID: 44, lastID: 3097)
+            EmojiSearchResults(query: "star", foundCount: 9, firstID: 44, lastID: 3097),
+            EmojiSearchResults(query: "application", foundCount: 1, firstID: 3185, lastID: 3185)
         ]
     }
     

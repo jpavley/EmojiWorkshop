@@ -44,6 +44,8 @@ func createMetadata(glyph: EmojiGlyph) -> [String] {
     descriptionWords = descriptionWords.map({$0.contains(",") ? String($0.dropLast()) : $0})
     descriptionWords = descriptionWords.map({$0.contains("(") ? String($0.dropFirst()) : $0})
     descriptionWords = descriptionWords.map({$0.contains(")") ? String($0.dropLast()) : $0})
+    descriptionWords = descriptionWords.map({$0.contains("“") ? String($0.dropFirst()) : $0})
+    descriptionWords = descriptionWords.map({$0.contains("”") ? String($0.dropLast()) : $0})
     descriptionWords = descriptionWords.filter({$0 != "&"})
 
     var groupWords = glyph.group.lowercased().components(separatedBy: CharacterSet(charactersIn: " -"))
