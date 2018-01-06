@@ -34,6 +34,7 @@ class EmojiCollection {
         var cleanedUpSections = [String]()
         
         for section in sectionNames {
+            
             glyphIDs = emojiGlyphs.filter { isEmojiInSection(glyph: $0, section: section) }.map { $0.index }
             
             if glyphIDs.count > 0 {
