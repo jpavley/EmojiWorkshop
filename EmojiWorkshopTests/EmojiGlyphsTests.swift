@@ -21,22 +21,22 @@ class EmojiGlyphsTests: XCTestCase {
     }
     
     func testCreateEmojiGlyphNil() {
-        let testEmojiGlyph = EmojiGlyph(textLine: "", priority: 0, group: "", subgroup: "")
+        let testEmojiGlyph = EmojiGlyph(textLine: "", index: 0, group: "", subgroup: "")
         XCTAssertNil(testEmojiGlyph)
     }
     
     func testCreateEmojiGlyphNFQInput() {
         let testTextLine = "2620                                       ; non-fully-qualified # ☠ skull and crossbones"
-        let testEmojiGlyph = EmojiGlyph(textLine: testTextLine, priority: 0, group: "", subgroup: "")
+        let testEmojiGlyph = EmojiGlyph(textLine: testTextLine, index: 0, group: "", subgroup: "")
         XCTAssertNil(testEmojiGlyph)
     }
     
     func testCreateEmojiGlyphGoodInput() {
         let testTextLine = "1F476 1F3FB                                ; fully-qualified     # 👶🏻 baby: light skin tone"
-        let testEmojiGlyph = EmojiGlyph(textLine: testTextLine, priority: 0, group: "g", subgroup: "s")
+        let testEmojiGlyph = EmojiGlyph(textLine: testTextLine, index: 0, group: "g", subgroup: "s")
         XCTAssertNotNil(testEmojiGlyph)
         XCTAssertTrue(testEmojiGlyph?.glyph == "👶🏻")
-        XCTAssertTrue(testEmojiGlyph?.priority == 0)
+        XCTAssertTrue(testEmojiGlyph?.index == 0)
         XCTAssertTrue(testEmojiGlyph?.description == "baby: light skin tone")
         XCTAssertTrue(testEmojiGlyph?.group == "g")
         XCTAssertTrue(testEmojiGlyph?.subgroup == "s")
@@ -44,13 +44,13 @@ class EmojiGlyphsTests: XCTestCase {
     
     func testCreateEmojiGlyphBadInputMissingPound() {
         let testTextLine = "1F476 1F3FB                                ; fully-qualified      👶🏻 baby: light skin tone"
-        let testEmojiGlyph = EmojiGlyph(textLine: testTextLine, priority: 0, group: "", subgroup: "")
+        let testEmojiGlyph = EmojiGlyph(textLine: testTextLine, index: 0, group: "", subgroup: "")
         XCTAssertNil(testEmojiGlyph)
     }
     
     func testCreateEmojiGlyphBadInputExtraPound() {
         let testTextLine = "1F476 1F3FB                                ; fully-qualified     # # 👶🏻 baby: light skin tone"
-        let testEmojiGlyph = EmojiGlyph(textLine: testTextLine, priority: 0, group: "", subgroup: "")
+        let testEmojiGlyph = EmojiGlyph(textLine: testTextLine, index: 0, group: "", subgroup: "")
         XCTAssertNil(testEmojiGlyph)
     }
 
