@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -89,7 +90,29 @@
                     <view key="view" contentMode="scaleToFill" id="u29-kK-wwO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dp-B6-nhM" userLabel="Pop-up View">
+                                <rect key="frame" x="40" y="164" width="240" height="240"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRn-Ty-HSJ" userLabel="Close Button">
+                                        <rect key="frame" x="10.5" y="3" width="39" height="30"/>
+                                        <state key="normal" title="Close"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="lRn-Ty-HSJ" firstAttribute="centerX" secondItem="1dp-B6-nhM" secondAttribute="centerX" multiplier="0.25" id="C7c-Rd-LDF"/>
+                                    <constraint firstAttribute="width" constant="240" id="Zes-yr-oxd"/>
+                                    <constraint firstAttribute="height" constant="240" id="iZQ-Xd-bFe"/>
+                                    <constraint firstItem="lRn-Ty-HSJ" firstAttribute="centerY" secondItem="1dp-B6-nhM" secondAttribute="centerY" multiplier="0.15" id="yUR-qt-sYO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1dp-B6-nhM" firstAttribute="centerY" secondItem="u29-kK-wwO" secondAttribute="centerY" id="cnN-dX-L7W"/>
+                            <constraint firstItem="1dp-B6-nhM" firstAttribute="centerX" secondItem="u29-kK-wwO" secondAttribute="centerX" id="kyi-uA-w3w"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="O5N-fJ-wZv"/>
                     </view>
                 </viewController>
