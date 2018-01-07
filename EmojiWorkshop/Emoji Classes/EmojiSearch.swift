@@ -42,6 +42,10 @@ class EmojiSearch {
         
         let searchTerms = searchTermsWithoutExclusedTermsFrom(searchString)
         
+        if searchTerms.contains("") {
+            return nil
+        }
+        
         var iterativeResults = emojiGlyphs
         for term in searchTerms {
             // print("== \(term) of \(searchTerms)")

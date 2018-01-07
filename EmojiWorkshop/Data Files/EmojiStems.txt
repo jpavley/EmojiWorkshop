@@ -27,9 +27,12 @@ tech:technologist
 horns:horn
 books:book
 flags:flag
+houses:house
 
 # concepts
 countries:country
+places:place
+objects:object
 
 
 # nature
