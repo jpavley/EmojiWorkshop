@@ -176,8 +176,8 @@
 		5AF853371FF3FB5A0018A598 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5A4EAD391FDC758B00A02F7F /* Main.storyboard */,
 				5A4EAD3C1FDC758B00A02F7F /* Assets.xcassets */,
+				5A4EAD391FDC758B00A02F7F /* Main.storyboard */,
 				5A4EAD3E1FDC758B00A02F7F /* LaunchScreen.storyboard */,
 				5AF853381FF415E90018A598 /* SmallEmojiTableCell.xib */,
 				5AF853431FF9984B0018A598 /* EmojiBrowseBar.xib */,
