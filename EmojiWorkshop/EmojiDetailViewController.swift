@@ -9,6 +9,12 @@
 import UIKit
 
 class EmojiDetailViewController: UIViewController {
+    
+    // Mark:- Actions
+    
+    @IBAction func close(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
