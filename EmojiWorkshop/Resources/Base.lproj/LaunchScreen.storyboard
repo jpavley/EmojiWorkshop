@@ -17,7 +17,46 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUg-Ia-z3X">
+                                <rect key="frame" x="0.0" y="20" width="320" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="b2O-VH-I5U"/>
+                                </constraints>
+                                <color key="barTintColor" red="1" green="0.81568627449999997" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iT-a7-elJ">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.81568627449999997" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7aT-xB-q25"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="action" id="sE3-0j-1tU"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="zi1-9i-5Cm"/>
+                                    <barButtonItem title="Emoji Spy" id="2im-qh-h2W"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="pa6-zX-ZuW"/>
+                                    <barButtonItem systemItem="stop" id="2hV-IG-RgG"/>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="yDp-E0-vxP">
+                                <rect key="frame" x="0.0" y="76" width="320" height="448"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4iT-a7-elJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4ww-Dl-S5M"/>
+                            <constraint firstItem="4iT-a7-elJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Bci-TC-QWy"/>
+                            <constraint firstItem="yDp-E0-vxP" firstAttribute="top" secondItem="DUg-Ia-z3X" secondAttribute="bottom" id="FJw-JX-y67"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yDp-E0-vxP" secondAttribute="trailing" id="Jz6-yi-uvl"/>
+                            <constraint firstItem="yDp-E0-vxP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RFL-5M-M5H"/>
+                            <constraint firstItem="DUg-Ia-z3X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="YH6-U2-xV9"/>
+                            <constraint firstItem="DUg-Ia-z3X" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Z55-1m-jNo"/>
+                            <constraint firstItem="DUg-Ia-z3X" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="k2w-Av-8NK"/>
+                            <constraint firstItem="4iT-a7-elJ" firstAttribute="top" secondItem="yDp-E0-vxP" secondAttribute="bottom" id="sYM-oi-qBt"/>
+                            <constraint firstItem="4iT-a7-elJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="zES-H7-8Cm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -26,4 +65,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launch" width="266" height="300"/>
+    </resources>
 </document>
