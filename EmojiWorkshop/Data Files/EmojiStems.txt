@@ -5,22 +5,48 @@
 # Emoji Stemming Data
 # Version: 1.0
 
+# people
 boys:boy
 men:man
 women:woman
 girls:girl
 children:child
+people:person
 
+# parts of people
 eyes:eye
 hands:hand
 feet:foot
 fingers:finger
 toes:toe
 
+#roles
+tech:technologist
+
+# things
 horns:horn
 books:book
+flags:flag
+houses:house
 
+# concepts
+countries:country
+places:place
+objects:object
+
+
+# nature
 mount:mountain
 stars:star
+animals:animal
+plants:plant
+leaves:leaf
 
-tech:technologist
+
+# stop words
+in:
+the:
+with:
+of:
+at:
+and:

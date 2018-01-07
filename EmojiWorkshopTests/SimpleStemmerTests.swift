@@ -84,6 +84,11 @@ class SimpleStemmerTests: XCTestCase {
         let simpleStemmer = SimpleStemmer(sourceFileName: "EmojiStems")
         XCTAssertTrue(simpleStemmer?.getStem(for: "Eyes") == "eye")
     }
+    
+    func testStopWords() {
+        let simpleStemmer = SimpleStemmer(sourceFileName: "EmojiStems")
+        XCTAssertTrue(simpleStemmer?.getStem(for: "And") == "")
+    }
 
     
 }
