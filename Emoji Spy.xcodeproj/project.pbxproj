@@ -52,12 +52,12 @@
 		4808EC4A1FFDD59500E16EF0 /* SimpleStemmerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStemmerTests.swift; sourceTree = "<group>"; };
 		4808EC4C1FFDD65D00E16EF0 /* SimpleStemmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStemmer.swift; sourceTree = "<group>"; };
 		4808EC4F1FFDD7FE00E16EF0 /* EmojiStems.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = EmojiStems.txt; sourceTree = "<group>"; };
-		480E890E1FE2157A00E34BAE /* EmojiWorkshopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiWorkshopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		480E890E1FE2157A00E34BAE /* Emoji SpyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Emoji SpyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		480E89101FE2157A00E34BAE /* EmojiGlyphsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGlyphsTests.swift; sourceTree = "<group>"; };
 		480E89121FE2157A00E34BAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		482C062D1FE0112B00508A28 /* EmojiCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollection.swift; sourceTree = "<group>"; };
 		5A3021F41FF99C07007C48FE /* EmojiBrowseBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiBrowseBarView.swift; sourceTree = "<group>"; };
-		5A4EAD321FDC758B00A02F7F /* EmojiWorkshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiWorkshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A4EAD321FDC758B00A02F7F /* Emoji Spy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Emoji Spy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A4EAD351FDC758B00A02F7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A4EAD371FDC758B00A02F7F /* EmojiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiViewController.swift; sourceTree = "<group>"; };
 		5A4EAD3A1FDC758B00A02F7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -144,8 +144,8 @@
 		5A4EAD331FDC758B00A02F7F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5A4EAD321FDC758B00A02F7F /* EmojiWorkshop.app */,
-				480E890E1FE2157A00E34BAE /* EmojiWorkshopTests.xctest */,
+				5A4EAD321FDC758B00A02F7F /* Emoji Spy.app */,
+				480E890E1FE2157A00E34BAE /* Emoji SpyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,9 +188,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		480E890D1FE2157A00E34BAE /* EmojiWorkshopTests */ = {
+		480E890D1FE2157A00E34BAE /* Emoji SpyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 480E89171FE2157A00E34BAE /* Build configuration list for PBXNativeTarget "EmojiWorkshopTests" */;
+			buildConfigurationList = 480E89171FE2157A00E34BAE /* Build configuration list for PBXNativeTarget "Emoji SpyTests" */;
 			buildPhases = (
 				480E890A1FE2157A00E34BAE /* Sources */,
 				480E890B1FE2157A00E34BAE /* Frameworks */,
@@ -201,14 +201,14 @@
 			dependencies = (
 				480E89141FE2157A00E34BAE /* PBXTargetDependency */,
 			);
-			name = EmojiWorkshopTests;
+			name = "Emoji SpyTests";
 			productName = EmojiWorkshopTests;
-			productReference = 480E890E1FE2157A00E34BAE /* EmojiWorkshopTests.xctest */;
+			productReference = 480E890E1FE2157A00E34BAE /* Emoji SpyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5A4EAD311FDC758B00A02F7F /* EmojiWorkshop */ = {
+		5A4EAD311FDC758B00A02F7F /* Emoji Spy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5A4EAD441FDC758B00A02F7F /* Build configuration list for PBXNativeTarget "EmojiWorkshop" */;
+			buildConfigurationList = 5A4EAD441FDC758B00A02F7F /* Build configuration list for PBXNativeTarget "Emoji Spy" */;
 			buildPhases = (
 				5A4EAD2E1FDC758B00A02F7F /* Sources */,
 				5A4EAD2F1FDC758B00A02F7F /* Frameworks */,
@@ -218,9 +218,9 @@
 			);
 			dependencies = (
 			);
-			name = EmojiWorkshop;
+			name = "Emoji Spy";
 			productName = EmojiWorkshop;
-			productReference = 5A4EAD321FDC758B00A02F7F /* EmojiWorkshop.app */;
+			productReference = 5A4EAD321FDC758B00A02F7F /* Emoji Spy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -244,7 +244,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5A4EAD2D1FDC758B00A02F7F /* Build configuration list for PBXProject "EmojiWorkshop" */;
+			buildConfigurationList = 5A4EAD2D1FDC758B00A02F7F /* Build configuration list for PBXProject "Emoji Spy" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -257,8 +257,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5A4EAD311FDC758B00A02F7F /* EmojiWorkshop */,
-				480E890D1FE2157A00E34BAE /* EmojiWorkshopTests */,
+				5A4EAD311FDC758B00A02F7F /* Emoji Spy */,
+				480E890D1FE2157A00E34BAE /* Emoji SpyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -329,7 +329,7 @@
 /* Begin PBXTargetDependency section */
 		480E89141FE2157A00E34BAE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5A4EAD311FDC758B00A02F7F /* EmojiWorkshop */;
+			target = 5A4EAD311FDC758B00A02F7F /* Emoji Spy */;
 			targetProxy = 480E89131FE2157A00E34BAE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -366,7 +366,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmojiWorkshop.app/EmojiWorkshop";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Emoji Spy.app/Emoji Spy";
 			};
 			name = Debug;
 		};
@@ -382,7 +382,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmojiWorkshop.app/EmojiWorkshop";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Emoji Spy.app/Emoji Spy";
 			};
 			name = Release;
 		};
@@ -504,7 +504,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pavley.EmojiWorkshop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -519,14 +519,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pavley.EmojiWorkshop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		480E89171FE2157A00E34BAE /* Build configuration list for PBXNativeTarget "EmojiWorkshopTests" */ = {
+		480E89171FE2157A00E34BAE /* Build configuration list for PBXNativeTarget "Emoji SpyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				480E89151FE2157A00E34BAE /* Debug */,
@@ -535,7 +535,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5A4EAD2D1FDC758B00A02F7F /* Build configuration list for PBXProject "EmojiWorkshop" */ = {
+		5A4EAD2D1FDC758B00A02F7F /* Build configuration list for PBXProject "Emoji Spy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5A4EAD421FDC758B00A02F7F /* Debug */,
@@ -544,7 +544,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5A4EAD441FDC758B00A02F7F /* Build configuration list for PBXNativeTarget "EmojiWorkshop" */ = {
+		5A4EAD441FDC758B00A02F7F /* Build configuration list for PBXNativeTarget "Emoji Spy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5A4EAD451FDC758B00A02F7F /* Debug */,
