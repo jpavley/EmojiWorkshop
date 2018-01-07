@@ -15,6 +15,8 @@ class EmojiDetailViewController: UIViewController {
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    // Mark:- Overrides
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +29,23 @@ class EmojiDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Mark: Initalization
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        modalPresentationStyle = .custom
+        transitioningDelegate = self
     }
-    */
+    
+    
+}
 
+extension EmojiDetailViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController,
+                                presenting: UIViewController?,
+                                source: UIViewController) -> UIPresentationController? {
+        
+        return EmojiDimmingPresentationController(presentedViewController: presented,
+                                                  presenting: presenting)
+    }
 }
