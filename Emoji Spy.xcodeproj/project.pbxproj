@@ -35,6 +35,7 @@
 		5AF853401FF8257B0018A598 /* EmojiTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8533E1FF824380018A598 /* EmojiTools.swift */; };
 		5AF853421FF82AA00018A598 /* EmojiToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF853411FF82AA00018A598 /* EmojiToolsTests.swift */; };
 		5AF9B1A62002AAA00063387B /* EmojiDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF9B1A52002AAA00063387B /* EmojiDetailViewController.swift */; };
+		5AF9B1A82002AF960063387B /* EmojiDimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF9B1A72002AF960063387B /* EmojiDimmingPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		5AF8533E1FF824380018A598 /* EmojiTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTools.swift; sourceTree = "<group>"; };
 		5AF853411FF82AA00018A598 /* EmojiToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiToolsTests.swift; sourceTree = "<group>"; };
 		5AF9B1A52002AAA00063387B /* EmojiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiDetailViewController.swift; sourceTree = "<group>"; };
+		5AF9B1A72002AF960063387B /* EmojiDimmingPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiDimmingPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,20 +157,21 @@
 				5A4EAD411FDC758B00A02F7F /* Info.plist */,
 				482C062F1FE036B200508A28 /* Data Files */,
 				482C06301FE036C200508A28 /* Emoji Classes */,
-				5AF853361FF3FB250018A598 /* View Controllers */,
+				5AF853361FF3FB250018A598 /* Controllers */,
 				5AF853371FF3FB5A0018A598 /* Resources */,
 			);
 			path = EmojiWorkshop;
 			sourceTree = "<group>";
 		};
-		5AF853361FF3FB250018A598 /* View Controllers */ = {
+		5AF853361FF3FB250018A598 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				5A4EAD371FDC758B00A02F7F /* EmojiViewController.swift */,
 				5AF8533A1FF41A730018A598 /* SmallEmojiTableViewCell.swift */,
 				5AF9B1A52002AAA00063387B /* EmojiDetailViewController.swift */,
+				5AF9B1A72002AF960063387B /* EmojiDimmingPresentationController.swift */,
 			);
-			name = "View Controllers";
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		5AF853371FF3FB5A0018A598 /* Resources */ = {
@@ -310,6 +313,7 @@
 			files = (
 				5A4EAD381FDC758B00A02F7F /* EmojiViewController.swift in Sources */,
 				5AF9B1A62002AAA00063387B /* EmojiDetailViewController.swift in Sources */,
+				5AF9B1A82002AF960063387B /* EmojiDimmingPresentationController.swift in Sources */,
 				5AF8533F1FF824380018A598 /* EmojiTools.swift in Sources */,
 				482C062E1FE0112B00508A28 /* EmojiCollection.swift in Sources */,
 				5AF8533B1FF41A730018A598 /* SmallEmojiTableViewCell.swift in Sources */,

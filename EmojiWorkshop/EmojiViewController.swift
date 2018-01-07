@@ -240,6 +240,10 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        // NOTE: Temporarily place this code here
+        performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+        
         hideKeyboard()
         enableCancelButton()
     }

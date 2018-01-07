@@ -77,6 +77,7 @@
                         <outlet property="clipboardItem" destination="VGA-bk-r3d" id="b9H-FN-Sde"/>
                         <outlet property="emojiGlyphTable" destination="5tU-hG-qXa" id="Oap-eI-G0Y"/>
                         <outlet property="emojiSearchBar" destination="nQy-Hw-LAh" id="NdP-Un-vzW"/>
+                        <segue destination="p3k-EE-OkW" kind="showDetail" identifier="ShowDetail" id="tIj-3M-AMf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOX-uy-ltv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -97,6 +98,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRn-Ty-HSJ" userLabel="Close Button">
                                         <rect key="frame" x="10.5" y="3" width="39" height="30"/>
                                         <state key="normal" title="Close"/>
+                                        <connections>
+                                            <action selector="close:" destination="p3k-EE-OkW" eventType="touchUpInside" id="0qK-Em-fkL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -118,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4My-Mb-uwM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="125"/>
+            <point key="canvasLocation" x="1247" y="120"/>
         </scene>
     </scenes>
 </document>
