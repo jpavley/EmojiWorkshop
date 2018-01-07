@@ -29,10 +29,10 @@ class SimpleStemmer {
                     if line.contains(":") {
                         // text before ":" is key, text after ":" is value
                         let parts = line.split(separator: ":")
-                        
                         let key = String(parts[0])
-                        let val = String(parts[1])
-                        
+                        // if there is only a key, as in the case of stop words
+                        // then supply an empty string as the value
+                        let val = parts.count > 1 ? String(parts[1]) : ""
                         stemMap[key] = val
                     }
                 }

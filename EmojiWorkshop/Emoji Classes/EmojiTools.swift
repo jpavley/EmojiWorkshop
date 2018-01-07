@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias TagList = [String]
+
 func printCVS(emojiGlyphs: [EmojiGlyph]) {
     print("priority, glyph, group, subgroup, tags")
     for emoji in emojiGlyphs {
@@ -37,47 +39,38 @@ func cleanWordList(glyph: EmojiGlyph) -> Set<String> {
     return wordListSet
 }
 
+fileprivate func removeJunkCharacters(from text: String) -> TagList {
+    var cleanedWords = text.lowercased().components(separatedBy: CharacterSet(charactersIn: " -"))
+    cleanedWords = cleanedWords.map({$0.contains(":") ? String($0.dropLast()) : $0})
+    cleanedWords = cleanedWords.map({$0.contains(",") ? String($0.dropLast()) : $0})
+    cleanedWords = cleanedWords.map({$0.contains("(") ? String($0.dropFirst()) : $0})
+    cleanedWords = cleanedWords.map({$0.contains(")") ? String($0.dropLast()) : $0})
+    cleanedWords = cleanedWords.map({$0.contains("“") ? String($0.dropFirst()) : $0})
+    cleanedWords = cleanedWords.map({$0.contains("”") ? String($0.dropLast()) : $0})
+    cleanedWords = cleanedWords.filter({$0 != "&"})
+    return cleanedWords
+}
+
 func createMetadata(glyph: EmojiGlyph) -> [String] {
     
-    var descriptionWords = glyph.description.lowercased().components(separatedBy: CharacterSet(charactersIn: " -"))
-    descriptionWords = descriptionWords.map({$0.contains(":") ? String($0.dropLast()) : $0})
-    descriptionWords = descriptionWords.map({$0.contains(",") ? String($0.dropLast()) : $0})
-    descriptionWords = descriptionWords.map({$0.contains("(") ? String($0.dropFirst()) : $0})
-    descriptionWords = descriptionWords.map({$0.contains(")") ? String($0.dropLast()) : $0})
-    descriptionWords = descriptionWords.map({$0.contains("“") ? String($0.dropFirst()) : $0})
-    descriptionWords = descriptionWords.map({$0.contains("”") ? String($0.dropLast()) : $0})
-    descriptionWords = descriptionWords.filter({$0 != "&"})
-
-    var groupWords = glyph.group.lowercased().components(separatedBy: CharacterSet(charactersIn: " -"))
-    groupWords = groupWords.map({$0.contains(":") ? String($0.dropLast()) : $0})
-    groupWords = groupWords.map({$0.contains(",") ? String($0.dropLast()) : $0})
-    groupWords = groupWords.filter({$0 != "&"})
-
-    var subgroupWords = glyph.subgroup.lowercased().components(separatedBy: CharacterSet(charactersIn: " -"))
-    subgroupWords = subgroupWords.map({$0.contains(":") ? String($0.dropLast()) : $0})
-    subgroupWords = subgroupWords.map({$0.contains(",") ? String($0.dropLast()) : $0})
-    subgroupWords = subgroupWords.filter({$0 != "&"})
-
-    let results1 = descriptionWords + groupWords + subgroupWords
+    let descriptionWords = removeJunkCharacters(from: glyph.description)
+    let groupWords = removeJunkCharacters(from: glyph.group)
+    let subgroupWords = removeJunkCharacters(from: glyph.subgroup)
     
-    let results1a = stemmedTermsFrom(results1)
+    let rawTags = descriptionWords + groupWords + subgroupWords
+    let stemmedTags = stemmedTermsFrom(rawTags)
     
-    let results2 = Set(results1a) // de-dupe
-    let results3 = Array(results2)
-    let results4 = results3.sorted()
+    let tagSet = Set(stemmedTags) // de-dupe
+    let tagList = Array(tagSet)
+    let tagListSorted = tagList.sorted()
     
-    return results4
+    return tagListSorted
 }
 
 func stemmedTermsFrom(_ terms: [String]) -> [String] {
     var stemedTerms = [String]()
     let simpleStemmer = SimpleStemmer()
     for term in terms {
-        
-        if term == "tech" {
-            print(term)
-        }
-        
         stemedTerms.append(simpleStemmer?.getStem(for: term) ?? term)
     }
     return stemedTerms
