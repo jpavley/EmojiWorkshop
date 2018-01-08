@@ -14,6 +14,7 @@ class EmojiDetailViewController: UIViewController {
     @IBOutlet weak var emojiGlyphLabel: UILabel!
     @IBOutlet weak var emojiDescriptionLabel: UILabel!
     @IBOutlet weak var emojiTagsTextView: UITextView!
+    @IBOutlet weak var popupView: UIView!
     
     var selectedEmojiGlyph: EmojiGlyph!
     
@@ -33,6 +34,13 @@ class EmojiDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        popupView.layer.cornerRadius = 12
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
+        gestureRecognizer.cancelsTouchesInView = false
+        gestureRecognizer.delegate = self
+        view.addGestureRecognizer(gestureRecognizer)
+        
         updateDetails()
     }
 
@@ -58,7 +66,7 @@ class EmojiDetailViewController: UIViewController {
         
         emojiIndexLabel.text = "# \(selectedEmojiGlyph.index)"
         emojiGlyphLabel.text = selectedEmojiGlyph.glyph
-        emojiDescriptionLabel.text = selectedEmojiGlyph.description
+        emojiDescriptionLabel.text = selectedEmojiGlyph.description.capitalized
         
         var tagsString = ""
         
@@ -75,11 +83,19 @@ class EmojiDetailViewController: UIViewController {
 // Mark:- Extentions
 
 extension EmojiDetailViewController: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController,
-                                presenting: UIViewController?,
-                                source: UIViewController) -> UIPresentationController? {
+    
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         
         return EmojiDimmingPresentationController(presentedViewController: presented,
                                                   presenting: presenting)
     }
 }
+
+extension EmojiDetailViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        
+        return (touch.view === self.view)
+    }
+}
+
