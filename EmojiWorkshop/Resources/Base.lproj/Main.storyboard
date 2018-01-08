@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -91,89 +92,132 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dp-B6-nhM" userLabel="Pop-up View">
-                                <rect key="frame" x="16" y="56.5" width="288" height="455"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIl-Bj-pH8" userLabel="Popup View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRn-Ty-HSJ" userLabel="Close Button">
-                                        <rect key="frame" x="14" y="416" width="39" height="30"/>
-                                        <state key="normal" title="Close"/>
-                                        <connections>
-                                            <action selector="close:" destination="p3k-EE-OkW" eventType="touchUpInside" id="0qK-Em-fkL"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🚵‍♂️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPg-VP-y37" userLabel="Emoji Label">
-                                        <rect key="frame" x="0.0" y="42" width="288" height="220"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dp-B6-nhM" userLabel="Form View">
+                                        <rect key="frame" x="16" y="140.5" width="288" height="287"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ET6-8Z-JbM">
+                                                <rect key="frame" x="14" y="96" width="260" height="189.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="Q7u-Wc-n52" userLabel="Emoji Description Label">
+                                                        <rect key="frame" x="0.0" y="0.0" width="260" height="20.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="260" id="QxT-Ci-eae"/>
+                                                            <constraint firstAttribute="height" constant="20.5" id="zNK-cL-QR1"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#576" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adh-Fm-ImK" userLabel="Emoji Index Label">
+                                                        <rect key="frame" x="0.0" y="28.5" width="260" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="18" id="44b-c0-azq"/>
+                                                            <constraint firstAttribute="width" constant="260" id="qc8-Kw-vjU"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group: Subgroup" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UY1-VC-a5S" userLabel="Emoji Group Label">
+                                                        <rect key="frame" x="0.0" y="54.5" width="260" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="260" id="BMM-Cv-VlW"/>
+                                                            <constraint firstAttribute="height" constant="18" id="o0C-rQ-M56"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="tag tag tag tag tag tag tag tag tag tag tag tag tag" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV3-tc-e9D" userLabel="Tag Text View">
+                                                        <rect key="frame" x="0.0" y="80.5" width="260" height="71"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="71" id="gt7-ZC-1Ti"/>
+                                                            <constraint firstAttribute="width" constant="260" id="iCh-Ig-E8z"/>
+                                                        </constraints>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Iqa-7I-GSv">
+                                                        <rect key="frame" x="0.0" y="159.5" width="260" height="30"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRn-Ty-HSJ" userLabel="Close Button">
+                                                                <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="40" id="jxg-ji-9XT"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Close"/>
+                                                                <connections>
+                                                                    <action selector="close:" destination="p3k-EE-OkW" eventType="touchUpInside" id="0qK-Em-fkL"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iiz-Ol-uVl">
+                                                                <rect key="frame" x="220" y="0.0" width="40" height="30"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="40" id="hIW-e9-ycG"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Copy"/>
+                                                                <connections>
+                                                                    <action selector="copyToToolbar:" destination="p3k-EE-OkW" eventType="touchUpInside" id="NpB-Ff-6s3"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="Iqa-7I-GSv" firstAttribute="leading" secondItem="ET6-8Z-JbM" secondAttribute="leading" id="430-um-Qjw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Iqa-7I-GSv" secondAttribute="trailing" id="qqZ-pZ-B1U"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="220" id="iFK-jW-zJr"/>
+                                            <constraint firstAttribute="height" constant="287" id="2KG-GJ-M1i"/>
+                                            <constraint firstAttribute="width" constant="288" id="IlV-gP-YFr"/>
+                                            <constraint firstItem="ET6-8Z-JbM" firstAttribute="centerX" secondItem="1dp-B6-nhM" secondAttribute="centerX" id="Ugf-VH-dcj"/>
+                                            <constraint firstItem="ET6-8Z-JbM" firstAttribute="centerY" secondItem="1dp-B6-nhM" secondAttribute="centerY" multiplier="1.33" id="j4K-oU-CTq"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPg-VP-y37" userLabel="Emoji Label">
+                                        <rect key="frame" x="30" y="22.5" width="260" height="239"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="239" id="X9c-u3-R1Y"/>
+                                            <constraint firstAttribute="width" constant="260" id="iHu-oq-crg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="200"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iiz-Ol-uVl">
-                                        <rect key="frame" x="238" y="416" width="36" height="30"/>
-                                        <state key="normal" title="Copy"/>
-                                        <connections>
-                                            <action selector="copyToToolbar:" destination="p3k-EE-OkW" eventType="touchUpInside" id="NpB-Ff-6s3"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#576" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Adh-Fm-ImK" userLabel="Emoji Index Label">
-                                        <rect key="frame" x="14" y="8" width="260" height="18"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="people exercise man bike mountain" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV3-tc-e9D" userLabel="Tag Text View">
-                                        <rect key="frame" x="8" y="299" width="272" height="109"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Man Mountain Cyclist" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UY1-VC-a5S" userLabel="Emoji Description Label">
-                                        <rect key="frame" x="8" y="270" width="272" height="21"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="288" id="0Xo-91-pRj"/>
-                                    <constraint firstAttribute="height" constant="455" id="CRP-mz-8uH"/>
-                                    <constraint firstAttribute="trailing" secondItem="UY1-VC-a5S" secondAttribute="trailing" constant="8" id="DNP-wh-vbr"/>
-                                    <constraint firstItem="lRn-Ty-HSJ" firstAttribute="leading" secondItem="1dp-B6-nhM" secondAttribute="leading" constant="14" id="F7I-md-Zr6"/>
-                                    <constraint firstItem="lRn-Ty-HSJ" firstAttribute="top" secondItem="fV3-tc-e9D" secondAttribute="bottom" constant="8" id="J1A-Bz-mwC"/>
-                                    <constraint firstItem="UY1-VC-a5S" firstAttribute="leading" secondItem="1dp-B6-nhM" secondAttribute="leading" constant="8" id="K1l-Fc-gh9"/>
-                                    <constraint firstAttribute="trailing" secondItem="iiz-Ol-uVl" secondAttribute="trailing" constant="14" id="KL7-Ya-KcB"/>
-                                    <constraint firstItem="UY1-VC-a5S" firstAttribute="top" secondItem="xPg-VP-y37" secondAttribute="bottom" constant="8" id="PVX-Hr-Vmb"/>
-                                    <constraint firstItem="xPg-VP-y37" firstAttribute="top" secondItem="Adh-Fm-ImK" secondAttribute="bottom" constant="16" id="QxX-pR-sDk"/>
-                                    <constraint firstAttribute="trailing" secondItem="xPg-VP-y37" secondAttribute="trailing" id="SiE-kL-hoQ"/>
-                                    <constraint firstItem="Adh-Fm-ImK" firstAttribute="leading" secondItem="1dp-B6-nhM" secondAttribute="leading" constant="14" id="bOc-6k-dL4"/>
-                                    <constraint firstItem="Adh-Fm-ImK" firstAttribute="top" secondItem="1dp-B6-nhM" secondAttribute="top" constant="8" id="gBz-xm-xpa"/>
-                                    <constraint firstItem="fV3-tc-e9D" firstAttribute="leading" secondItem="1dp-B6-nhM" secondAttribute="leading" constant="8" id="hiv-kw-VlH"/>
-                                    <constraint firstAttribute="bottom" secondItem="iiz-Ol-uVl" secondAttribute="bottom" constant="9" id="ibI-RT-TpU"/>
-                                    <constraint firstAttribute="bottom" secondItem="lRn-Ty-HSJ" secondAttribute="bottom" constant="9" id="lRO-S7-9h5"/>
-                                    <constraint firstAttribute="trailing" secondItem="Adh-Fm-ImK" secondAttribute="trailing" constant="14" id="mB4-Mj-946"/>
-                                    <constraint firstItem="xPg-VP-y37" firstAttribute="leading" secondItem="1dp-B6-nhM" secondAttribute="leading" id="v80-Dr-H6C"/>
-                                    <constraint firstItem="fV3-tc-e9D" firstAttribute="top" secondItem="UY1-VC-a5S" secondAttribute="bottom" constant="8" id="w2k-Fz-YBw"/>
-                                    <constraint firstAttribute="trailing" secondItem="fV3-tc-e9D" secondAttribute="trailing" constant="8" id="zAv-hE-gkn"/>
+                                    <constraint firstItem="1dp-B6-nhM" firstAttribute="centerX" secondItem="RIl-Bj-pH8" secondAttribute="centerX" id="UJs-6O-FFl"/>
+                                    <constraint firstItem="xPg-VP-y37" firstAttribute="centerY" secondItem="RIl-Bj-pH8" secondAttribute="centerY" multiplier="0.5" id="dbj-92-P5w"/>
+                                    <constraint firstItem="xPg-VP-y37" firstAttribute="centerX" secondItem="RIl-Bj-pH8" secondAttribute="centerX" id="ine-C7-YZl"/>
+                                    <constraint firstItem="1dp-B6-nhM" firstAttribute="centerY" secondItem="RIl-Bj-pH8" secondAttribute="centerY" id="xQT-Z3-c1v"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1dp-B6-nhM" firstAttribute="centerX" secondItem="u29-kK-wwO" secondAttribute="centerX" id="2zV-7U-lcn"/>
-                            <constraint firstItem="1dp-B6-nhM" firstAttribute="centerY" secondItem="u29-kK-wwO" secondAttribute="centerY" id="iVI-Ny-n5V"/>
+                            <constraint firstItem="RIl-Bj-pH8" firstAttribute="leading" secondItem="O5N-fJ-wZv" secondAttribute="leading" id="KKj-2F-Fe6"/>
+                            <constraint firstItem="RIl-Bj-pH8" firstAttribute="trailing" secondItem="O5N-fJ-wZv" secondAttribute="trailing" id="b1g-4Q-hok"/>
+                            <constraint firstItem="RIl-Bj-pH8" firstAttribute="bottom" secondItem="O5N-fJ-wZv" secondAttribute="bottom" id="dPc-d5-2wn"/>
+                            <constraint firstItem="RIl-Bj-pH8" firstAttribute="top" secondItem="u29-kK-wwO" secondAttribute="top" id="vGq-6c-vhB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O5N-fJ-wZv"/>
                     </view>
                     <connections>
-                        <outlet property="emojiDescriptionLabel" destination="UY1-VC-a5S" id="ccc-bW-1qn"/>
+                        <outlet property="emojiDescriptionLabel" destination="Q7u-Wc-n52" id="t0K-sr-d51"/>
                         <outlet property="emojiGlyphLabel" destination="xPg-VP-y37" id="brk-GB-arB"/>
+                        <outlet property="emojiGroupLabel" destination="UY1-VC-a5S" id="yX0-k6-cBp"/>
                         <outlet property="emojiIndexLabel" destination="Adh-Fm-ImK" id="ruw-Fh-0Kh"/>
                         <outlet property="emojiTagsTextView" destination="fV3-tc-e9D" id="bCw-ZQ-3yl"/>
-                        <outlet property="popupView" destination="1dp-B6-nhM" id="pGd-NG-BLN"/>
+                        <outlet property="popupView" destination="RIl-Bj-pH8" id="Yil-ub-mg2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4My-Mb-uwM" userLabel="First Responder" sceneMemberID="firstResponder"/>

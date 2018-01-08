@@ -12,6 +12,7 @@ class EmojiDetailViewController: UIViewController {
     
     @IBOutlet weak var emojiIndexLabel: UILabel!
     @IBOutlet weak var emojiGlyphLabel: UILabel!
+    @IBOutlet weak var emojiGroupLabel: UILabel!
     @IBOutlet weak var emojiDescriptionLabel: UILabel!
     @IBOutlet weak var emojiTagsTextView: UITextView!
     @IBOutlet weak var popupView: UIView!
@@ -69,6 +70,7 @@ class EmojiDetailViewController: UIViewController {
         
         emojiIndexLabel.text = "# \(selectedEmojiGlyph.index)"
         emojiGlyphLabel.text = selectedEmojiGlyph.glyph
+        emojiGroupLabel.text = "\(selectedEmojiGlyph.group): \(selectedEmojiGlyph.subgroup)".capitalized
         emojiDescriptionLabel.text = selectedEmojiGlyph.description.capitalized
         
         var tagsString = ""
