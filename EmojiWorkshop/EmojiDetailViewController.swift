@@ -10,10 +10,21 @@ import UIKit
 
 class EmojiDetailViewController: UIViewController {
     
+    @IBOutlet weak var emojiIndexLabel: UILabel!
+    @IBOutlet weak var emojiGlyphLabel: UILabel!
+    @IBOutlet weak var emojiDescriptionLabel: UILabel!
+    @IBOutlet weak var emojiTagsTextView: UITextView!
+    
+    var selectedEmojiGlyph: EmojiGlyph!
+    
+    
     // Mark:- Actions
     
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func copyToPasteboard(_ sender: Any) {
     }
     
     // Mark:- Overrides
@@ -22,6 +33,7 @@ class EmojiDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        updateDetails()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,7 +41,7 @@ class EmojiDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // Mark: Initalization
+    // Mark:- Initalization
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -37,8 +49,30 @@ class EmojiDetailViewController: UIViewController {
         transitioningDelegate = self
     }
     
+    // Mark:- Helpers
+    
+    func updateDetails() {
+        guard let selectedEmojiGlyph = selectedEmojiGlyph else {
+            return
+        }
+        
+        emojiIndexLabel.text = "# \(selectedEmojiGlyph.index)"
+        emojiGlyphLabel.text = selectedEmojiGlyph.glyph
+        emojiDescriptionLabel.text = selectedEmojiGlyph.description
+        
+        var tagsString = ""
+        
+        for tag in selectedEmojiGlyph.tags {
+            tagsString += "\(tag) "
+        }
+        
+        emojiTagsTextView.text = tagsString
+    }
+    
     
 }
+
+// Mark:- Extentions
 
 extension EmojiDetailViewController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController,

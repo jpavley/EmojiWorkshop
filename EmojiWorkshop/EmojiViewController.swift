@@ -224,26 +224,44 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            let detailViewController = segue.destination as! EmojiDetailViewController
+            let indexPath = sender as! IndexPath
+            detailViewController.selectedEmojiGlyph = getSelectedEmojiGlyph(for: indexPath)
+        }
+    }
+    
+    fileprivate func getSelectedEmojiGlyph(for indexPath: IndexPath) -> EmojiGlyph? {
         
-        if let emojiCollection = emojiCollection {
-                        
-            if userMode == .textSearching {
-                
-                let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
-                updateToolbar(with: filteredEmojiGlyph)
-            } else {
-                
-                let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
-                updateToolbar(with: currentEmojiGlyph)
-            }
+        guard let emojiCollection = emojiCollection else {
+            return nil
         }
         
+        if userMode == .textSearching {
+            return emojiCollection.filteredEmojiGlyphs[indexPath.row]
+        } else {
+            return emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+//        if let emojiCollection = emojiCollection {
+//
+//            if userMode == .textSearching {
+//
+//                let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
+//                updateToolbar(with: filteredEmojiGlyph)
+//            } else {
+//
+//                let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
+//                updateToolbar(with: currentEmojiGlyph)
+//            }
+//        }
+        
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        // NOTE: Temporarily place this code here
         performSegue(withIdentifier: "ShowDetail", sender: indexPath)
-        
         hideKeyboard()
         enableCancelButton()
     }
