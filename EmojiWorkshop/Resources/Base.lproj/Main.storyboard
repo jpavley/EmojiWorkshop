@@ -114,7 +114,7 @@
                                         <rect key="frame" x="238" y="416" width="36" height="30"/>
                                         <state key="normal" title="Copy"/>
                                         <connections>
-                                            <action selector="copyToPasteboard:" destination="p3k-EE-OkW" eventType="touchUpInside" id="yXp-Q5-BL3"/>
+                                            <action selector="copyToToolbar:" destination="p3k-EE-OkW" eventType="touchUpInside" id="NpB-Ff-6s3"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#576" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Adh-Fm-ImK" userLabel="Emoji Index Label">

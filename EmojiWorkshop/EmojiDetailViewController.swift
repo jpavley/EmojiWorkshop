@@ -25,7 +25,10 @@ class EmojiDetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func copyToPasteboard(_ sender: Any) {
+    @IBAction func copyToToolbar(_ sender: Any) {
+        // TODO: Figure out how to implement this feature
+        // Problem: The local clipboard and toolbar are members of the main view controller.
+        // I need some way to either access them or signal the main VC to handle it.
     }
     
     // Mark:- Overrides
@@ -85,6 +88,8 @@ class EmojiDetailViewController: UIViewController {
 extension EmojiDetailViewController: UIViewControllerTransitioningDelegate {
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        
+        // print("presenting \(presenting?.description), presented \(presented.description)")
         
         return EmojiDimmingPresentationController(presentedViewController: presented,
                                                   presenting: presenting)

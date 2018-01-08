@@ -266,7 +266,8 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         enableCancelButton()
     }
     
-    fileprivate func updateToolbar(with emojiGlyph: EmojiGlyph) {
+    // Need to call this from the detail view controller
+    func updateToolbar(with emojiGlyph: EmojiGlyph) {
         localPasteboard += "\(emojiGlyph.glyph)"
         clipboardItem.title = localPasteboard
 
