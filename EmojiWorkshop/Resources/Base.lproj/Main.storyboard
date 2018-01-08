@@ -95,10 +95,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dp-B6-nhM" userLabel="Form View">
-                                        <rect key="frame" x="16" y="140.5" width="288" height="287"/>
+                                        <rect key="frame" x="16" y="150" width="288" height="287"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ET6-8Z-JbM">
-                                                <rect key="frame" x="14" y="96" width="260" height="189.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ET6-8Z-JbM">
+                                                <rect key="frame" x="14" y="102" width="260" height="181.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="Q7u-Wc-n52" userLabel="Emoji Description Label">
                                                         <rect key="frame" x="0.0" y="0.0" width="260" height="20.5"/>
@@ -111,7 +111,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#576" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adh-Fm-ImK" userLabel="Emoji Index Label">
-                                                        <rect key="frame" x="0.0" y="28.5" width="260" height="18"/>
+                                                        <rect key="frame" x="0.0" y="26.5" width="260" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="18" id="44b-c0-azq"/>
                                                             <constraint firstAttribute="width" constant="260" id="qc8-Kw-vjU"/>
@@ -121,7 +121,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group: Subgroup" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UY1-VC-a5S" userLabel="Emoji Group Label">
-                                                        <rect key="frame" x="0.0" y="54.5" width="260" height="18"/>
+                                                        <rect key="frame" x="0.0" y="50.5" width="260" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="260" id="BMM-Cv-VlW"/>
                                                             <constraint firstAttribute="height" constant="18" id="o0C-rQ-M56"/>
@@ -131,7 +131,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="tag tag tag tag tag tag tag tag tag tag tag tag tag" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV3-tc-e9D" userLabel="Tag Text View">
-                                                        <rect key="frame" x="0.0" y="80.5" width="260" height="71"/>
+                                                        <rect key="frame" x="0.0" y="74.5" width="260" height="71"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="71" id="gt7-ZC-1Ti"/>
@@ -142,7 +142,7 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Iqa-7I-GSv">
-                                                        <rect key="frame" x="0.0" y="159.5" width="260" height="30"/>
+                                                        <rect key="frame" x="0.0" y="151.5" width="260" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRn-Ty-HSJ" userLabel="Close Button">
                                                                 <rect key="frame" x="0.0" y="0.0" width="39" height="30"/>
@@ -173,7 +173,7 @@
                                             <constraint firstItem="ET6-8Z-JbM" firstAttribute="leading" secondItem="1dp-B6-nhM" secondAttribute="leading" constant="14" id="Ebe-NM-CGs"/>
                                             <constraint firstAttribute="trailing" secondItem="ET6-8Z-JbM" secondAttribute="trailing" constant="14" id="Guo-gP-sz3"/>
                                             <constraint firstAttribute="width" constant="288" id="IlV-gP-YFr"/>
-                                            <constraint firstItem="ET6-8Z-JbM" firstAttribute="top" secondItem="1dp-B6-nhM" secondAttribute="top" constant="96" id="pmN-ef-FGc"/>
+                                            <constraint firstItem="ET6-8Z-JbM" firstAttribute="top" secondItem="1dp-B6-nhM" secondAttribute="top" constant="102" id="pmN-ef-FGc"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPg-VP-y37" userLabel="Emoji Label">
@@ -185,12 +185,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="200"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="4"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="1dp-B6-nhM" firstAttribute="top" secondItem="RIl-Bj-pH8" secondAttribute="top" constant="140.5" id="7YX-l8-Koa"/>
-                                    <constraint firstAttribute="bottom" secondItem="1dp-B6-nhM" secondAttribute="bottom" constant="140.5" id="Awi-Gb-X0g"/>
+                                    <constraint firstItem="1dp-B6-nhM" firstAttribute="top" secondItem="RIl-Bj-pH8" secondAttribute="top" constant="150" id="7YX-l8-Koa"/>
                                     <constraint firstItem="xPg-VP-y37" firstAttribute="top" secondItem="RIl-Bj-pH8" secondAttribute="top" constant="22.5" id="EYx-W1-vaG"/>
                                     <constraint firstAttribute="height" constant="568" id="FSb-QJ-Wd2"/>
                                     <constraint firstAttribute="bottom" secondItem="xPg-VP-y37" secondAttribute="bottom" constant="306.5" id="UIo-7W-1nV"/>
@@ -213,7 +214,7 @@
                         <outlet property="emojiGroupLabel" destination="UY1-VC-a5S" id="yX0-k6-cBp"/>
                         <outlet property="emojiIndexLabel" destination="Adh-Fm-ImK" id="ruw-Fh-0Kh"/>
                         <outlet property="emojiTagsTextView" destination="fV3-tc-e9D" id="bCw-ZQ-3yl"/>
-                        <outlet property="popupView" destination="RIl-Bj-pH8" id="Yil-ub-mg2"/>
+                        <outlet property="formView" destination="1dp-B6-nhM" id="L0P-jq-8aS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4My-Mb-uwM" userLabel="First Responder" sceneMemberID="firstResponder"/>

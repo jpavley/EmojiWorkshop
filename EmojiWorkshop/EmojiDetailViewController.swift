@@ -15,7 +15,7 @@ class EmojiDetailViewController: UIViewController {
     @IBOutlet weak var emojiGroupLabel: UILabel!
     @IBOutlet weak var emojiDescriptionLabel: UILabel!
     @IBOutlet weak var emojiTagsTextView: UITextView!
-    @IBOutlet weak var popupView: UIView!
+    @IBOutlet weak var formView: UIView!
     
     var selectedEmojiGlyph: EmojiGlyph!
     
@@ -38,7 +38,7 @@ class EmojiDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        popupView.layer.cornerRadius = 12
+        formView.layer.cornerRadius = 12
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
         gestureRecognizer.cancelsTouchesInView = false
