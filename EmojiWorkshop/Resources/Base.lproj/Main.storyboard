@@ -215,6 +215,7 @@
                         <outlet property="emojiIndexLabel" destination="Adh-Fm-ImK" id="ruw-Fh-0Kh"/>
                         <outlet property="emojiTagsTextView" destination="fV3-tc-e9D" id="bCw-ZQ-3yl"/>
                         <outlet property="formView" destination="1dp-B6-nhM" id="L0P-jq-8aS"/>
+                        <outlet property="popupView" destination="RIl-Bj-pH8" id="7lI-zJ-KbE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4My-Mb-uwM" userLabel="First Responder" sceneMemberID="firstResponder"/>

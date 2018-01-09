@@ -16,6 +16,7 @@ class EmojiDetailViewController: UIViewController {
     @IBOutlet weak var emojiDescriptionLabel: UILabel!
     @IBOutlet weak var emojiTagsTextView: UITextView!
     @IBOutlet weak var formView: UIView!
+    @IBOutlet weak var popupView: UIView!
     
     var selectedEmojiGlyph: EmojiGlyph!
     
@@ -43,7 +44,7 @@ class EmojiDetailViewController: UIViewController {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
         gestureRecognizer.cancelsTouchesInView = false
         gestureRecognizer.delegate = self
-        view.addGestureRecognizer(gestureRecognizer)
+        popupView.addGestureRecognizer(gestureRecognizer)
         
         updateDetails()
     }
@@ -101,8 +102,8 @@ extension EmojiDetailViewController: UIViewControllerTransitioningDelegate {
 extension EmojiDetailViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        
-        return (touch.view === self.view)
+        // return true to dismiss the detail view
+        return touch.view === popupView
     }
 }
 
