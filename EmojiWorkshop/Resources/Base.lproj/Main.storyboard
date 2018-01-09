@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Emoji View Controller-->
+        <!--Main-->
         <scene sceneID="c9A-R4-tfy">
             <objects>
-                <viewController id="pBK-51-tgh" customClass="EmojiViewController" customModule="EmojiWorkshop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pBK-51-tgh" userLabel="Main" customClass="EmojiViewController" customModule="Emoji_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dQ5-xV-YNT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,11 +76,151 @@
                         <outlet property="clipboardItem" destination="VGA-bk-r3d" id="b9H-FN-Sde"/>
                         <outlet property="emojiGlyphTable" destination="5tU-hG-qXa" id="Oap-eI-G0Y"/>
                         <outlet property="emojiSearchBar" destination="nQy-Hw-LAh" id="NdP-Un-vzW"/>
+                        <segue destination="p3k-EE-OkW" kind="showDetail" identifier="ShowDetail" id="tIj-3M-AMf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOX-uy-ltv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="360" y="120.4225352112676"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="WO1-1z-dnj">
+            <objects>
+                <viewController id="p3k-EE-OkW" userLabel="Detail" customClass="EmojiDetailViewController" customModule="Emoji_Spy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u29-kK-wwO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIl-Bj-pH8" userLabel="Popup View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dp-B6-nhM" userLabel="Form View">
+                                        <rect key="frame" x="16" y="150" width="288" height="287"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ET6-8Z-JbM">
+                                                <rect key="frame" x="14" y="102" width="260" height="181.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="Q7u-Wc-n52" userLabel="Emoji Description Label">
+                                                        <rect key="frame" x="0.0" y="0.0" width="260" height="20.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="260" id="QxT-Ci-eae"/>
+                                                            <constraint firstAttribute="height" constant="20.5" id="zNK-cL-QR1"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#576" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adh-Fm-ImK" userLabel="Emoji Index Label">
+                                                        <rect key="frame" x="0.0" y="26.5" width="260" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="18" id="44b-c0-azq"/>
+                                                            <constraint firstAttribute="width" constant="260" id="qc8-Kw-vjU"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group: Subgroup" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UY1-VC-a5S" userLabel="Emoji Group Label">
+                                                        <rect key="frame" x="0.0" y="50.5" width="260" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="260" id="BMM-Cv-VlW"/>
+                                                            <constraint firstAttribute="height" constant="18" id="o0C-rQ-M56"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="tag tag tag tag tag tag tag tag tag tag tag tag tag" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV3-tc-e9D" userLabel="Tag Text View">
+                                                        <rect key="frame" x="0.0" y="74.5" width="260" height="71"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="71" id="gt7-ZC-1Ti"/>
+                                                            <constraint firstAttribute="width" constant="260" id="iCh-Ig-E8z"/>
+                                                        </constraints>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Iqa-7I-GSv">
+                                                        <rect key="frame" x="0.0" y="151.5" width="260" height="30"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRn-Ty-HSJ" userLabel="Close Button">
+                                                                <rect key="frame" x="0.0" y="0.0" width="39" height="30"/>
+                                                                <state key="normal" title="Close"/>
+                                                                <connections>
+                                                                    <action selector="close:" destination="p3k-EE-OkW" eventType="touchUpInside" id="0qK-Em-fkL"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iiz-Ol-uVl">
+                                                                <rect key="frame" x="224" y="0.0" width="36" height="30"/>
+                                                                <state key="normal" title="Copy"/>
+                                                                <connections>
+                                                                    <action selector="copyToToolbar:" destination="p3k-EE-OkW" eventType="touchUpInside" id="NpB-Ff-6s3"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="Iqa-7I-GSv" firstAttribute="leading" secondItem="ET6-8Z-JbM" secondAttribute="leading" id="430-um-Qjw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Iqa-7I-GSv" secondAttribute="trailing" id="qqZ-pZ-B1U"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="287" id="2KG-GJ-M1i"/>
+                                            <constraint firstItem="ET6-8Z-JbM" firstAttribute="leading" secondItem="1dp-B6-nhM" secondAttribute="leading" constant="14" id="Ebe-NM-CGs"/>
+                                            <constraint firstAttribute="trailing" secondItem="ET6-8Z-JbM" secondAttribute="trailing" constant="14" id="Guo-gP-sz3"/>
+                                            <constraint firstAttribute="width" constant="288" id="IlV-gP-YFr"/>
+                                            <constraint firstItem="ET6-8Z-JbM" firstAttribute="top" secondItem="1dp-B6-nhM" secondAttribute="top" constant="102" id="pmN-ef-FGc"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPg-VP-y37" userLabel="Emoji Label">
+                                        <rect key="frame" x="30" y="22.5" width="260" height="239"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="239" id="X9c-u3-R1Y"/>
+                                            <constraint firstAttribute="width" constant="260" id="iHu-oq-crg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="200"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="4"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="1dp-B6-nhM" firstAttribute="top" secondItem="RIl-Bj-pH8" secondAttribute="top" constant="150" id="7YX-l8-Koa"/>
+                                    <constraint firstItem="xPg-VP-y37" firstAttribute="top" secondItem="RIl-Bj-pH8" secondAttribute="top" constant="22.5" id="EYx-W1-vaG"/>
+                                    <constraint firstAttribute="height" constant="568" id="FSb-QJ-Wd2"/>
+                                    <constraint firstAttribute="bottom" secondItem="xPg-VP-y37" secondAttribute="bottom" constant="306.5" id="UIo-7W-1nV"/>
+                                    <constraint firstAttribute="width" constant="320" id="W3P-Ml-oWO"/>
+                                    <constraint firstItem="xPg-VP-y37" firstAttribute="centerX" secondItem="RIl-Bj-pH8" secondAttribute="centerX" id="ruD-A2-Qgv"/>
+                                    <constraint firstItem="1dp-B6-nhM" firstAttribute="centerX" secondItem="RIl-Bj-pH8" secondAttribute="centerX" id="t9V-H4-nqc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RIl-Bj-pH8" firstAttribute="centerY" secondItem="u29-kK-wwO" secondAttribute="centerY" id="Wqz-0n-o10"/>
+                            <constraint firstItem="RIl-Bj-pH8" firstAttribute="centerX" secondItem="u29-kK-wwO" secondAttribute="centerX" id="aHc-iE-jYr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="O5N-fJ-wZv"/>
+                    </view>
+                    <connections>
+                        <outlet property="emojiDescriptionLabel" destination="Q7u-Wc-n52" id="t0K-sr-d51"/>
+                        <outlet property="emojiGlyphLabel" destination="xPg-VP-y37" id="brk-GB-arB"/>
+                        <outlet property="emojiGroupLabel" destination="UY1-VC-a5S" id="yX0-k6-cBp"/>
+                        <outlet property="emojiIndexLabel" destination="Adh-Fm-ImK" id="ruw-Fh-0Kh"/>
+                        <outlet property="emojiTagsTextView" destination="fV3-tc-e9D" id="bCw-ZQ-3yl"/>
+                        <outlet property="formView" destination="1dp-B6-nhM" id="L0P-jq-8aS"/>
+                        <outlet property="popupView" destination="RIl-Bj-pH8" id="7lI-zJ-KbE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4My-Mb-uwM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1246.875" y="119.36619718309859"/>
         </scene>
     </scenes>
 </document>
