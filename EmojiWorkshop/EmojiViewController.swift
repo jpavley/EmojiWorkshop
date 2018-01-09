@@ -108,7 +108,10 @@ class EmojiViewController: UIViewController {
         
         let cellNib = UINib(nibName: Identifiers.smallEmojiCell, bundle: nil)
         emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
-        emojiGlyphTable.rowHeight = 80
+        //emojiGlyphTable.rowHeight = 80
+        emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
+        emojiGlyphTable.estimatedRowHeight = 300
+
         
         // searchbar setup
         updateUserMode(newMode: .browsing)
@@ -297,9 +300,9 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.smallEmojiCell) as! SmallEmojiTableViewCell
         
         cell.emojiLabel.text = emojiGlyph.glyph
-        cell.descriptionLabel.text = emojiGlyph.description
+        cell.descriptionLabel.text = emojiGlyph.description.capitalized
         cell.priorityLabel.text = "# \(emojiGlyph.index)"
-        cell.tagLabel.text = emojiGlyph.tags.joined(separator: " ")
+        cell.tagLabel.text = emojiGlyph.tags.joined(separator: " ").capitalized.trimmingCharacters(in: .whitespaces)
         
         return cell
     }
