@@ -38,6 +38,7 @@ class EmojiViewController: UIViewController {
     var localPasteboard = ""
     var userMode = UserMode.browsing
     var searchBarText = ""
+    var selectedIndexPath: IndexPath?
     
     // MARK:- Outlets
     
@@ -118,6 +119,13 @@ class EmojiViewController: UIViewController {
         clipboardItem.title = ""
         localPasteboard = ""
         
+        // Notification
+        
+        // allow detail view controller to add the selected emoji to the tool bar if the user touches copy
+        NotificationCenter.default.addObserver(self, selector: #selector(updateToolbar), name: NSNotification.Name(rawValue: "updateToolbar"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enableCancelButton), name: NSNotification.Name(rawValue: "enableCancelButton"), object: nil)
+
+
         // diagnostics
         // printCVS(emojiGlyphs: emojiCollection!.emojiGlyphs)
     }
@@ -126,7 +134,6 @@ class EmojiViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
 
 // MARK:- UISearchBarDelegate extension
@@ -209,9 +216,11 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         emojiSearchBar.resignFirstResponder()
     }
     
-    fileprivate func enableCancelButton() {
-        let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
-        cancelButton.isEnabled = true
+    @objc func enableCancelButton() {
+        if userMode == .textSearching {
+            let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+            cancelButton.isEnabled = true
+        }
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -247,30 +256,21 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        if let emojiCollection = emojiCollection {
-//
-//            if userMode == .textSearching {
-//
-//                let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
-//                updateToolbar(with: filteredEmojiGlyph)
-//            } else {
-//
-//                let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
-//                updateToolbar(with: currentEmojiGlyph)
-//            }
-//        }
-        
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+        
+        // Save the indexPath so that if the user wants to copy the selected emoji to the toolbar we can find it later
+        selectedIndexPath = indexPath
+        
         hideKeyboard()
-        enableCancelButton()
+        performSegue(withIdentifier: "ShowDetail", sender: indexPath)
     }
     
-    // Need to call this from the detail view controller
-    func updateToolbar(with emojiGlyph: EmojiGlyph) {
-        localPasteboard += "\(emojiGlyph.glyph)"
-        clipboardItem.title = localPasteboard
-
+    // This function is only called by the detail view controller via a notification
+    @objc func updateToolbar() {
+        if let selectedIndexPath = selectedIndexPath, let selectedGlyph = getSelectedEmojiGlyph(for: selectedIndexPath)?.glyph {
+            localPasteboard += "\(selectedGlyph)"
+            clipboardItem.title = localPasteboard
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

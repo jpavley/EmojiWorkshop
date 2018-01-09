@@ -25,12 +25,17 @@ class EmojiDetailViewController: UIViewController {
     
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableCancelButton"), object: nil)
     }
     
     @IBAction func copyToToolbar(_ sender: Any) {
         // TODO: Figure out how to implement this feature
         // Problem: The local clipboard and toolbar are members of the main view controller.
         // I need some way to either access them or signal the main VC to handle it.
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateToolbar"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableCancelButton"), object: nil)
+
+        dismiss(animated: true, completion: nil)
     }
     
     // Mark:- Overrides
