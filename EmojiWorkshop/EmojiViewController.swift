@@ -105,13 +105,15 @@ class EmojiViewController: UIViewController {
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
         emojiGlyphTable.contentInset = insets
         
-        emojiGlyphTable.estimatedSectionHeaderHeight = 60
-        emojiGlyphTable.sectionHeaderHeight = UITableViewAutomaticDimension
+        // section header setup
+        let sectionNib = UINib(nibName: Identifiers.emojiSectionHeader, bundle: nil)
+        emojiGlyphTable.register(sectionNib, forHeaderFooterViewReuseIdentifier: Identifiers.emojiSectionHeader)
+        emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
+        emojiGlyphTable.estimatedSectionHeaderHeight = 40
         
         // cell nib setup
         let cellNib = UINib(nibName: Identifiers.smallEmojiCell, bundle: nil)
         emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
-        //emojiGlyphTable.rowHeight = 80
         emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
         emojiGlyphTable.estimatedRowHeight = 300
         
@@ -334,11 +336,17 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return headerLabelText
     }
-        
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//
-//    }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        // Dequeue with the reuse identifier
+        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: Identifiers.emojiSectionHeader)
+        let header = cell as! EmojiSectionHeader
+        header.titleLabel.text = getHeaderLabelText(for: section)
+        
+        return cell
+    }
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -355,20 +363,6 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         return 0
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        if let emojiCollection = emojiCollection {
-
-            if userMode == .textSearching {
-                return "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
-            } else {
-                return "\(emojiCollection.sectionNames[section]) \(emojiCollection.glyphsIDsInSections[section].count)"
-            }
-        }
-
-        return ""
     }
 }
 
