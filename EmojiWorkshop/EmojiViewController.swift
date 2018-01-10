@@ -29,6 +29,7 @@ class EmojiViewController: UIViewController {
     struct Identifiers {
         static let emojiGlyphCell = "EmojiGlyphCell"
         static let smallEmojiCell = "SmallEmojiTableCell"
+        static let emojiSectionHeader = "EmojiSectionHeader"
         static let emojiTest5 = "emoji-test-5.0"
     }
     
@@ -104,30 +105,29 @@ class EmojiViewController: UIViewController {
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
         emojiGlyphTable.contentInset = insets
         
-        // cell nib setup
+        // section header setup
+        let sectionNib = UINib(nibName: Identifiers.emojiSectionHeader, bundle: nil)
+        emojiGlyphTable.register(sectionNib, forHeaderFooterViewReuseIdentifier: Identifiers.emojiSectionHeader)
+        emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
+        emojiGlyphTable.estimatedSectionHeaderHeight = 40
         
+        // cell nib setup
         let cellNib = UINib(nibName: Identifiers.smallEmojiCell, bundle: nil)
         emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
-        //emojiGlyphTable.rowHeight = 80
         emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
         emojiGlyphTable.estimatedRowHeight = 300
-
         
         // searchbar setup
         updateUserMode(newMode: .browsing)
         searchBarText = ""
         
         // toolbar setup
-        
         clipboardItem.title = ""
         localPasteboard = ""
         
         // Notification
-        
-        // allow detail view controller to add the selected emoji to the tool bar if the user touches copy
         NotificationCenter.default.addObserver(self, selector: #selector(updateToolbar), name: NSNotification.Name(rawValue: "updateToolbar"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(enableCancelButton), name: NSNotification.Name(rawValue: "enableCancelButton"), object: nil)
-
 
         // diagnostics
         // printCVS(emojiGlyphs: emojiCollection!.emojiGlyphs)
@@ -322,10 +322,35 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         return 0
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 35
+    fileprivate func getHeaderLabelText(for section: Int) -> String {
+        
+        var headerLabelText = ""
+        
+        if let emojiCollection = emojiCollection {
+            
+            if userMode == .textSearching {
+                headerLabelText = "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
+            } else {
+                headerLabelText = "\(emojiCollection.sectionNames[section]) (\(emojiCollection.glyphsIDsInSections[section].count))"
+            }
+        }
+        return headerLabelText
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        // Dequeue with the reuse identifier
+        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: Identifiers.emojiSectionHeader)
+        let header = cell as! EmojiSectionHeader
+        header.titleLabel.text = getHeaderLabelText(for: section)
+        
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let emojiCollection = emojiCollection {
@@ -338,20 +363,6 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         return 0
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        if let emojiCollection = emojiCollection {
-            
-            if userMode == .textSearching {
-                return "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
-            } else {
-                return "\(emojiCollection.sectionNames[section]) \(emojiCollection.glyphsIDsInSections[section].count)"
-            }
-        }
-
-        return ""
     }
 }
 
