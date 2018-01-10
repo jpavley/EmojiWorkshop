@@ -76,16 +76,8 @@ class EmojiDetailViewController: UIViewController {
         emojiGroupLabel.text = "\(selectedEmojiGlyph.group): \(selectedEmojiGlyph.subgroup)".capitalized
         emojiDescriptionLabel.text = selectedEmojiGlyph.description.capitalized
         
-        var tagsString = ""
-        
-        for tag in selectedEmojiGlyph.tags {
-            tagsString += "\(tag) "
-        }
-        
-        emojiTagsLabel.text = tagsString
+        emojiTagsLabel.text = selectedEmojiGlyph.tags.joined(separator: " ").capitalized.trimmingCharacters(in: .whitespaces)
     }
-    
-    
 }
 
 // Mark:- Extentions
