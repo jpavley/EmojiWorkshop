@@ -331,7 +331,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             if userMode == .textSearching {
                 headerLabelText = "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
             } else {
-                headerLabelText = "\(emojiCollection.sectionNames[section]) \(emojiCollection.glyphsIDsInSections[section].count)"
+                headerLabelText = "\(emojiCollection.sectionNames[section]) (\(emojiCollection.glyphsIDsInSections[section].count))"
             }
         }
         return headerLabelText
