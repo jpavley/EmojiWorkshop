@@ -46,6 +46,8 @@ class EmojiViewController: UIViewController {
     @IBOutlet weak var emojiGlyphTable: UITableView!
     @IBOutlet weak var emojiSearchBar: UISearchBar!
     @IBOutlet weak var clipboardItem: UIBarButtonItem!
+    @IBOutlet weak var deleteItem: UIBarButtonItem!
+    @IBOutlet weak var shareItem: UIBarButtonItem!
     
     // MARK:- Actions
     
@@ -66,6 +68,7 @@ class EmojiViewController: UIViewController {
         let indexEndOfText = localPasteboard.index(localPasteboard.endIndex, offsetBy: -1)
         localPasteboard = String(localPasteboard[..<indexEndOfText])
         clipboardItem.title = localPasteboard
+        enableToolbarButtons()
     }
     
     // MARK:- Utility functions
@@ -119,7 +122,8 @@ class EmojiViewController: UIViewController {
         // toolbar setup
         clipboardItem.title = ""
         localPasteboard = ""
-        
+        enableToolbarButtons()
+
         // Notification
         NotificationCenter.default.addObserver(self, selector: #selector(updateToolbar), name: NSNotification.Name(rawValue: "updateToolbar"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(enableCancelButton), name: NSNotification.Name(rawValue: "enableCancelButton"), object: nil)
@@ -263,12 +267,18 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "ShowDetail", sender: indexPath)
     }
     
+    fileprivate func enableToolbarButtons() {
+        deleteItem.isEnabled = localPasteboard.count >= 1
+        shareItem.isEnabled = localPasteboard.count >= 1
+    }
+    
     // This function is only called by the detail view controller via a notification
     @objc func updateToolbar() {
         if let selectedIndexPath = selectedIndexPath, let selectedGlyph = getSelectedEmojiGlyph(for: selectedIndexPath)?.glyph {
             localPasteboard += "\(selectedGlyph)"
             clipboardItem.title = localPasteboard
         }
+        enableToolbarButtons()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
