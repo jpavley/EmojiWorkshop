@@ -77,19 +77,14 @@ class EmojiViewController: UIViewController {
     fileprivate func updateUserMode(newMode: UserMode) {
         
         userMode = newMode
-        emojiSearchBar.selectedScopeButtonIndex = userMode.rawValue
+        emojiGlyphTable.allowsSelection = true
 
         switch userMode {
             
         case .browsing:
-            emojiGlyphTable.allowsSelection = true
             emojiSearchBar.resignFirstResponder()
-
-            
         case .textSearching:
-            emojiGlyphTable.allowsSelection = true
             emojiSearchBar.becomeFirstResponder()
-            
         }
     }
     
