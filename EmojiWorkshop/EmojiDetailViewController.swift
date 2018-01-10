@@ -14,7 +14,7 @@ class EmojiDetailViewController: UIViewController {
     @IBOutlet weak var emojiGlyphLabel: UILabel!
     @IBOutlet weak var emojiGroupLabel: UILabel!
     @IBOutlet weak var emojiDescriptionLabel: UILabel!
-    @IBOutlet weak var emojiTagsTextView: UITextView!
+    @IBOutlet weak var emojiTagsLabel: UILabel!
     @IBOutlet weak var formView: UIView!
     @IBOutlet weak var popupView: UIView!
     
@@ -85,7 +85,7 @@ class EmojiDetailViewController: UIViewController {
             tagsString += "\(tag) "
         }
         
-        emojiTagsTextView.text = tagsString
+        emojiTagsLabel.text = tagsString
     }
     
     
