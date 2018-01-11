@@ -84,7 +84,7 @@ class EmojiViewController: UIViewController {
     }
     
     @objc func enableCancelButton() {
-        if userMode == .textSearching {
+        if userMode == .textSearching && !emojiSearchBar.text!.isEmpty {
             let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
             cancelButton.isEnabled = true
         }
@@ -248,6 +248,8 @@ extension EmojiViewController: UISearchBarDelegate {
             search()
         }
         
+        hideKeyboard()
+        enableCancelButton()
         emojiGlyphTable.reloadData()
     }
 
