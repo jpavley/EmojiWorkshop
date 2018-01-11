@@ -75,8 +75,10 @@ class EmojiViewController: UIViewController {
     
     @objc func updateToolbar() {
         if let selectedIndexPath = selectedIndexPath, let selectedGlyph = getSelectedEmojiGlyph(for: selectedIndexPath)?.glyph {
-            localPasteboard += "\(selectedGlyph)"
-            clipboardItem.title = localPasteboard
+            if clipboardItem.title!.count < 12 {
+                localPasteboard += "\(selectedGlyph)"
+                clipboardItem.title = localPasteboard
+            }
         }
         enableToolbarButtons()
     }
