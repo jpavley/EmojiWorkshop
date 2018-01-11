@@ -46,6 +46,8 @@ class EmojiViewController: UIViewController {
     @IBOutlet weak var emojiGlyphTable: UITableView!
     @IBOutlet weak var emojiSearchBar: UISearchBar!
     @IBOutlet weak var clipboardItem: UIBarButtonItem!
+    @IBOutlet weak var deleteItem: UIBarButtonItem!
+    @IBOutlet weak var shareItem: UIBarButtonItem!
     
     // MARK:- Actions
     
@@ -66,7 +68,28 @@ class EmojiViewController: UIViewController {
         let indexEndOfText = localPasteboard.index(localPasteboard.endIndex, offsetBy: -1)
         localPasteboard = String(localPasteboard[..<indexEndOfText])
         clipboardItem.title = localPasteboard
+        enableToolbarButtons()
     }
+    
+    // MARK:- Notification functions
+    
+    @objc func updateToolbar() {
+        if let selectedIndexPath = selectedIndexPath, let selectedGlyph = getSelectedEmojiGlyph(for: selectedIndexPath)?.glyph {
+            if clipboardItem.title!.count < 12 {
+                localPasteboard += "\(selectedGlyph)"
+                clipboardItem.title = localPasteboard
+            }
+        }
+        enableToolbarButtons()
+    }
+    
+    @objc func enableCancelButton() {
+        if userMode == .textSearching {
+            let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+            cancelButton.isEnabled = true
+        }
+    }
+
     
     // MARK:- Utility functions
     
@@ -77,57 +100,124 @@ class EmojiViewController: UIViewController {
     fileprivate func updateUserMode(newMode: UserMode) {
         
         userMode = newMode
-        emojiSearchBar.selectedScopeButtonIndex = userMode.rawValue
+        emojiGlyphTable.allowsSelection = true
 
         switch userMode {
             
         case .browsing:
-            emojiGlyphTable.allowsSelection = true
             emojiSearchBar.resignFirstResponder()
-
-            
         case .textSearching:
-            emojiGlyphTable.allowsSelection = true
             emojiSearchBar.becomeFirstResponder()
-            
         }
     }
     
-    // MARK:- Overrides
+    fileprivate func hideKeyboard() {
+        emojiSearchBar.resignFirstResponder()
+    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    fileprivate func getSelectedEmojiGlyph(for indexPath: IndexPath) -> EmojiGlyph? {
+        guard let emojiCollection = emojiCollection else {
+            return nil
+        }
         
-        emojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
+        if userMode == .textSearching {
+            return emojiCollection.filteredEmojiGlyphs[indexPath.row]
+        } else {
+            return emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
+        }
+    }
+    
+    fileprivate func enableToolbarButtons() {
+        deleteItem.isEnabled = localPasteboard.count >= 1
+        shareItem.isEnabled = localPasteboard.count >= 1
+    }
+    
+    fileprivate func updateSmallCell(with emojiGlyph: EmojiGlyph) ->  SmallEmojiTableViewCell {
+        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.smallEmojiCell) as! SmallEmojiTableViewCell
         
-        // tableview setup
+        cell.emojiLabel.text = emojiGlyph.glyph
+        cell.descriptionLabel.text = emojiGlyph.description.capitalized
+        cell.priorityLabel.text = "# \(emojiGlyph.index)"
+        cell.tagLabel.text = emojiGlyph.tags.joined(separator: " ").capitalized.trimmingCharacters(in: .whitespaces)
+        
+        return cell
+    }
+    
+    fileprivate func getHeaderLabelText(for section: Int) -> String {
+        var headerLabelText = ""
+        
+        if let emojiCollection = emojiCollection {
+            
+            if userMode == .textSearching {
+                headerLabelText = "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
+            } else {
+                headerLabelText = "\(emojiCollection.sectionNames[section]) (\(emojiCollection.glyphsIDsInSections[section].count))"
+            }
+        }
+        return headerLabelText
+    }
+    
+    fileprivate func setupTableView() {
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
         emojiGlyphTable.contentInset = insets
-        
+    }
+    
+    fileprivate func setupSectionHeader() {
         // section header setup
         let sectionNib = UINib(nibName: Identifiers.emojiSectionHeader, bundle: nil)
         emojiGlyphTable.register(sectionNib, forHeaderFooterViewReuseIdentifier: Identifiers.emojiSectionHeader)
         emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
         emojiGlyphTable.estimatedSectionHeaderHeight = 40
-        
-        // cell nib setup
+    }
+    
+    fileprivate func setupCellNib() {
         let cellNib = UINib(nibName: Identifiers.smallEmojiCell, bundle: nil)
         emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
         emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
         emojiGlyphTable.estimatedRowHeight = 300
-        
-        // searchbar setup
+    }
+    
+    fileprivate func setupSearchbar() {
         updateUserMode(newMode: .browsing)
         searchBarText = ""
-        
-        // toolbar setup
+    }
+    
+    fileprivate func setupToolbar() {
         clipboardItem.title = ""
         localPasteboard = ""
-        
-        // Notification
+        enableToolbarButtons()
+    }
+    
+    fileprivate func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateToolbar), name: NSNotification.Name(rawValue: "updateToolbar"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(enableCancelButton), name: NSNotification.Name(rawValue: "enableCancelButton"), object: nil)
+    }
+    
+    fileprivate func search() {
+        guard let emojiCollection = emojiCollection else {
+            return
+        }
+        
+        let emojiSearch = EmojiSearch()
+        if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs, filter: .byTags, searchString: emojiSearchBar.text!) {
+            emojiCollection.filteredEmojiGlyphs = foundEmoji
+        }
+    }
+
+    
+    // MARK:- Overrides
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        emojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
+        
+        setupTableView()
+        setupSectionHeader()
+        setupCellNib()
+        setupSearchbar()
+        setupToolbar()
+        setupNotifications()
 
         // diagnostics
         // printCVS(emojiGlyphs: emojiCollection!.emojiGlyphs)
@@ -144,22 +234,23 @@ class EmojiViewController: UIViewController {
 extension EmojiViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        searchBarText = searchBar.text!
+        search()
+        emojiGlyphTable.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBarText = searchBar.text!
         
-        if let emojiCollection = emojiCollection {
-            
-            let emojiSearch = EmojiSearch()
-            if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs,
-                                                   filter: .byTags,
-                                                   searchString: searchBar.text!) {
-                
-                emojiCollection.filteredEmojiGlyphs = foundEmoji
-            }
+        if searchBar.text!.isEmpty {
+            updateUserMode(newMode: .browsing)
+        } else {
+            search()
         }
         
         emojiGlyphTable.reloadData()
     }
+
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         updateUserMode(newMode: .browsing)
@@ -182,49 +273,12 @@ extension EmojiViewController: UISearchBarDelegate {
         
         emojiGlyphTable.reloadData()
     }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // print("The search text is: \(searchBar.text!)")
-        
-        searchBarText = searchBar.text!
-        
-        if searchBar.text!.isEmpty {
-            
-            updateUserMode(newMode: .browsing)
-            
-        } else {
-            
-            if let emojiCollection = emojiCollection {
-                
-                let emojiSearch = EmojiSearch()
-                if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs,
-                                                       filter: .byTags,
-                                                       searchString: searchBar.text!) {
-                    
-                    emojiCollection.filteredEmojiGlyphs = foundEmoji
-                }
-            }
-        }
-        
-        emojiGlyphTable.reloadData()
-    }
 }
 
 // MARK:- UITableViewDelegate, UITableViewDataSource extention
 
 
 extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    fileprivate func hideKeyboard() {
-        emojiSearchBar.resignFirstResponder()
-    }
-    
-    @objc func enableCancelButton() {
-        if userMode == .textSearching {
-            let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
-            cancelButton.isEnabled = true
-        }
-    }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
@@ -244,19 +298,6 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    fileprivate func getSelectedEmojiGlyph(for indexPath: IndexPath) -> EmojiGlyph? {
-        
-        guard let emojiCollection = emojiCollection else {
-            return nil
-        }
-        
-        if userMode == .textSearching {
-            return emojiCollection.filteredEmojiGlyphs[indexPath.row]
-        } else {
-            return emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
-        }
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -268,45 +309,21 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "ShowDetail", sender: indexPath)
     }
     
-    // This function is only called by the detail view controller via a notification
-    @objc func updateToolbar() {
-        if let selectedIndexPath = selectedIndexPath, let selectedGlyph = getSelectedEmojiGlyph(for: selectedIndexPath)?.glyph {
-            localPasteboard += "\(selectedGlyph)"
-            clipboardItem.title = localPasteboard
-        }
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.smallEmojiCell, for: indexPath) as! SmallEmojiTableViewCell
-        
-        if let emojiCollection = emojiCollection {
-            
-            if emojiCollection.filteredEmojiGlyphs.count > 0 && userMode == .textSearching {
-                
-                let filteredEmojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
-                cell = updateSmallCell(with: filteredEmojiGlyph)
-            } else {
-                
-                let currentEmojiGlyph = emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
-                cell = updateSmallCell(with: currentEmojiGlyph)
-            }
+        guard let emojiCollection = emojiCollection else {
+            return UITableViewCell()
         }
         
-        return cell
+        var emojiGlyph: EmojiGlyph
+        
+        if emojiCollection.filteredEmojiGlyphs.count > 0 && userMode == .textSearching {
+            emojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
+        } else {
+            emojiGlyph = emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
+        }
+        
+        return updateSmallCell(with: emojiGlyph)
     }
-        
-    fileprivate func updateSmallCell(with emojiGlyph: EmojiGlyph) ->  SmallEmojiTableViewCell {
-        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.smallEmojiCell) as! SmallEmojiTableViewCell
-        
-        cell.emojiLabel.text = emojiGlyph.glyph
-        cell.descriptionLabel.text = emojiGlyph.description.capitalized
-        cell.priorityLabel.text = "# \(emojiGlyph.index)"
-        cell.tagLabel.text = emojiGlyph.tags.joined(separator: " ").capitalized.trimmingCharacters(in: .whitespaces)
-        
-        return cell
-    }
-
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -322,24 +339,8 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         return 0
     }
     
-    fileprivate func getHeaderLabelText(for section: Int) -> String {
-        
-        var headerLabelText = ""
-        
-        if let emojiCollection = emojiCollection {
-            
-            if userMode == .textSearching {
-                headerLabelText = "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
-            } else {
-                headerLabelText = "\(emojiCollection.sectionNames[section]) (\(emojiCollection.glyphsIDsInSections[section].count))"
-            }
-        }
-        return headerLabelText
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        // Dequeue with the reuse identifier
         let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: Identifiers.emojiSectionHeader)
         let header = cell as! EmojiSectionHeader
         header.titleLabel.text = getHeaderLabelText(for: section)

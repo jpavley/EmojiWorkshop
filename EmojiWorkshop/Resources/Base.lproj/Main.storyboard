@@ -74,8 +74,10 @@
                     </view>
                     <connections>
                         <outlet property="clipboardItem" destination="VGA-bk-r3d" id="b9H-FN-Sde"/>
+                        <outlet property="deleteItem" destination="NEg-Px-bnR" id="haM-md-rF8"/>
                         <outlet property="emojiGlyphTable" destination="5tU-hG-qXa" id="Oap-eI-G0Y"/>
                         <outlet property="emojiSearchBar" destination="nQy-Hw-LAh" id="NdP-Un-vzW"/>
+                        <outlet property="shareItem" destination="rPq-qL-jkQ" id="9sR-TC-4PL"/>
                         <segue destination="p3k-EE-OkW" kind="showDetail" identifier="ShowDetail" id="tIj-3M-AMf"/>
                     </connections>
                 </viewController>
