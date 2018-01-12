@@ -14,9 +14,6 @@ enum EmojiFilter {
 
 class EmojiSearch {
     
-    let prioritySignal = "$"
-    let groupAndSubgroupSignal = "@"
-    let andSignal = "&"
     let notSignal = "!"
     
     func search(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
