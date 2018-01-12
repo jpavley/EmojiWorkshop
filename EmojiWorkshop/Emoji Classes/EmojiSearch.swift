@@ -122,9 +122,9 @@ class EmojiSearch {
             return first.value > second.value
         })
         
-        for i in 0..<20 {
-            print("\(tagsAndCountsList[i])")
-        }
+//        for i in 0..<20 {
+//            print("\(tagsAndCountsList[i])")
+//        }
         
         return tagsAndCountsList
     }

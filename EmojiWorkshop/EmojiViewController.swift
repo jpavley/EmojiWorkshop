@@ -201,9 +201,13 @@ class EmojiViewController: UIViewController {
         let emojiSearch = EmojiSearch()
         if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs, filter: .byTags, searchString: emojiSearchBar.text!) {
             emojiCollection.filteredEmojiGlyphs = foundEmoji
+            
+            // DEBUG: Delete later
+            if emojiCollection.filteredEmojiGlyphs.count < 1 {
+                print("Should be showing suggested search terms")
+            }
         }
     }
-
     
     // MARK:- Overrides
     
@@ -234,6 +238,7 @@ class EmojiViewController: UIViewController {
 extension EmojiViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchBar(textDidChange: \(searchText)")
         searchBarText = searchBar.text!
         search()
         emojiGlyphTable.reloadData()
