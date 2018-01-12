@@ -113,4 +113,12 @@ class EmojiSearchTests: XCTestCase {
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.last!.index == testSearchResults.last!.index)
         }
     }
+    
+    func testSearchSuggestion() {
+        let testEmojiSearch = EmojiSearch()
+        
+        if let testSugestionResults = testEmojiSearch.suggestions(emojiGlyphs: testEmojiCollection!.emojiGlyphs) {
+            XCTAssertTrue(testSugestionResults.count != 0)
+        }
+    }
 }
