@@ -12,6 +12,8 @@ enum EmojiFilter {
     case noFilter, byTags
 }
 
+typealias TagAndCountsList = [(key: String, value: Int)]
+
 class EmojiSearch {
     
     let notSignal = "!"
@@ -96,8 +98,35 @@ class EmojiSearch {
         return finalExcludedTerms
     }
     
-    func getSuggestions(emojiGlyphs: [EmojiGlyph]) -> [EmojiGlyph]? {
-        let fakeResult = emojiGlyphs[0]
-        return [fakeResult]
+    func getSuggestions(emojiGlyphs: [EmojiGlyph]) -> TagAndCountsList {
+        
+        var tagList = TagList()
+        for emoji in emojiGlyphs {
+            tagList += emoji.tags
+        }
+        
+        /// The expression below is simple, short, and difficult to unpack!
+        /// What is does: takes the tagList array (just [String]), counts the frequency of each tag,
+        ///               reduces it to a TagAndCountsList (an array of (key: String, val: Int) tuples,
+        ///               and sorts it by frequency.
+        /// How it does it: Let's start wth the last clause first! .sorted(by: {}) take two inputs and
+        ///                 a comparison closure. Each input is a tuple with a key and a value. The
+        ///                 closure turns true if the first value is greater than the second. Sorted(by:)
+        ///                 gets its input from reduce.
+        ///                 reduce(into:) is magic! it takes the TagList ([String]) as input and counts
+        ///                 the occurance of each array element and returns the result as a dictionary
+        ///                 ([String: Int]). The closer uses the default representation of inputs first
+        ///                 and second as $0 and $1. For each element in the array it sets the value of
+        ///                 it's entry in the dictionary to either 0 (the default) or +1.
+        let tagsAndCountsList = tagList.reduce(into: [:]) { $0[$1, default: 0] += 1 }.sorted(by: { (first: (key: String, value: Int), second: (key: String, value: Int)) -> Bool in
+            return first.value > second.value
+        })
+        
+        for i in 1..<20 {
+            print("\(tagsAndCountsList[i])")
+        }
+        
+        return tagsAndCountsList
     }
+    
 }
