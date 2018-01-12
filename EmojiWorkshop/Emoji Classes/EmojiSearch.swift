@@ -105,7 +105,7 @@ class EmojiSearch {
             tagList += emoji.tags
         }
         
-        /// The expression below is simple, short, and difficult to unpack!
+        /// The expression below is "simple but not easy"!
         /// What is does: takes the tagList array (just [String]), counts the frequency of each tag,
         ///               reduces it to a TagAndCountsList (an array of (key: String, val: Int) tuples,
         ///               and sorts it by frequency.
@@ -122,7 +122,7 @@ class EmojiSearch {
             return first.value > second.value
         })
         
-        for i in 1..<20 {
+        for i in 0..<20 {
             print("\(tagsAndCountsList[i])")
         }
         
