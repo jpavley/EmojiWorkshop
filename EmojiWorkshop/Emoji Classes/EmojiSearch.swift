@@ -95,4 +95,9 @@ class EmojiSearch {
         let finalExcludedTerms = stemmedTermsFrom(cleanExcludedTerms)
         return finalExcludedTerms
     }
+    
+    func getSuggestions(emojiGlyphs: [EmojiGlyph]) -> [EmojiGlyph]? {
+        let fakeResult = emojiGlyphs[0]
+        return [fakeResult]
+    }
 }

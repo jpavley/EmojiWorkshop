@@ -117,7 +117,7 @@ class EmojiSearchTests: XCTestCase {
     func testSearchSuggestion() {
         let testEmojiSearch = EmojiSearch()
         
-        if let testSugestionResults = testEmojiSearch.suggestions(emojiGlyphs: testEmojiCollection!.emojiGlyphs) {
+        if let testSugestionResults = testEmojiSearch.getSuggestions(emojiGlyphs: testEmojiCollection!.emojiGlyphs) {
             XCTAssertTrue(testSugestionResults.count != 0)
         }
     }
