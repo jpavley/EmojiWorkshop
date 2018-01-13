@@ -169,7 +169,7 @@ class EmojiViewController: UIViewController {
         if let emojiCollection = emojiCollection {
             
             if userMode == .textSearchingNoResults {
-                headerLabelText = "Chose an Emoji Tag"
+                headerLabelText = "Found 0 emoji"
             }
             
             if userMode == .textSearching {
