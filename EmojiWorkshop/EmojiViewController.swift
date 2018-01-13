@@ -130,6 +130,15 @@ class EmojiViewController: UIViewController {
         }
     }
     
+    fileprivate func getSelectedSuggtion(for indexPath: IndexPath) -> TagAndCount? {
+        guard let emojiCollection = emojiCollection else {
+            return nil
+        }
+        
+        return emojiCollection.searchSuggestions[indexPath.row]
+    }
+
+    
     fileprivate func enableToolbarButtons() {
         deleteItem.isEnabled = localPasteboard.count >= 1
         shareItem.isEnabled = localPasteboard.count >= 1
@@ -159,9 +168,17 @@ class EmojiViewController: UIViewController {
         
         if let emojiCollection = emojiCollection {
             
+            if userMode == .textSearchingNoResults {
+                if let selectedIndexPath = selectedIndexPath {
+                    headerLabelText = "Found \(emojiCollection.searchSuggestions[selectedIndexPath.row]).value emoji"
+                }
+            }
+            
             if userMode == .textSearching {
                 headerLabelText = "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
-            } else {
+            }
+            
+            if userMode == .browsing {
                 headerLabelText = "\(emojiCollection.sectionNames[section]) (\(emojiCollection.glyphsIDsInSections[section].count))"
             }
         }
@@ -219,11 +236,13 @@ class EmojiViewController: UIViewController {
         
         let emojiSearch = EmojiSearch()
         if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs, filter: .byTags, searchString: emojiSearchBar.text!) {
+            
             emojiCollection.filteredEmojiGlyphs = foundEmoji
             
-            // DEBUG: Delete later
             if emojiCollection.filteredEmojiGlyphs.count < 1 {
-                print("Should be showing suggested search terms")
+                userMode = .textSearchingNoResults
+            } else {
+                userMode = .textSearching
             }
         }
     }
@@ -234,6 +253,7 @@ class EmojiViewController: UIViewController {
         super.viewDidLoad()
         
         emojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
+        userMode = .browsing
         
         setupTableView()
         setupSectionHeader()
@@ -258,7 +278,8 @@ class EmojiViewController: UIViewController {
 extension EmojiViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("searchBar(textDidChange: \(searchText)")
+        //print("searchBar(textDidChange: \(searchText)")
+        
         searchBarText = searchBar.text!
         search()
         emojiGlyphTable.reloadData()
@@ -268,7 +289,7 @@ extension EmojiViewController: UISearchBarDelegate {
         searchBarText = searchBar.text!
         
         if searchBar.text!.isEmpty {
-            updateUserMode(newMode: .browsing)
+            updateUserMode(newMode: .textSearchingNoResults)
         } else {
             search()
         }
@@ -329,11 +350,28 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // Save the indexPath so that if the user wants to copy the selected emoji to the toolbar we can find it later
+        // Save the indexPath so that if the user wants to copy the selected emoji
+        // to the toolbar we can find it later
         selectedIndexPath = indexPath
         
-        hideKeyboard()
-        performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+        // print("tableView(didSelectRowAt \(indexPath)), userMode \(userMode)")
+        
+        // click on search suggestion
+        if userMode == .textSearchingNoResults {
+            if let suggestion = getSelectedSuggtion(for: indexPath) {
+                searchBarText = suggestion.key
+                emojiSearchBar.text = suggestion.key
+                search()
+                emojiGlyphTable.reloadData()
+            }
+            return
+        }
+        
+        if userMode == .browsing || userMode == .textSearching {
+            hideKeyboard()
+            performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -341,8 +379,11 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        // print("tableView(cellForRowAt \(indexPath)), userMode \(userMode)")
+        
         var searchSuggestion: TagAndCount
-        if emojiCollection.filteredEmojiGlyphs.count == 0 {
+        if emojiCollection.filteredEmojiGlyphs.count == 0 && (userMode == .textSearching || userMode == .textSearchingNoResults) {
+            userMode = .textSearchingNoResults
             searchSuggestion = emojiCollection.searchSuggestions[indexPath.row]
             return updateSuggestSearchCell(with: searchSuggestion)
         }
