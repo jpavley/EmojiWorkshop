@@ -158,7 +158,7 @@ class EmojiViewController: UIViewController {
     fileprivate func updateSuggestSearchCell(with suggestion: TagAndCount) ->  SuggestSearchCell {
         let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.suggestSearchCell) as! SuggestSearchCell
         
-        cell.label.text = "\(suggestion.key.capitalized) \((suggestion.value))"
+        cell.label.text = "\(suggestion.key.capitalized) (\(suggestion.value))"
         return cell
     }
 
@@ -169,9 +169,7 @@ class EmojiViewController: UIViewController {
         if let emojiCollection = emojiCollection {
             
             if userMode == .textSearchingNoResults {
-                if let selectedIndexPath = selectedIndexPath {
-                    headerLabelText = "Found \(emojiCollection.searchSuggestions[selectedIndexPath.row]).value emoji"
-                }
+                headerLabelText = "Chose an Emoji Tag"
             }
             
             if userMode == .textSearching {
@@ -330,10 +328,10 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
+        hideKeyboard()
+
         if userMode == .textSearching {
-            
             // print("== scrollViewWillBeginDragging()")
-            hideKeyboard()
             enableCancelButton()
         }
     }
