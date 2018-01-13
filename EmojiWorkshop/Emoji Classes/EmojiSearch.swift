@@ -127,7 +127,9 @@ class EmojiSearch {
 //            print("\(tagsAndCountsList[i])")
 //        }
         
-        return tagsAndCountsList
+        let cleanTagsAndCountersList = tagsAndCountsList.filter {!$0.key.isEmpty}
+        
+        return cleanTagsAndCountersList
     }
     
 }
