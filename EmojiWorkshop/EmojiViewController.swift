@@ -375,10 +375,9 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         // print("tableView(cellForRowAt \(indexPath)), userMode \(userMode)")
         
-        var searchSuggestion: TagAndCount
         if emojiCollection.filteredEmojiGlyphs.count == 0 && (userMode == .textSearching || userMode == .textSearchingNoResults) {
             userMode = .textSearchingNoResults
-            searchSuggestion = emojiCollection.searchSuggestions[indexPath.row]
+            let searchSuggestion = emojiCollection.searchSuggestions[indexPath.row]
             return updateSuggestSearchCell(with: searchSuggestion)
         }
         
