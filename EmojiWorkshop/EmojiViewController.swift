@@ -310,7 +310,7 @@ extension EmojiViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        if emojiSearchBar.text!.isEmpty {
+        if searchBarText.isEmpty {
             userMode = .textSearchingNoResults
         } else {
             updateUserMode(newMode: .textSearching)
@@ -380,19 +380,19 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         // print("tableView(cellForRowAt \(indexPath)), userMode \(userMode)")
         
-        if emojiCollection.filteredEmojiGlyphs.count == 0 && (userMode == .textSearching || userMode == .textSearchingNoResults) {
-            userMode = .textSearchingNoResults
+        switch userMode {
+        case .browsing:
+            let emojiGlyph = emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
+            return updateSmallCell(with: emojiGlyph)
+
+        case .textSearching:
+            let emojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
+            return updateSmallCell(with: emojiGlyph)
+
+        case .textSearchingNoResults:
             let searchSuggestion = emojiCollection.searchSuggestions[indexPath.row]
             return updateSuggestSearchCell(with: searchSuggestion)
         }
-        
-        var emojiGlyph: EmojiGlyph
-        if emojiCollection.filteredEmojiGlyphs.count > 0 && userMode == .textSearching {
-            emojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
-        } else {
-            emojiGlyph = emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
-        }
-        return updateSmallCell(with: emojiGlyph)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
