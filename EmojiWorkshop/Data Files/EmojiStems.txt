@@ -20,6 +20,10 @@
 # made (probably by looking at the context of the stop word which can then be nicely
 # abstracted.)
 
+############
+# Stemming #
+############
+
 # people
 boys:boy
 men:man
@@ -46,7 +50,6 @@ countries:country
 places:place
 objects:object
 
-
 # nature
 mount:mountain
 stars:star
@@ -54,8 +57,13 @@ animals:animal
 plants:plant
 leaves:leaf
 
+# actions
+activities: activity
 
-# stop words
+##############
+# stop words #
+##############
+
 in:
 the:
 with:
