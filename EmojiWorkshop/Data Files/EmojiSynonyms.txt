@@ -2,8 +2,19 @@
 # Date: 2018-01-12
 # © 2018 Epic Loot
 #
-# Emoji Command Synonym Data
+# Emoji Search Term Synonym Data
 # Version: 1.0
+
+# Using will want to use short search terms and expect them to be
+# expanded to show the expected results. "Smile" should expand to
+# "smiling". But we don't want to permanently change the tags as
+# users will also want to search using the whole term and the
+# whole term is more discriptive than the short term. The synonym
+# function maps one word to another without changing the tags.
+
+
+# roles
+tech:technologist
 
 # activities
 smile:smiling
@@ -24,4 +35,3 @@ cry:crying
 scream:screaming
 pout:pouting
 sush:sushing
-

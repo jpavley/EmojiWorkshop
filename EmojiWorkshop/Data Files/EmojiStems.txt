@@ -5,6 +5,21 @@
 # Emoji Stemming Data
 # Version: 1.0
 
+# Stemming normalizes tags so that the root word is used instead of a plural (or past tense)
+# The search terms and tags are changed such searching for "people" becomes a search for
+# "person" and an emoji tagged "people" is instead tagged "person". Stemming lets users
+# search as they please with a plural or singular form of a word and get expected results.
+# Also stemming cuts down on tag clutter as many emoji are tagged by the W3C with both
+# singular and plural forms.
+
+# Using the stemming function we can also eliminate stop words (a, the, in, of) by stemming
+# them to an empty string. The empty string is discarded which further reduces tag clutter.
+# Searching for all the emoji with "and" in the discription usually doesn't make sense.
+# But there is a problem with words like "A". "A" is both an article (a pointing word) and
+# a noun (Type A blood). Thus "A" is missing from the list until a special exception can be
+# made (probably by looking at the context of the stop word which can then be nicely
+# abstracted.)
+
 # people
 boys:boy
 men:man
@@ -19,9 +34,6 @@ hands:hand
 feet:foot
 fingers:finger
 toes:toe
-
-# roles
-tech:technologist
 
 # things
 horns:horn
