@@ -256,7 +256,7 @@ class EmojiViewController: UIViewController {
             search()
         }
     }
-    
+        
     // MARK:- Overrides
     
     override func viewDidLoad() {
