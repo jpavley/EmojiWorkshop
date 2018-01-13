@@ -362,6 +362,8 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
                 searchBarText = suggestion.key
                 emojiSearchBar.text = suggestion.key
                 search()
+                hideKeyboard()
+                enableCancelButton()
                 emojiGlyphTable.reloadData()
             }
             return
