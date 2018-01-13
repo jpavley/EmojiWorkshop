@@ -113,4 +113,13 @@ class EmojiSearchTests: XCTestCase {
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.last!.index == testSearchResults.last!.index)
         }
     }
+    
+    func testSearchSuggestion() {
+        let testEmojiSearch = EmojiSearch()
+        let testSugestionResults = testEmojiSearch.getSuggestions(emojiGlyphs: testEmojiCollection!.emojiGlyphs)
+        
+        XCTAssertTrue(testSugestionResults.count != 0)
+        XCTAssertTrue(testSugestionResults[0].key == "person")
+        XCTAssertTrue(testSugestionResults[0].value == 1507)
+    }
 }

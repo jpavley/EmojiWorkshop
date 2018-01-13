@@ -14,6 +14,7 @@ class EmojiCollection {
     
     var emojiGlyphs: [EmojiGlyph]
     var filteredEmojiGlyphs: [EmojiGlyph]
+    var searchSuggestions: TagAndCountsList
     var glyphsIDsInSections: [GlyphIDList]
     var sectionNames: [String]
     
@@ -52,6 +53,7 @@ class EmojiCollection {
         
         emojiGlyphs = [EmojiGlyph]()
         filteredEmojiGlyphs = [EmojiGlyph]()
+        searchSuggestions = TagAndCountsList()
         glyphsIDsInSections = [[Int]]()
         sectionNames = [String]()
         
@@ -92,7 +94,6 @@ class EmojiCollection {
                         emojiGlyph.index = emojiIndex
                         emojiGlyph.tags = createMetadata(glyph: emojiGlyph)
                         emojiGlyphs.append(emojiGlyph)
-                        
                     }
                 }
             } catch {
@@ -103,12 +104,17 @@ class EmojiCollection {
         }
         
         createGlyphsInSections()
+        let emojiSearch = EmojiSearch()
+        searchSuggestions = emojiSearch.getSuggestions(emojiGlyphs: emojiGlyphs)
+
         
 //        print("emojiGlyphs.count \(emojiGlyphs.count)")
         
 //        for i in 0..<sections.count {
 //            print("\(sections[i]) \(glyphsIDsInSections[i])")
 //        }
+        
+        print("searchSuggestions.count \(searchSuggestions.count)")
         
     }
 }
