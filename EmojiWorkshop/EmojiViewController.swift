@@ -245,6 +245,17 @@ class EmojiViewController: UIViewController {
         }
     }
     
+    fileprivate func processSearchBarText() {
+        if emojiSearchBar.text!.isEmpty {
+            emojiCollection!.filteredEmojiGlyphs = [EmojiGlyph]()
+            searchBarText = ""
+            userMode = .textSearchingNoResults
+        } else {
+            searchBarText = emojiSearchBar.text!
+            search()
+        }
+    }
+    
     // MARK:- Overrides
     
     override func viewDidLoad() {
@@ -276,22 +287,14 @@ class EmojiViewController: UIViewController {
 extension EmojiViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //print("searchBar(textDidChange: \(searchText)")
         
-        searchBarText = searchBar.text!
-        search()
+        processSearchBarText()
         emojiGlyphTable.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBarText = searchBar.text!
         
-        if searchBar.text!.isEmpty {
-            updateUserMode(newMode: .textSearchingNoResults)
-        } else {
-            search()
-        }
-        
+        processSearchBarText()
         hideKeyboard()
         enableCancelButton()
         emojiGlyphTable.reloadData()
