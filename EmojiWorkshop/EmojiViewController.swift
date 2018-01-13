@@ -308,15 +308,6 @@ extension EmojiViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         updateUserMode(newMode: .textSearching)
         searchBar.text = searchBarText
-        
-        // print("The search text is: \(searchBar.text!)")
-        
-        if searchBar.text!.isEmpty {
-            if let emojiCollection = emojiCollection {
-                emojiCollection.filteredEmojiGlyphs = [EmojiGlyph]()
-            }
-        }
-        
         emojiGlyphTable.reloadData()
     }
 }
