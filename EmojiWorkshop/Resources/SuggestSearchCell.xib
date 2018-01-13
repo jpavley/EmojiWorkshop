@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="NkL-eW-v9y">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestSearchCell" id="NkL-eW-v9y" customClass="SuggestSearchCell" customModule="Emoji_Spy" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NkL-eW-v9y" id="DCe-ME-eNs">
@@ -32,6 +32,9 @@
                     <constraint firstItem="1O9-gf-Xeb" firstAttribute="top" secondItem="DCe-ME-eNs" secondAttribute="top" constant="11" id="tou-Nj-ldq"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="label" destination="1O9-gf-Xeb" id="yE1-uh-h14"/>
+            </connections>
             <point key="canvasLocation" x="26.5" y="148"/>
         </tableViewCell>
     </objects>

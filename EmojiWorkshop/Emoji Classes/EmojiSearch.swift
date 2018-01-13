@@ -12,7 +12,8 @@ enum EmojiFilter {
     case noFilter, byTags
 }
 
-typealias TagAndCountsList = [(key: String, value: Int)]
+typealias TagAndCount = (key: String, value: Int)
+typealias TagAndCountsList = [TagAndCount]
 
 class EmojiSearch {
     
