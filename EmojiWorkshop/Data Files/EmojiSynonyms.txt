@@ -35,3 +35,5 @@ cry:crying
 scream:screaming
 pout:pouting
 sush:sushing
+play:playing
+gesture:gesturing
