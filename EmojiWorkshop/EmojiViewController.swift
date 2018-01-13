@@ -310,7 +310,11 @@ extension EmojiViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        updateUserMode(newMode: .textSearching)
+        if emojiSearchBar.text!.isEmpty {
+            userMode = .textSearchingNoResults
+        } else {
+            updateUserMode(newMode: .textSearching)
+        }
         searchBar.text = searchBarText
         emojiGlyphTable.reloadData()
     }
@@ -422,11 +426,15 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let emojiCollection = emojiCollection {
             
-            if userMode == .textSearching {
-                return emojiCollection.filteredEmojiGlyphs.count > 0 ? emojiCollection.filteredEmojiGlyphs.count : emojiCollection.searchSuggestions.count
-            } else {
+            switch userMode {
+            case .browsing:
                 return emojiCollection.glyphsIDsInSections[section].count
+            case .textSearching:
+                return emojiCollection.filteredEmojiGlyphs.count
+            case .textSearchingNoResults:
+                return emojiCollection.searchSuggestions.count
             }
+            
         }
 
         return 0
