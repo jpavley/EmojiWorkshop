@@ -12,28 +12,53 @@
 # whole term is more discriptive than the short term. The synonym
 # function maps one word to another without changing the tags.
 
+# Note: Some times both synonyms exsist as tags. To show the
+# complete results the both words have to be search for. The
+# main example is "smile:smiling", both words are tags!
+
 
 # roles
 tech:technologist
 
+# countries
+aland:åland
+us:u.s.
+
+# objects
+stopwatch:watch
+
 # activities
-smile:smiling
-grin:grinning
-roll:rolling
-laugh:laughing
-wink:winking
+bike:biking
 blow:blowing
-kiss:kissing
-hug:hugging
-think:thinking
-smirk:smirking
-sleep:sleeping
-squint:squinting
-drool:drooling
-frown:frowing
 cry:crying
-scream:screaming
-pout:pouting
-sush:sushing
-play:playing
+dance:dancing
+drool:drooling
+facepalm:faceplaming
+frown:frowing
 gesture:gesturing
+golf:golfing
+grin:grinning
+grow:growing
+hug:hugging
+kiss:kissing
+laugh:laughing
+play:playing
+point:pointing
+pout:pouting
+roll:rolling
+row:rowing
+run:running
+scream:screaming
+seed:seedling
+shrug:shrugging
+sleep:sleeping
+smile:smiling
+smirk:smirking
+squint:squinting
+surf:surfing
+sush:sushing
+swim:swimming
+talk:talking
+walk:walking
+write:writing
+zzz:sleeping

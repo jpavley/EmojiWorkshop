@@ -30,6 +30,7 @@
 		5A4EAD4E1FDD9CCA00A02F7F /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD4D1FDD9CCA00A02F7F /* readme.md */; };
 		5A4EAD501FDD9CD600A02F7F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD4F1FDD9CD600A02F7F /* LICENSE */; };
 		5A4EAD521FDD9DA500A02F7F /* emoji-test-4.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD511FDD9DA500A02F7F /* emoji-test-4.0.txt */; };
+		5AC7D538200A7D0000DFF833 /* CustomTags.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5AC7D537200A7D0000DFF833 /* CustomTags.txt */; };
 		5AD391271FE57902001DBB26 /* EmojiSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391261FE57902001DBB26 /* EmojiSearch.swift */; };
 		5AD391281FE5790F001DBB26 /* EmojiSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391261FE57902001DBB26 /* EmojiSearch.swift */; };
 		5AD3912A1FE57933001DBB26 /* EmojiSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */; };
@@ -78,6 +79,7 @@
 		5A4EAD4D1FDD9CCA00A02F7F /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		5A4EAD4F1FDD9CD600A02F7F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5A4EAD511FDD9DA500A02F7F /* emoji-test-4.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "emoji-test-4.0.txt"; sourceTree = "<group>"; };
+		5AC7D537200A7D0000DFF833 /* CustomTags.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CustomTags.txt; sourceTree = "<group>"; };
 		5AD391261FE57902001DBB26 /* EmojiSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSearch.swift; sourceTree = "<group>"; };
 		5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSearchTests.swift; sourceTree = "<group>"; };
 		5AF853381FF415E90018A598 /* SmallEmojiTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallEmojiTableCell.xib; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				5A4EAD511FDD9DA500A02F7F /* emoji-test-4.0.txt */,
 				4808EC4F1FFDD7FE00E16EF0 /* EmojiStems.txt */,
 				485121C92009F20800A456CD /* EmojiSynonyms.txt */,
+				5AC7D537200A7D0000DFF833 /* CustomTags.txt */,
 			);
 			path = "Data Files";
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				5A4EAD3D1FDC758B00A02F7F /* Assets.xcassets in Resources */,
 				5A4EAD4E1FDD9CCA00A02F7F /* readme.md in Resources */,
 				5AF853391FF415E90018A598 /* SmallEmojiTableCell.xib in Resources */,
+				5AC7D538200A7D0000DFF833 /* CustomTags.txt in Resources */,
 				5A4EAD3B1FDC758B00A02F7F /* Main.storyboard in Resources */,
 				486BA9C72009378600D7BF73 /* SuggestSearchCell.xib in Resources */,
 				485121CA2009F20800A456CD /* EmojiSynonyms.txt in Resources */,

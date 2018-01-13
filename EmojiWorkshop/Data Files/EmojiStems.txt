@@ -27,7 +27,9 @@
 # people
 boys:boy
 men:man
+men's:man
 women:woman
+women's:woman
 girls:girl
 children:child
 people:person
@@ -39,11 +41,13 @@ feet:foot
 fingers:finger
 toes:toe
 
-# things
+# objects
 horns:horn
 books:book
 flags:flag
 houses:house
+bike:bicycles
+pancake:pancakes
 
 # concepts
 countries:country
@@ -56,6 +60,7 @@ stars:star
 animals:animal
 plants:plant
 leaves:leaf
+drop:drops
 
 # actions
 activities: activity

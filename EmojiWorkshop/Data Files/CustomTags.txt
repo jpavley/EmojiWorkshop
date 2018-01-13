@@ -1,0 +1,38 @@
+# CustomTags.txt
+# Date: 2018-01-13
+# © 2018 Epic Loot
+#
+# Emoji Custom Tags Data
+# Version: 1.0
+
+# W3C tagging is incomplete. None of the yellow people emojis
+# have a skin tone tag. To find the traditional yellow smileys
+# and people we have to search on "person !tone" to exclude
+# all non-yellow people. Great for a computer scientist, not so
+# great for users.
+
+# Other missing tags include grandparents, grandpa, grandma,
+# doctor, nurse, farm, chef, and even programmer and hacker.
+# It is highly unlikely a user to search on "technologist" to
+# find a software developer or "health worker" to find a
+# doctor or nurse emoji. In point of fact many emoji tags
+# are only useful to emoji tag classifiers. Which is fine
+# as we can use it as a base for orgnaizing the presention
+# of emoji but these tags are not suited for searching by
+# humans.
+
+# test data
+👶:yellow
+🧓:yellow grandparent
+👨‍⚕️:yellow doctor nurse
+👨🏾‍💻:coder programmer tester
+👨🏽‍🚀:space nasa
+🕵🏼:sherlock pi gumshoe
+🤴🏻:royal king khal
+👸🏿:royal queen khaleesi
+👱‍♂️:yellow guy dude brother bro
+👱‍♀️:yellow gal dude sister sis
+🤵🏾:party groomsman prom date groom
+👰🏼:party bridesmaid prom date bride
+🤰:yellow mom mother mama
+🤱🏿:mom mother mama
