@@ -396,17 +396,19 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
-        if let emojiCollection = emojiCollection {
-            
-            if userMode == .textSearching {
-                return 1
-            } else {
-                return emojiCollection.sectionNames.count
-            }
+        guard let emojiCollection = emojiCollection else {
+            print("emojiCollection in nil in numberOfSections()")
+            return 0
         }
         
-        return 0
+        switch userMode {
+        case .browsing:
+            return emojiCollection.sectionNames.count
+        case .textSearching:
+            return 1
+        case .textSearchingNoResults:
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
