@@ -168,18 +168,19 @@ class EmojiViewController: UIViewController {
         
         if let emojiCollection = emojiCollection {
             
-            if userMode == .textSearchingNoResults {
-                headerLabelText = "Found 0 emoji"
-            }
-            
-            if userMode == .textSearching {
+            switch userMode {
+            case .textSearching:
                 headerLabelText = "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
-            }
-            
-            if userMode == .browsing {
+                
+            case .textSearchingNoResults:
+                headerLabelText = "Found 0 emoji"
+                
+            case .browsing:
                 headerLabelText = "\(emojiCollection.sectionNames[section]) (\(emojiCollection.glyphsIDsInSections[section].count))"
+                
             }
         }
+        
         return headerLabelText
     }
     
