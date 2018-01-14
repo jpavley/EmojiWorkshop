@@ -21,7 +21,7 @@
 
 
 # roles
-tech:technologist
+technologist:tech
 
 # countries
 aland:åland
@@ -44,7 +44,7 @@ tramway:train
 trollybus:bus
 minibus:bus
 
-bike:bicycle
+bicycle:biking
 
 # activities
 zzz:sleeping

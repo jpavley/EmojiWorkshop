@@ -65,8 +65,10 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "stars", foundCount: 9, firstID: 21, lastID: 2270),
             EmojiSearchResults(query: "application", foundCount: 1, firstID: 2327, lastID: 2327),
             EmojiSearchResults(query: "and", foundCount: 0, firstID: -1, lastID: -1), // stop word search
-            EmojiSearchResults(query: "bike", foundCount: 36, firstID: 1082, lastID: 1117), // activity stems
-            EmojiSearchResults(query: "train", foundCount: 16, firstID: 1787, lastID: 1814) // synonymming: "train" = all types of trains (trams, railways, cable cars, train stations)
+            EmojiSearchResults(query: "bike", foundCount: 38, firstID: 1082, lastID: 2169), // activity stems
+            EmojiSearchResults(query: "biking", foundCount: 38, firstID: 1082, lastID: 2169), 
+            EmojiSearchResults(query: "bicycle", foundCount: 2, firstID: 1815, lastID: 2169),
+            EmojiSearchResults(query: "train", foundCount: 16, firstID: 1787, lastID: 1843) // synonymming: "train" = all types of trains (trams, railways, cable cars, train stations)
         ]
     }
     

@@ -56,6 +56,10 @@ class EmojiSearch {
     
     fileprivate func getResultsWithoutExcludedTerms(initialResultGlyphs: [EmojiGlyph], emojiGlyphs: [EmojiGlyph], searchString: String) -> [EmojiGlyph] {
         
+        if searchString == "Cat !" {
+            print(searchString)
+        }
+        
         var resultsGlyphs = initialResultGlyphs
         
         if resultsGlyphs.isEmpty {
@@ -65,8 +69,7 @@ class EmojiSearch {
         
         let excludedTerms = excludedTermsFrom(searchString)
         
-        if excludedTerms.count == 1 && excludedTerms.first == "" {
-            // Dont search on an empty exclusion
+        if excludedTerms.isEmpty {
             return resultsGlyphs
         }
         
@@ -97,17 +100,18 @@ class EmojiSearch {
     
     fileprivate func searchTermsWithoutExclusedTermsFrom(_ searchString: String) -> [String] {
         let searchTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" && $0[$0.startIndex] != "!" })
-        let finalTerms = stemmedTermsFrom(searchTerms)
-        // TODO: synonyms here
-        return finalTerms
+        let stemmedSeachTerms = stemmedTerms(from: searchTerms)
+        let synonymmedSearchTerms = synonymmedTerms(from: stemmedSeachTerms)
+        return synonymmedSearchTerms
     }
     
     fileprivate func excludedTermsFrom(_ searchString: String) -> [String] {
         let excludedTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" ? $0[$0.startIndex] == "!" : false })
         let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
-        let finalExcludedTerms = stemmedTermsFrom(cleanExcludedTerms)
-        // TODO: synomyms here
-        return finalExcludedTerms
+        let noEmptyStrings = cleanExcludedTerms.filter({!$0.isEmpty})
+        let stemmedExcludedTerms = stemmedTerms(from: noEmptyStrings)
+        let synonymmedExcludedTerms = synonymmedTerms(from: stemmedExcludedTerms)
+        return synonymmedExcludedTerms
     }
     
     func getSuggestions(emojiGlyphs: [EmojiGlyph]) -> TagAndCountsList {

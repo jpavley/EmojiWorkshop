@@ -68,11 +68,11 @@ class SimpleSynonymerTests: XCTestCase {
     
     func testSynonymerFromFileSuccess() {
         let simpleSynonymer = SimpleSynonymmer(sourceFileName: "EmojiSynonyms")
-        XCTAssertTrue(simpleSynonymer?.getSynonym(for: "tech") == "technologist")
+        XCTAssertTrue(simpleSynonymer?.getSynonym(for: "technologist") == "tech")
     }
     
     func testSynonymerFromFileSuccessCaseChange() {
         let simpleSynonymer = SimpleSynonymmer(sourceFileName: "EmojiSynonyms")
-        XCTAssertTrue(simpleSynonymer?.getSynonym(for: "Tech") == "technologist")
+        XCTAssertTrue(simpleSynonymer?.getSynonym(for: "technologist") == "tech")
     }
 }

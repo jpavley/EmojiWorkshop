@@ -58,22 +58,32 @@ func createMetadata(glyph: EmojiGlyph) -> [String] {
     let subgroupWords = removeJunkCharacters(from: glyph.subgroup)
     
     let rawTags = descriptionWords + groupWords + subgroupWords
-    let stemmedTags = stemmedTermsFrom(rawTags)
+    let stemmedTags = stemmedTerms(from: rawTags)
+    let synonymmedTags = synonymmedTerms(from: stemmedTags)
     // TODO: Custom tags here
     
-    let tagSet = Set(stemmedTags) // de-dupe
+    let tagSet = Set(synonymmedTags) // de-dupe
     let tagList = Array(tagSet)
     let tagListSorted = tagList.sorted()
     
     return tagListSorted
 }
 
-func stemmedTermsFrom(_ terms: [String]) -> [String] {
+func stemmedTerms(from terms: [String]) -> [String] {
     var stemedTerms = [String]()
     let simpleStemmer = SimpleStemmer()
     for term in terms {
         stemedTerms.append(simpleStemmer?.getStem(for: term) ?? term)
     }
     return stemedTerms
+}
+
+func synonymmedTerms(from terms: [String]) -> [String] {
+    var synonymmedTerms = terms
+    let simpleSynonymmer = SimpleSynonymmer()
+    for term in terms {
+        synonymmedTerms.append(simpleSynonymmer?.getSynonym(for: term) ?? term)
+    }
+    return synonymmedTerms
 }
 
