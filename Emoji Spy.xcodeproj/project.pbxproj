@@ -31,9 +31,9 @@
 		5A4EAD501FDD9CD600A02F7F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD4F1FDD9CD600A02F7F /* LICENSE */; };
 		5A4EAD521FDD9DA500A02F7F /* emoji-test-4.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A4EAD511FDD9DA500A02F7F /* emoji-test-4.0.txt */; };
 		5AC7D538200A7D0000DFF833 /* CustomTags.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5AC7D537200A7D0000DFF833 /* CustomTags.txt */; };
-		5AC7D53A200BAA5B00DFF833 /* SimpleSynonymer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7D539200BAA5B00DFF833 /* SimpleSynonymer.swift */; };
+		5AC7D53A200BAA5B00DFF833 /* SimpleSynonymmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7D539200BAA5B00DFF833 /* SimpleSynonymmer.swift */; };
 		5AC7D53C200BAB3E00DFF833 /* SimpleSynonymerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7D53B200BAB3E00DFF833 /* SimpleSynonymerTests.swift */; };
-		5AC7D53D200BAB4600DFF833 /* SimpleSynonymer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7D539200BAA5B00DFF833 /* SimpleSynonymer.swift */; };
+		5AC7D53D200BAB4600DFF833 /* SimpleSynonymmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7D539200BAA5B00DFF833 /* SimpleSynonymmer.swift */; };
 		5AC7D53E200BAB6200DFF833 /* EmojiSynonyms.txt in Resources */ = {isa = PBXBuildFile; fileRef = 485121C92009F20800A456CD /* EmojiSynonyms.txt */; };
 		5AC7D540200BB37E00DFF833 /* SimpleSubstituter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7D53F200BB37E00DFF833 /* SimpleSubstituter.swift */; };
 		5AC7D541200BB6B300DFF833 /* SimpleSubstituter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7D53F200BB37E00DFF833 /* SimpleSubstituter.swift */; };
@@ -86,7 +86,7 @@
 		5A4EAD4F1FDD9CD600A02F7F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5A4EAD511FDD9DA500A02F7F /* emoji-test-4.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "emoji-test-4.0.txt"; sourceTree = "<group>"; };
 		5AC7D537200A7D0000DFF833 /* CustomTags.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CustomTags.txt; sourceTree = "<group>"; };
-		5AC7D539200BAA5B00DFF833 /* SimpleSynonymer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSynonymer.swift; sourceTree = "<group>"; };
+		5AC7D539200BAA5B00DFF833 /* SimpleSynonymmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSynonymmer.swift; sourceTree = "<group>"; };
 		5AC7D53B200BAB3E00DFF833 /* SimpleSynonymerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSynonymerTests.swift; sourceTree = "<group>"; };
 		5AC7D53F200BB37E00DFF833 /* SimpleSubstituter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSubstituter.swift; sourceTree = "<group>"; };
 		5AD391261FE57902001DBB26 /* EmojiSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSearch.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 				5AD391261FE57902001DBB26 /* EmojiSearch.swift */,
 				5AF8533E1FF824380018A598 /* EmojiTools.swift */,
 				4808EC4C1FFDD65D00E16EF0 /* SimpleStemmer.swift */,
-				5AC7D539200BAA5B00DFF833 /* SimpleSynonymer.swift */,
+				5AC7D539200BAA5B00DFF833 /* SimpleSynonymmer.swift */,
 				5AC7D53F200BB37E00DFF833 /* SimpleSubstituter.swift */,
 			);
 			path = "Emoji Classes";
@@ -341,7 +341,7 @@
 				5AF853421FF82AA00018A598 /* EmojiToolsTests.swift in Sources */,
 				4808EC4E1FFDD65D00E16EF0 /* SimpleStemmer.swift in Sources */,
 				5AC7D541200BB6B300DFF833 /* SimpleSubstituter.swift in Sources */,
-				5AC7D53D200BAB4600DFF833 /* SimpleSynonymer.swift in Sources */,
+				5AC7D53D200BAB4600DFF833 /* SimpleSynonymmer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +351,7 @@
 			files = (
 				5A4EAD381FDC758B00A02F7F /* EmojiViewController.swift in Sources */,
 				5AF9B1A62002AAA00063387B /* EmojiDetailViewController.swift in Sources */,
-				5AC7D53A200BAA5B00DFF833 /* SimpleSynonymer.swift in Sources */,
+				5AC7D53A200BAA5B00DFF833 /* SimpleSynonymmer.swift in Sources */,
 				5AF9B1A82002AF960063387B /* EmojiDimmingPresentationController.swift in Sources */,
 				5AF8533F1FF824380018A598 /* EmojiTools.swift in Sources */,
 				482C062E1FE0112B00508A28 /* EmojiCollection.swift in Sources */,

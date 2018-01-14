@@ -20,6 +20,9 @@
 # made (probably by looking at the context of the stop word which can then be nicely
 # abstracted.)
 
+# Stemming is a kind of symmetrical reduction: walk and walking become walk and both terms
+# return the same result; eye and eyes become eye and also return the same result.
+
 ############
 # Stemming #
 ############

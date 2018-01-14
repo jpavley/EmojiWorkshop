@@ -13,6 +13,12 @@
 # complete results the both words have to be search for. The
 # main example is "smile:smiling", both words are tags!
 
+# Synonymming is a kind of asymmetrical mapping: tram is a kind of
+# train but not all trains are trams. So we want to map train on to
+# tram but not map tram on to train. The result should be that tram
+# returns only trams but train returns all types of trains, including
+# trams.
+
 
 # roles
 tech:technologist

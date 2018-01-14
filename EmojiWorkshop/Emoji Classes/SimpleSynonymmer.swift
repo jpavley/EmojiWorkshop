@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SimpleSynonymer: SimpleSubstituter {
+class SimpleSynonymmer: SimpleSubstituter {
     
     init(synonymMap: [String: String]) {
         super.init(substituteMap: synonymMap)
