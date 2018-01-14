@@ -30,13 +30,13 @@ class SimpleSynonymerTests: XCTestCase {
     }
     
     func testCreateSynonymer() {
-        let simpleSynonymer = SimpleSynonymer(synonymMap: synonymMap)
+        let simpleSynonymer = SimpleSynonymmer(synonymMap: synonymMap)
         XCTAssertNotNil(simpleSynonymer)
     }
     
     func testSynonymerSuccess() {
         let terms = ["tram", "metro", "rail", "monorail", "railway"]
-        let simpleSynonymer = SimpleSynonymer(synonymMap: synonymMap)
+        let simpleSynonymer = SimpleSynonymmer(synonymMap: synonymMap)
         
         for term in terms {
             XCTAssertTrue(simpleSynonymer.getSynonym(for: term) == "train")
@@ -45,7 +45,7 @@ class SimpleSynonymerTests: XCTestCase {
     
     func testSynonymerSuccessChaseChange() {
         let terms = ["Tram", "metro", "Rail", "monorail", "RAILWAY"]
-        let simpleSynonymer = SimpleSynonymer(synonymMap: synonymMap)
+        let simpleSynonymer = SimpleSynonymmer(synonymMap: synonymMap)
 
         for term in terms {
             XCTAssertTrue(simpleSynonymer.getSynonym(for: term) == "train")
@@ -54,7 +54,7 @@ class SimpleSynonymerTests: XCTestCase {
 
     func testSynonymerFail() {
         let terms = ["xxx", "yyy", "zzz"]
-        let simpleSynonymer = SimpleSynonymer(synonymMap: synonymMap)
+        let simpleSynonymer = SimpleSynonymmer(synonymMap: synonymMap)
 
         for term in terms {
             XCTAssertNil(simpleSynonymer.getSynonym(for: term))
@@ -62,17 +62,17 @@ class SimpleSynonymerTests: XCTestCase {
     }
     
     func testSynonymerFromFile() {
-        let simpleSynonymer = SimpleSynonymer(sourceFileName: "EmojiSynonyms")
+        let simpleSynonymer = SimpleSynonymmer(sourceFileName: "EmojiSynonyms")
         XCTAssertNotNil(simpleSynonymer)
     }
     
     func testSynonymerFromFileSuccess() {
-        let simpleSynonymer = SimpleSynonymer(sourceFileName: "EmojiSynonyms")
+        let simpleSynonymer = SimpleSynonymmer(sourceFileName: "EmojiSynonyms")
         XCTAssertTrue(simpleSynonymer?.getSynonym(for: "tech") == "technologist")
     }
     
     func testSynonymerFromFileSuccessCaseChange() {
-        let simpleSynonymer = SimpleSynonymer(sourceFileName: "EmojiSynonyms")
+        let simpleSynonymer = SimpleSynonymmer(sourceFileName: "EmojiSynonyms")
         XCTAssertTrue(simpleSynonymer?.getSynonym(for: "Tech") == "technologist")
     }
 }

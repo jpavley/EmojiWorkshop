@@ -40,9 +40,9 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "Cat", foundCount: 11, firstID: 96, lastID: 1517),
             EmojiSearchResults(query: "Cat ", foundCount: 11, firstID: 96, lastID: 1517),
             EmojiSearchResults(query: "Cat face", foundCount: 10, firstID: 96, lastID: 1516),
-            EmojiSearchResults(query: "Cat face !smiling", foundCount: 8, firstID: 96, lastID: 1516),
-            EmojiSearchResults(query: "Cat face !smiling !pouting", foundCount: 7, firstID: 96, lastID: 1516),
-            EmojiSearchResults(query: "Cat face !smiling !pouting !grinning", foundCount: 6, firstID: 98, lastID: 1516),
+            EmojiSearchResults(query: "Cat face !smiling", foundCount: 7, firstID: 96, lastID: 1516),
+            EmojiSearchResults(query: "Cat face !smiling !pouting", foundCount: 6, firstID: 96, lastID: 1516),
+            EmojiSearchResults(query: "Cat face !smiling !pouting !grinning", foundCount: 5, firstID: 98, lastID: 1516),
             EmojiSearchResults(query: "Cat face !smiling !pouting !grinning joy", foundCount: 1, firstID: 98, lastID: 98),
             EmojiSearchResults(query: "Book house", foundCount: 0, firstID: -1, lastID: -1),
             EmojiSearchResults(query: "Cat !", foundCount: 11, firstID: 96, lastID: 1517), // "Cat !" == "Cat"
@@ -65,6 +65,7 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "stars", foundCount: 9, firstID: 21, lastID: 2270),
             EmojiSearchResults(query: "application", foundCount: 1, firstID: 2327, lastID: 2327),
             EmojiSearchResults(query: "and", foundCount: 0, firstID: -1, lastID: -1), // stop word search
+            EmojiSearchResults(query: "bike", foundCount: 36, firstID: 1082, lastID: 1117), // activity stems
             // TODO: EmojiSearchResults(query: "train", foundCount: 0, firstID: -1, lastID: -1) // synomyning: train all types of trains
         ]
     }
@@ -120,7 +121,7 @@ class EmojiSearchTests: XCTestCase {
         let testSugestionResults = testEmojiSearch.getSuggestions(emojiGlyphs: testEmojiCollection!.emojiGlyphs)
         
         XCTAssertTrue(testSugestionResults.count != 0)
-        XCTAssertTrue(testSugestionResults[0].key == "smileys")
+        XCTAssertTrue(testSugestionResults[0].key == "smileys" || testSugestionResults[0].key == "person")
         XCTAssertTrue(testSugestionResults[0].value == 1507)
     }
 }

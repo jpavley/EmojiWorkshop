@@ -65,8 +65,42 @@ plants:plant
 leaves:leaf
 drop:drops
 
-# actions
+# activities
 activities: activity
+bike:biking
+blow:blowing
+cry:crying
+dance:dancing
+drool:drooling
+facepalm:faceplaming
+frown:frowing
+gesture:gesturing
+golf:golfing
+grin:grinning
+grow:growing
+hug:hugging
+kiss:kissing
+laugh:laughing
+play:playing
+point:pointing
+pout:pouting
+roll:rolling
+row:rowing
+run:running
+scream:screaming
+seed:seedling
+shrug:shrugging
+sleep:sleeping
+smile:smiling
+smirk:smirking
+squint:squinting
+surf:surfing
+sush:sushing
+swim:swimming
+talk:talking
+walk:walking
+write:writing
+
 
 ##############
 # stop words #
