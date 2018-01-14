@@ -28,14 +28,13 @@ class EmojiSearch {
         }
     }
     
+    /// A search query is a sentance where each term narrows the results from left to right.
+    /// "Cat" returns all glyphs with "cat" in the description.
+    /// "Cat face" returns the subset of "cat" glyphs that also have "face" in the description.
+    /// "Cat face !smiling returns the subset of "cat" && "face" glyphs that don't have "smiling" in the decription
+    /// "Cat face !smiling kissing" returns the subset of "cat" && "face" && "kissing" but not "smiling" in the desciption
     fileprivate func searchByTags(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
         
-        // A search query is a sentance where each term narrows the results from left to right.
-        // "Cat" returns all glyphs with "cat" in the description.
-        // "Cat face" returns the subset of "cat" glyphs that also have "face" in the description.
-        // "Cat face !smiling returns the subset of "cat" && "face" glyphs that don't have "smiling" in the decription
-        // "Cat face !smiling kissing" returns the subset of "cat" && "face" && "kissing" but not "smiling" in the desciption
-                
         if searchString.isEmpty {
             return nil
         }
@@ -46,6 +45,43 @@ class EmojiSearch {
             return nil
         }
         
+        let initialResultGlyphs = getInitialSearchResults(emojiGlyphs: emojiGlyphs, searchTerms: searchTerms)
+        
+        if searchString.contains("!") {
+            return getResultsWithoutExcludedTerms(initialResultGlyphs: initialResultGlyphs, emojiGlyphs: emojiGlyphs, searchString: searchString)
+        }
+        
+        return initialResultGlyphs
+    }
+    
+    fileprivate func getResultsWithoutExcludedTerms(initialResultGlyphs: [EmojiGlyph], emojiGlyphs: [EmojiGlyph], searchString: String) -> [EmojiGlyph] {
+        
+        var resultsGlyphs = initialResultGlyphs
+        
+        if resultsGlyphs.isEmpty {
+            // Find all emoji that don't match the search terms
+            resultsGlyphs = emojiGlyphs
+        }
+        
+        let excludedTerms = excludedTermsFrom(searchString)
+        
+        if excludedTerms.count == 1 && excludedTerms.first == "" {
+            // Dont search on an empty exclusion
+            return resultsGlyphs
+        }
+        
+        resultsGlyphs = resultsGlyphs.filter({ (glyph) -> Bool in
+            let wordListSet: Set<String> = Set(glyph.tags)
+            let searchTermsSet = Set(excludedTerms)
+            let intersectionSet = wordListSet.intersection(searchTermsSet)
+            return intersectionSet.isEmpty
+        })
+        
+        return resultsGlyphs
+
+    }
+    
+    fileprivate func getInitialSearchResults(emojiGlyphs: [EmojiGlyph], searchTerms: [String]) -> [EmojiGlyph] {
         var iterativeResults = emojiGlyphs
         for term in searchTerms {
             // print("== \(term) of \(searchTerms)")
@@ -56,34 +92,7 @@ class EmojiSearch {
                 return !intersectionSet.isEmpty
             })
         }
-        
-        var initialResultGlyphs = iterativeResults
-        
-        if searchString.contains("!") {
-            
-            if initialResultGlyphs.isEmpty {
-                // Find all emoji that don't match the search terms
-                initialResultGlyphs = emojiGlyphs
-            }
-            
-            let excludedTerms = excludedTermsFrom(searchString)
-            
-            if excludedTerms.count == 1 && excludedTerms.first == "" {
-                // Dont search on an empty exclusion
-                return initialResultGlyphs
-            }
-            
-            let finalResultGlyphs = initialResultGlyphs.filter({ (glyph) -> Bool in
-                let wordListSet: Set<String> = Set(glyph.tags)
-                let searchTermsSet = Set(excludedTerms)
-                let intersectionSet = wordListSet.intersection(searchTermsSet)
-                return intersectionSet.isEmpty
-            })
-            
-            return finalResultGlyphs
-        }
-        
-        return initialResultGlyphs
+        return iterativeResults
     }
     
     fileprivate func searchTermsWithoutExclusedTermsFrom(_ searchString: String) -> [String] {
