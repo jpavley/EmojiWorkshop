@@ -19,17 +19,11 @@ class SimpleStemmerTests: XCTestCase {
         stemMap = ["eyes": "eye",
                    "men": "man",
                    "women": "woman",
-                   "hands": "hands",
+                   "hands": "hand",
                    "fingers": "finger",
                    "horns": "horn",
-                   "children": "child",
-                   "tech": "Technologist",
-                   "tram": "train",
-                   "metro": "train",
-                   "rail": "train",
-                   "monorail": "train",
-                   "railway": "train",
-                   "trollybus": "bus"]
+                   "children": "child"
+                   ]
 
     }
     
@@ -44,20 +38,24 @@ class SimpleStemmerTests: XCTestCase {
     }
     
     func testStemmerSuccess() {
-        let terms = ["tram", "metro", "rail", "monorail", "railway"]
+        let terms = ["eyes", "men", "women", "hands", "fingers", "horns", "children"]
+        let results = ["eye", "man", "woman", "hand", "finger", "horn", "child"]
         let simpleStemmer = SimpleStemmer(stemMap: stemMap)
         
-        for term in terms {
-            XCTAssertTrue(simpleStemmer.getStem(for: term) == "train")
+        for i in 0..<terms.count {
+            print(terms[i], results[i])
+            XCTAssertTrue(simpleStemmer.getStem(for: terms[i]) == results[i])
         }
     }
     
     func testStemmerSuccessChaseChange() {
-        let terms = ["Tram", "metro", "Rail", "monorail", "RAILWAY"]
+        let terms = ["Eyes", "mEn", "womeN", "haNDs", "fINGers", "HornS", "CHILDREN"]
+        let results = ["eye", "man", "woman", "hand", "finger", "horn", "child"]
         let simpleStemmer = SimpleStemmer(stemMap: stemMap)
         
-        for term in terms {
-            XCTAssertTrue(simpleStemmer.getStem(for: term) == "train")
+        for i in 0..<terms.count {
+            print(terms[i], results[i])
+            XCTAssertTrue(simpleStemmer.getStem(for: terms[i]) == results[i])
         }
     }
     

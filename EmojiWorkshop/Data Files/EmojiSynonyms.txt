@@ -27,6 +27,14 @@ us:u.s.
 # objects
 stopwatch:watch
 
+# transportation
+tram:train
+metro:train
+rail:train
+monorail:train
+railway:train
+trollybus:bus
+
 # activities
 bike:biking
 blow:blowing
