@@ -59,6 +59,7 @@ func createMetadata(glyph: EmojiGlyph) -> [String] {
     
     let rawTags = descriptionWords + groupWords + subgroupWords
     let stemmedTags = stemmedTermsFrom(rawTags)
+    // TODO: Custom tags here
     
     let tagSet = Set(stemmedTags) // de-dupe
     let tagList = Array(tagSet)

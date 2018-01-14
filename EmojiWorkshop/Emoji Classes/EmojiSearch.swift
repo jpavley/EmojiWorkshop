@@ -98,6 +98,7 @@ class EmojiSearch {
     fileprivate func searchTermsWithoutExclusedTermsFrom(_ searchString: String) -> [String] {
         let searchTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" && $0[$0.startIndex] != "!" })
         let finalTerms = stemmedTermsFrom(searchTerms)
+        // TODO: synonyms here
         return finalTerms
     }
     
@@ -105,6 +106,7 @@ class EmojiSearch {
         let excludedTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" ? $0[$0.startIndex] == "!" : false })
         let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
         let finalExcludedTerms = stemmedTermsFrom(cleanExcludedTerms)
+        // TODO: synomyms here
         return finalExcludedTerms
     }
     

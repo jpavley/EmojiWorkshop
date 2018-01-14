@@ -5,14 +5,11 @@
 # Emoji Search Term Synonym Data
 # Version: 1.0
 
-# Using will want to use short search terms and expect them to be
+# Users will want to use short search terms and expect them to be
 # expanded to show the expected results. "Smile" should expand to
-# "smiling". But we don't want to permanently change the tags as
-# users will also want to search using the whole term and the
-# whole term is more discriptive than the short term. The synonym
-# function maps one word to another without changing the tags.
+# "smiling".
 
-# Note: Some times both synonyms exsist as tags. To show the
+# Some times both synonyms exsist as tags. To show the
 # complete results the both words have to be search for. The
 # main example is "smile:smiling", both words are tags!
 
@@ -27,13 +24,19 @@ us:u.s.
 # objects
 stopwatch:watch
 
-# transportation
+# transport
+locomotive:train
 tram:train
 metro:train
 rail:train
 monorail:train
 railway:train
+station:train
+
 trollybus:bus
+minibus:bus
+
+bike:bicycle
 
 # activities
 bike:biking

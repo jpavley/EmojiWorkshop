@@ -46,7 +46,7 @@ horns:horn
 books:book
 flags:flag
 houses:house
-bike:bicycles
+bicycles:bicycle
 pancake:pancakes
 
 # concepts
