@@ -52,6 +52,27 @@ class SimpleSynonymerTests: XCTestCase {
         }
     }
 
+    func testSynonymerFail() {
+        let terms = ["xxx", "yyy", "zzz"]
+        let simpleSynonymer = SimpleSynonymer(synonymMap: synonymMap)
+
+        for term in terms {
+            XCTAssertNil(simpleSynonymer.getSynonym(for: term))
+        }
+    }
     
+    func testSynonymerFromFile() {
+        let simpleSynonymer = SimpleSynonymer(sourceFileName: "EmojiSynonyms")
+        XCTAssertNotNil(simpleSynonymer)
+    }
     
+    func testSynonymerFromFileSuccess() {
+        let simpleSynonymer = SimpleSynonymer(sourceFileName: "EmojiSynonyms")
+        XCTAssertTrue(simpleSynonymer?.getSynonym(for: "tech") == "technologist")
+    }
+    
+    func testSynonymerFromFileSuccessCaseChange() {
+        let simpleSynonymer = SimpleSynonymer(sourceFileName: "EmojiSynonyms")
+        XCTAssertTrue(simpleSynonymer?.getSynonym(for: "Tech") == "technologist")
+    }
 }
