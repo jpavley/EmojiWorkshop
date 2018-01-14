@@ -38,6 +38,8 @@ rail:train
 monorail:train
 railway:train
 station:train
+cableway:train
+tramway:train
 
 trollybus:bus
 minibus:bus
