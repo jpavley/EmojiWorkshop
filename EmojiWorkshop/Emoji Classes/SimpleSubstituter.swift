@@ -45,7 +45,7 @@ class SimpleSubstituter {
     }
     
     
-    func getStem(for term: String) -> String? {
+    func getSubstitute(for term: String) -> String? {
         return substituteMap[term.lowercased()]
     }
     

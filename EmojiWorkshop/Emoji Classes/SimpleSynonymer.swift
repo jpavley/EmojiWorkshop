@@ -8,45 +8,19 @@
 
 import Foundation
 
-class SimpleSynonymer {
-    
-    var synonymMap = [String: String]()
+class SimpleSynonymer: SimpleSubstituter {
     
     init(synonymMap: [String: String]) {
-        self.synonymMap = synonymMap
+        super.init(substituteMap: synonymMap)
     }
+
     
-    init?(sourceFileName: String = "EmojiSynonyms") {
-        
-        if let txtPath = Bundle.main.path(forResource: sourceFileName, ofType: "txt") {
-            do {
-                
-                let synonymText = try String(contentsOfFile: txtPath, encoding: .utf8)
-                let synonymLines = synonymText.split(separator: "\n")
-                
-                for line in synonymLines {
-                    
-                    if line.contains(":") {
-                        // text before ":" is key, text after ":" is value
-                        let parts = line.split(separator: ":")
-                        let key = String(parts[0])
-                        // if there is only a key, as in the case of stop words
-                        // then supply an empty string as the value
-                        let val = parts.count > 1 ? String(parts[1]) : ""
-                        synonymMap[key] = val
-                    }
-                }
-            } catch {
-                
-                print("file not found")
-                return nil
-            }
-        }
+    override init?(sourceFileName: String = "EmojiSynonyms") {
+        super.init(sourceFileName: sourceFileName)
     }
-    
     
     func getSynonym(for term: String) -> String? {
-        return synonymMap[term.lowercased()]
+        return super.getSubstitute(for: term)
     }
-    
+
 }

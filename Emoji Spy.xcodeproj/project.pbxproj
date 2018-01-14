@@ -36,6 +36,7 @@
 		5AC7D53D200BAB4600DFF833 /* SimpleSynonymer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7D539200BAA5B00DFF833 /* SimpleSynonymer.swift */; };
 		5AC7D53E200BAB6200DFF833 /* EmojiSynonyms.txt in Resources */ = {isa = PBXBuildFile; fileRef = 485121C92009F20800A456CD /* EmojiSynonyms.txt */; };
 		5AC7D540200BB37E00DFF833 /* SimpleSubstituter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7D53F200BB37E00DFF833 /* SimpleSubstituter.swift */; };
+		5AC7D541200BB6B300DFF833 /* SimpleSubstituter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7D53F200BB37E00DFF833 /* SimpleSubstituter.swift */; };
 		5AD391271FE57902001DBB26 /* EmojiSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391261FE57902001DBB26 /* EmojiSearch.swift */; };
 		5AD391281FE5790F001DBB26 /* EmojiSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391261FE57902001DBB26 /* EmojiSearch.swift */; };
 		5AD3912A1FE57933001DBB26 /* EmojiSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */; };
@@ -339,6 +340,7 @@
 				48034AC51FE21742001D431C /* EmojiGlyph.swift in Sources */,
 				5AF853421FF82AA00018A598 /* EmojiToolsTests.swift in Sources */,
 				4808EC4E1FFDD65D00E16EF0 /* SimpleStemmer.swift in Sources */,
+				5AC7D541200BB6B300DFF833 /* SimpleSubstituter.swift in Sources */,
 				5AC7D53D200BAB4600DFF833 /* SimpleSynonymer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

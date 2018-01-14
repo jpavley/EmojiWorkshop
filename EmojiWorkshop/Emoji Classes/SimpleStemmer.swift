@@ -8,45 +8,18 @@
 
 import Foundation
 
-class SimpleStemmer {
-    
-    var stemMap = [String: String]()
+class SimpleStemmer: SimpleSubstituter {
     
     init(stemMap: [String: String]) {
-        self.stemMap = stemMap
+        super.init(substituteMap: stemMap)
     }
     
-    init?(sourceFileName: String = "EmojiStems") {
-        
-        if let txtPath = Bundle.main.path(forResource: sourceFileName, ofType: "txt") {
-            do {
-                
-                let stemText = try String(contentsOfFile: txtPath, encoding: .utf8)
-                let stemLines = stemText.split(separator: "\n")
-                
-                for line in stemLines {
-                    
-                    if line.contains(":") {
-                        // text before ":" is key, text after ":" is value
-                        let parts = line.split(separator: ":")
-                        let key = String(parts[0])
-                        // if there is only a key, as in the case of stop words
-                        // then supply an empty string as the value
-                        let val = parts.count > 1 ? String(parts[1]) : ""
-                        stemMap[key] = val
-                    }
-                }
-            } catch {
-                
-                print("file not found")
-                return nil
-            }
-        }
+    override init?(sourceFileName: String = "EmojiStems") {
+        super.init(sourceFileName: sourceFileName)
     }
-
     
     func getStem(for term: String) -> String? {
-        return stemMap[term.lowercased()]
+        return super.getSubstitute(for: term)
     }
     
 }
