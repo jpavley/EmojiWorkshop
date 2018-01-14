@@ -24,11 +24,13 @@
 technologist:tech
 
 # countries
-aland:åland
-us:u.s.
+åland:aland
+u.s.:us
 
 # objects
 stopwatch:watch
+television:tv
+money:cash
 
 # transport
 locomotive:train
@@ -41,10 +43,21 @@ station:train
 cableway:train
 tramway:train
 
-trollybus:bus
+trolleybus:bus
 minibus:bus
 
 bicycle:biking
+
+automobile:car
+motorway:highway
+lorry:truck
+
+anchor:boat
+sailboat:boat
+canoe:boat
+speedboat:boat
+ship:boat
+ferry:boat
 
 # activities
 zzz:sleeping

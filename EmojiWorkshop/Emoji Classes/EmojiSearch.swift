@@ -56,10 +56,6 @@ class EmojiSearch {
     
     fileprivate func getResultsWithoutExcludedTerms(initialResultGlyphs: [EmojiGlyph], emojiGlyphs: [EmojiGlyph], searchString: String) -> [EmojiGlyph] {
         
-        if searchString == "Cat !" {
-            print(searchString)
-        }
-        
         var resultsGlyphs = initialResultGlyphs
         
         if resultsGlyphs.isEmpty {
