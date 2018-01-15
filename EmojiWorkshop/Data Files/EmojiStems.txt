@@ -100,7 +100,7 @@ swim:swimming
 talk:talking
 walk:walking
 write:writing
-faceplam:faceplaming
+facepalm:facepalming
 
 
 ##############
