@@ -36,19 +36,23 @@ class SimpleSynonymerTests: XCTestCase {
     
     func testSynonymerSuccess() {
         let terms = ["tram", "metro", "rail", "monorail", "railway"]
-        let simpleSynonymer = SimpleSynonymmer(synonymMap: synonymMap)
+        let synonymmer = SimpleSynonymmer(synonymMap: synonymMap)
         
         for term in terms {
-            XCTAssertTrue(simpleSynonymer.getSynonym(for: term) == "train")
+            let synonyms = synonymmer.getSynonyms(for: term)
+            XCTAssertTrue(synonyms!.count == 1)
+            XCTAssertTrue(synonyms?.first == "train")
         }
     }
     
     func testSynonymerSuccessChaseChange() {
         let terms = ["Tram", "metro", "Rail", "monorail", "RAILWAY"]
-        let simpleSynonymer = SimpleSynonymmer(synonymMap: synonymMap)
-
+        let synonymmer = SimpleSynonymmer(synonymMap: synonymMap)
+        
         for term in terms {
-            XCTAssertTrue(simpleSynonymer.getSynonym(for: term) == "train")
+            let synonyms = synonymmer.getSynonyms(for: term)
+            XCTAssertTrue(synonyms!.count == 1)
+            XCTAssertTrue(synonyms?.first == "train")
         }
     }
 
@@ -57,7 +61,7 @@ class SimpleSynonymerTests: XCTestCase {
         let simpleSynonymer = SimpleSynonymmer(synonymMap: synonymMap)
 
         for term in terms {
-            XCTAssertNil(simpleSynonymer.getSynonym(for: term))
+            XCTAssertNil(simpleSynonymer.getSynonyms(for: term))
         }
     }
     
@@ -68,11 +72,14 @@ class SimpleSynonymerTests: XCTestCase {
     
     func testSynonymerFromFileSuccess() {
         let simpleSynonymer = SimpleSynonymmer(sourceFileName: "EmojiSynonyms")
-        XCTAssertTrue(simpleSynonymer?.getSynonym(for: "technologist") == "tech")
-    }
-    
-    func testSynonymerFromFileSuccessCaseChange() {
-        let simpleSynonymer = SimpleSynonymmer(sourceFileName: "EmojiSynonyms")
-        XCTAssertTrue(simpleSynonymer?.getSynonym(for: "technologist") == "tech")
+        let correctSynonyms = "tech coder tester dev software developer engineer analyst".components(separatedBy: " ")
+
+        let testSynonyms = simpleSynonymer?.getSynonyms(for: "technologist")
+        
+        XCTAssertTrue(testSynonyms!.count == correctSynonyms.count)
+        
+        for i in 0..<testSynonyms!.count {
+            XCTAssertTrue(testSynonyms![i] == correctSynonyms[i])
+        }
     }
 }

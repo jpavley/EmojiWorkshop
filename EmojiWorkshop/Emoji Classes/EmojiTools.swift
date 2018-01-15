@@ -79,7 +79,14 @@ func createMetadata(glyph: EmojiGlyph, stemmer: SimpleStemmer, synonymmer: Simpl
 func stemmedTerms(from terms: [String], with stemmer: SimpleStemmer) -> [String] {
     var stemedTerms = [String]()
     for term in terms {
-        stemedTerms.append(stemmer.getStem(for: term) ?? term)
+        let stems = stemmer.getStems(for: term)
+        if stems != nil {
+            for stem in stems! {
+                stemedTerms.append(stem)
+            }
+        } else {
+            stemedTerms.append(term)
+        }
     }
     return stemedTerms
 }
@@ -87,7 +94,14 @@ func stemmedTerms(from terms: [String], with stemmer: SimpleStemmer) -> [String]
 func synonymmedTerms(from terms: [String], with synonymmer: SimpleSynonymmer) -> [String] {
     var synonymmedTerms = terms
     for term in terms {
-        synonymmedTerms.append(synonymmer.getSynonym(for: term) ?? term)
+        let synonyms = synonymmer.getSynonyms(for: term)
+        if synonyms != nil {
+            for synonym in synonyms! {
+                synonymmedTerms.append(synonym)
+            }
+        } else {
+            synonymmedTerms.append(term)
+        }
     }
     return synonymmedTerms
 }

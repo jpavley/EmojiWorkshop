@@ -21,8 +21,8 @@ class SimpleSynonymmer: SimpleSubstituter {
         //print(super.substituteMap)
     }
     
-    func getSynonym(for term: String) -> String? {
-        return super.getSubstitute(for: term)
+    func getSynonyms(for term: String) -> [String]? {
+        return super.getSubstitutes(for: term)
     }
 
 }

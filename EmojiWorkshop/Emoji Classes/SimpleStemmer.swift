@@ -18,8 +18,8 @@ class SimpleStemmer: SimpleSubstituter {
         super.init(sourceFileName: sourceFileName)
     }
     
-    func getStem(for term: String) -> String? {
-        return super.getSubstitute(for: term)
+    func getStems(for term: String) -> [String]? {
+        return super.getSubstitutes(for: term)
     }
     
 }
