@@ -17,6 +17,8 @@ class SimpleSynonymmer: SimpleSubstituter {
     
     override init?(sourceFileName: String = "EmojiSynonyms") {
         super.init(sourceFileName: sourceFileName)
+        
+        //print(super.substituteMap)
     }
     
     func getSynonym(for term: String) -> String? {
