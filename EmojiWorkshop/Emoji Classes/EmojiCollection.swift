@@ -106,15 +106,5 @@ class EmojiCollection {
         createGlyphsInSections()
         let emojiSearch = EmojiSearch()
         searchSuggestions = emojiSearch.getSuggestions(emojiGlyphs: emojiGlyphs)
-
-        
-//        print("emojiGlyphs.count \(emojiGlyphs.count)")
-        
-//        for i in 0..<sections.count {
-//            print("\(sections[i]) \(glyphsIDsInSections[i])")
-//        }
-        
-        print("searchSuggestions.count \(searchSuggestions.count)")
-        
     }
 }
