@@ -41,7 +41,6 @@ bride:party bridesmaid prom date
 pregnant:mom mother mama
 breast:mom mother mama
 mage:wizard
-fantasy:Halloween
 frowning:sad
 pounting:mad
 bowing:sorry
