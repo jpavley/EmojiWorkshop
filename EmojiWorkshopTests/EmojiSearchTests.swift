@@ -78,14 +78,14 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testEmojiSearchInstance() {
-        let testEmojiSearch = EmojiSearch()
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer, synonymmer: testEmojiCollection!.synonymmer)
         XCTAssertNotNil(testEmojiSearch)
     }
     
     func testEmojiSearchResultsListByTags() {
         
-        let testEmojiSearch = EmojiSearch()
-        
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer, synonymmer: testEmojiCollection!.synonymmer)
+
         for i in 0..<emojiSearchResultsList.count {
             
             if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs,
@@ -107,8 +107,8 @@ class EmojiSearchTests: XCTestCase {
     
     func testFilterEmojiNoFilter() {
         
-        let testEmojiSearch = EmojiSearch()
-        
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer, synonymmer: testEmojiCollection!.synonymmer)
+
         if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noFilter, searchString: "") {
             
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.count == testSearchResults.count) // 2621 emoji as of Emoji Test File 5.0
@@ -119,7 +119,7 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testSearchSuggestion() {
-        let testEmojiSearch = EmojiSearch()
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer, synonymmer: testEmojiCollection!.synonymmer)
         let testSugestionResults = testEmojiSearch.getSuggestions(emojiGlyphs: testEmojiCollection!.emojiGlyphs)
         
         XCTAssertTrue(testSugestionResults.count != 0)

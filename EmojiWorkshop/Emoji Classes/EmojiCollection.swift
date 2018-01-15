@@ -17,6 +17,9 @@ class EmojiCollection {
     var searchSuggestions: TagAndCountsList
     var glyphsIDsInSections: [GlyphIDList]
     var sectionNames: [String]
+    var stemmer: SimpleStemmer
+    var synonymmer: SimpleSynonymmer
+    var searcher: EmojiSearch
     
     struct UnsupportedEmoji {
         static let unitedNationsFlag = " 🇺🇳"
@@ -56,6 +59,9 @@ class EmojiCollection {
         searchSuggestions = TagAndCountsList()
         glyphsIDsInSections = [[Int]]()
         sectionNames = [String]()
+        stemmer = SimpleStemmer()!
+        synonymmer = SimpleSynonymmer()!
+        searcher = EmojiSearch(stemmer: stemmer, synonymmer: synonymmer)
         
         if let txtPath = Bundle.main.path(forResource: sourceFileName, ofType: "txt") {
             do {
@@ -92,7 +98,7 @@ class EmojiCollection {
                         // print(emojiGlyph)
                         emojiIndex += 1
                         emojiGlyph.index = emojiIndex
-                        emojiGlyph.tags = createMetadata(glyph: emojiGlyph)
+                        emojiGlyph.tags = createMetadata(glyph: emojiGlyph, stemmer: stemmer, synonymmer: synonymmer)
                         emojiGlyphs.append(emojiGlyph)
                     }
                 }
@@ -104,7 +110,6 @@ class EmojiCollection {
         }
         
         createGlyphsInSections()
-        let emojiSearch = EmojiSearch()
-        searchSuggestions = emojiSearch.getSuggestions(emojiGlyphs: emojiGlyphs)
+        searchSuggestions = searcher.getSuggestions(emojiGlyphs: emojiGlyphs)
     }
 }

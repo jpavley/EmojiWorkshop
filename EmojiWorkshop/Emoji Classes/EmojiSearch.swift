@@ -16,8 +16,14 @@ typealias TagAndCount = (key: String, value: Int)
 typealias TagAndCountsList = [TagAndCount]
 
 class EmojiSearch {
-    
     let notSignal = "!"
+    let stemmer: SimpleStemmer
+    let synonymmer: SimpleSynonymmer
+    
+    init(stemmer: SimpleStemmer, synonymmer: SimpleSynonymmer) {
+        self.synonymmer = synonymmer
+        self.stemmer = stemmer
+    }
     
     func search(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
         switch filter {
@@ -96,8 +102,8 @@ class EmojiSearch {
     
     fileprivate func searchTermsWithoutExclusedTermsFrom(_ searchString: String) -> [String] {
         let searchTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" && $0[$0.startIndex] != "!" })
-        let stemmedSeachTerms = stemmedTerms(from: searchTerms)
-        let synonymmedSearchTerms = synonymmedTerms(from: stemmedSeachTerms)
+        let stemmedSeachTerms = stemmedTerms(from: searchTerms, with: stemmer)
+        let synonymmedSearchTerms = synonymmedTerms(from: stemmedSeachTerms, with: synonymmer)
         return synonymmedSearchTerms
     }
     
@@ -105,8 +111,8 @@ class EmojiSearch {
         let excludedTerms = searchString.lowercased().components(separatedBy: " ").filter({ $0 != "" ? $0[$0.startIndex] == "!" : false })
         let cleanExcludedTerms = excludedTerms.map({ String($0.dropFirst()) })
         let noEmptyStrings = cleanExcludedTerms.filter({!$0.isEmpty})
-        let stemmedExcludedTerms = stemmedTerms(from: noEmptyStrings)
-        let synonymmedExcludedTerms = synonymmedTerms(from: stemmedExcludedTerms)
+        let stemmedExcludedTerms = stemmedTerms(from: noEmptyStrings, with: stemmer)
+        let synonymmedExcludedTerms = synonymmedTerms(from: stemmedExcludedTerms, with: synonymmer)
         return synonymmedExcludedTerms
     }
     

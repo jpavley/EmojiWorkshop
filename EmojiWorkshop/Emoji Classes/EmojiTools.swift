@@ -11,10 +11,17 @@ import Foundation
 typealias TagList = [String]
 
 func printCVS(emojiGlyphs: [EmojiGlyph]) {
+    
+    guard
+        let stemmer = SimpleStemmer(), let synonymmer = SimpleSynonymmer()
+    else {
+        return
+    }
+    
     print("priority, glyph, group, subgroup, tags")
     for emoji in emojiGlyphs {
         
-        let tags = createMetadata(glyph: emoji)
+        let tags = createMetadata(glyph: emoji, stemmer: stemmer, synonymmer: synonymmer)
         
         print("\(emoji.index),\(emoji.glyph),\(emoji.group),\(emoji.subgroup)", terminator: "")
         if tags.count != 0 {
@@ -51,15 +58,15 @@ fileprivate func removeJunkCharacters(from text: String) -> TagList {
     return cleanedWords
 }
 
-func createMetadata(glyph: EmojiGlyph) -> [String] {
+func createMetadata(glyph: EmojiGlyph, stemmer: SimpleStemmer, synonymmer: SimpleSynonymmer) -> [String] {
     
     let descriptionWords = removeJunkCharacters(from: glyph.description)
     let groupWords = removeJunkCharacters(from: glyph.group)
     let subgroupWords = removeJunkCharacters(from: glyph.subgroup)
     
     let rawTags = descriptionWords + groupWords + subgroupWords
-    let stemmedTags = stemmedTerms(from: rawTags)
-    let synonymmedTags = synonymmedTerms(from: stemmedTags)
+    let stemmedTags = stemmedTerms(from: rawTags, with: stemmer)
+    let synonymmedTags = synonymmedTerms(from: stemmedTags, with: synonymmer)
     // TODO: Custom tags here
     
     let tagSet = Set(synonymmedTags) // de-dupe
@@ -69,20 +76,18 @@ func createMetadata(glyph: EmojiGlyph) -> [String] {
     return tagListSorted
 }
 
-func stemmedTerms(from terms: [String]) -> [String] {
+func stemmedTerms(from terms: [String], with stemmer: SimpleStemmer) -> [String] {
     var stemedTerms = [String]()
-    let simpleStemmer = SimpleStemmer()
     for term in terms {
-        stemedTerms.append(simpleStemmer?.getStem(for: term) ?? term)
+        stemedTerms.append(stemmer.getStem(for: term) ?? term)
     }
     return stemedTerms
 }
 
-func synonymmedTerms(from terms: [String]) -> [String] {
+func synonymmedTerms(from terms: [String], with synonymmer: SimpleSynonymmer) -> [String] {
     var synonymmedTerms = terms
-    let simpleSynonymmer = SimpleSynonymmer()
     for term in terms {
-        synonymmedTerms.append(simpleSynonymmer?.getSynonym(for: term) ?? term)
+        synonymmedTerms.append(synonymmer.getSynonym(for: term) ?? term)
     }
     return synonymmedTerms
 }

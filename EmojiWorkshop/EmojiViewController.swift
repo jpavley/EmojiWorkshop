@@ -233,8 +233,7 @@ class EmojiViewController: UIViewController {
             return
         }
         
-        let emojiSearch = EmojiSearch()
-        if let foundEmoji = emojiSearch.search(emojiGlyphs: emojiCollection.emojiGlyphs, filter: .byTags, searchString: emojiSearchBar.text!) {
+        if let foundEmoji = emojiCollection.searcher.search(emojiGlyphs: emojiCollection.emojiGlyphs, filter: .byTags, searchString: emojiSearchBar.text!) {
             
             emojiCollection.filteredEmojiGlyphs = foundEmoji
             
