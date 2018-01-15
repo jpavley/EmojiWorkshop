@@ -21,16 +21,65 @@
 
 
 # roles
-technologist:tech
+technologist:tech coder tester dev software developer engineer analyst
+cook:chef
+teacher:prof
+student:grad
+health:doctor nurse
+mechanic:plumber engineer engineering
+singer:hacker
+artist:painter
+pilot:captian
+astronaut:space nasa cosmonuat
+detective:police sherlock
+guard:soldier warrior
+construction:engineer engineering
+prince:royal king khal
+princess:royal queen khaleesi
+tuxedo:tux party groomsman prom date groom
+bride:party bridesmaid prom date
+pregnant:mom mother mama
+breast:mom mother mama
+mage:wizard
+fantasy:Halloween
+frowning:sad
+pounting:mad
+bowing:sorry
+facepalming:oops
+steamy:bath
+lotus:calm relax yoga
+bed:sleeping
+swimming:water
+kissing:love
+heart:love
+couple:valentine
+family:love
+biceps:strong
+victory:peace
+waving:hi hello bye
+writing:drawing
+clapping:kudos
+folded:thanks
+handshake:deal
+footprints:foot
+crown:royal king queen prince princess
+graduation:grad
+unicorn:fantasy
+blowfish:fish
+marine:ocean sea
+vegetable:veggi
+dishware:kitchen
 
 # countries
 åland:aland
-u.s.:us
+u.s.:us usa
 
 # objects
 stopwatch:watch
 television:tv
 money:cash
+tornado:twister
+musical:music
 
 # transport
 locomotive:train

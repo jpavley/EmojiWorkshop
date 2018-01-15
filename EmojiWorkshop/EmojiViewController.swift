@@ -275,6 +275,7 @@ class EmojiViewController: UIViewController {
 
         // diagnostics
         // printCVS(emojiGlyphs: emojiCollection!.emojiGlyphs)
+        for (key, val) in emojiCollection
     }
 
     override func didReceiveMemoryWarning() {
