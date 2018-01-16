@@ -69,6 +69,7 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "biking", foundCount: 38, firstID: 1082, lastID: 2169), 
             EmojiSearchResults(query: "bicycle", foundCount: 2, firstID: 1815, lastID: 2169),
             EmojiSearchResults(query: "train", foundCount: 16, firstID: 1787, lastID: 1843), // synonymming: "train" = all types of trains (trams, railways, cable cars, train stations)
+            EmojiSearchResults(query: "Halloween !tone", foundCount: 23, firstID: 85, lastID: 2150)
         ]
     }
     
@@ -78,13 +79,17 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testEmojiSearchInstance() {
-        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer, synonymmer: testEmojiCollection!.synonymmer)
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
         XCTAssertNotNil(testEmojiSearch)
     }
     
     func testEmojiSearchResultsListByTags() {
         
-        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer, synonymmer: testEmojiCollection!.synonymmer)
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
 
         for i in 0..<emojiSearchResultsList.count {
             
@@ -107,7 +112,9 @@ class EmojiSearchTests: XCTestCase {
     
     func testFilterEmojiNoFilter() {
         
-        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer, synonymmer: testEmojiCollection!.synonymmer)
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
 
         if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noFilter, searchString: "") {
             
@@ -119,7 +126,9 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testSearchSuggestion() {
-        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer, synonymmer: testEmojiCollection!.synonymmer)
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
         let testSugestionResults = testEmojiSearch.getSuggestions(emojiGlyphs: testEmojiCollection!.emojiGlyphs)
         
         XCTAssertTrue(testSugestionResults.count != 0)

@@ -13,7 +13,7 @@ typealias TagList = [String]
 func printCVS(emojiGlyphs: [EmojiGlyph]) {
     
     guard
-        let stemmer = SimpleStemmer(), let synonymmer = SimpleSynonymmer()
+        let stemmer = SimpleStemmer(), let synonymmer = SimpleSynonymmer(), let tagger = SimpleTagger()
     else {
         return
     }
@@ -21,7 +21,7 @@ func printCVS(emojiGlyphs: [EmojiGlyph]) {
     print("priority, glyph, group, subgroup, tags")
     for emoji in emojiGlyphs {
         
-        let tags = createMetadata(glyph: emoji, stemmer: stemmer, synonymmer: synonymmer)
+        let tags = createMetadata(glyph: emoji, stemmer: stemmer, synonymmer: synonymmer, tagger: tagger)
         
         print("\(emoji.index),\(emoji.glyph),\(emoji.group),\(emoji.subgroup)", terminator: "")
         if tags.count != 0 {
@@ -58,16 +58,23 @@ fileprivate func removeJunkCharacters(from text: String) -> TagList {
     return cleanedWords
 }
 
-func createMetadata(glyph: EmojiGlyph, stemmer: SimpleStemmer, synonymmer: SimpleSynonymmer) -> [String] {
+func createMetadata(glyph: EmojiGlyph, stemmer: SimpleStemmer, synonymmer: SimpleSynonymmer, tagger: SimpleTagger) -> [String] {
     
     let descriptionWords = removeJunkCharacters(from: glyph.description)
     let groupWords = removeJunkCharacters(from: glyph.group)
     let subgroupWords = removeJunkCharacters(from: glyph.subgroup)
     
-    let rawTags = descriptionWords + groupWords + subgroupWords
+    var rawTags = descriptionWords + groupWords + subgroupWords
+    
+    let customWords = tagger.getTags(for: glyph.index)
+    if let customWords = customWords {
+        if customWords != [""] {
+            rawTags += customWords
+        }
+    }
+    
     let stemmedTags = stemmedTerms(from: rawTags, with: stemmer)
     let synonymmedTags = synonymmedTerms(from: stemmedTags, with: synonymmer)
-    // TODO: Custom tags here
     
     let tagSet = Set(synonymmedTags) // de-dupe
     let tagList = Array(tagSet)

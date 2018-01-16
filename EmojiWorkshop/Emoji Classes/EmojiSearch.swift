@@ -19,10 +19,12 @@ class EmojiSearch {
     let notSignal = "!"
     let stemmer: SimpleStemmer
     let synonymmer: SimpleSynonymmer
+    let tagger: SimpleTagger
     
-    init(stemmer: SimpleStemmer, synonymmer: SimpleSynonymmer) {
+    init(stemmer: SimpleStemmer, synonymmer: SimpleSynonymmer, tagger: SimpleTagger) {
         self.synonymmer = synonymmer
         self.stemmer = stemmer
+        self.tagger = tagger
     }
     
     func search(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
