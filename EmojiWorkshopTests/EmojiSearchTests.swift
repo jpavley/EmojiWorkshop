@@ -40,9 +40,9 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "Cat", foundCount: 11, firstID: 96, lastID: 1517),
             EmojiSearchResults(query: "Cat ", foundCount: 11, firstID: 96, lastID: 1517),
             EmojiSearchResults(query: "Cat face", foundCount: 10, firstID: 96, lastID: 1516),
-            EmojiSearchResults(query: "Cat face !smiling", foundCount: 8, firstID: 96, lastID: 1516),
-            EmojiSearchResults(query: "Cat face !smiling !pouting", foundCount: 7, firstID: 96, lastID: 1516),
-            EmojiSearchResults(query: "Cat face !smiling !pouting !grinning", foundCount: 6, firstID: 98, lastID: 1516),
+            EmojiSearchResults(query: "Cat face !smiling", foundCount: 7, firstID: 96, lastID: 1516),
+            EmojiSearchResults(query: "Cat face !smiling !pouting", foundCount: 6, firstID: 96, lastID: 1516),
+            EmojiSearchResults(query: "Cat face !smiling !pouting !grinning", foundCount: 5, firstID: 98, lastID: 1516),
             EmojiSearchResults(query: "Cat face !smiling !pouting !grinning joy", foundCount: 1, firstID: 98, lastID: 98),
             EmojiSearchResults(query: "Book house", foundCount: 0, firstID: -1, lastID: -1),
             EmojiSearchResults(query: "Cat !", foundCount: 11, firstID: 96, lastID: 1517), // "Cat !" == "Cat"
@@ -64,7 +64,12 @@ class EmojiSearchTests: XCTestCase {
             EmojiSearchResults(query: "star", foundCount: 9, firstID: 21, lastID: 2270), // stemming "star" == "stars"
             EmojiSearchResults(query: "stars", foundCount: 9, firstID: 21, lastID: 2270),
             EmojiSearchResults(query: "application", foundCount: 1, firstID: 2327, lastID: 2327),
-            EmojiSearchResults(query: "and", foundCount: 0, firstID: -1, lastID: -1) // stop word search
+            EmojiSearchResults(query: "and", foundCount: 0, firstID: -1, lastID: -1), // stop word search
+            EmojiSearchResults(query: "bike", foundCount: 38, firstID: 1082, lastID: 2169), // activity stems
+            EmojiSearchResults(query: "biking", foundCount: 38, firstID: 1082, lastID: 2169), 
+            EmojiSearchResults(query: "bicycle", foundCount: 2, firstID: 1815, lastID: 2169),
+            EmojiSearchResults(query: "train", foundCount: 16, firstID: 1787, lastID: 1843), // synonymming: "train" = all types of trains (trams, railways, cable cars, train stations)
+            EmojiSearchResults(query: "Halloween !tone", foundCount: 23, firstID: 85, lastID: 2150)
         ]
     }
     
@@ -74,14 +79,18 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testEmojiSearchInstance() {
-        let testEmojiSearch = EmojiSearch()
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
         XCTAssertNotNil(testEmojiSearch)
     }
     
     func testEmojiSearchResultsListByTags() {
         
-        let testEmojiSearch = EmojiSearch()
-        
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
+
         for i in 0..<emojiSearchResultsList.count {
             
             if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs,
@@ -103,8 +112,10 @@ class EmojiSearchTests: XCTestCase {
     
     func testFilterEmojiNoFilter() {
         
-        let testEmojiSearch = EmojiSearch()
-        
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
+
         if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noFilter, searchString: "") {
             
             XCTAssertTrue(testEmojiCollection!.emojiGlyphs.count == testSearchResults.count) // 2621 emoji as of Emoji Test File 5.0
@@ -115,11 +126,13 @@ class EmojiSearchTests: XCTestCase {
     }
     
     func testSearchSuggestion() {
-        let testEmojiSearch = EmojiSearch()
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
         let testSugestionResults = testEmojiSearch.getSuggestions(emojiGlyphs: testEmojiCollection!.emojiGlyphs)
         
         XCTAssertTrue(testSugestionResults.count != 0)
-        XCTAssertTrue(testSugestionResults[0].key == "person")
+        XCTAssertTrue(testSugestionResults[0].key == "smileys" || testSugestionResults[0].key == "person")
         XCTAssertTrue(testSugestionResults[0].value == 1507)
     }
 }
