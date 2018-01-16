@@ -10,9 +10,23 @@ import UIKit
 
 // MARK:- Enumerations
 
+/// UserMode is main state machine of the app's UX. The app starts in browse. Touching the searchbar
+/// activates textSearchingNoResults. Typeing text that results in finding one or more emoji
+/// activates textSearching. Clearing the searchbar text or editing the text so that no emoji is
+/// found reactivates textSearchingNoResults. Touching the cancel button reactivates browse mode.
+/// Upon cancel the current searchbar text is saved. Touching the seachbar from browse restores the
+/// saved searchbar text.
 enum UserMode: Int {
+    /// Initial mode, **searchbar is not active**, **no text in searchbar**, cancel button disabled,
+    /// keyboard hidden, **0 emoji found**, clear button not visible.
     case browsing = 0
+    /// > 0 emoji found, **search is active**, **text in searchbar**, cancel button enabled, keyboard
+    /// visible or hidden, **seachbar text results in finding 1 or more emoji**, clear button
+    /// visible, saved and restored if there text in the searchbar.
     case textSearching = 1
+    /// **Searchbar is active**, **no text in searchbar**, cancel button enabled, keyboard visible,
+    /// **0 emoji found**, initial mode with searchbar is activated, searchbar text does not
+    /// result in finding any emoji, clear button not visible.
     case textSearchingNoResults = 2
 }
 
@@ -91,6 +105,14 @@ class EmojiViewController: UIViewController {
             cancelButton.isEnabled = true
         }
     }
+    
+    @objc func disableCancelButton() {
+        if userMode == .textSearching && !emojiSearchBar.text!.isEmpty {
+            let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+            cancelButton.isEnabled = false
+        }
+    }
+
 
     
     // MARK:- Utility functions
@@ -102,30 +124,48 @@ class EmojiViewController: UIViewController {
     fileprivate func updateUserMode(newMode: UserMode) {
         
         userMode = newMode
-        emojiGlyphTable.allowsSelection = true
 
+//        switch userMode {
+//        case .browsing:
+//            emojiSearchBar.resignFirstResponder()
+//        case .textSearching:
+//            emojiSearchBar.becomeFirstResponder()
+//        case .textSearchingNoResults:
+//            emojiSearchBar.becomeFirstResponder()
+//        }
+        
         switch userMode {
         case .browsing:
-            emojiSearchBar.resignFirstResponder()
+            hideKeyboard()
+            disableCancelButton()
         case .textSearching:
-            emojiSearchBar.becomeFirstResponder()
+            showKeyboard()
+            enableCancelButton()
         case .textSearchingNoResults:
-            emojiSearchBar.becomeFirstResponder()
+            showKeyboard()
+            disableCancelButton()
         }
+
     }
     
     fileprivate func hideKeyboard() {
         emojiSearchBar.resignFirstResponder()
     }
     
+    fileprivate func showKeyboard() {
+        emojiSearchBar.becomeFirstResponder()
+    }
+
+    
     fileprivate func getSelectedEmojiGlyph(for indexPath: IndexPath) -> EmojiGlyph? {
         guard let emojiCollection = emojiCollection else {
             return nil
         }
         
-        if userMode == .textSearching {
+        switch userMode {
+        case .textSearching:
             return emojiCollection.filteredEmojiGlyphs[indexPath.row]
-        } else {
+        case .browsing, .textSearchingNoResults:
             return emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
         }
     }
@@ -164,24 +204,21 @@ class EmojiViewController: UIViewController {
 
     
     fileprivate func getHeaderLabelText(for section: Int) -> String {
-        var headerLabelText = ""
-        
-        if let emojiCollection = emojiCollection {
-            
-            switch userMode {
-            case .textSearching:
-                headerLabelText = "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
-                
-            case .textSearchingNoResults:
-                headerLabelText = "Found 0 emoji"
-                
-            case .browsing:
-                headerLabelText = "\(emojiCollection.sectionNames[section]) (\(emojiCollection.glyphsIDsInSections[section].count))"
-                
-            }
+        guard let emojiCollection = emojiCollection else {
+            return ""
         }
         
-        return headerLabelText
+        switch userMode {
+        case .textSearching:
+            return "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
+            
+        case .textSearchingNoResults:
+            return "Found 0 emoji"
+            
+        case .browsing:
+            return "\(emojiCollection.sectionNames[section]) (\(emojiCollection.glyphsIDsInSections[section].count))"
+            
+            }
     }
     
     fileprivate func setupTableView() {
