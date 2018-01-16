@@ -24,5 +24,4 @@ class SimpleSynonymmer: SimpleSubstituter {
     func getSynonyms(for term: String) -> [String]? {
         return super.getSubstitutes(for: term)
     }
-
 }

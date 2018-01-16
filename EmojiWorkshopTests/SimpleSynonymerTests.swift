@@ -29,12 +29,12 @@ class SimpleSynonymerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testCreateSynonymer() {
+    func testCreateSynonymmer() {
         let simpleSynonymer = SimpleSynonymmer(synonymMap: synonymMap)
         XCTAssertNotNil(simpleSynonymer)
     }
     
-    func testSynonymerSuccess() {
+    func testSynonymmerSuccess() {
         let terms = ["tram", "metro", "rail", "monorail", "railway"]
         let synonymmer = SimpleSynonymmer(synonymMap: synonymMap)
         
@@ -45,7 +45,7 @@ class SimpleSynonymerTests: XCTestCase {
         }
     }
     
-    func testSynonymerSuccessChaseChange() {
+    func testSynonymmerSuccessChaseChange() {
         let terms = ["Tram", "metro", "Rail", "monorail", "RAILWAY"]
         let synonymmer = SimpleSynonymmer(synonymMap: synonymMap)
         
@@ -56,7 +56,7 @@ class SimpleSynonymerTests: XCTestCase {
         }
     }
 
-    func testSynonymerFail() {
+    func testSynonymmerFail() {
         let terms = ["xxx", "yyy", "zzz"]
         let simpleSynonymer = SimpleSynonymmer(synonymMap: synonymMap)
 
@@ -65,12 +65,12 @@ class SimpleSynonymerTests: XCTestCase {
         }
     }
     
-    func testSynonymerFromFile() {
+    func testSynonymmerFromFile() {
         let simpleSynonymer = SimpleSynonymmer(sourceFileName: "EmojiSynonyms")
         XCTAssertNotNil(simpleSynonymer)
     }
     
-    func testSynonymerFromFileSuccess() {
+    func testSynonymmerFromFileSuccess() {
         let simpleSynonymer = SimpleSynonymmer(sourceFileName: "EmojiSynonyms")
         let correctSynonyms = "tech coder tester dev software developer engineer analyst".components(separatedBy: " ")
 

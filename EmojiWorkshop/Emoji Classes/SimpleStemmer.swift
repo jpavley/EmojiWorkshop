@@ -21,5 +21,4 @@ class SimpleStemmer: SimpleSubstituter {
     func getStems(for term: String) -> [String]? {
         return super.getSubstitutes(for: term)
     }
-    
 }
