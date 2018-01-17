@@ -135,7 +135,7 @@ class EmojiViewController: UIViewController {
             return nil
         }
         
-        return emojiCollection.searchSuggestions[indexPath.row]
+        return emojiCollection.filteredSearchSuggestions[indexPath.row]
     }
 
     
@@ -255,6 +255,22 @@ class EmojiViewController: UIViewController {
             search()
         }
     }
+    
+    fileprivate func reloadTable() {
+        let contentOffset = emojiGlyphTable.contentOffset
+        emojiGlyphTable.reloadData()
+        emojiGlyphTable.setContentOffset(contentOffset, animated: true)
+
+    }
+    
+    fileprivate func updateFilteredSeachSuggestions(searchText: String) {
+        if userMode == .textSearchingNoResults {
+            emojiCollection!.filteredSearchSuggestions = emojiCollection!.searchSuggestions.filter({$0.key.starts(with: searchText.lowercased())})
+            if emojiCollection!.filteredSearchSuggestions.count == 0 {
+                emojiCollection!.filteredSearchSuggestions = emojiCollection!.searchSuggestions
+            }
+        }
+    }
         
     // MARK:- Overrides
     
@@ -287,17 +303,14 @@ class EmojiViewController: UIViewController {
 extension EmojiViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         processSearchBarText()
-        emojiGlyphTable.reloadData()
+        updateFilteredSeachSuggestions(searchText: searchText)
+        reloadTable()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        processSearchBarText()
         hideKeyboard()
         enableCancelButton()
-        emojiGlyphTable.reloadData()
     }
 
     
@@ -305,7 +318,7 @@ extension EmojiViewController: UISearchBarDelegate {
         updateUserMode(newMode: .browsing)
         searchBarText = searchBar.text!
         searchBar.text = ""
-        emojiGlyphTable.reloadData()
+        reloadTable()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -315,7 +328,7 @@ extension EmojiViewController: UISearchBarDelegate {
             updateUserMode(newMode: .textSearching)
         }
         searchBar.text = searchBarText
-        emojiGlyphTable.reloadData()
+        reloadTable()
     }
 }
 
@@ -329,7 +342,6 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         hideKeyboard()
 
         if userMode == .textSearching {
-            // print("== scrollViewWillBeginDragging()")
             enableCancelButton()
         }
     }
@@ -350,8 +362,6 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         // to the toolbar we can find it later
         selectedIndexPath = indexPath
         
-        // print("tableView(didSelectRowAt \(indexPath)), userMode \(userMode)")
-        
         // click on search suggestion
         if userMode == .textSearchingNoResults {
             if let suggestion = getSelectedSuggtion(for: indexPath) {
@@ -360,7 +370,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
                 search()
                 hideKeyboard()
                 enableCancelButton()
-                emojiGlyphTable.reloadData()
+                reloadTable()
             }
             return
         }
@@ -377,9 +387,8 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        // print("tableView(cellForRowAt \(indexPath)), userMode \(userMode)")
-        
         switch userMode {
+            
         case .browsing:
             let emojiGlyph = emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
             return updateSmallCell(with: emojiGlyph)
@@ -389,7 +398,8 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             return updateSmallCell(with: emojiGlyph)
 
         case .textSearchingNoResults:
-            let searchSuggestion = emojiCollection.searchSuggestions[indexPath.row]
+            let searchSuggestion = emojiCollection.filteredSearchSuggestions[indexPath.row]
+
             return updateSuggestSearchCell(with: searchSuggestion)
         }
     }
@@ -433,7 +443,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             case .textSearching:
                 return emojiCollection.filteredEmojiGlyphs.count
             case .textSearchingNoResults:
-                return emojiCollection.searchSuggestions.count
+                return emojiCollection.filteredSearchSuggestions.count
             }
             
         }

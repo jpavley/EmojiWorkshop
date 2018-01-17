@@ -15,6 +15,7 @@ class EmojiCollection {
     var emojiGlyphs: [EmojiGlyph]
     var filteredEmojiGlyphs: [EmojiGlyph]
     var searchSuggestions: TagAndCountsList
+    var filteredSearchSuggestions: TagAndCountsList
     var glyphsIDsInSections: [GlyphIDList]
     var sectionNames: [String]
     var stemmer: SimpleStemmer
@@ -58,6 +59,7 @@ class EmojiCollection {
         emojiGlyphs = [EmojiGlyph]()
         filteredEmojiGlyphs = [EmojiGlyph]()
         searchSuggestions = TagAndCountsList()
+        filteredSearchSuggestions = TagAndCountsList()
         glyphsIDsInSections = [[Int]]()
         sectionNames = [String]()
         stemmer = SimpleStemmer()!
@@ -113,5 +115,6 @@ class EmojiCollection {
         
         createGlyphsInSections()
         searchSuggestions = searcher.getSuggestions(emojiGlyphs: emojiGlyphs)
+        filteredSearchSuggestions = searchSuggestions
     }
 }
