@@ -100,17 +100,13 @@ class EmojiViewController: UIViewController {
     }
     
     @objc func enableCancelButton() {
-        if userMode == .textSearching && !emojiSearchBar.text!.isEmpty {
-            let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
-            cancelButton.isEnabled = true
-        }
+        let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+        cancelButton.isEnabled = true
     }
     
     @objc func disableCancelButton() {
-        if userMode == .textSearching && !emojiSearchBar.text!.isEmpty {
-            let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
-            cancelButton.isEnabled = false
-        }
+        let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+        cancelButton.isEnabled = false
     }
 
 
@@ -381,7 +377,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             
         case .textSearching, .textSearchingNoResults:
             enableCancelButton()
-            
+
         case .browsing:
             disableCancelButton()
         }
