@@ -257,18 +257,17 @@ class EmojiViewController: UIViewController {
     }
     
     fileprivate func reloadTable() {
-        let contentOffset = emojiGlyphTable.contentOffset
-        emojiGlyphTable.reloadData()
-        emojiGlyphTable.setContentOffset(contentOffset, animated: true)
+        UIView.animate(withDuration: 0, animations: {
+            self.emojiGlyphTable.setContentOffset(CGPoint.zero, animated: false)
+        }) { (finished) in
+            self.emojiGlyphTable.reloadData()
+        }
 
     }
     
     fileprivate func updateFilteredSeachSuggestions(searchText: String) {
         if userMode == .textSearchingNoResults {
             emojiCollection!.filteredSearchSuggestions = emojiCollection!.searchSuggestions.filter({$0.key.starts(with: searchText.lowercased())})
-            if emojiCollection!.filteredSearchSuggestions.count == 0 {
-                emojiCollection!.filteredSearchSuggestions = emojiCollection!.searchSuggestions
-            }
         }
     }
         
