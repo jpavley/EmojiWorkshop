@@ -10,9 +10,23 @@ import UIKit
 
 // MARK:- Enumerations
 
+/// UserMode is main state machine of the app's UX. The app starts in browse. Touching the searchbar
+/// activates textSearchingNoResults. Typeing text that results in finding one or more emoji
+/// activates textSearching. Clearing the searchbar text or editing the text so that no emoji is
+/// found reactivates textSearchingNoResults. Touching the cancel button reactivates browse mode.
+/// Upon cancel the current searchbar text is saved. Touching the seachbar from browse restores the
+/// saved searchbar text.
 enum UserMode: Int {
+    /// Initial mode, **searchbar is not active**, **no text in searchbar**, cancel button disabled,
+    /// keyboard hidden, **0 emoji found**, clear button not visible.
     case browsing = 0
+    /// > 0 emoji found, **search is active**, **text in searchbar**, cancel button enabled, keyboard
+    /// visible or hidden, **seachbar text results in finding 1 or more emoji**, clear button
+    /// visible, saved and restored if there text in the searchbar.
     case textSearching = 1
+    /// **Searchbar is active**, **no text in searchbar**, cancel button enabled, keyboard visible,
+    /// **0 emoji found**, initial mode with searchbar is activated, searchbar text does not
+    /// result in finding any emoji, clear button not visible.
     case textSearchingNoResults = 2
 }
 
@@ -86,11 +100,15 @@ class EmojiViewController: UIViewController {
     }
     
     @objc func enableCancelButton() {
-        if userMode == .textSearching && !emojiSearchBar.text!.isEmpty {
-            let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
-            cancelButton.isEnabled = true
-        }
+        let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+        cancelButton.isEnabled = true
     }
+    
+    @objc func disableCancelButton() {
+        let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+        cancelButton.isEnabled = false
+    }
+
 
     
     // MARK:- Utility functions
@@ -102,30 +120,42 @@ class EmojiViewController: UIViewController {
     fileprivate func updateUserMode(newMode: UserMode) {
         
         userMode = newMode
-        emojiGlyphTable.allowsSelection = true
 
         switch userMode {
+            
         case .browsing:
-            emojiSearchBar.resignFirstResponder()
+            hideKeyboard()
+            disableCancelButton()
+            
         case .textSearching:
-            emojiSearchBar.becomeFirstResponder()
+            showKeyboard()
+            enableCancelButton()
+            
         case .textSearchingNoResults:
-            emojiSearchBar.becomeFirstResponder()
+            showKeyboard()
+            enableCancelButton()
         }
+
     }
     
     fileprivate func hideKeyboard() {
         emojiSearchBar.resignFirstResponder()
     }
     
+    fileprivate func showKeyboard() {
+        emojiSearchBar.becomeFirstResponder()
+    }
+
+    
     fileprivate func getSelectedEmojiGlyph(for indexPath: IndexPath) -> EmojiGlyph? {
         guard let emojiCollection = emojiCollection else {
             return nil
         }
         
-        if userMode == .textSearching {
+        switch userMode {
+        case .textSearching:
             return emojiCollection.filteredEmojiGlyphs[indexPath.row]
-        } else {
+        case .browsing, .textSearchingNoResults:
             return emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
         }
     }
@@ -164,24 +194,22 @@ class EmojiViewController: UIViewController {
 
     
     fileprivate func getHeaderLabelText(for section: Int) -> String {
-        var headerLabelText = ""
-        
-        if let emojiCollection = emojiCollection {
-            
-            switch userMode {
-            case .textSearching:
-                headerLabelText = "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
-                
-            case .textSearchingNoResults:
-                headerLabelText = "Found 0 emoji"
-                
-            case .browsing:
-                headerLabelText = "\(emojiCollection.sectionNames[section]) (\(emojiCollection.glyphsIDsInSections[section].count))"
-                
-            }
+        guard let emojiCollection = emojiCollection else {
+            return ""
         }
         
-        return headerLabelText
+        switch userMode {
+            
+        case .textSearching:
+            return "Found \(emojiCollection.filteredEmojiGlyphs.count) emoji"
+            
+        case .textSearchingNoResults:
+            return "Found 0 emoji"
+            
+        case .browsing:
+            return "\(emojiCollection.sectionNames[section]) (\(emojiCollection.glyphsIDsInSections[section].count))"
+            
+        }
     }
     
     fileprivate func setupTableView() {
@@ -237,10 +265,13 @@ class EmojiViewController: UIViewController {
             
             emojiCollection.filteredEmojiGlyphs = foundEmoji
             
-            if emojiCollection.filteredEmojiGlyphs.count < 1 {
-                userMode = .textSearchingNoResults
+            if emojiCollection.filteredEmojiGlyphs.isEmpty {
+                
+                updateUserMode(newMode: .textSearchingNoResults)
+                
             } else {
-                userMode = .textSearching
+                
+                updateUserMode(newMode: .textSearching)
             }
         }
     }
@@ -249,7 +280,7 @@ class EmojiViewController: UIViewController {
         if emojiSearchBar.text!.isEmpty {
             emojiCollection!.filteredEmojiGlyphs = [EmojiGlyph]()
             searchBarText = ""
-            userMode = .textSearchingNoResults
+            updateUserMode(newMode: .textSearchingNoResults)
         } else {
             searchBarText = emojiSearchBar.text!
             search()
@@ -262,7 +293,6 @@ class EmojiViewController: UIViewController {
         super.viewDidLoad()
         
         emojiCollection = EmojiCollection(sourceFileName: Identifiers.emojiTest5)
-        userMode = .browsing
         
         setupTableView()
         setupSectionHeader()
@@ -271,6 +301,8 @@ class EmojiViewController: UIViewController {
         setupSearchbar()
         setupToolbar()
         setupNotifications()
+        
+        updateUserMode(newMode: .browsing)
 
         // diagnostics
         // printCVS(emojiGlyphs: emojiCollection!.emojiGlyphs)
@@ -295,25 +327,38 @@ extension EmojiViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         processSearchBarText()
+        
+        // Here the userMode is not changing, however.
+        // when the keyboard is hidden the cancel button
+        // is disabled and we need to re-enable it.
         hideKeyboard()
         enableCancelButton()
+        
         emojiGlyphTable.reloadData()
     }
 
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
         updateUserMode(newMode: .browsing)
+        
         searchBarText = searchBar.text!
         searchBar.text = ""
+        
         emojiGlyphTable.reloadData()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
         if searchBarText.isEmpty {
-            userMode = .textSearchingNoResults
+            
+            updateUserMode(newMode: .textSearchingNoResults)
+            
         } else {
+            
             updateUserMode(newMode: .textSearching)
         }
+        
         searchBar.text = searchBarText
         emojiGlyphTable.reloadData()
     }
@@ -327,15 +372,20 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
         hideKeyboard()
-
-        if userMode == .textSearching {
-            // print("== scrollViewWillBeginDragging()")
+        
+        switch userMode {
+            
+        case .textSearching, .textSearchingNoResults:
             enableCancelButton()
+
+        case .browsing:
+            disableCancelButton()
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetail" {
+            
             let detailViewController = segue.destination as! EmojiDetailViewController
             let indexPath = sender as! IndexPath
             detailViewController.selectedEmojiGlyph = getSelectedEmojiGlyph(for: indexPath)
@@ -350,26 +400,22 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         // to the toolbar we can find it later
         selectedIndexPath = indexPath
         
-        // print("tableView(didSelectRowAt \(indexPath)), userMode \(userMode)")
-        
-        // click on search suggestion
-        if userMode == .textSearchingNoResults {
+        switch userMode {
+            
+        case .textSearching, .browsing:
+            
+            hideKeyboard()
+            performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+
+        case .textSearchingNoResults:
+            
             if let suggestion = getSelectedSuggtion(for: indexPath) {
                 searchBarText = suggestion.key
                 emojiSearchBar.text = suggestion.key
                 search()
-                hideKeyboard()
-                enableCancelButton()
                 emojiGlyphTable.reloadData()
             }
-            return
         }
-        
-        if userMode == .browsing || userMode == .textSearching {
-            hideKeyboard()
-            performSegue(withIdentifier: "ShowDetail", sender: indexPath)
-        }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -377,10 +423,10 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        // print("tableView(cellForRowAt \(indexPath)), userMode \(userMode)")
-        
         switch userMode {
+            
         case .browsing:
+            
             let emojiGlyph = emojiCollection.emojiGlyphs.filter {$0.index == emojiCollection.glyphsIDsInSections[indexPath.section][indexPath.row]}.first!
             return updateSmallCell(with: emojiGlyph)
 
@@ -401,11 +447,13 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         switch userMode {
+            
         case .browsing:
+            
             return emojiCollection.sectionNames.count
-        case .textSearching:
-            return 1
-        case .textSearchingNoResults:
+            
+        case .textSearching, .textSearchingNoResults:
+            
             return 1
         }
     }
@@ -428,11 +476,16 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         if let emojiCollection = emojiCollection {
             
             switch userMode {
+                
             case .browsing:
                 return emojiCollection.glyphsIDsInSections[section].count
+            
             case .textSearching:
+                
                 return emojiCollection.filteredEmojiGlyphs.count
+            
             case .textSearchingNoResults:
+                
                 return emojiCollection.searchSuggestions.count
             }
             
