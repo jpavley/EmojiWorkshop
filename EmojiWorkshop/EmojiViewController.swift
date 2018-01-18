@@ -59,7 +59,7 @@ class EmojiViewController: UIViewController {
     
     // MARK:- Outlets
     
-    @IBOutlet weak var emojiGlyphTable: UITableView!
+    @IBOutlet weak var glyphTableView: UITableView!
     @IBOutlet weak var emojiSearchbar: UISearchBar!
     @IBOutlet weak var clipboardItem: UIBarButtonItem!
     @IBOutlet weak var deleteItem: UIBarButtonItem!
@@ -175,7 +175,7 @@ class EmojiViewController: UIViewController {
     }
     
     fileprivate func updateSmallCell(with emojiGlyph: EmojiGlyph) ->  SmallEmojiTableViewCell {
-        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.smallEmojiCell) as! SmallEmojiTableViewCell
+        let cell = glyphTableView.dequeueReusableCell(withIdentifier: Identifiers.smallEmojiCell) as! SmallEmojiTableViewCell
         
         cell.emojiLabel.text = emojiGlyph.glyph
         cell.descriptionLabel.text = emojiGlyph.description.capitalized
@@ -186,7 +186,7 @@ class EmojiViewController: UIViewController {
     }
     
     fileprivate func updateSuggestSearchCell(with suggestion: TagAndCount) ->  SuggestSearchCell {
-        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.suggestSearchCell) as! SuggestSearchCell
+        let cell = glyphTableView.dequeueReusableCell(withIdentifier: Identifiers.suggestSearchCell) as! SuggestSearchCell
         
         cell.label.text = "\(suggestion.key.capitalized) (\(suggestion.value))"
         return cell
@@ -214,29 +214,29 @@ class EmojiViewController: UIViewController {
     
     fileprivate func setupTableView() {
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
-        emojiGlyphTable.contentInset = insets
+        glyphTableView.contentInset = insets
     }
     
     fileprivate func setupSectionHeader() {
         // section header setup
         let sectionNib = UINib(nibName: Identifiers.emojiSectionHeader, bundle: nil)
-        emojiGlyphTable.register(sectionNib, forHeaderFooterViewReuseIdentifier: Identifiers.emojiSectionHeader)
-        emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
-        emojiGlyphTable.estimatedSectionHeaderHeight = 40
+        glyphTableView.register(sectionNib, forHeaderFooterViewReuseIdentifier: Identifiers.emojiSectionHeader)
+        glyphTableView.rowHeight = UITableViewAutomaticDimension
+        glyphTableView.estimatedSectionHeaderHeight = 40
     }
     
     fileprivate func setupCellNib() {
         let cellNib = UINib(nibName: Identifiers.smallEmojiCell, bundle: nil)
-        emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
-        emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
-        emojiGlyphTable.estimatedRowHeight = 300
+        glyphTableView.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
+        glyphTableView.rowHeight = UITableViewAutomaticDimension
+        glyphTableView.estimatedRowHeight = 300
     }
     
     fileprivate func setupSuggestCellNib() {
         let cellNib = UINib(nibName: Identifiers.suggestSearchCell, bundle: nil)
-        emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.suggestSearchCell)
-        emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
-        emojiGlyphTable.estimatedRowHeight = 300
+        glyphTableView.register(cellNib, forCellReuseIdentifier: Identifiers.suggestSearchCell)
+        glyphTableView.rowHeight = UITableViewAutomaticDimension
+        glyphTableView.estimatedRowHeight = 300
     }
 
     
@@ -290,9 +290,9 @@ class EmojiViewController: UIViewController {
     
     fileprivate func reloadTable() {
         UIView.animate(withDuration: 0, animations: {
-            self.emojiGlyphTable.setContentOffset(CGPoint.zero, animated: false)
+            self.glyphTableView.setContentOffset(CGPoint.zero, animated: false)
         }) { (finished) in
-            self.emojiGlyphTable.reloadData()
+            self.glyphTableView.reloadData()
         }
 
     }
@@ -354,7 +354,7 @@ extension EmojiViewController: UISearchBarDelegate {
         hideKeyboard()
         enableCancelButton()
         
-        emojiGlyphTable.reloadData()
+        glyphTableView.reloadData()
     }
 
     
@@ -443,7 +443,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
                 hideKeyboard()
                 enableCancelButton()
                 reloadTable()
-                emojiGlyphTable.reloadData()
+                glyphTableView.reloadData()
             }
         }
     }
