@@ -47,13 +47,28 @@ class EmojiSearch {
             return nil
         }
         
-        let initialResultGlyphs = getInitialSearchResults(emojiGlyphs: emojiGlyphs, searchTerms: searchTerms)
+        let filteredEmojiGlyphs = sift(emojiGlyphs: emojiGlyphs, with: filter)
+        
+        let initialResultGlyphs = getInitialSearchResults(emojiGlyphs: filteredEmojiGlyphs, searchTerms: searchTerms)
         
         if searchString.contains("!") {
-            return getResultsWithoutExcludedTerms(initialResultGlyphs: initialResultGlyphs, emojiGlyphs: emojiGlyphs, searchString: searchString)
+            return getResultsWithoutExcludedTerms(initialResultGlyphs: initialResultGlyphs, emojiGlyphs: filteredEmojiGlyphs, searchString: searchString)
         }
         
         return initialResultGlyphs
+    }
+    
+    fileprivate func sift(emojiGlyphs: [EmojiGlyph], with filter: EmojiFilter) -> [EmojiGlyph] {
+        switch filter {
+        case .noFilter:
+            return emojiGlyphs
+        case .noFlags:
+            return emojiGlyphs.filter({!$0.tags.contains("flag")})
+        case .noPeople:
+            return emojiGlyphs.filter({!$0.tags.contains("person")})
+        case .noTones:
+            return emojiGlyphs.filter({!$0.tags.contains("tone")})
+        }
     }
     
     fileprivate func getResultsWithoutExcludedTerms(initialResultGlyphs: [EmojiGlyph], emojiGlyphs: [EmojiGlyph], searchString: String) -> [EmojiGlyph] {
