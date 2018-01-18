@@ -8,8 +8,11 @@
 
 import Foundation
 
-enum EmojiFilter {
-    case noFilter, byTags
+enum EmojiFilter: Int {
+    case noFilter = 0
+    case noTones = 1
+    case noPeople = 2
+    case noFlags = 3
 }
 
 typealias TagAndCount = (key: String, value: Int)
@@ -27,21 +30,12 @@ class EmojiSearch {
         self.tagger = tagger
     }
     
-    func search(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
-        switch filter {
-        case .noFilter:
-            return emojiGlyphs
-        case .byTags:
-            return searchByTags(emojiGlyphs: emojiGlyphs, filter: filter, searchString: searchString)
-        }
-    }
-    
     /// A search query is a sentance where each term narrows the results from left to right.
     /// "Cat" returns all glyphs with "cat" in the description.
     /// "Cat face" returns the subset of "cat" glyphs that also have "face" in the description.
     /// "Cat face !smiling returns the subset of "cat" && "face" glyphs that don't have "smiling" in the decription
     /// "Cat face !smiling kissing" returns the subset of "cat" && "face" && "kissing" but not "smiling" in the desciption
-    fileprivate func searchByTags(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
+    func searchTags(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
         
         if searchString.isEmpty {
             return nil
