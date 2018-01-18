@@ -56,6 +56,7 @@ class EmojiViewController: UIViewController {
     var userMode = UserMode.browsing
     var searchBarText = ""
     var selectedIndexPath: IndexPath?
+    var selectedScope = 0
     
     // MARK:- Outlets
     
@@ -243,6 +244,7 @@ class EmojiViewController: UIViewController {
     fileprivate func setupSearchbar() {
         updateUserMode(newMode: .browsing)
         searchBarText = ""
+        emojiSearchBar.selectedScopeButtonIndex = EmojiFilter.noFilter.rawValue
     }
     
     fileprivate func setupToolbar() {
@@ -256,12 +258,12 @@ class EmojiViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(enableCancelButton), name: NSNotification.Name(rawValue: "enableCancelButton"), object: nil)
     }
     
-    fileprivate func search() {
+    fileprivate func search(emojiFilter: EmojiFilter) {
         guard let emojiCollection = emojiCollection else {
             return
         }
         
-        if let foundEmoji = emojiCollection.searcher.searchTags(emojiGlyphs: emojiCollection.emojiGlyphs, filter: .noFilter, searchString: emojiSearchBar.text!) {
+        if let foundEmoji = emojiCollection.searcher.searchTags(emojiGlyphs: emojiCollection.emojiGlyphs, filter: emojiFilter, searchString: emojiSearchBar.text!) {
             
             emojiCollection.filteredEmojiGlyphs = foundEmoji
             
@@ -276,14 +278,14 @@ class EmojiViewController: UIViewController {
         }
     }
     
-    fileprivate func processSearchBarText() {
+    fileprivate func processSearchBarText(emojiFilter: EmojiFilter) {
         if emojiSearchBar.text!.isEmpty {
             emojiCollection!.filteredEmojiGlyphs = [EmojiGlyph]()
             searchBarText = ""
             updateUserMode(newMode: .textSearchingNoResults)
         } else {
             searchBarText = emojiSearchBar.text!
-            search()
+            search(emojiFilter: emojiFilter)
         }
     }
     
@@ -334,7 +336,8 @@ class EmojiViewController: UIViewController {
 extension EmojiViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        processSearchBarText()
+        let emojiFilter = EmojiFilter(rawValue: emojiSearchBar.selectedScopeButtonIndex)
+        processSearchBarText(emojiFilter: emojiFilter!)
         updateFilteredSeachSuggestions(searchText: searchText)
         reloadTable()
     }
@@ -343,7 +346,8 @@ extension EmojiViewController: UISearchBarDelegate {
         hideKeyboard()
         enableCancelButton()
 
-        processSearchBarText()
+        let emojiFilter = EmojiFilter(rawValue: emojiSearchBar.selectedScopeButtonIndex)
+        processSearchBarText(emojiFilter: emojiFilter!)
         
         // Here the userMode is not changing, however.
         // when the keyboard is hidden the cancel button
@@ -377,6 +381,17 @@ extension EmojiViewController: UISearchBarDelegate {
         
         searchBar.text = searchBarText
         reloadTable()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        // print("selectedScope \(selectedScope)")
+        if self.selectedScope != selectedScope {
+            self.selectedScope = selectedScope
+            let emojiFilter = EmojiFilter(rawValue: selectedScope)
+            processSearchBarText(emojiFilter: emojiFilter!)
+            updateFilteredSeachSuggestions(searchText: searchBar.text!)
+            reloadTable()
+        }
     }
 }
 
@@ -428,7 +443,8 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             if let suggestion = getSelectedSuggtion(for: indexPath) {
                 searchBarText = suggestion.key
                 emojiSearchBar.text = suggestion.key
-                search()
+                let emojiFilter = EmojiFilter(rawValue: emojiSearchBar.selectedScopeButtonIndex)
+                search(emojiFilter: emojiFilter!)
                 hideKeyboard()
                 enableCancelButton()
                 reloadTable()
