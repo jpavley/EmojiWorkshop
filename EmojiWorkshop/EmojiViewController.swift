@@ -60,7 +60,7 @@ class EmojiViewController: UIViewController {
     // MARK:- Outlets
     
     @IBOutlet weak var emojiGlyphTable: UITableView!
-    @IBOutlet weak var emojiSearchBar: UISearchBar!
+    @IBOutlet weak var emojiSearchbar: UISearchBar!
     @IBOutlet weak var clipboardItem: UIBarButtonItem!
     @IBOutlet weak var deleteItem: UIBarButtonItem!
     @IBOutlet weak var shareItem: UIBarButtonItem!
@@ -100,12 +100,12 @@ class EmojiViewController: UIViewController {
     }
     
     @objc func enableCancelButton() {
-        let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+        let cancelButton = emojiSearchbar.value(forKey: "cancelButton") as! UIButton
         cancelButton.isEnabled = true
     }
     
     @objc func disableCancelButton() {
-        let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+        let cancelButton = emojiSearchbar.value(forKey: "cancelButton") as! UIButton
         cancelButton.isEnabled = false
     }
 
@@ -139,11 +139,11 @@ class EmojiViewController: UIViewController {
     }
     
     fileprivate func hideKeyboard() {
-        emojiSearchBar.resignFirstResponder()
+        emojiSearchbar.resignFirstResponder()
     }
     
     fileprivate func showKeyboard() {
-        emojiSearchBar.becomeFirstResponder()
+        emojiSearchbar.becomeFirstResponder()
     }
 
     
@@ -243,7 +243,7 @@ class EmojiViewController: UIViewController {
     fileprivate func setupSearchbar() {
         updateUserMode(newMode: .browsing)
         searchbarText = ""
-        emojiSearchBar.selectedScopeButtonIndex = EmojiFilter.noFilter.rawValue
+        emojiSearchbar.selectedScopeButtonIndex = EmojiFilter.noFilter.rawValue
     }
     
     fileprivate func setupToolbar() {
@@ -262,7 +262,7 @@ class EmojiViewController: UIViewController {
             return
         }
         
-        if let foundEmoji = emojiCollection.searcher.searchTags(emojiGlyphs: emojiCollection.emojiGlyphs, filter: emojiFilter, searchString: emojiSearchBar.text!) {
+        if let foundEmoji = emojiCollection.searcher.searchTags(emojiGlyphs: emojiCollection.emojiGlyphs, filter: emojiFilter, searchString: emojiSearchbar.text!) {
             
             emojiCollection.filteredEmojiGlyphs = foundEmoji
             
@@ -278,12 +278,12 @@ class EmojiViewController: UIViewController {
     }
     
     fileprivate func processSearchBarText(emojiFilter: EmojiFilter) {
-        if emojiSearchBar.text!.isEmpty {
+        if emojiSearchbar.text!.isEmpty {
             emojiCollection!.filteredEmojiGlyphs = [EmojiGlyph]()
             searchbarText = ""
             updateUserMode(newMode: .textSearchingNoResults)
         } else {
-            searchbarText = emojiSearchBar.text!
+            searchbarText = emojiSearchbar.text!
             search(emojiFilter: emojiFilter)
         }
     }
@@ -335,7 +335,7 @@ class EmojiViewController: UIViewController {
 extension EmojiViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let emojiFilter = EmojiFilter(rawValue: emojiSearchBar.selectedScopeButtonIndex)
+        let emojiFilter = EmojiFilter(rawValue: emojiSearchbar.selectedScopeButtonIndex)
         processSearchBarText(emojiFilter: emojiFilter!)
         updateFilteredSeachSuggestions(searchText: searchText)
         reloadTable()
@@ -345,7 +345,7 @@ extension EmojiViewController: UISearchBarDelegate {
         hideKeyboard()
         enableCancelButton()
 
-        let emojiFilter = EmojiFilter(rawValue: emojiSearchBar.selectedScopeButtonIndex)
+        let emojiFilter = EmojiFilter(rawValue: emojiSearchbar.selectedScopeButtonIndex)
         processSearchBarText(emojiFilter: emojiFilter!)
         
         // Here the userMode is not changing, however.
@@ -437,8 +437,8 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             
             if let suggestion = getSelectedSuggtion(for: indexPath) {
                 searchbarText = suggestion.key
-                emojiSearchBar.text = suggestion.key
-                let emojiFilter = EmojiFilter(rawValue: emojiSearchBar.selectedScopeButtonIndex)
+                emojiSearchbar.text = suggestion.key
+                let emojiFilter = EmojiFilter(rawValue: emojiSearchbar.selectedScopeButtonIndex)
                 search(emojiFilter: emojiFilter!)
                 hideKeyboard()
                 enableCancelButton()
