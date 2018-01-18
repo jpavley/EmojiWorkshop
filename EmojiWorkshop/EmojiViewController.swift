@@ -54,7 +54,7 @@ class EmojiViewController: UIViewController {
     var emojiCollection: EmojiCollection?
     var localPasteboard = ""
     var userMode = UserMode.browsing
-    var searchBarText = ""
+    var searchbarText = ""
     var selectedIndexPath: IndexPath?
     
     // MARK:- Outlets
@@ -242,7 +242,7 @@ class EmojiViewController: UIViewController {
     
     fileprivate func setupSearchbar() {
         updateUserMode(newMode: .browsing)
-        searchBarText = ""
+        searchbarText = ""
         emojiSearchBar.selectedScopeButtonIndex = EmojiFilter.noFilter.rawValue
     }
     
@@ -280,10 +280,10 @@ class EmojiViewController: UIViewController {
     fileprivate func processSearchBarText(emojiFilter: EmojiFilter) {
         if emojiSearchBar.text!.isEmpty {
             emojiCollection!.filteredEmojiGlyphs = [EmojiGlyph]()
-            searchBarText = ""
+            searchbarText = ""
             updateUserMode(newMode: .textSearchingNoResults)
         } else {
-            searchBarText = emojiSearchBar.text!
+            searchbarText = emojiSearchBar.text!
             search(emojiFilter: emojiFilter)
         }
     }
@@ -362,14 +362,14 @@ extension EmojiViewController: UISearchBarDelegate {
         
         updateUserMode(newMode: .browsing)
         
-        searchBarText = searchBar.text!
+        searchbarText = searchBar.text!
         searchBar.text = ""
         reloadTable()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
-        if searchBarText.isEmpty {
+        if searchbarText.isEmpty {
             
             updateUserMode(newMode: .textSearchingNoResults)
             
@@ -378,7 +378,7 @@ extension EmojiViewController: UISearchBarDelegate {
             updateUserMode(newMode: .textSearching)
         }
         
-        searchBar.text = searchBarText
+        searchBar.text = searchbarText
         reloadTable()
     }
     
@@ -436,7 +436,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         case .textSearchingNoResults:
             
             if let suggestion = getSelectedSuggtion(for: indexPath) {
-                searchBarText = suggestion.key
+                searchbarText = suggestion.key
                 emojiSearchBar.text = suggestion.key
                 let emojiFilter = EmojiFilter(rawValue: emojiSearchBar.selectedScopeButtonIndex)
                 search(emojiFilter: emojiFilter!)
