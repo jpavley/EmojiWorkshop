@@ -56,7 +56,6 @@ class EmojiViewController: UIViewController {
     var userMode = UserMode.browsing
     var searchBarText = ""
     var selectedIndexPath: IndexPath?
-    var selectedScope = 0
     
     // MARK:- Outlets
     
@@ -384,14 +383,10 @@ extension EmojiViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        // print("selectedScope \(selectedScope)")
-        if self.selectedScope != selectedScope {
-            self.selectedScope = selectedScope
-            let emojiFilter = EmojiFilter(rawValue: selectedScope)
-            processSearchBarText(emojiFilter: emojiFilter!)
-            updateFilteredSeachSuggestions(searchText: searchBar.text!)
-            reloadTable()
-        }
+        let emojiFilter = EmojiFilter(rawValue: selectedScope)
+        processSearchBarText(emojiFilter: emojiFilter!)
+        updateFilteredSeachSuggestions(searchText: searchBar.text!)
+        reloadTable()
     }
 }
 
