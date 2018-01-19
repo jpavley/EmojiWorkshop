@@ -93,8 +93,8 @@ class EmojiSearchTests: XCTestCase {
 
         for i in 0..<emojiSearchResultsList.count {
             
-            if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs,
-                                                              filter: .byTags,
+            if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs,
+                                                              filter: .noFilter,
                                                               searchString: emojiSearchResultsList[i].query) {
                 
                 XCTAssertEqual(testSearchResults.count, emojiSearchResultsList[i].foundCount, "failed query: \(emojiSearchResultsList[i].query)")
@@ -110,18 +110,48 @@ class EmojiSearchTests: XCTestCase {
         }
     }
     
-    func testFilterEmojiNoFilter() {
+    func testSearchNoFilter() {
         
         let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
                                           synonymmer: testEmojiCollection!.synonymmer,
                                           tagger: testEmojiCollection!.tagger)
 
-        if let testSearchResults = testEmojiSearch.search(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noFilter, searchString: "") {
+        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noFilter, searchString: "medium") {
             
-            XCTAssertTrue(testEmojiCollection!.emojiGlyphs.count == testSearchResults.count) // 2621 emoji as of Emoji Test File 5.0
-            XCTAssertTrue(testEmojiCollection!.glyphsIDsInSections.count == 76) // 76 sections as of Emoji Test File 5.0
-            XCTAssertTrue(testEmojiCollection!.emojiGlyphs.first!.index == testSearchResults.first!.index)
-            XCTAssertTrue(testEmojiCollection!.emojiGlyphs.last!.index == testSearchResults.last!.index)
+            XCTAssertTrue(testSearchResults.count == 642) // Emoji Test File 5.0
+        }
+    }
+    
+    func testSearchNoTones() {
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
+        
+        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noTones, searchString: "medium") {
+            
+            XCTAssertTrue(testSearchResults.count == 6)
+        }
+    }
+    
+    func testSearchNoPeople() {
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
+        
+        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noPeople, searchString: "light") {
+            
+            XCTAssertTrue(testSearchResults.count == 22)
+        }
+    }
+    
+    func testSearchNoFlags() {
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
+        
+        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noFlags, searchString: "open") {
+            
+            XCTAssertTrue(testSearchResults.count == 11)
         }
     }
     
@@ -129,6 +159,7 @@ class EmojiSearchTests: XCTestCase {
         let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
                                           synonymmer: testEmojiCollection!.synonymmer,
                                           tagger: testEmojiCollection!.tagger)
+        
         let testSugestionResults = testEmojiSearch.getSuggestions(emojiGlyphs: testEmojiCollection!.emojiGlyphs)
         
         XCTAssertTrue(testSugestionResults.count != 0)
