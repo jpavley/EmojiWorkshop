@@ -29,7 +29,7 @@ class EmojiSearchTests: XCTestCase {
         let lastID: Int
     }
     
-    var emojiSearchResultsList = [EmojiSearchResults]()
+    var testSearchQueries = [EmojiSearchResults]()
     var testEmojiCollection : EmojiCollection?
     
     override func setUp() {
@@ -40,8 +40,7 @@ class EmojiSearchTests: XCTestCase {
             testEmojiCollection = emojiCollection
         }
         
-        emojiSearchResultsList = [
-            EmojiSearchResults(query: "", foundCount: 2622, firstID: 23, lastID: 3495),
+        testSearchQueries = [
             EmojiSearchResults(query: "C", foundCount: 0, firstID: -1, lastID: -1),
             EmojiSearchResults(query: "Ca", foundCount: 0, firstID: -1, lastID: -1),
             EmojiSearchResults(query: "Cat", foundCount: 11, firstID: 96, lastID: 1517),
@@ -98,18 +97,18 @@ class EmojiSearchTests: XCTestCase {
                                           synonymmer: testEmojiCollection!.synonymmer,
                                           tagger: testEmojiCollection!.tagger)
 
-        for i in 0..<emojiSearchResultsList.count {
+        for i in 0..<testSearchQueries.count {
             
-            if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, searchString: emojiSearchResultsList[i].query) {
+            if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, searchString: testSearchQueries[i].query) {
                 
-                XCTAssertEqual(testSearchResults.count, emojiSearchResultsList[i].foundCount, "failed query: \(emojiSearchResultsList[i].query)")
+                XCTAssertEqual(testSearchResults.count, testSearchQueries[i].foundCount, "failed query: \(testSearchQueries[i].query)")
                 
                 if let firstID = testSearchResults.first {
-                    XCTAssertEqual(firstID.index, emojiSearchResultsList[i].firstID, "failed query: \(emojiSearchResultsList[i].query)")
+                    XCTAssertEqual(firstID.index, testSearchQueries[i].firstID, "failed query: \(testSearchQueries[i].query)")
                 }
                 
                 if let lastID = testSearchResults.last {
-                    XCTAssertEqual(lastID.index, emojiSearchResultsList[i].lastID,  "failed query: \(emojiSearchResultsList[i].query)")
+                    XCTAssertEqual(lastID.index, testSearchQueries[i].lastID,  "failed query: \(testSearchQueries[i].query)")
                 }
             }
         }

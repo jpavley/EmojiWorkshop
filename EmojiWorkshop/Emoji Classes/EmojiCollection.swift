@@ -153,6 +153,6 @@ class EmojiCollection {
         filteredSearchSuggestions = searchSuggestions
         diagosticData.totalSuggestionsFound = searchSuggestions.count
         
-        print("\(diagosticData)")
+        // print("\(diagosticData)")
     }
 }
