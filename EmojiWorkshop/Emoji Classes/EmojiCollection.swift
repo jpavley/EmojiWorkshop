@@ -113,6 +113,7 @@ class EmojiCollection {
             }
         }
         
+        emojiGlyphs = tagger.tagAdjustment(emojiGlyphs: emojiGlyphs)
         createGlyphsInSections()
         searchSuggestions = searcher.getSuggestions(emojiGlyphs: emojiGlyphs)
         filteredSearchSuggestions = searchSuggestions
