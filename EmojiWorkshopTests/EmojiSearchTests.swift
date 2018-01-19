@@ -129,48 +129,12 @@ class EmojiSearchTests: XCTestCase {
         XCTAssertTrue(testFilteredResults.last!.index == lastIndexFound)
     }
     
-    func testSearchNoTones() {
-        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
-                                          synonymmer: testEmojiCollection!.synonymmer,
-                                          tagger: testEmojiCollection!.tagger)
-        
-        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, searchString: "medium") {
-            
-            XCTAssertTrue(testSearchResults.count == 6)
-        }
-    }
-    
-    func testSearchNoPeople() {
-        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
-                                          synonymmer: testEmojiCollection!.synonymmer,
-                                          tagger: testEmojiCollection!.tagger)
-        
-        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, searchString: "light") {
-            
-            XCTAssertTrue(testSearchResults.count == 22)
-        }
-    }
-    
-    func testSearchNoFlags() {
-        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
-                                          synonymmer: testEmojiCollection!.synonymmer,
-                                          tagger: testEmojiCollection!.tagger)
-        
-        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, searchString: "open") {
-            
-            XCTAssertTrue(testSearchResults.count == 11)
-        }
-    }
-    
     func testSearchSuggestion() {
         let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
                                           synonymmer: testEmojiCollection!.synonymmer,
                                           tagger: testEmojiCollection!.tagger)
         
         let testSugestionResults = testEmojiSearch.getSuggestions(emojiGlyphs: testEmojiCollection!.emojiGlyphs)
-        
-        XCTAssertTrue(testSugestionResults.count != 0)
-        XCTAssertTrue(testSugestionResults[0].key == "smileys" || testSugestionResults[0].key == "person")
-        XCTAssertTrue(testSugestionResults[0].value == 1507)
+        XCTAssertTrue(testSugestionResults.count == totalSuggestionsFound)
     }
 }
