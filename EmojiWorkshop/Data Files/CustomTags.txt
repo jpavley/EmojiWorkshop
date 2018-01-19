@@ -21,6 +21,9 @@
 # of emoji but these tags are not suited for searching by
 # humans.
 
+# TODO: Use emoji character and not EmojiGlyph indexes as this will break with future emoji set versions
+# TODO: Signal the removal of tags with -tagname
+
 1:yellow happy
 2:yellow happy
 3:yellow happy

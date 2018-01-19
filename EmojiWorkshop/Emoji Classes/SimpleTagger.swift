@@ -39,6 +39,9 @@ class SimpleTagger: SimpleSubstituter {
     /// oddly tagged.
     func tagAdjustment(emojiGlyphs: [EmojiGlyph]) -> [EmojiGlyph] {
         var adjustedEmojiGlyphs = emojiGlyphs
+        
+        // TODO: Integrate into CustomTags.txt (this is compact but will break with future emoji sets
+        
         adjustedEmojiGlyphs = remove(badTag: "person", start: 0, end: 106, emojiGlyphs: adjustedEmojiGlyphs)
         adjustedEmojiGlyphs = remove(badTag: "smileys", start: 107, end: 1506, emojiGlyphs: adjustedEmojiGlyphs)
         adjustedEmojiGlyphs = remove(badTag: "person", start: 1443, end: 1506, emojiGlyphs: adjustedEmojiGlyphs)
