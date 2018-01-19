@@ -88,7 +88,7 @@ extension EmojiDetailViewController: UIViewControllerTransitioningDelegate {
         
         // print("presenting \(presenting?.description), presented \(presented.description)")
         
-        return EmojiDimmingPresentationController(presentedViewController: presented,
+        return EmojiPresentationController(presentedViewController: presented,
                                                   presenting: presenting)
     }
 }
