@@ -35,7 +35,7 @@ class EmojiSearch {
     /// "Cat face" returns the subset of "cat" glyphs that also have "face" in the description.
     /// "Cat face !smiling returns the subset of "cat" && "face" glyphs that don't have "smiling" in the decription
     /// "Cat face !smiling kissing" returns the subset of "cat" && "face" && "kissing" but not "smiling" in the desciption
-    func searchTags(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
+    func searchTags(emojiGlyphs: [EmojiGlyph], searchString: String) -> [EmojiGlyph]? {
         
         if searchString.isEmpty {
             return nil
@@ -47,18 +47,16 @@ class EmojiSearch {
             return nil
         }
         
-        let filteredEmojiGlyphs = sift(emojiGlyphs: emojiGlyphs, with: filter)
-        
-        let initialResultGlyphs = getInitialSearchResults(emojiGlyphs: filteredEmojiGlyphs, searchTerms: searchTerms)
+        let initialResultGlyphs = getInitialSearchResults(emojiGlyphs: emojiGlyphs, searchTerms: searchTerms)
         
         if searchString.contains("!") {
-            return getResultsWithoutExcludedTerms(initialResultGlyphs: initialResultGlyphs, emojiGlyphs: filteredEmojiGlyphs, searchString: searchString)
+            return getResultsWithoutExcludedTerms(initialResultGlyphs: initialResultGlyphs, emojiGlyphs: emojiGlyphs, searchString: searchString)
         }
         
         return initialResultGlyphs
     }
     
-    fileprivate func sift(emojiGlyphs: [EmojiGlyph], with filter: EmojiFilter) -> [EmojiGlyph] {
+    func sift(emojiGlyphs: [EmojiGlyph], with filter: EmojiFilter) -> [EmojiGlyph] {
         switch filter {
         case .noFilter:
             return emojiGlyphs

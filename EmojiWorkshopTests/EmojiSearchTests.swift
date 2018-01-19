@@ -10,6 +10,13 @@ import XCTest
 
 class EmojiSearchTests: XCTestCase {
     
+    let totalEmojiFound = 2621
+    let totalSectionsFound = 76
+    let totalLinesProcessed = 3499
+    let totalSuggestionsFound = 1634
+    let firstIndexFound = 1
+    let lastIndexFound = 2621
+    
     struct Identifiers {
         static let emojiTest5 = "emoji-test-5.0"
         static let emojiTestFail = "emoji-test-fail"
@@ -93,9 +100,7 @@ class EmojiSearchTests: XCTestCase {
 
         for i in 0..<emojiSearchResultsList.count {
             
-            if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs,
-                                                              filter: .noFilter,
-                                                              searchString: emojiSearchResultsList[i].query) {
+            if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, searchString: emojiSearchResultsList[i].query) {
                 
                 XCTAssertEqual(testSearchResults.count, emojiSearchResultsList[i].foundCount, "failed query: \(emojiSearchResultsList[i].query)")
                 
@@ -115,11 +120,13 @@ class EmojiSearchTests: XCTestCase {
         let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
                                           synonymmer: testEmojiCollection!.synonymmer,
                                           tagger: testEmojiCollection!.tagger)
-
-        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noFilter, searchString: "medium") {
-            
-            XCTAssertTrue(testSearchResults.count == 642) // Emoji Test File 5.0
-        }
+        
+        let testFilteredResults = testEmojiSearch.sift(emojiGlyphs: testEmojiCollection!.emojiGlyphs,
+                                                       with: .noFilter)
+        
+        XCTAssertTrue(testFilteredResults.count == totalEmojiFound)
+        XCTAssertTrue(testFilteredResults.first!.index == firstIndexFound)
+        XCTAssertTrue(testFilteredResults.last!.index == lastIndexFound)
     }
     
     func testSearchNoTones() {
@@ -127,7 +134,7 @@ class EmojiSearchTests: XCTestCase {
                                           synonymmer: testEmojiCollection!.synonymmer,
                                           tagger: testEmojiCollection!.tagger)
         
-        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noTones, searchString: "medium") {
+        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, searchString: "medium") {
             
             XCTAssertTrue(testSearchResults.count == 6)
         }
@@ -138,7 +145,7 @@ class EmojiSearchTests: XCTestCase {
                                           synonymmer: testEmojiCollection!.synonymmer,
                                           tagger: testEmojiCollection!.tagger)
         
-        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noPeople, searchString: "light") {
+        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, searchString: "light") {
             
             XCTAssertTrue(testSearchResults.count == 22)
         }
@@ -149,7 +156,7 @@ class EmojiSearchTests: XCTestCase {
                                           synonymmer: testEmojiCollection!.synonymmer,
                                           tagger: testEmojiCollection!.tagger)
         
-        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, filter: .noFlags, searchString: "open") {
+        if let testSearchResults = testEmojiSearch.searchTags(emojiGlyphs: testEmojiCollection!.emojiGlyphs, searchString: "open") {
             
             XCTAssertTrue(testSearchResults.count == 11)
         }
