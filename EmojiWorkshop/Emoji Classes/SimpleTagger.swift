@@ -30,4 +30,14 @@ class SimpleTagger: SimpleSubstituter {
         let term = "\(indexNumber)"
         return super.getSubstitutes(for: term)
     }
+    
+    /// Emoji groups and subgroups are not well named and/or are overbroad.
+    /// When creating tags from group and subgroup name hundreds of emoji
+    /// are inproperly tagged. Smileys are also tagged people and people are
+    /// are also tagged smileys. Plants are tagged animals. Foods are tagged
+    /// drinks and drinks are tagged food. Places and Travel are also
+    /// interchangably tagged.
+    func tagAdjustment() {
+        
+    }
 }
