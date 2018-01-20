@@ -66,9 +66,9 @@ class EmojiSearch {
         case .nature:
             return emojiGlyphs.filter({ $0.tags.contains("nature") })
         case .roles:
-            return emojiGlyphs.filter({ $0.tags.contains("roles") })
+            return emojiGlyphs.filter({ $0.tags.contains("role") })
         case .yellow:
-            return emojiGlyphs.filter({ !$0.tags.contains("yellow") })
+            return emojiGlyphs.filter({ $0.tags.contains("yellow") })
         }
     }
     

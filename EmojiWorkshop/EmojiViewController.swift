@@ -126,18 +126,15 @@ class EmojiViewController: UIViewController {
         case .browsing:
             hideKeyboard()
             disableCancelButton()
-            emojiSearchbar.showsScopeBar = true
             
         case .textSearching:
             showKeyboard()
             enableCancelButton()
-            emojiSearchbar.showsScopeBar = false
 
             
         case .textSearchingNoResults:
             showKeyboard()
             enableCancelButton()
-            emojiSearchbar.showsScopeBar = false
         }
 
     }

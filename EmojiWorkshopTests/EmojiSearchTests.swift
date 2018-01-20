@@ -114,7 +114,7 @@ class EmojiSearchTests: XCTestCase {
         }
     }
     
-    func testSearchNoFilter() {
+    func testSearchSiftNoFilter() {
         
         let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
                                           synonymmer: testEmojiCollection!.synonymmer,
@@ -127,6 +127,63 @@ class EmojiSearchTests: XCTestCase {
         XCTAssertTrue(testFilteredResults.first!.index == firstIndexFound)
         XCTAssertTrue(testFilteredResults.last!.index == lastIndexFound)
     }
+    
+    func testSearchSiftYellow() {
+        
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
+        
+        let testFilteredResults = testEmojiSearch.sift(emojiGlyphs: testEmojiCollection!.emojiGlyphs,
+                                                       with: .yellow)
+        
+        XCTAssertTrue(testFilteredResults.count == 344)
+        XCTAssertTrue(testFilteredResults.first!.index == 1)
+        XCTAssertTrue(testFilteredResults.last!.index == 1469)
+    }
+    
+    func testSearchSiftRoles() {
+        
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
+        
+        let testFilteredResults = testEmojiSearch.sift(emojiGlyphs: testEmojiCollection!.emojiGlyphs,
+                                                       with: .roles)
+        
+        XCTAssertTrue(testFilteredResults.count == 362)
+        XCTAssertTrue(testFilteredResults.first!.index == 77)
+        XCTAssertTrue(testFilteredResults.last!.index == 521)
+    }
+
+    func testSearchSiftFantsy() {
+        
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
+        
+        let testFilteredResults = testEmojiSearch.sift(emojiGlyphs: testEmojiCollection!.emojiGlyphs,
+                                                       with: .fantasy)
+        
+        XCTAssertTrue(testFilteredResults.count == 128)
+        XCTAssertTrue(testFilteredResults.first!.index == 85)
+        XCTAssertTrue(testFilteredResults.last!.index == 1915)
+    }
+    
+    func testSearchSiftNature() {
+        
+        let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
+                                          synonymmer: testEmojiCollection!.synonymmer,
+                                          tagger: testEmojiCollection!.tagger)
+        
+        let testFilteredResults = testEmojiSearch.sift(emojiGlyphs: testEmojiCollection!.emojiGlyphs,
+                                                       with: .nature)
+        
+        XCTAssertTrue(testFilteredResults.count == 113)
+        XCTAssertTrue(testFilteredResults.first!.index == 1508)
+        XCTAssertTrue(testFilteredResults.last!.index == 1620)
+    }
+
     
     func testSearchSuggestion() {
         let testEmojiSearch = EmojiSearch(stemmer: testEmojiCollection!.stemmer,
