@@ -76,6 +76,7 @@
 		486BA9CA20097DCD00D7BF73 /* SuggestSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestSearchCell.swift; sourceTree = "<group>"; };
 		48E4BC2A2005F34400A4CCE1 /* EmojiSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSectionHeader.swift; sourceTree = "<group>"; };
 		48E4BC2C2005F37B00A4CCE1 /* EmojiSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiSectionHeader.xib; sourceTree = "<group>"; };
+		5A0012032013C05B00223E8C /* Emoji Spy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Emoji Spy.entitlements"; sourceTree = "<group>"; };
 		5A4EAD321FDC758B00A02F7F /* Emoji Spy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Emoji Spy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A4EAD351FDC758B00A02F7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A4EAD371FDC758B00A02F7F /* EmojiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		5A4EAD291FDC758B00A02F7F = {
 			isa = PBXGroup;
 			children = (
+				5A0012032013C05B00223E8C /* Emoji Spy.entitlements */,
 				5A4EAD4F1FDD9CD600A02F7F /* LICENSE */,
 				5A4EAD4D1FDD9CCA00A02F7F /* readme.md */,
 				5A4EAD341FDC758B00A02F7F /* EmojiWorkshop */,
@@ -278,6 +280,14 @@
 					5A4EAD311FDC758B00A02F7F = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
