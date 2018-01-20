@@ -136,7 +136,8 @@ class EmojiViewController: UIViewController {
             showKeyboard()
             enableCancelButton()
         }
-
+        
+        reloadTable(from: "updateUserMode")
     }
     
     fileprivate func hideKeyboard() {
@@ -209,7 +210,6 @@ class EmojiViewController: UIViewController {
             
         case .browsing:
             return "\(emojiCollection.sectionNames[section]) (\(emojiCollection.glyphsIDsInSections[section].count))"
-            
         }
     }
     
@@ -289,10 +289,14 @@ class EmojiViewController: UIViewController {
         }
     }
     
-    fileprivate func reloadTable() {
+
+    fileprivate func reloadTable(from: String) {
+        print("== reloadTable(reloadCounter: \(from)")
+        
         UIView.animate(withDuration: 0, animations: {
             self.glyphTableView.setContentOffset(CGPoint.zero, animated: false)
         }) { (finished) in
+            self.glyphTableView.setContentOffset(CGPoint.zero, animated: false)
             self.glyphTableView.reloadData()
         }
 
@@ -338,7 +342,6 @@ extension EmojiViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         processSearchBarText()
         updateFilteredSeachSuggestions(searchText: searchText)
-        reloadTable()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -353,7 +356,8 @@ extension EmojiViewController: UISearchBarDelegate {
         hideKeyboard()
         enableCancelButton()
         
-        glyphTableView.reloadData()
+        //glyphTableView.reloadData()
+        reloadTable(from: "searchBarSearchButtonClicked")
     }
 
     
@@ -363,7 +367,6 @@ extension EmojiViewController: UISearchBarDelegate {
         
         searchbarText = searchBar.text!
         searchBar.text = ""
-        reloadTable()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -378,7 +381,6 @@ extension EmojiViewController: UISearchBarDelegate {
         }
         
         searchBar.text = searchbarText
-        reloadTable()
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
@@ -437,8 +439,8 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
                 search()
                 hideKeyboard()
                 enableCancelButton()
-                reloadTable()
-                glyphTableView.reloadData()
+                //glyphTableView.reloadData()
+                reloadTable(from: "tableView(didSelectRowAt) getSelectedSuggtion(for: \(indexPath.row)")
             }
         }
     }
@@ -456,12 +458,23 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             return updateSmallCell(with: emojiGlyph)
 
         case .textSearching:
+            
+            // if UITableView asks for an emoji we don't have return a blank cell
+            if emojiCollection.filteredEmojiGlyphs.endIndex < indexPath.row {
+                return UITableViewCell()
+            }
+            
             let emojiGlyph = emojiCollection.filteredEmojiGlyphs[indexPath.row]
             return updateSmallCell(with: emojiGlyph)
 
         case .textSearchingNoResults:
+            
+            // if UITableView asks for a suggestion we don't have return a blank cell
+            if emojiCollection.filteredSearchSuggestions.endIndex < indexPath.row {
+                return UITableViewCell()
+            }
+            
             let searchSuggestion = emojiCollection.filteredSearchSuggestions[indexPath.row]
-
             return updateSuggestSearchCell(with: searchSuggestion)
         }
     }
