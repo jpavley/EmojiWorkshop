@@ -426,9 +426,15 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch userMode {
             
-        case .textSearching, .browsing:
+        case .browsing:
             
             hideKeyboard()
+            performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+            
+        case .textSearching:
+            
+            hideKeyboard()
+            enableCancelButton()
             performSegue(withIdentifier: "ShowDetail", sender: indexPath)
 
         case .textSearchingNoResults:
