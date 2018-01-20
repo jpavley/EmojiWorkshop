@@ -8,11 +8,12 @@
 
 import Foundation
 
-enum EmojiFilter: Int {
+enum EmojiScope: Int {
     case noFilter = 0
-    case noTones = 1
-    case noPeople = 2
-    case noFlags = 3
+    case yellow = 1
+    case roles = 2
+    case fantasy = 3
+    case nature = 4
 }
 
 typealias TagAndCount = (key: String, value: Int)
@@ -56,16 +57,18 @@ class EmojiSearch {
         return initialResultGlyphs
     }
     
-    func sift(emojiGlyphs: [EmojiGlyph], with filter: EmojiFilter) -> [EmojiGlyph] {
-        switch filter {
+    func sift(emojiGlyphs: [EmojiGlyph], with scope: EmojiScope) -> [EmojiGlyph] {
+        switch scope {
         case .noFilter:
             return emojiGlyphs
-        case .noFlags:
-            return emojiGlyphs.filter({!$0.tags.contains("flag")})
-        case .noPeople:
-            return emojiGlyphs.filter({!$0.tags.contains("person")})
-        case .noTones:
-            return emojiGlyphs.filter({!$0.tags.contains("tone")})
+        case .fantasy:
+            return emojiGlyphs.filter({ $0.tags.contains("fantasy") })
+        case .nature:
+            return emojiGlyphs.filter({ $0.tags.contains("nature") })
+        case .roles:
+            return emojiGlyphs.filter({ $0.tags.contains("roles") })
+        case .yellow:
+            return emojiGlyphs.filter({ !$0.tags.contains("yellow") })
         }
     }
     

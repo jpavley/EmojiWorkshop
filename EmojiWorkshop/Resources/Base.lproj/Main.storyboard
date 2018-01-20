@@ -24,9 +24,10 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
                                     <string>All</string>
-                                    <string>Title1</string>
-                                    <string>Title2</string>
-                                    <string>Title3</string>
+                                    <string>Yellow</string>
+                                    <string>Roles</string>
+                                    <string>Fantasy</string>
+                                    <string>Nature</string>
                                 </scopeButtonTitles>
                                 <connections>
                                     <outlet property="delegate" destination="pBK-51-tgh" id="i19-5Z-Dkt"/>

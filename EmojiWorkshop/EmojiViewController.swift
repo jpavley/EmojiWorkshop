@@ -126,14 +126,18 @@ class EmojiViewController: UIViewController {
         case .browsing:
             hideKeyboard()
             disableCancelButton()
+            emojiSearchbar.showsScopeBar = true
             
         case .textSearching:
             showKeyboard()
             enableCancelButton()
+            emojiSearchbar.showsScopeBar = false
+
             
         case .textSearchingNoResults:
             showKeyboard()
             enableCancelButton()
+            emojiSearchbar.showsScopeBar = false
         }
 
     }
@@ -243,7 +247,7 @@ class EmojiViewController: UIViewController {
     fileprivate func setupSearchbar() {
         updateUserMode(newMode: .browsing)
         searchbarText = ""
-        emojiSearchbar.selectedScopeButtonIndex = EmojiFilter.noFilter.rawValue
+        emojiSearchbar.selectedScopeButtonIndex = EmojiScope.noFilter.rawValue
     }
     
     fileprivate func setupToolbar() {
@@ -257,7 +261,7 @@ class EmojiViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(enableCancelButton), name: NSNotification.Name(rawValue: "enableCancelButton"), object: nil)
     }
     
-    fileprivate func search(emojiFilter: EmojiFilter) {
+    fileprivate func search() {
         guard let emojiCollection = emojiCollection else {
             return
         }
@@ -277,14 +281,14 @@ class EmojiViewController: UIViewController {
         }
     }
     
-    fileprivate func processSearchBarText(emojiFilter: EmojiFilter) {
+    fileprivate func processSearchBarText() {
         if emojiSearchbar.text!.isEmpty {
             emojiCollection!.filteredEmojiGlyphs = [EmojiGlyph]()
             searchbarText = ""
             updateUserMode(newMode: .textSearchingNoResults)
         } else {
             searchbarText = emojiSearchbar.text!
-            search(emojiFilter: emojiFilter)
+            search()
         }
     }
     
@@ -335,8 +339,7 @@ class EmojiViewController: UIViewController {
 extension EmojiViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let emojiFilter = EmojiFilter(rawValue: emojiSearchbar.selectedScopeButtonIndex)
-        processSearchBarText(emojiFilter: emojiFilter!)
+        processSearchBarText()
         updateFilteredSeachSuggestions(searchText: searchText)
         reloadTable()
     }
@@ -345,8 +348,7 @@ extension EmojiViewController: UISearchBarDelegate {
         hideKeyboard()
         enableCancelButton()
 
-        let emojiFilter = EmojiFilter(rawValue: emojiSearchbar.selectedScopeButtonIndex)
-        processSearchBarText(emojiFilter: emojiFilter!)
+        processSearchBarText()
         
         // Here the userMode is not changing, however.
         // when the keyboard is hidden the cancel button
@@ -383,10 +385,7 @@ extension EmojiViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        let emojiFilter = EmojiFilter(rawValue: selectedScope)
-        processSearchBarText(emojiFilter: emojiFilter!)
-        updateFilteredSeachSuggestions(searchText: searchBar.text!)
-        reloadTable()
+        // TODO: do something
     }
 }
 
@@ -438,8 +437,7 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
             if let suggestion = getSelectedSuggtion(for: indexPath) {
                 searchbarText = suggestion.key
                 emojiSearchbar.text = suggestion.key
-                let emojiFilter = EmojiFilter(rawValue: emojiSearchbar.selectedScopeButtonIndex)
-                search(emojiFilter: emojiFilter!)
+                search()
                 hideKeyboard()
                 enableCancelButton()
                 reloadTable()
