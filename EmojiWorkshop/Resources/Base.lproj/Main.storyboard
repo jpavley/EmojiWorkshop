@@ -23,7 +23,11 @@
                                 <color key="barTintColor" red="1" green="0.81524676084518433" blue="0.18318289518356323" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
-                                    <string>Item</string>
+                                    <string>All</string>
+                                    <string>Yellow</string>
+                                    <string>Roles</string>
+                                    <string>Fantasy</string>
+                                    <string>Nature</string>
                                 </scopeButtonTitles>
                                 <connections>
                                     <outlet property="delegate" destination="pBK-51-tgh" id="i19-5Z-Dkt"/>
@@ -75,8 +79,8 @@
                     <connections>
                         <outlet property="clipboardItem" destination="VGA-bk-r3d" id="b9H-FN-Sde"/>
                         <outlet property="deleteItem" destination="NEg-Px-bnR" id="haM-md-rF8"/>
-                        <outlet property="emojiGlyphTable" destination="5tU-hG-qXa" id="Oap-eI-G0Y"/>
-                        <outlet property="emojiSearchBar" destination="nQy-Hw-LAh" id="NdP-Un-vzW"/>
+                        <outlet property="emojiSearchbar" destination="nQy-Hw-LAh" id="NdP-Un-vzW"/>
+                        <outlet property="glyphTableView" destination="5tU-hG-qXa" id="Oap-eI-G0Y"/>
                         <outlet property="shareItem" destination="rPq-qL-jkQ" id="9sR-TC-4PL"/>
                         <segue destination="p3k-EE-OkW" kind="showDetail" identifier="ShowDetail" id="tIj-3M-AMf"/>
                     </connections>

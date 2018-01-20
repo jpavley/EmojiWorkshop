@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmojiDimmingPresentationController: UIPresentationController {
+class EmojiPresentationController: UIPresentationController {
     
     override var shouldRemovePresentersView: Bool {
         return false

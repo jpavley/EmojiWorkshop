@@ -54,13 +54,13 @@ class EmojiViewController: UIViewController {
     var emojiCollection: EmojiCollection?
     var localPasteboard = ""
     var userMode = UserMode.browsing
-    var searchBarText = ""
+    var searchbarText = ""
     var selectedIndexPath: IndexPath?
     
     // MARK:- Outlets
     
-    @IBOutlet weak var emojiGlyphTable: UITableView!
-    @IBOutlet weak var emojiSearchBar: UISearchBar!
+    @IBOutlet weak var glyphTableView: UITableView!
+    @IBOutlet weak var emojiSearchbar: UISearchBar!
     @IBOutlet weak var clipboardItem: UIBarButtonItem!
     @IBOutlet weak var deleteItem: UIBarButtonItem!
     @IBOutlet weak var shareItem: UIBarButtonItem!
@@ -100,12 +100,12 @@ class EmojiViewController: UIViewController {
     }
     
     @objc func enableCancelButton() {
-        let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+        let cancelButton = emojiSearchbar.value(forKey: "cancelButton") as! UIButton
         cancelButton.isEnabled = true
     }
     
     @objc func disableCancelButton() {
-        let cancelButton = emojiSearchBar.value(forKey: "cancelButton") as! UIButton
+        let cancelButton = emojiSearchbar.value(forKey: "cancelButton") as! UIButton
         cancelButton.isEnabled = false
     }
 
@@ -130,6 +130,7 @@ class EmojiViewController: UIViewController {
         case .textSearching:
             showKeyboard()
             enableCancelButton()
+
             
         case .textSearchingNoResults:
             showKeyboard()
@@ -139,11 +140,11 @@ class EmojiViewController: UIViewController {
     }
     
     fileprivate func hideKeyboard() {
-        emojiSearchBar.resignFirstResponder()
+        emojiSearchbar.resignFirstResponder()
     }
     
     fileprivate func showKeyboard() {
-        emojiSearchBar.becomeFirstResponder()
+        emojiSearchbar.becomeFirstResponder()
     }
 
     
@@ -175,7 +176,7 @@ class EmojiViewController: UIViewController {
     }
     
     fileprivate func updateSmallCell(with emojiGlyph: EmojiGlyph) ->  SmallEmojiTableViewCell {
-        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.smallEmojiCell) as! SmallEmojiTableViewCell
+        let cell = glyphTableView.dequeueReusableCell(withIdentifier: Identifiers.smallEmojiCell) as! SmallEmojiTableViewCell
         
         cell.emojiLabel.text = emojiGlyph.glyph
         cell.descriptionLabel.text = emojiGlyph.description.capitalized
@@ -186,7 +187,7 @@ class EmojiViewController: UIViewController {
     }
     
     fileprivate func updateSuggestSearchCell(with suggestion: TagAndCount) ->  SuggestSearchCell {
-        let cell = emojiGlyphTable.dequeueReusableCell(withIdentifier: Identifiers.suggestSearchCell) as! SuggestSearchCell
+        let cell = glyphTableView.dequeueReusableCell(withIdentifier: Identifiers.suggestSearchCell) as! SuggestSearchCell
         
         cell.label.text = "\(suggestion.key.capitalized) (\(suggestion.value))"
         return cell
@@ -214,35 +215,36 @@ class EmojiViewController: UIViewController {
     
     fileprivate func setupTableView() {
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
-        emojiGlyphTable.contentInset = insets
+        glyphTableView.contentInset = insets
     }
     
     fileprivate func setupSectionHeader() {
         // section header setup
         let sectionNib = UINib(nibName: Identifiers.emojiSectionHeader, bundle: nil)
-        emojiGlyphTable.register(sectionNib, forHeaderFooterViewReuseIdentifier: Identifiers.emojiSectionHeader)
-        emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
-        emojiGlyphTable.estimatedSectionHeaderHeight = 40
+        glyphTableView.register(sectionNib, forHeaderFooterViewReuseIdentifier: Identifiers.emojiSectionHeader)
+        glyphTableView.rowHeight = UITableViewAutomaticDimension
+        glyphTableView.estimatedSectionHeaderHeight = 40
     }
     
     fileprivate func setupCellNib() {
         let cellNib = UINib(nibName: Identifiers.smallEmojiCell, bundle: nil)
-        emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
-        emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
-        emojiGlyphTable.estimatedRowHeight = 300
+        glyphTableView.register(cellNib, forCellReuseIdentifier: Identifiers.smallEmojiCell)
+        glyphTableView.rowHeight = UITableViewAutomaticDimension
+        glyphTableView.estimatedRowHeight = 300
     }
     
     fileprivate func setupSuggestCellNib() {
         let cellNib = UINib(nibName: Identifiers.suggestSearchCell, bundle: nil)
-        emojiGlyphTable.register(cellNib, forCellReuseIdentifier: Identifiers.suggestSearchCell)
-        emojiGlyphTable.rowHeight = UITableViewAutomaticDimension
-        emojiGlyphTable.estimatedRowHeight = 300
+        glyphTableView.register(cellNib, forCellReuseIdentifier: Identifiers.suggestSearchCell)
+        glyphTableView.rowHeight = UITableViewAutomaticDimension
+        glyphTableView.estimatedRowHeight = 300
     }
 
     
     fileprivate func setupSearchbar() {
         updateUserMode(newMode: .browsing)
-        searchBarText = ""
+        searchbarText = ""
+        emojiSearchbar.selectedScopeButtonIndex = EmojiScope.noFilter.rawValue
     }
     
     fileprivate func setupToolbar() {
@@ -261,7 +263,7 @@ class EmojiViewController: UIViewController {
             return
         }
         
-        if let foundEmoji = emojiCollection.searcher.search(emojiGlyphs: emojiCollection.emojiGlyphs, filter: .byTags, searchString: emojiSearchBar.text!) {
+        if let foundEmoji = emojiCollection.searcher.searchTags(emojiGlyphs: emojiCollection.emojiGlyphs, searchString: emojiSearchbar.text!) {
             
             emojiCollection.filteredEmojiGlyphs = foundEmoji
             
@@ -277,21 +279,21 @@ class EmojiViewController: UIViewController {
     }
     
     fileprivate func processSearchBarText() {
-        if emojiSearchBar.text!.isEmpty {
+        if emojiSearchbar.text!.isEmpty {
             emojiCollection!.filteredEmojiGlyphs = [EmojiGlyph]()
-            searchBarText = ""
+            searchbarText = ""
             updateUserMode(newMode: .textSearchingNoResults)
         } else {
-            searchBarText = emojiSearchBar.text!
+            searchbarText = emojiSearchbar.text!
             search()
         }
     }
     
     fileprivate func reloadTable() {
         UIView.animate(withDuration: 0, animations: {
-            self.emojiGlyphTable.setContentOffset(CGPoint.zero, animated: false)
+            self.glyphTableView.setContentOffset(CGPoint.zero, animated: false)
         }) { (finished) in
-            self.emojiGlyphTable.reloadData()
+            self.glyphTableView.reloadData()
         }
 
     }
@@ -351,7 +353,7 @@ extension EmojiViewController: UISearchBarDelegate {
         hideKeyboard()
         enableCancelButton()
         
-        emojiGlyphTable.reloadData()
+        glyphTableView.reloadData()
     }
 
     
@@ -359,14 +361,14 @@ extension EmojiViewController: UISearchBarDelegate {
         
         updateUserMode(newMode: .browsing)
         
-        searchBarText = searchBar.text!
+        searchbarText = searchBar.text!
         searchBar.text = ""
         reloadTable()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
-        if searchBarText.isEmpty {
+        if searchbarText.isEmpty {
             
             updateUserMode(newMode: .textSearchingNoResults)
             
@@ -375,8 +377,12 @@ extension EmojiViewController: UISearchBarDelegate {
             updateUserMode(newMode: .textSearching)
         }
         
-        searchBar.text = searchBarText
+        searchBar.text = searchbarText
         reloadTable()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        // TODO: do something
     }
 }
 
@@ -426,13 +432,13 @@ extension EmojiViewController: UITableViewDelegate, UITableViewDataSource {
         case .textSearchingNoResults:
             
             if let suggestion = getSelectedSuggtion(for: indexPath) {
-                searchBarText = suggestion.key
-                emojiSearchBar.text = suggestion.key
+                searchbarText = suggestion.key
+                emojiSearchbar.text = suggestion.key
                 search()
                 hideKeyboard()
                 enableCancelButton()
                 reloadTable()
-                emojiGlyphTable.reloadData()
+                glyphTableView.reloadData()
             }
         }
     }

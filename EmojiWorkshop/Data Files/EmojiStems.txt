@@ -43,6 +43,7 @@ hands:hand
 feet:foot
 fingers:finger
 toes:toe
+faces:face
 
 # objects
 horns:horn
@@ -56,6 +57,8 @@ pancake:pancakes
 countries:country
 places:place
 objects:object
+symbols:symbol
+roles:role
 
 # nature
 mount:mountain

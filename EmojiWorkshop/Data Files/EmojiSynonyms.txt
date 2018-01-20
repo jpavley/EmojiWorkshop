@@ -68,6 +68,8 @@ blowfish:fish
 marine:ocean sea
 vegetable:veggie
 dishware:kitchen
+drink:eat
+food:eat
 
 # countries
 åland:aland

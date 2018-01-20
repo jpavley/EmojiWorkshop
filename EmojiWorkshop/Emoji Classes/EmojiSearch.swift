@@ -8,8 +8,12 @@
 
 import Foundation
 
-enum EmojiFilter {
-    case noFilter, byTags
+enum EmojiScope: Int {
+    case noFilter = 0
+    case yellow = 1
+    case roles = 2
+    case fantasy = 3
+    case nature = 4
 }
 
 typealias TagAndCount = (key: String, value: Int)
@@ -27,21 +31,12 @@ class EmojiSearch {
         self.tagger = tagger
     }
     
-    func search(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
-        switch filter {
-        case .noFilter:
-            return emojiGlyphs
-        case .byTags:
-            return searchByTags(emojiGlyphs: emojiGlyphs, filter: filter, searchString: searchString)
-        }
-    }
-    
     /// A search query is a sentance where each term narrows the results from left to right.
     /// "Cat" returns all glyphs with "cat" in the description.
     /// "Cat face" returns the subset of "cat" glyphs that also have "face" in the description.
     /// "Cat face !smiling returns the subset of "cat" && "face" glyphs that don't have "smiling" in the decription
     /// "Cat face !smiling kissing" returns the subset of "cat" && "face" && "kissing" but not "smiling" in the desciption
-    fileprivate func searchByTags(emojiGlyphs: [EmojiGlyph], filter: EmojiFilter, searchString: String) -> [EmojiGlyph]? {
+    func searchTags(emojiGlyphs: [EmojiGlyph], searchString: String) -> [EmojiGlyph]? {
         
         if searchString.isEmpty {
             return nil
@@ -60,6 +55,21 @@ class EmojiSearch {
         }
         
         return initialResultGlyphs
+    }
+    
+    func sift(emojiGlyphs: [EmojiGlyph], with scope: EmojiScope) -> [EmojiGlyph] {
+        switch scope {
+        case .noFilter:
+            return emojiGlyphs
+        case .fantasy:
+            return emojiGlyphs.filter({ $0.tags.contains("fantasy") })
+        case .nature:
+            return emojiGlyphs.filter({ $0.tags.contains("nature") })
+        case .roles:
+            return emojiGlyphs.filter({ $0.tags.contains("role") })
+        case .yellow:
+            return emojiGlyphs.filter({ $0.tags.contains("yellow") })
+        }
     }
     
     fileprivate func getResultsWithoutExcludedTerms(initialResultGlyphs: [EmojiGlyph], emojiGlyphs: [EmojiGlyph], searchString: String) -> [EmojiGlyph] {
