@@ -26,13 +26,11 @@ class EmojiDetailViewController: UIViewController {
     
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableCancelButton"), object: nil)
     }
     
     @IBAction func copyToToolbar(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateToolbar"), object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableCancelButton"), object: nil)
         dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateToolbar"), object: nil)
     }
     
     // Mark:- Overrides
