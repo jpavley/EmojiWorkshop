@@ -20,7 +20,7 @@ class SmallEmojiTableViewCell: UITableViewCell {
         // Initialization code
         
         let selectedView = UIView(frame: CGRect.zero)
-        selectedView.backgroundColor = UIColor(red: emojiYellowRGBValues[0], green: emojiYellowRGBValues[1], blue: emojiYellowRGBValues[2], alpha: 0.5)
+        selectedView.backgroundColor = UIColor(named: "ThemeColorTranslucent")
         selectedBackgroundView = selectedView
     }
 
