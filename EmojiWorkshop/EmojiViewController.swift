@@ -32,8 +32,7 @@ enum UserMode: Int {
 
 // MARK:- Shared color scheme
 
-let emojiYellowRGBValues: [CGFloat] = [255/255, 208/255, 47/255]
-let emojiYellowUIColor = UIColor(red: emojiYellowRGBValues[0], green: emojiYellowRGBValues[0], blue: emojiYellowRGBValues[0], alpha: 1.0)
+let emojiYellowUIColor = UIColor(named: "ThemeColor")
 
 // MARK:- UIViewController
 
