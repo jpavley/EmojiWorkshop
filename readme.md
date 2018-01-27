@@ -36,7 +36,7 @@ The motivation for this app is to discover and explore all the emoji and meta da
 ### Sizing
 
 View | @1x | @2x | @3x
-====|====|====|====
+---|---|---|---
 Detail View | 200 | 400 | 600
 Toolbar Item | 25 | 50 | 75
 Table Cell | 60 | 120 | 180
