@@ -11,7 +11,7 @@ import UIKit
 class EmojiDetailViewController: UIViewController {
     
     @IBOutlet weak var emojiIndexLabel: UILabel!
-    @IBOutlet weak var emojiGlyphLabel: UILabel!
+    @IBOutlet weak var emojiImageView: UIImageView!
     @IBOutlet weak var emojiGroupLabel: UILabel!
     @IBOutlet weak var emojiDescriptionLabel: UILabel!
     @IBOutlet weak var emojiTagsLabel: UILabel!
@@ -70,11 +70,23 @@ class EmojiDetailViewController: UIViewController {
         }
         
         emojiIndexLabel.text = "# \(selectedEmojiGlyph.index)"
-        emojiGlyphLabel.text = selectedEmojiGlyph.glyph
+        //emojiGlyphLabel.text = selectedEmojiGlyph.glyph
+        emojiImageView.image = getEmojiImage(for: selectedEmojiGlyph.index)
         emojiGroupLabel.text = "\(selectedEmojiGlyph.group): \(selectedEmojiGlyph.subgroup)".capitalized
         emojiDescriptionLabel.text = selectedEmojiGlyph.description.capitalized
         
         emojiTagsLabel.text = selectedEmojiGlyph.tags.joined(separator: " ").capitalized.trimmingCharacters(in: .whitespaces)
+    }
+}
+
+// TODO: Toy code, remove once we have a serious solution
+
+fileprivate func getEmojiImage(for glyphID: Int) -> UIImage {
+    if glyphID > 0 && glyphID < 10 {
+        return UIImage(named: "dv-dark-emoji-\(glyphID)")!
+    } else {
+        return UIImage(named: "dv-dark-emoji-1")!
+
     }
 }
 
