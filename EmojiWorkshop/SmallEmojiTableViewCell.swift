@@ -10,7 +10,7 @@ import UIKit
 
 class SmallEmojiTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var emojiLabel: UILabel!
+    @IBOutlet weak var emojiImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!

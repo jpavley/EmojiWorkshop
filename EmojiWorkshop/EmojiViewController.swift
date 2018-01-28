@@ -178,7 +178,8 @@ class EmojiViewController: UIViewController {
     fileprivate func updateSmallCell(with emojiGlyph: EmojiGlyph) ->  SmallEmojiTableViewCell {
         let cell = glyphTableView.dequeueReusableCell(withIdentifier: Identifiers.smallEmojiCell) as! SmallEmojiTableViewCell
         
-        cell.emojiLabel.text = emojiGlyph.glyph
+        //cell.emojiLabel.text = emojiGlyph.glyph
+        cell.emojiImage.image = UIImage(named: EmojiImageFinder().getEmojiImageName(for: emojiGlyph.index))
         cell.descriptionLabel.text = emojiGlyph.description.capitalized
         cell.priorityLabel.text = "# \(emojiGlyph.index)"
         cell.tagLabel.text = emojiGlyph.tags.joined(separator: " ").capitalized.trimmingCharacters(in: .whitespaces)

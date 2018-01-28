@@ -44,6 +44,8 @@
 		5AD391281FE5790F001DBB26 /* EmojiSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391261FE57902001DBB26 /* EmojiSearch.swift */; };
 		5AD3912A1FE57933001DBB26 /* EmojiSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */; };
 		5ADCAFD91FE2D95F00A93FA3 /* EmojiCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482C062D1FE0112B00508A28 /* EmojiCollection.swift */; };
+		5AF4F250201D697C00B1FBE7 /* EmojiImageFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF4F24F201D697C00B1FBE7 /* EmojiImageFinder.swift */; };
+		5AF4F251201D697C00B1FBE7 /* EmojiImageFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF4F24F201D697C00B1FBE7 /* EmojiImageFinder.swift */; };
 		5AF853391FF415E90018A598 /* SmallEmojiTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF853381FF415E90018A598 /* SmallEmojiTableCell.xib */; };
 		5AF8533B1FF41A730018A598 /* SmallEmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8533A1FF41A730018A598 /* SmallEmojiTableViewCell.swift */; };
 		5AF8533F1FF824380018A598 /* EmojiTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8533E1FF824380018A598 /* EmojiTools.swift */; };
@@ -97,6 +99,7 @@
 		5AC7D544200D786A00DFF833 /* SimpleTaggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTaggerTests.swift; sourceTree = "<group>"; };
 		5AD391261FE57902001DBB26 /* EmojiSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSearch.swift; sourceTree = "<group>"; };
 		5AD391291FE57933001DBB26 /* EmojiSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSearchTests.swift; sourceTree = "<group>"; };
+		5AF4F24F201D697C00B1FBE7 /* EmojiImageFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiImageFinder.swift; sourceTree = "<group>"; };
 		5AF853381FF415E90018A598 /* SmallEmojiTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallEmojiTableCell.xib; sourceTree = "<group>"; };
 		5AF8533A1FF41A730018A598 /* SmallEmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallEmojiTableViewCell.swift; sourceTree = "<group>"; };
 		5AF8533E1FF824380018A598 /* EmojiTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTools.swift; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 				5AC7D539200BAA5B00DFF833 /* SimpleSynonymmer.swift */,
 				5AC7D53F200BB37E00DFF833 /* SimpleSubstituter.swift */,
 				5AC7D542200D779A00DFF833 /* SimpleTagger.swift */,
+				5AF4F24F201D697C00B1FBE7 /* EmojiImageFinder.swift */,
 			);
 			path = "Emoji Classes";
 			sourceTree = "<group>";
@@ -360,6 +364,7 @@
 				5AC7D541200BB6B300DFF833 /* SimpleSubstituter.swift in Sources */,
 				5AC7D53D200BAB4600DFF833 /* SimpleSynonymmer.swift in Sources */,
 				5AC7D545200D786A00DFF833 /* SimpleTaggerTests.swift in Sources */,
+				5AF4F251201D697C00B1FBE7 /* EmojiImageFinder.swift in Sources */,
 				5AC7D546200D78AC00DFF833 /* SimpleTagger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AF4F250201D697C00B1FBE7 /* EmojiImageFinder.swift in Sources */,
 				5A4EAD381FDC758B00A02F7F /* EmojiViewController.swift in Sources */,
 				5AF9B1A62002AAA00063387B /* EmojiDetailViewController.swift in Sources */,
 				5AC7D53A200BAA5B00DFF833 /* SimpleSynonymmer.swift in Sources */,
