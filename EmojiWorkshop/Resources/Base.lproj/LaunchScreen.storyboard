@@ -23,12 +23,19 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="b2O-VH-I5U"/>
                                 </constraints>
-                                <color key="barTintColor" red="0.53621482850000002" green="0.87935417890000001" blue="0.40773993730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="barTintColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <imageView userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dv-dark-emoji-6" translatesAutoresizingMaskIntoConstraints="NO" id="nr4-hj-k9d">
+                                <rect key="frame" x="60" y="184" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="LSH-gD-XJU"/>
+                                    <constraint firstAttribute="height" constant="200" id="nGq-79-MaH"/>
+                                </constraints>
+                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iT-a7-elJ">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <color key="backgroundColor" red="0.53621482850000002" green="0.87935417890000001" blue="0.40773993730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="7aT-xB-q25"/>
                                 </constraints>
@@ -47,7 +54,9 @@
                             <constraint firstItem="4iT-a7-elJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Bci-TC-QWy"/>
                             <constraint firstItem="DUg-Ia-z3X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="YH6-U2-xV9"/>
                             <constraint firstItem="DUg-Ia-z3X" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Z55-1m-jNo"/>
+                            <constraint firstItem="nr4-hj-k9d" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="fo6-FH-Bl0"/>
                             <constraint firstItem="DUg-Ia-z3X" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="k2w-Av-8NK"/>
+                            <constraint firstItem="nr4-hj-k9d" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qem-m2-sh8"/>
                             <constraint firstItem="4iT-a7-elJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="zES-H7-8Cm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -58,4 +67,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dv-dark-emoji-6" width="200" height="200"/>
+    </resources>
 </document>
