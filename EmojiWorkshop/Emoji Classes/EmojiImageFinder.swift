@@ -10,10 +10,12 @@ import Foundation
 
 class EmojiImageFinder {
     
+    var totalEmojiImages = 13
+    
     // TODO: Toy code, remove once we have a serious solution
     
     func getEmojiImageName(for glyphID: Int) -> String {
-        if glyphID > 0 && glyphID < 10 {
+        if glyphID > 0 && glyphID < totalEmojiImages + 1	 {
             return "dv-dark-emoji-\(glyphID)"
         } else {
             return "dv-dark-emoji-1"
