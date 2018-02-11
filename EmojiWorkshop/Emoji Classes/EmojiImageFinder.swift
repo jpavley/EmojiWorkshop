@@ -10,7 +10,7 @@ import Foundation
 
 class EmojiImageFinder {
     
-    var totalEmojiImages = 13
+    var totalEmojiImages = 37
     
     // TODO: Toy code, remove once we have a serious solution
     
